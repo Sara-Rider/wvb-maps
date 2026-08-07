@@ -8,6 +8,7 @@
         "id": "recvPJnW9VMcBk09C",
         "name": "Summersville Lake Dam Overlook",
         "category": "Attraction",
+        "type": "overlook",
         "certified": false,
         "short": "Roadside overlook above Summersville Lake \u2014 West Virginia's largest lake, known for some of the clearest, deepest-blue water in the eastern United States.",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223373,-80.887608"
@@ -20,6 +21,7 @@
         "id": "recOhTqsi48QOI548",
         "name": "Kanawha Falls",
         "category": "Attraction",
+        "type": "waterfall",
         "certified": false,
         "short": "A wide, roadside waterfall on the Kanawha River at Glen Ferris \u2014 no hiking required.",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.142608,-81.206497"
@@ -32,6 +34,7 @@
         "id": "recA2Tb4l9cvlAYfC",
         "name": "Hawks Nest State Park",
         "category": "Attraction",
+        "type": "overlook",
         "certified": false,
         "short": "State park in Ansted with a canyon-rim overlook high above the New River Gorge.",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.122083,-81.117865"
@@ -44,6 +47,7 @@
         "id": "recfmU2gSvQMOTPaE",
         "name": "Fayette Station Road & Tunney Hunsaker Bridge",
         "category": "Attraction",
+        "type": "scenic-road",
         "certified": false,
         "short": "A steep, switchbacked road descending into the New River Gorge to a river-level bridge beneath the New River Gorge Bridge.",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.064092,-81.077166"
@@ -56,6 +60,7 @@
         "id": "recRSyShjXZGzTaJ1",
         "name": "Coal Heritage Trail",
         "category": "Attraction",
+        "type": "scenic-road",
         "certified": false,
         "short": "A National Scenic Byway through the historic coal-mining communities of southern West Virginia.",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864"
@@ -68,6 +73,7 @@
         "id": "rec3P1fszCzizMRUr",
         "name": "Babcock State Park",
         "category": "Attraction",
+        "type": "park",
         "certified": false,
         "short": "State park home to the Glade Creek Grist Mill, purported to be the most photographed spot in West Virginia.",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.00428,-80.943985"
