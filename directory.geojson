@@ -1,0 +1,1056 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "name": "West Virginia Bikers - Directory (all listings)",
+    "purpose": "Proximity feed: distance-from-coordinates for nearby-businesses on event and route pages.",
+    "coordinate_order": "[longitude, latitude]",
+    "count": 55
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.206497,
+          38.142608
+        ]
+      },
+      "properties": {
+        "id": "6a75a943e459f351d7e5c8ad",
+        "name": "Kanawha Falls",
+        "category": "Attraction",
+        "type": "Waterfall",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.142608,-81.206497",
+        "slug": "kanawha-falls"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.117865,
+          38.122083
+        ]
+      },
+      "properties": {
+        "id": "6a75a943e459f351d7e5c8ab",
+        "name": "Hawks Nest State Park",
+        "category": "Attraction",
+        "type": "Overlook",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.122083,-81.117865",
+        "slug": "hawks-nest-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.887608,
+          38.223373
+        ]
+      },
+      "properties": {
+        "id": "6a75a943e459f351d7e5c8a9",
+        "name": "Summersville Lake Dam Overlook",
+        "category": "Attraction",
+        "type": "Overlook",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223373,-80.887608",
+        "slug": "summersville-lake-dam-overlook"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0864936,
+          39.3886464
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d3960b",
+        "name": "Almost Heaven Swing - Valley Falls State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3886464,-80.0864936",
+        "slug": "almost-heaven-swing-valley-falls-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5941483,
+          40.547029
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d39609",
+        "name": "Almost Heaven Swing - Tomlinson Run State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=40.547029,-80.5941483",
+        "slug": "almost-heaven-swing-tomlinson-run-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0108002,
+          39.2801834
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d39607",
+        "name": "Almost Heaven Swing - Tygart Lake State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801834,-80.0108002",
+        "slug": "almost-heaven-swing-tygart-lake-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1406891,
+          38.839303
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d39605",
+        "name": "Almost Heaven Swing - Tu-Endie-Wei State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.839303,-82.1406891",
+        "slug": "almost-heaven-swing-tu-endie-wei-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.85603,
+          38.24576
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d39603",
+        "name": "Almost Heaven Swing - Summersville Lake State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.24576,-80.85603",
+        "slug": "almost-heaven-swing-summersville-lake-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4993407,
+          38.9486714
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d39601",
+        "name": "Almost Heaven Swing - Stonewall Resort State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9486714,-80.4993407",
+        "slug": "almost-heaven-swing-stonewall-resort-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9956932,
+          37.5340121
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395ff",
+        "name": "Almost Heaven Swing - Pipestem Resort State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.5340121,-80.9956932",
+        "slug": "almost-heaven-swing-pipestem-resort-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0868344,
+          39.2206591
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395fd",
+        "name": "Almost Heaven Swing - North Bend State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2206591,-81.0868344",
+        "slug": "almost-heaven-swing-north-bend-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9237039,
+          38.8958211
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395fb",
+        "name": "Almost Heaven Swing - Lost River State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.8958211,-78.9237039",
+        "slug": "almost-heaven-swing-lost-river-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2717304,
+          38.1122742
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395f9",
+        "name": "Almost Heaven Swing - Droop Mountain Battlefield State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1122742,-80.2717304",
+        "slug": "almost-heaven-swing-droop-mountain-battlefield-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0197368,
+          37.8938238
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395f7",
+        "name": "Almost Heaven Swing - Chief Logan State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8938238,-82.0197368",
+        "slug": "almost-heaven-swing-chief-logan-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4608152,
+          39.0286196
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395f5",
+        "name": "Almost Heaven Swing - Canaan Valley Resort State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0286196,-79.4608152",
+        "slug": "almost-heaven-swing-canaan-valley-resort-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.3102554,
+          39.5085891
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395f3",
+        "name": "Almost Heaven Swing - Cacapon Resort State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5085891,-78.3102554",
+        "slug": "almost-heaven-swing-cacapon-resort-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9331845,
+          37.6166704
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395f1",
+        "name": "Almost Heaven Swing - Bluestone State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.6166704,-80.9331845",
+        "slug": "almost-heaven-swing-bluestone-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5649343,
+          39.264891
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395ef",
+        "name": "Almost Heaven Swing - Blennerhassett Island Historical State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.264891,-81.5649343",
+        "slug": "almost-heaven-swing-blennerhassett-island-historical-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4857237,
+          39.1134191
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395ed",
+        "name": "Almost Heaven Swing - Blackwater Falls State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1134191,-79.4857237",
+        "slug": "almost-heaven-swing-blackwater-falls-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9768304,
+          37.9944401
+        ]
+      },
+      "properties": {
+        "id": "6a6fa93e0d948de2d6d395eb",
+        "name": "Almost Heaven Swing - Babcock State Park",
+        "category": "Attraction",
+        "type": "Swing",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304",
+        "slug": "almost-heaven-swing-babcock-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.46083,
+          38.85833
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b8d",
+        "name": "Walkersville Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.85833,-80.46083",
+        "slug": "walkersville-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.62611,
+          38.74278
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b8b",
+        "name": "Staats Mill Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.74278,-81.62611",
+        "slug": "staats-mill-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.27972,
+          39.30861
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b89",
+        "name": "Simpson Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30861,-80.27972",
+        "slug": "simpson-creek-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.64472,
+          38.92139
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b87",
+        "name": "Sarvis Fork Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.92139,-81.64472",
+        "slug": "sarvis-fork-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.04361,
+          39.15306
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b85",
+        "name": "Philippi Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.15306,-80.04361",
+        "slug": "philippi-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.13944,
+          38.43083
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b83",
+        "name": "Mud River Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.43083,-82.13944",
+        "slug": "mud-river-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.25028,
+          38.07944
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b81",
+        "name": "Locust Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.07944,-80.25028",
+        "slug": "locust-creek-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.62667,
+          37.56111
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b7f",
+        "name": "Laurel Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.56111,-80.62667",
+        "slug": "laurel-creek-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.57278,
+          37.54722
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b7d",
+        "name": "Indian Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.54722,-80.57278",
+        "slug": "indian-creek-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.525,
+          37.69722
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b7b",
+        "name": "Hokes Mill Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.69722,-80.525",
+        "slug": "hokes-mill-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.505,
+          37.8325
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b79",
+        "name": "Herns Mill Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8325,-80.505",
+        "slug": "herns-mill-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.48028,
+          39.30556
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b77",
+        "name": "Fletcher Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30556,-80.48028",
+        "slug": "fletcher-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4525,
+          39.67222
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b75",
+        "name": "Fish Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.67222,-80.4525",
+        "slug": "fish-creek-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.04,
+          39.62389
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b73",
+        "name": "Dents Run Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.62389,-80.04",
+        "slug": "dents-run-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.63444,
+          39.38944
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b71",
+        "name": "Center Point Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.38944,-80.63444",
+        "slug": "center-point-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.08667,
+          39.09
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b6f",
+        "name": "Carrollton Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.09,-80.08667",
+        "slug": "carrollton-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.16806,
+          39.50583
+        ]
+      },
+      "properties": {
+        "id": "6a6fa8f9841575cf17120b6d",
+        "name": "Barrackville Covered Bridge",
+        "category": "Attraction",
+        "type": "Covered Bridge",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.50583,-80.16806",
+        "slug": "barrackville-covered-bridge"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0020672,
+          39.4107572
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d272",
+        "name": "Keyser Inn",
+        "category": "Lodging",
+        "type": "Lodging",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4107572,-79.0020672",
+        "slug": "keyser-inn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.5231614,
+          39.3736064
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d270",
+        "name": "Slanesville General Store",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3736064,-78.5231614",
+        "slug": "slanesville-general-store"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.115225,
+          39.7132193
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d26e",
+        "name": "Mason-Dixon Historical Park",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.7132193,-80.115225",
+        "slug": "mason-dixon-historical-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3377228,
+          39.516449
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d26c",
+        "name": "Hamilton Round Barn",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.516449,-80.3377228",
+        "slug": "hamilton-round-barn"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0108002,
+          39.2801834
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d26a",
+        "name": "Tygart Lake State Park",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801834,-80.0108002",
+        "slug": "tygart-lake-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0183333,
+          39.3408333
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d268",
+        "name": "International Mother's Day Shrine",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3408333,-80.0183333",
+        "slug": "international-mothers-day-shrine"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.715076,
+          39.320581
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d266",
+        "name": "Cool Springs Park",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.320581,-79.715076",
+        "slug": "cool-springs-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1664371,
+          39.5083453
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d264",
+        "name": "Sleepy Creek Wildlife Management Area",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5083453,-78.1664371",
+        "slug": "sleepy-creek-wma"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1758881,
+          39.6298459
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d262",
+        "name": "Hillbilly Heaven Bar & Grill",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6298459,-78.1758881",
+        "slug": "hillbilly-heaven-bar-and-grill"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.0197368,
+          37.8938238
+        ]
+      },
+      "properties": {
+        "id": "6a558ef7c698d45d4b07d260",
+        "name": "Chief Logan State Park",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8938238,-82.0197368",
+        "slug": "chief-logan-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.6910459,
+          37.3019705
+        ]
+      },
+      "properties": {
+        "id": "6a558829d57e2c3d1ed50252",
+        "name": "Taco Todd's Savage Tacos",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459",
+        "slug": "taco-todds-savage-tacos"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.6913523,
+          37.300713
+        ]
+      },
+      "properties": {
+        "id": "6a558829d57e2c3d1ed50250",
+        "name": "Bunky's Burgers",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.300713,-81.6913523",
+        "slug": "bunkys-burgers"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5719915,
+          37.4410034
+        ]
+      },
+      "properties": {
+        "id": "6a558829d57e2c3d1ed5024e",
+        "name": "Sterling Drive-In",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4410034,-81.5719915",
+        "slug": "sterling-drive-in"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5565115,
+          37.4288957
+        ]
+      },
+      "properties": {
+        "id": "6a558829d57e2c3d1ed5024c",
+        "name": "Coaltown Tavern",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4288957,-81.5565115",
+        "slug": "coaltown-tavern"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.4647,
+          37.3492
+        ]
+      },
+      "properties": {
+        "id": "6a558829d57e2c3d1ed5024a",
+        "name": "Page Coal and Coke Company Store",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3492,-81.4647",
+        "slug": "page-coal-and-coke-company-store"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.507859,
+          37.426762
+        ]
+      },
+      "properties": {
+        "id": "6a558829d57e2c3d1ed50248",
+        "name": "Kimball War Memorial",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.426762,-81.507859",
+        "slug": "kimball-war-memorial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.86653028758215,
+          38.1996481993664
+        ]
+      },
+      "properties": {
+        "id": "6a430fd0da20b5407e66b2a5",
+        "name": "Summersville Lake Retreat & Lighthouse",
+        "category": "Campground",
+        "type": "Campground",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1996481993664,-80.86653028758215",
+        "slug": "summersville-lake-retreat-lighthouse"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.09575934525392,
+          38.22413489974406
+        ]
+      },
+      "properties": {
+        "id": "6a430ee4a33c8326465e9a64",
+        "name": "Greenbrier Grille and Lodge",
+        "category": "Restaurant",
+        "type": "Restaurant",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22413489974406,-80.09575934525392",
+        "slug": "greenbrier-grille-and-lodge"
+      }
+    }
+  ]
+}
