@@ -4,9 +4,66 @@
     "name": "West Virginia Bikers - Directory (all listings)",
     "purpose": "Proximity feed: distance-from-coordinates for nearby-businesses on event and route pages.",
     "coordinate_order": "[longitude, latitude]",
-    "count": 55
+    "count": 58
   },
   "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.943985,
+          38.00428
+        ]
+      },
+      "properties": {
+        "id": "6a75a943e459f351d7e5c8b3",
+        "name": "Babcock State Park",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.00428,-80.943985",
+        "slug": "babcock-state-park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.14864,
+          37.95986
+        ]
+      },
+      "properties": {
+        "id": "6a75a943e459f351d7e5c8b1",
+        "name": "Coal Heritage Trail",
+        "category": "Attraction",
+        "type": "Attraction",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864",
+        "slug": "coal-heritage-trail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.077166,
+          38.064092
+        ]
+      },
+      "properties": {
+        "id": "6a75a943e459f351d7e5c8af",
+        "name": "Fayette Station Road & Tunney Hunsaker Bridge",
+        "category": "Attraction",
+        "type": "Scenic Road/Byway",
+        "certified": false,
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.064092,-81.077166",
+        "slug": "fayette-station-road-tunney-hunsaker-bridge"
+      }
+    },
     {
       "type": "Feature",
       "geometry": {
