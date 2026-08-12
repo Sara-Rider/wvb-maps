@@ -35,6 +35,10 @@ on:
         description: "Certified? (true / false) - true = gold ring + larger pin"
         required: false
         default: "false"
+      pin:
+        description: "Pin size in px on the 1200-wide render (~150 reads at card scale; tune with zoom)"
+        required: false
+        default: "150"
 
 permissions:
   contents: write
@@ -49,7 +53,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install dependencies (Puppeteer + Chromium)
         working-directory: tools/render-map
@@ -65,6 +69,7 @@ jobs:
           IN_CATEGORY: ${{ github.event.inputs.category }}
           IN_ATTRACTION_TYPE: ${{ github.event.inputs.attraction_type }}
           IN_CERTIFIED: ${{ github.event.inputs.certified }}
+          IN_PIN: ${{ github.event.inputs.pin }}
         run: node render.mjs
 
       - name: Commit the PNG
