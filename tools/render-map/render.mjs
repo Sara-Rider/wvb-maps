@@ -1,4 +1,4 @@
-// WVB directory map thumbnail — single render (test harness)
+// WVB directory map thumbnail - single render (test harness)
 // ----------------------------------------------------------
 // Renders one 1200x675 map centered on a listing's coordinates, with the
 // category/attraction glyph stamped into a Mountain Slate pin (gold ring +
@@ -6,7 +6,7 @@
 // listing before we batch all 58. Change the zoom input, re-run, compare.
 //
 // Pin + glyph rules inherit from Decision 37. The glyph paths below are
-// TEST-GRADE approximations drawn to the 24x24 / ~2px-stroke grammar — good
+// TEST-GRADE approximations drawn to the 24x24 / ~2px-stroke grammar - good
 // enough to judge legibility. Swap in exact Tabler (MIT) paths for production.
 
 import fs from "node:fs";
@@ -14,9 +14,9 @@ import path from "node:path";
 import puppeteer from "puppeteer";
 
 // ---- Brand tokens (Decision 37 / Brand & Design System) --------------------
-const SLATE = "#3D5A6B"; // Mountain Slate — base pin
-const GOLD = "#C8922A";  // Route Gold — Certified ring
-const MIST = "#F2F0EB";  // Mist White — glyph + pin outline
+const SLATE = "#3D5A6B"; // Mountain Slate - base pin
+const GOLD = "#C8922A";  // Route Gold - Certified ring
+const MIST = "#F2F0EB";  // Mist White - glyph + pin outline
 
 // ---- Inputs ----------------------------------------------------------------
 const NAME = process.env.IN_NAME || "test-render";
@@ -26,6 +26,7 @@ const ZOOM = parseFloat(process.env.IN_ZOOM ?? "12.5");
 const CATEGORY = (process.env.IN_CATEGORY || "").trim().toLowerCase();
 const ATTRACTION = (process.env.IN_ATTRACTION_TYPE || "").trim().toLowerCase();
 const CERTIFIED = String(process.env.IN_CERTIFIED || "false").trim().toLowerCase() === "true";
+const PIN = parseInt(process.env.IN_PIN ?? "150", 10); // base pin px in the 1200-wide render (~13% width reads on a card)
 
 const WIDTH = 1200;
 const HEIGHT = 675; // 16:9, matches the tile/photo container spec
@@ -65,20 +66,23 @@ function slug(s) {
 // Teardrop: rounded box rotated -45deg; glyph counter-rotated inside.
 // Certified: gold ring wrapper + larger.
 function pinHtml(glyphInner, certified) {
-  const size = certified ? 40 : 32;
-  const glyphSize = certified ? 18 : 15;
+  const size = certified ? Math.round(PIN * 1.27) : PIN;
+  const glyphSize = Math.round(size * 0.5);
+  const borderPx = Math.max(2, Math.round(size * 0.028));
+  // stroke-width stays in the 24-unit viewBox, so it scales with glyphSize automatically
   const teardrop = `
     <div style="width:${size}px;height:${size}px;background:${SLATE};
-      border:2px solid ${MIST};border-radius:50% 50% 50% 0;
+      border:${borderPx}px solid ${MIST};border-radius:50% 50% 50% 0;
       transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;">
       <svg width="${glyphSize}" height="${glyphSize}" viewBox="0 0 24 24"
         fill="none" stroke="${MIST}" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" style="transform:rotate(45deg);">${glyphInner}</svg>
     </div>`;
   if (!certified) return teardrop;
+  const ringPad = Math.round(size * 0.14);
   return `
-    <div style="padding:5px;background:${GOLD};border-radius:50%;
-      border:2px solid ${MIST};display:inline-flex;">${teardrop}</div>`;
+    <div style="padding:${ringPad}px;background:${GOLD};border-radius:50%;
+      border:${borderPx}px solid ${MIST};display:inline-flex;">${teardrop}</div>`;
 }
 
 // ---- Page HTML -------------------------------------------------------------
