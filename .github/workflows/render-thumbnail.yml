@@ -1,0 +1,86 @@
+name: Render directory map thumbnail
+
+# Push-button test render. Run it from the Actions tab (Run workflow),
+# tweak the inputs (especially zoom), and the PNG lands in /renders.
+# Purpose: prove one real listing looks right before batching all 58.
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Listing name (for the filename + commit message)"
+        required: true
+        default: "Summersville Lake Dam Overlook"
+      lat:
+        description: "Latitude"
+        required: true
+        default: "38.223373"
+      lng:
+        description: "Longitude"
+        required: true
+        default: "-80.887608"
+      zoom:
+        description: "Map zoom (start ~12.5; this is the number we tune)"
+        required: true
+        default: "12.5"
+      category:
+        description: "Business Category (food, lodging, camping, fuel, moto, guides, other) - used only if attraction_type is blank"
+        required: false
+        default: ""
+      attraction_type:
+        description: "Attraction Type (overlook, waterfall, bridge, monument, park, scenic-road, swing) - wins over category"
+        required: false
+        default: "overlook"
+      certified:
+        description: "Certified? (true / false) - true = gold ring + larger pin"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies (Puppeteer + Chromium)
+        working-directory: tools/render-map
+        run: npm install
+
+      - name: Render thumbnail
+        working-directory: tools/render-map
+        env:
+          IN_NAME: ${{ github.event.inputs.name }}
+          IN_LAT: ${{ github.event.inputs.lat }}
+          IN_LNG: ${{ github.event.inputs.lng }}
+          IN_ZOOM: ${{ github.event.inputs.zoom }}
+          IN_CATEGORY: ${{ github.event.inputs.category }}
+          IN_ATTRACTION_TYPE: ${{ github.event.inputs.attraction_type }}
+          IN_CERTIFIED: ${{ github.event.inputs.certified }}
+        run: node render.mjs
+
+      - name: Commit the PNG
+        run: |
+          git config user.name "wvb-map-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add renders/
+          git commit -m "Render: ${{ github.event.inputs.name }} (z${{ github.event.inputs.zoom }})" || echo "No changes to commit"
+          git push
+
+      - name: Print raw URL to summary
+        run: |
+          SLUG=$(echo "${{ github.event.inputs.name }}" | tr '[:upper:] ' '[:lower:]-' | tr -cd 'a-z0-9-')
+          echo "### Render complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Open the PNG:" >> $GITHUB_STEP_SUMMARY
+          echo "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/renders/${SLUG}.png" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Not right? Re-run with a different **zoom**." >> $GITHUB_STEP_SUMMARY
