@@ -26,7 +26,7 @@ const ZOOM = parseFloat(process.env.IN_ZOOM ?? "12.5");
 const CATEGORY = (process.env.IN_CATEGORY || "").trim().toLowerCase();
 const ATTRACTION = (process.env.IN_ATTRACTION_TYPE || "").trim().toLowerCase();
 const CERTIFIED = String(process.env.IN_CERTIFIED || "false").trim().toLowerCase() === "true";
-const PIN = parseInt(process.env.IN_PIN ?? "150", 10); // base pin px in the 1200-wide render (~13% width reads on a card)
+const PIN = parseInt(process.env.IN_PIN ?? "110", 10); // base pin px in the 1200-wide render (~13% width reads on a card)
 
 const WIDTH = 1200;
 const HEIGHT = 675; // 16:9, matches the tile/photo container spec
