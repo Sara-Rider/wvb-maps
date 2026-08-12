@@ -1,0 +1,63 @@
+name: Render directory map thumbnails (BATCH)
+
+# Renders a map thumbnail for every row in tools/render-map/directory.csv,
+# using the locked defaults (zoom 12.5 / pin 110). Commits the PNGs to /renders
+# plus a render-index.csv (id -> raw URL) for the write-back step.
+#
+# Before running: export your Directory as directory.csv (columns in
+# directory.template.csv) and commit it to tools/render-map/directory.csv.
+
+on:
+  workflow_dispatch:
+    inputs:
+      zoom:
+        description: "Map zoom (locked default 12.5)"
+        required: false
+        default: "12.5"
+      pin:
+        description: "Pin size px (locked default 110)"
+        required: false
+        default: "110"
+
+permissions:
+  contents: write
+
+jobs:
+  batch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies (Puppeteer + Chromium)
+        working-directory: tools/render-map
+        run: npm install
+
+      - name: Render all thumbnails
+        working-directory: tools/render-map
+        env:
+          IN_ZOOM: ${{ github.event.inputs.zoom }}
+          IN_PIN: ${{ github.event.inputs.pin }}
+        run: node render-batch.mjs
+
+      - name: Commit renders
+        run: |
+          git config user.name "wvb-map-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add renders/
+          git commit -m "Batch render directory thumbnails" || echo "No changes to commit"
+          git push
+
+      - name: Summary
+        run: |
+          echo "### Batch render complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "PNGs committed to /renders. Index (id -> raw URL):" >> $GITHUB_STEP_SUMMARY
+          echo "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/renders/render-index.csv" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The build log lists each row's category -> glyph resolution and any no-coord rows that were skipped." >> $GITHUB_STEP_SUMMARY
