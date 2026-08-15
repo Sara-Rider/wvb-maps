@@ -1,2 +1,11 @@
-Business Name,Business Category,Latitude,Longitude
-Mingo Saloon & Lodge,Lodging,38.5017403,-80.050517
+Business Name,Latitude,Longitude,Business Category,Address
+Skyline Lodge,37.6240212953488,-81.11621074996972,Lodging,"127 Lakeview Drive, Ghent, WV 25843"
+Outlaw Bar & Grill,37.457514,-81.3652011,Bar,"2283 Wagon Wheel Rd, Herndon, WV 24726"
+The Tractor Bar,38.2026449,-80.8514876,Bar,"546 Wilderness Hwy, Mount Nebo, WV 26679"
+EZ Street,38.4353327,-81.85236019999999,Bar,"2796 Winfield Rd, Saint Albans, WV 25177"
+South Branch Smokehouse,39.0835666,-78.9630275,Restaurant,"1542 US Highway 220 N, Moorefield, WV 26836"
+Rider's Paradise,37.4460792,-81.3493179,Lodging,"839 Wagon Wheel Rd, Herndon, WV 24726"
+Full Throttle at Riders Paradise,37.4460792,-81.3493179,Bar,"839 Wagon Wheel Rd, Herndon, WV 24726"
+Brickside Bar & Grille,39.2820332,-80.2779955,Bar,"101 Lodgeville Rd, Bridgeport, WV 26330"
+The Social Tap,39.2729423,-80.2673701,Bar,"2036 Anmoore Rd, Bridgeport, WV"
+Casey's Family Restaurant - Enterprise,39.42482991012265,-80.2780448744429,Restaurant,"Co Rte 19/54, Enterprise, WV 26568"
