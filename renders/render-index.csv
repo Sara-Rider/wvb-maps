@@ -1,2 +1,11 @@
 id,name,category,glyph,certified,filename,raw_url
-mingo-saloon-lodge,Mingo Saloon & Lodge,Lodging,lodging,false,dir-mingo-saloon-lodge.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-mingo-saloon-lodge.png
+skyline-lodge,Skyline Lodge,Lodging,lodging,false,dir-skyline-lodge.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-skyline-lodge.png
+outlaw-bar-grill,Outlaw Bar & Grill,Bar,food,false,dir-outlaw-bar-grill.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-outlaw-bar-grill.png
+the-tractor-bar,The Tractor Bar,Bar,food,false,dir-the-tractor-bar.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-the-tractor-bar.png
+ez-street,EZ Street,Bar,food,false,dir-ez-street.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-ez-street.png
+south-branch-smokehouse,South Branch Smokehouse,Restaurant,food,false,dir-south-branch-smokehouse.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-south-branch-smokehouse.png
+rider-s-paradise,Rider's Paradise,Lodging,lodging,false,dir-rider-s-paradise.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-rider-s-paradise.png
+full-throttle-at-riders-paradise,Full Throttle at Riders Paradise,Bar,food,false,dir-full-throttle-at-riders-paradise.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-full-throttle-at-riders-paradise.png
+brickside-bar-grille,Brickside Bar & Grille,Bar,food,false,dir-brickside-bar-grille.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-brickside-bar-grille.png
+the-social-tap,The Social Tap,Bar,food,false,dir-the-social-tap.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-the-social-tap.png
+casey-s-family-restaurant-enterprise,Casey's Family Restaurant - Enterprise,Restaurant,food,false,dir-casey-s-family-restaurant-enterprise.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-casey-s-family-restaurant-enterprise.png
