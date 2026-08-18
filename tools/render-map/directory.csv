@@ -1,13 +1,13 @@
-Business Name,Business Category,Latitude,Longitude
-Bunky's Burgers,Restaurant,37.300875,-81.691245
-Summersville Lake Retreat & Lighthouse,Campground,38.200427,-80.864641
-Babcock State Park,Attraction,38.007329,-80.948414
-Fayette Station Road & Tunney Hunsaker Bridge,Attraction,38.064899,-81.077134
-Hawks Nest State Park,Attraction,38.121145,-81.117317
-Kanawha Falls,Attraction,38.143029,-81.206461
-Summersville Lake Dam Overlook,Attraction,38.220313,-80.890895
-Chief Logan State Park,Attraction,37.894284,-82.018736
-Kimball War Memorial,Attraction,37.425360,-81.506411
-Page Coal and Coke Company Store,Attraction,37.349536,-81.464630
-Sleepy Creek Wildlife Management Area,Attraction,39.534471,-78.145711
-Tygart Lake State Park,Attraction,39.283240,-80.011187
+Business Name,Business Category,Attraction Type,Certified,Latitude,Longitude
+Bunky's Burgers,Restaurant,,false,37.300875,-81.691245
+Summersville Lake Retreat & Lighthouse,Campground,,false,38.200427,-80.864641
+Babcock State Park,Attraction,Park/Nature,false,38.007329,-80.948414
+Fayette Station Road & Tunney Hunsaker Bridge,Attraction,Scenic Road/Byway,false,38.064899,-81.077134
+Hawks Nest State Park,Attraction,Overlook,false,38.121145,-81.117317
+Kanawha Falls,Attraction,Waterfall,false,38.143029,-81.206461
+Summersville Lake Dam Overlook,Attraction,Overlook,false,38.220313,-80.890895
+Chief Logan State Park,Attraction,Park/Nature,false,37.894284,-82.018736
+Kimball War Memorial,Attraction,Monument,false,37.425360,-81.506411
+Page Coal and Coke Company Store,Attraction,,false,37.349536,-81.464630
+Sleepy Creek Wildlife Management Area,Attraction,Park/Nature,false,39.534471,-78.145711
+Tygart Lake State Park,Attraction,Park/Nature,false,39.283240,-80.011187
