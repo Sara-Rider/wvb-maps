@@ -1,11 +1,13 @@
 id,name,category,glyph,certified,filename,raw_url
-skyline-lodge,Skyline Lodge,Lodging,lodging,false,dir-skyline-lodge.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-skyline-lodge.png
-outlaw-bar-grill,Outlaw Bar & Grill,Bar,food,false,dir-outlaw-bar-grill.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-outlaw-bar-grill.png
-the-tractor-bar,The Tractor Bar,Bar,food,false,dir-the-tractor-bar.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-the-tractor-bar.png
-ez-street,EZ Street,Bar,food,false,dir-ez-street.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-ez-street.png
-south-branch-smokehouse,South Branch Smokehouse,Restaurant,food,false,dir-south-branch-smokehouse.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-south-branch-smokehouse.png
-rider-s-paradise,Rider's Paradise,Lodging,lodging,false,dir-rider-s-paradise.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-rider-s-paradise.png
-full-throttle-at-riders-paradise,Full Throttle at Riders Paradise,Bar,food,false,dir-full-throttle-at-riders-paradise.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-full-throttle-at-riders-paradise.png
-brickside-bar-grille,Brickside Bar & Grille,Bar,food,false,dir-brickside-bar-grille.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-brickside-bar-grille.png
-the-social-tap,The Social Tap,Bar,food,false,dir-the-social-tap.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-the-social-tap.png
-casey-s-family-restaurant-enterprise,Casey's Family Restaurant - Enterprise,Restaurant,food,false,dir-casey-s-family-restaurant-enterprise.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-casey-s-family-restaurant-enterprise.png
+bunky-s-burgers,Bunky's Burgers,Restaurant,food,false,dir-bunky-s-burgers.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-bunky-s-burgers.png
+summersville-lake-retreat-lighthouse,Summersville Lake Retreat & Lighthouse,Campground,camping,false,dir-summersville-lake-retreat-lighthouse.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-summersville-lake-retreat-lighthouse.png
+babcock-state-park,Babcock State Park,Attraction,attraction,false,dir-babcock-state-park.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-babcock-state-park.png
+fayette-station-road-tunney-hunsaker-bridge,Fayette Station Road & Tunney Hunsaker Bridge,Attraction,attraction,false,dir-fayette-station-road-tunney-hunsaker-bridge.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-fayette-station-road-tunney-hunsaker-bridge.png
+hawks-nest-state-park,Hawks Nest State Park,Attraction,attraction,false,dir-hawks-nest-state-park.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-hawks-nest-state-park.png
+kanawha-falls,Kanawha Falls,Attraction,attraction,false,dir-kanawha-falls.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-kanawha-falls.png
+summersville-lake-dam-overlook,Summersville Lake Dam Overlook,Attraction,attraction,false,dir-summersville-lake-dam-overlook.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-summersville-lake-dam-overlook.png
+chief-logan-state-park,Chief Logan State Park,Attraction,attraction,false,dir-chief-logan-state-park.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-chief-logan-state-park.png
+kimball-war-memorial,Kimball War Memorial,Attraction,attraction,false,dir-kimball-war-memorial.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-kimball-war-memorial.png
+page-coal-and-coke-company-store,Page Coal and Coke Company Store,Attraction,attraction,false,dir-page-coal-and-coke-company-store.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-page-coal-and-coke-company-store.png
+sleepy-creek-wildlife-management-area,Sleepy Creek Wildlife Management Area,Attraction,attraction,false,dir-sleepy-creek-wildlife-management-area.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-sleepy-creek-wildlife-management-area.png
+tygart-lake-state-park,Tygart Lake State Park,Attraction,attraction,false,dir-tygart-lake-state-park.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-tygart-lake-state-park.png
