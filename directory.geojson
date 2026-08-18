@@ -2,431 +2,16 @@
   "type": "FeatureCollection",
   "metadata": {
     "name": "West Virginia Bikers - Directory (all listings)",
-    "purpose": "Proximity feed: distance-from-coordinates for nearby-businesses on event and route pages.",
+    "purpose": "Pin feed: directory index map, plus distance-from-coordinates for nearby-businesses on event and route pages.",
+    "contract": "pin data contract v2 — keyed on slug; `type` is the canonical renderer glyph token",
+    "join_key": "slug",
     "coordinate_order": "[longitude, latitude]",
-    "count": 58
+    "count": 89
   },
   "features": [
     {
       "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.943985,
-          38.00428
-        ]
-      },
-      "properties": {
-        "id": "6a75a943e459f351d7e5c8b3",
-        "name": "Babcock State Park",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.00428,-80.943985",
-        "slug": "babcock-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.14864,
-          37.95986
-        ]
-      },
-      "properties": {
-        "id": "6a75a943e459f351d7e5c8b1",
-        "name": "Coal Heritage Trail",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864",
-        "slug": "coal-heritage-trail"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.077166,
-          38.064092
-        ]
-      },
-      "properties": {
-        "id": "6a75a943e459f351d7e5c8af",
-        "name": "Fayette Station Road & Tunney Hunsaker Bridge",
-        "category": "Attraction",
-        "type": "Scenic Road/Byway",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.064092,-81.077166",
-        "slug": "fayette-station-road-tunney-hunsaker-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.206497,
-          38.142608
-        ]
-      },
-      "properties": {
-        "id": "6a75a943e459f351d7e5c8ad",
-        "name": "Kanawha Falls",
-        "category": "Attraction",
-        "type": "Waterfall",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.142608,-81.206497",
-        "slug": "kanawha-falls"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.117865,
-          38.122083
-        ]
-      },
-      "properties": {
-        "id": "6a75a943e459f351d7e5c8ab",
-        "name": "Hawks Nest State Park",
-        "category": "Attraction",
-        "type": "Overlook",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.122083,-81.117865",
-        "slug": "hawks-nest-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.887608,
-          38.223373
-        ]
-      },
-      "properties": {
-        "id": "6a75a943e459f351d7e5c8a9",
-        "name": "Summersville Lake Dam Overlook",
-        "category": "Attraction",
-        "type": "Overlook",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223373,-80.887608",
-        "slug": "summersville-lake-dam-overlook"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.0864936,
-          39.3886464
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d3960b",
-        "name": "Almost Heaven Swing - Valley Falls State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3886464,-80.0864936",
-        "slug": "almost-heaven-swing-valley-falls-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.5941483,
-          40.547029
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d39609",
-        "name": "Almost Heaven Swing - Tomlinson Run State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=40.547029,-80.5941483",
-        "slug": "almost-heaven-swing-tomlinson-run-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.0108002,
-          39.2801834
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d39607",
-        "name": "Almost Heaven Swing - Tygart Lake State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801834,-80.0108002",
-        "slug": "almost-heaven-swing-tygart-lake-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -82.1406891,
-          38.839303
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d39605",
-        "name": "Almost Heaven Swing - Tu-Endie-Wei State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.839303,-82.1406891",
-        "slug": "almost-heaven-swing-tu-endie-wei-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.85603,
-          38.24576
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d39603",
-        "name": "Almost Heaven Swing - Summersville Lake State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.24576,-80.85603",
-        "slug": "almost-heaven-swing-summersville-lake-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.4993407,
-          38.9486714
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d39601",
-        "name": "Almost Heaven Swing - Stonewall Resort State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9486714,-80.4993407",
-        "slug": "almost-heaven-swing-stonewall-resort-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.9956932,
-          37.5340121
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395ff",
-        "name": "Almost Heaven Swing - Pipestem Resort State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.5340121,-80.9956932",
-        "slug": "almost-heaven-swing-pipestem-resort-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.0868344,
-          39.2206591
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395fd",
-        "name": "Almost Heaven Swing - North Bend State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2206591,-81.0868344",
-        "slug": "almost-heaven-swing-north-bend-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -78.9237039,
-          38.8958211
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395fb",
-        "name": "Almost Heaven Swing - Lost River State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.8958211,-78.9237039",
-        "slug": "almost-heaven-swing-lost-river-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.2717304,
-          38.1122742
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395f9",
-        "name": "Almost Heaven Swing - Droop Mountain Battlefield State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1122742,-80.2717304",
-        "slug": "almost-heaven-swing-droop-mountain-battlefield-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -82.0197368,
-          37.8938238
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395f7",
-        "name": "Almost Heaven Swing - Chief Logan State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8938238,-82.0197368",
-        "slug": "almost-heaven-swing-chief-logan-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -79.4608152,
-          39.0286196
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395f5",
-        "name": "Almost Heaven Swing - Canaan Valley Resort State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0286196,-79.4608152",
-        "slug": "almost-heaven-swing-canaan-valley-resort-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -78.3102554,
-          39.5085891
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395f3",
-        "name": "Almost Heaven Swing - Cacapon Resort State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5085891,-78.3102554",
-        "slug": "almost-heaven-swing-cacapon-resort-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.9331845,
-          37.6166704
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395f1",
-        "name": "Almost Heaven Swing - Bluestone State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.6166704,-80.9331845",
-        "slug": "almost-heaven-swing-bluestone-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.5649343,
-          39.264891
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395ef",
-        "name": "Almost Heaven Swing - Blennerhassett Island Historical State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.264891,-81.5649343",
-        "slug": "almost-heaven-swing-blennerhassett-island-historical-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -79.4857237,
-          39.1134191
-        ]
-      },
-      "properties": {
-        "id": "6a6fa93e0d948de2d6d395ed",
-        "name": "Almost Heaven Swing - Blackwater Falls State Park",
-        "category": "Attraction",
-        "type": "Swing",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1134191,-79.4857237",
-        "slug": "almost-heaven-swing-blackwater-falls-state-park"
-      }
-    },
-    {
-      "type": "Feature",
+      "id": "almost-heaven-swing-babcock-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -435,511 +20,130 @@
         ]
       },
       "properties": {
-        "id": "6a6fa93e0d948de2d6d395eb",
+        "slug": "almost-heaven-swing-babcock-state-park",
         "name": "Almost Heaven Swing - Babcock State Park",
         "category": "Attraction",
-        "type": "Swing",
+        "type": "swing",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304",
-        "slug": "almost-heaven-swing-babcock-state-park"
+        "url": "/directory/almost-heaven-swing-babcock-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-blackwater-falls-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.46083,
-          38.85833
+          -79.4857237,
+          39.1134191
         ]
       },
       "properties": {
-        "id": "6a6fa8f9841575cf17120b8d",
-        "name": "Walkersville Covered Bridge",
+        "slug": "almost-heaven-swing-blackwater-falls-state-park",
+        "name": "Almost Heaven Swing - Blackwater Falls State Park",
         "category": "Attraction",
-        "type": "Covered Bridge",
+        "type": "swing",
+        "region": "Potomac Highlands",
+        "county": "Tucker",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.85833,-80.46083",
-        "slug": "walkersville-covered-bridge"
+        "url": "/directory/almost-heaven-swing-blackwater-falls-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1134191,-79.4857237"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-blennerhassett-island-historical-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.62611,
-          38.74278
+          -81.5649343,
+          39.264891
         ]
       },
       "properties": {
-        "id": "6a6fa8f9841575cf17120b8b",
-        "name": "Staats Mill Covered Bridge",
+        "slug": "almost-heaven-swing-blennerhassett-island-historical-state-park",
+        "name": "Almost Heaven Swing - Blennerhassett Island Historical State Park",
         "category": "Attraction",
-        "type": "Covered Bridge",
+        "type": "swing",
+        "region": "Mid-Ohio Valley",
+        "county": "Wood",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.74278,-81.62611",
-        "slug": "staats-mill-covered-bridge"
+        "url": "/directory/almost-heaven-swing-blennerhassett-island-historical-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.264891,-81.5649343"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-bluestone-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.27972,
-          39.30861
+          -80.9331845,
+          37.6166704
         ]
       },
       "properties": {
-        "id": "6a6fa8f9841575cf17120b89",
-        "name": "Simpson Creek Covered Bridge",
+        "slug": "almost-heaven-swing-bluestone-state-park",
+        "name": "Almost Heaven Swing - Bluestone State Park",
         "category": "Attraction",
-        "type": "Covered Bridge",
+        "type": "swing",
+        "region": "New River-Greenbrier Valley",
+        "county": "Summers",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30861,-80.27972",
-        "slug": "simpson-creek-covered-bridge"
+        "url": "/directory/almost-heaven-swing-bluestone-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.6166704,-80.9331845"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-cacapon-resort-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.64472,
-          38.92139
+          -78.3102554,
+          39.5085891
         ]
       },
       "properties": {
-        "id": "6a6fa8f9841575cf17120b87",
-        "name": "Sarvis Fork Covered Bridge",
+        "slug": "almost-heaven-swing-cacapon-resort-state-park",
+        "name": "Almost Heaven Swing - Cacapon Resort State Park",
         "category": "Attraction",
-        "type": "Covered Bridge",
+        "type": "swing",
+        "region": "Eastern Panhandle",
+        "county": "Morgan",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.92139,-81.64472",
-        "slug": "sarvis-fork-covered-bridge"
+        "url": "/directory/almost-heaven-swing-cacapon-resort-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5085891,-78.3102554"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-canaan-valley-resort-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.04361,
-          39.15306
+          -79.4608152,
+          39.0286196
         ]
       },
       "properties": {
-        "id": "6a6fa8f9841575cf17120b85",
-        "name": "Philippi Covered Bridge",
+        "slug": "almost-heaven-swing-canaan-valley-resort-state-park",
+        "name": "Almost Heaven Swing - Canaan Valley Resort State Park",
         "category": "Attraction",
-        "type": "Covered Bridge",
+        "type": "swing",
+        "region": "Potomac Highlands",
+        "county": "Tucker",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.15306,-80.04361",
-        "slug": "philippi-covered-bridge"
+        "url": "/directory/almost-heaven-swing-canaan-valley-resort-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0286196,-79.4608152"
       }
     },
     {
       "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -82.13944,
-          38.43083
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b83",
-        "name": "Mud River Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.43083,-82.13944",
-        "slug": "mud-river-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.25028,
-          38.07944
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b81",
-        "name": "Locust Creek Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.07944,-80.25028",
-        "slug": "locust-creek-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.62667,
-          37.56111
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b7f",
-        "name": "Laurel Creek Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.56111,-80.62667",
-        "slug": "laurel-creek-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.57278,
-          37.54722
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b7d",
-        "name": "Indian Creek Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.54722,-80.57278",
-        "slug": "indian-creek-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.525,
-          37.69722
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b7b",
-        "name": "Hokes Mill Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.69722,-80.525",
-        "slug": "hokes-mill-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.505,
-          37.8325
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b79",
-        "name": "Herns Mill Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8325,-80.505",
-        "slug": "herns-mill-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.48028,
-          39.30556
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b77",
-        "name": "Fletcher Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30556,-80.48028",
-        "slug": "fletcher-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.4525,
-          39.67222
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b75",
-        "name": "Fish Creek Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.67222,-80.4525",
-        "slug": "fish-creek-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.04,
-          39.62389
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b73",
-        "name": "Dents Run Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.62389,-80.04",
-        "slug": "dents-run-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.63444,
-          39.38944
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b71",
-        "name": "Center Point Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.38944,-80.63444",
-        "slug": "center-point-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.08667,
-          39.09
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b6f",
-        "name": "Carrollton Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.09,-80.08667",
-        "slug": "carrollton-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.16806,
-          39.50583
-        ]
-      },
-      "properties": {
-        "id": "6a6fa8f9841575cf17120b6d",
-        "name": "Barrackville Covered Bridge",
-        "category": "Attraction",
-        "type": "Covered Bridge",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.50583,-80.16806",
-        "slug": "barrackville-covered-bridge"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -79.0020672,
-          39.4107572
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d272",
-        "name": "Keyser Inn",
-        "category": "Lodging",
-        "type": "Lodging",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4107572,-79.0020672",
-        "slug": "keyser-inn"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -78.5231614,
-          39.3736064
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d270",
-        "name": "Slanesville General Store",
-        "category": "Restaurant",
-        "type": "Restaurant",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3736064,-78.5231614",
-        "slug": "slanesville-general-store"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.115225,
-          39.7132193
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d26e",
-        "name": "Mason-Dixon Historical Park",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.7132193,-80.115225",
-        "slug": "mason-dixon-historical-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.3377228,
-          39.516449
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d26c",
-        "name": "Hamilton Round Barn",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.516449,-80.3377228",
-        "slug": "hamilton-round-barn"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.0108002,
-          39.2801834
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d26a",
-        "name": "Tygart Lake State Park",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801834,-80.0108002",
-        "slug": "tygart-lake-state-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -80.0183333,
-          39.3408333
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d268",
-        "name": "International Mother's Day Shrine",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3408333,-80.0183333",
-        "slug": "international-mothers-day-shrine"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -79.715076,
-          39.320581
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d266",
-        "name": "Cool Springs Park",
-        "category": "Restaurant",
-        "type": "Restaurant",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.320581,-79.715076",
-        "slug": "cool-springs-park"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -78.1664371,
-          39.5083453
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d264",
-        "name": "Sleepy Creek Wildlife Management Area",
-        "category": "Attraction",
-        "type": "Attraction",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5083453,-78.1664371",
-        "slug": "sleepy-creek-wma"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -78.1758881,
-          39.6298459
-        ]
-      },
-      "properties": {
-        "id": "6a558ef7c698d45d4b07d262",
-        "name": "Hillbilly Heaven Bar & Grill",
-        "category": "Restaurant",
-        "type": "Restaurant",
-        "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6298459,-78.1758881",
-        "slug": "hillbilly-heaven-bar-and-grill"
-      }
-    },
-    {
-      "type": "Feature",
+      "id": "almost-heaven-swing-chief-logan-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -948,74 +152,526 @@
         ]
       },
       "properties": {
-        "id": "6a558ef7c698d45d4b07d260",
-        "name": "Chief Logan State Park",
+        "slug": "almost-heaven-swing-chief-logan-state-park",
+        "name": "Almost Heaven Swing - Chief Logan State Park",
         "category": "Attraction",
-        "type": "Attraction",
+        "type": "swing",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Logan",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8938238,-82.0197368",
-        "slug": "chief-logan-state-park"
+        "url": "/directory/almost-heaven-swing-chief-logan-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8938238,-82.0197368"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-droop-mountain-battlefield-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.6910459,
-          37.3019705
+          -80.2717304,
+          38.1122742
         ]
       },
       "properties": {
-        "id": "6a558829d57e2c3d1ed50252",
-        "name": "Taco Todd's Savage Tacos",
-        "category": "Restaurant",
-        "type": "Restaurant",
+        "slug": "almost-heaven-swing-droop-mountain-battlefield-state-park",
+        "name": "Almost Heaven Swing - Droop Mountain Battlefield State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459",
-        "slug": "taco-todds-savage-tacos"
+        "url": "/directory/almost-heaven-swing-droop-mountain-battlefield-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1122742,-80.2717304"
       }
     },
     {
       "type": "Feature",
+      "id": "almost-heaven-swing-lost-river-state-park",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.6913523,
-          37.300713
+          -78.9237039,
+          38.8958211
         ]
       },
       "properties": {
-        "id": "6a558829d57e2c3d1ed50250",
+        "slug": "almost-heaven-swing-lost-river-state-park",
+        "name": "Almost Heaven Swing - Lost River State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Potomac Highlands",
+        "county": "Hardy",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-lost-river-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.8958211,-78.9237039"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-north-bend-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0868344,
+          39.2206591
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-north-bend-state-park",
+        "name": "Almost Heaven Swing - North Bend State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Mid-Ohio Valley",
+        "county": "Ritchie",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-north-bend-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2206591,-81.0868344"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-pipestem-resort-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9956932,
+          37.5340121
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-pipestem-resort-state-park",
+        "name": "Almost Heaven Swing - Pipestem Resort State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "New River-Greenbrier Valley",
+        "county": "Summers",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-pipestem-resort-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.5340121,-80.9956932"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-stonewall-resort-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4993407,
+          38.9486714
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-stonewall-resort-state-park",
+        "name": "Almost Heaven Swing - Stonewall Resort State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Mountain Lakes",
+        "county": "Lewis",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-stonewall-resort-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9486714,-80.4993407"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-summersville-lake-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.85603,
+          38.24576
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-summersville-lake-state-park",
+        "name": "Almost Heaven Swing - Summersville Lake State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Mountain Lakes",
+        "county": "Nicholas",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-summersville-lake-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.24576,-80.85603"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-tomlinson-run-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5941483,
+          40.547029
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-tomlinson-run-state-park",
+        "name": "Almost Heaven Swing - Tomlinson Run State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Northern Panhandle",
+        "county": "Hancock",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-tomlinson-run-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=40.547029,-80.5941483"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-tu-endie-wei-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1406891,
+          38.839303
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-tu-endie-wei-state-park",
+        "name": "Almost Heaven Swing - Tu-Endie-Wei State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Metro Valley",
+        "county": "Mason",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-tu-endie-wei-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.839303,-82.1406891"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-tygart-lake-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0108002,
+          39.2801834
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-tygart-lake-state-park",
+        "name": "Almost Heaven Swing - Tygart Lake State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Mountaineer Country",
+        "county": "Taylor",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-tygart-lake-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801834,-80.0108002"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "almost-heaven-swing-valley-falls-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0864936,
+          39.3886464
+        ]
+      },
+      "properties": {
+        "slug": "almost-heaven-swing-valley-falls-state-park",
+        "name": "Almost Heaven Swing - Valley Falls State Park",
+        "category": "Attraction",
+        "type": "swing",
+        "region": "Mountaineer Country",
+        "county": "Marion",
+        "certified": false,
+        "url": "/directory/almost-heaven-swing-valley-falls-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3886464,-80.0864936"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "babcock-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.948414,
+          38.007329
+        ]
+      },
+      "properties": {
+        "slug": "babcock-state-park",
+        "name": "Babcock State Park",
+        "category": "Attraction",
+        "type": "park",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/babcock-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.007329,-80.948414"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "barrackville-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.16806,
+          39.50583
+        ]
+      },
+      "properties": {
+        "slug": "barrackville-covered-bridge",
+        "name": "Barrackville Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Marion",
+        "certified": false,
+        "url": "/directory/barrackville-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.50583,-80.16806"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bear-mountain-cabins-campground",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.12003399999999,
+          38.050171
+        ]
+      },
+      "properties": {
+        "slug": "bear-mountain-cabins-campground",
+        "name": "Bear Mountain Cabins & Campground",
+        "category": "Campground",
+        "type": "camping",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette County",
+        "certified": false,
+        "url": "/directory/bear-mountain-cabins-campground",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.050171,-81.120034"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "black-sheep-harley-davidson",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4514955,
+          38.4188813
+        ]
+      },
+      "properties": {
+        "slug": "black-sheep-harley-davidson",
+        "name": "Black Sheep Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Metro Valley",
+        "county": "Cabell County",
+        "certified": false,
+        "url": "/directory/black-sheep-harley-davidson",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.4188813,-82.4514955"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "brickside-bar-grille",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2779955,
+          39.2820332
+        ]
+      },
+      "properties": {
+        "slug": "brickside-bar-grille",
+        "name": "Brickside Bar & Grille",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Harrison County",
+        "certified": false,
+        "url": "/directory/brickside-bar-grille",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.2820332,-80.2779955"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bunkys-burgers",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.691245,
+          37.300875
+        ]
+      },
+      "properties": {
+        "slug": "bunkys-burgers",
         "name": "Bunky's Burgers",
         "category": "Restaurant",
-        "type": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "McDowell",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.300713,-81.6913523",
-        "slug": "bunkys-burgers"
+        "url": "/directory/bunkys-burgers",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.300875,-81.691245"
       }
     },
     {
       "type": "Feature",
+      "id": "carrollton-covered-bridge",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.5719915,
-          37.4410034
+          -80.08667,
+          39.09
         ]
       },
       "properties": {
-        "id": "6a558829d57e2c3d1ed5024e",
-        "name": "Sterling Drive-In",
-        "category": "Restaurant",
-        "type": "Restaurant",
+        "slug": "carrollton-covered-bridge",
+        "name": "Carrollton Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Barbour",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4410034,-81.5719915",
-        "slug": "sterling-drive-in"
+        "url": "/directory/carrollton-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.09,-80.08667"
       }
     },
     {
       "type": "Feature",
+      "id": "casey-s-family-restaurant-enterprise",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2780448744429,
+          39.42482991012265
+        ]
+      },
+      "properties": {
+        "slug": "casey-s-family-restaurant-enterprise",
+        "name": "Casey's Family Restaurant - Enterprise",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Harrison",
+        "certified": false,
+        "url": "/directory/casey-s-family-restaurant-enterprise",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.42482991012265,-80.2780448744429"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cass-scenic-railroad-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9148538,
+          38.3972047
+        ]
+      },
+      "properties": {
+        "slug": "cass-scenic-railroad-state-park",
+        "name": "Cass Scenic Railroad State Park",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas County",
+        "certified": false,
+        "url": "/directory/cass-scenic-railroad-state-park",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.3972047,-79.9148538"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cathedral-cafe",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1032132,
+          38.05228109999999
+        ]
+      },
+      "properties": {
+        "slug": "cathedral-cafe",
+        "name": "Cathedral Cafe",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette County",
+        "certified": false,
+        "url": "/directory/cathedral-cafe",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.0522811,-81.1032132"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "center-point-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.63444,
+          39.38944
+        ]
+      },
+      "properties": {
+        "slug": "center-point-covered-bridge",
+        "name": "Center Point Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Doddridge",
+        "certified": false,
+        "url": "/directory/center-point-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.38944,-80.63444"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "chief-logan-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.018736,
+          37.894284
+        ]
+      },
+      "properties": {
+        "slug": "chief-logan-state-park",
+        "name": "Chief Logan State Park",
+        "category": "Attraction",
+        "type": "park",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Logan",
+        "certified": false,
+        "url": "/directory/chief-logan-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.894284,-82.018736"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "coal-heritage-trail",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.14864,
+          37.95986
+        ]
+      },
+      "properties": {
+        "slug": "coal-heritage-trail",
+        "name": "Coal Heritage Trail",
+        "category": "Attraction",
+        "type": "scenic-road",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/coal-heritage-trail",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "coaltown-tavern",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1024,74 +680,240 @@
         ]
       },
       "properties": {
-        "id": "6a558829d57e2c3d1ed5024c",
+        "slug": "coaltown-tavern",
         "name": "Coaltown Tavern",
         "category": "Restaurant",
-        "type": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "McDowell",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4288957,-81.5565115",
-        "slug": "coaltown-tavern"
+        "url": "/directory/coaltown-tavern",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4288957,-81.5565115"
       }
     },
     {
       "type": "Feature",
+      "id": "cole-harley-davidson",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.4647,
-          37.3492
+          -81.2190507,
+          37.2580386
         ]
       },
       "properties": {
-        "id": "6a558829d57e2c3d1ed5024a",
-        "name": "Page Coal and Coke Company Store",
+        "slug": "cole-harley-davidson",
+        "name": "Cole Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "New River-Greenbrier Valley",
+        "county": "Mercer County",
+        "certified": false,
+        "url": "/directory/cole-harley-davidson",
+        "maps": "https://www.google.com/maps/search/?api=1&query=37.2580386,-81.2190507"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cool-springs-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.715076,
+          39.320581
+        ]
+      },
+      "properties": {
+        "slug": "cool-springs-park",
+        "name": "Cool Springs Park",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Preston",
+        "certified": false,
+        "url": "/directory/cool-springs-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.320581,-79.715076"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "dents-run-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.04,
+          39.62389
+        ]
+      },
+      "properties": {
+        "slug": "dents-run-covered-bridge",
+        "name": "Dents Run Covered Bridge",
         "category": "Attraction",
-        "type": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3492,-81.4647",
-        "slug": "page-coal-and-coke-company-store"
+        "url": "/directory/dents-run-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.62389,-80.04"
       }
     },
     {
       "type": "Feature",
+      "id": "ez-street",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.507859,
-          37.426762
+          -81.85236019999999,
+          38.4353327
         ]
       },
       "properties": {
-        "id": "6a558829d57e2c3d1ed50248",
-        "name": "Kimball War Memorial",
+        "slug": "ez-street",
+        "name": "EZ Street",
+        "category": "Bar",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Putnam County",
+        "certified": false,
+        "url": "/directory/ez-street",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.4353327,-81.85236019999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fat-eddies",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8825683,
+          38.2222182
+        ]
+      },
+      "properties": {
+        "slug": "fat-eddies",
+        "name": "Fat Eddie's",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Nicholas County",
+        "certified": false,
+        "url": "/directory/fat-eddies",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.2222182,-80.8825683"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fayette-station-road-tunney-hunsaker-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.077134,
+          38.064899
+        ]
+      },
+      "properties": {
+        "slug": "fayette-station-road-tunney-hunsaker-bridge",
+        "name": "Fayette Station Road & Tunney Hunsaker Bridge",
         "category": "Attraction",
-        "type": "Attraction",
+        "type": "scenic-road",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.426762,-81.507859",
-        "slug": "kimball-war-memorial"
+        "url": "/directory/fayette-station-road-tunney-hunsaker-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.064899,-81.077134"
       }
     },
     {
       "type": "Feature",
+      "id": "fish-creek-covered-bridge",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.86653028758215,
-          38.1996481993664
+          -80.4525,
+          39.67222
         ]
       },
       "properties": {
-        "id": "6a430fd0da20b5407e66b2a5",
-        "name": "Summersville Lake Retreat & Lighthouse",
-        "category": "Campground",
-        "type": "Campground",
+        "slug": "fish-creek-covered-bridge",
+        "name": "Fish Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Northern Panhandle",
+        "county": "Wetzel",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1996481993664,-80.86653028758215",
-        "slug": "summersville-lake-retreat-lighthouse"
+        "url": "/directory/fish-creek-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.67222,-80.4525"
       }
     },
     {
       "type": "Feature",
+      "id": "fletcher-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.48028,
+          39.30556
+        ]
+      },
+      "properties": {
+        "slug": "fletcher-covered-bridge",
+        "name": "Fletcher Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Harrison",
+        "certified": false,
+        "url": "/directory/fletcher-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30556,-80.48028"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "full-throttle-at-riders-paradise",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3493179,
+          37.4460792
+        ]
+      },
+      "properties": {
+        "slug": "full-throttle-at-riders-paradise",
+        "name": "Full Throttle at Riders Paradise",
+        "category": "Bar",
+        "type": "food",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Wyoming County",
+        "certified": false,
+        "url": "/directory/full-throttle-at-riders-paradise",
+        "maps": "https://www.google.com/maps/search/?api=1&query=37.4460792,-81.3493179"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "green-bank-observatory",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.81894989999999,
+          38.431507
+        ]
+      },
+      "properties": {
+        "slug": "green-bank-observatory",
+        "name": "Green Bank Observatory",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas County",
+        "certified": false,
+        "url": "/directory/green-bank-observatory",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.431507,-79.8189499"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "greenbrier-grille-and-lodge",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1100,13 +922,1049 @@
         ]
       },
       "properties": {
-        "id": "6a430ee4a33c8326465e9a64",
+        "slug": "greenbrier-grille-and-lodge",
         "name": "Greenbrier Grille and Lodge",
         "category": "Restaurant",
-        "type": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
         "certified": false,
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22413489974406,-80.09575934525392",
-        "slug": "greenbrier-grille-and-lodge"
+        "url": "/directory/greenbrier-grille-and-lodge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22413489974406,-80.09575934525392"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hamilton-round-barn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3377228,
+          39.516449
+        ]
+      },
+      "properties": {
+        "slug": "hamilton-round-barn",
+        "name": "Hamilton Round Barn",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "Mountaineer Country",
+        "county": "Marion",
+        "certified": false,
+        "url": "/directory/hamilton-round-barn",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.516449,-80.3377228"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hawks-nest-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.117317,
+          38.121145
+        ]
+      },
+      "properties": {
+        "slug": "hawks-nest-state-park",
+        "name": "Hawks Nest State Park",
+        "category": "Attraction",
+        "type": "overlook",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/hawks-nest-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.121145,-81.117317"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "herns-mill-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.505,
+          37.8325
+        ]
+      },
+      "properties": {
+        "slug": "herns-mill-covered-bridge",
+        "name": "Herns Mill Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "New River-Greenbrier Valley",
+        "county": "Greenbrier",
+        "certified": false,
+        "url": "/directory/herns-mill-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8325,-80.505"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hillbilly-heaven-bar-and-grill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1758881,
+          39.6298459
+        ]
+      },
+      "properties": {
+        "slug": "hillbilly-heaven-bar-and-grill",
+        "name": "Hillbilly Heaven Bar & Grill",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Eastern Panhandle",
+        "county": "Morgan",
+        "certified": false,
+        "url": "/directory/hillbilly-heaven-bar-and-grill",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6298459,-78.1758881"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hillbilly-hotdogs",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.2981889,
+          38.5065643
+        ]
+      },
+      "properties": {
+        "slug": "hillbilly-hotdogs",
+        "name": "Hillbilly Hotdogs",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Cabell County",
+        "certified": false,
+        "url": "/directory/hillbilly-hotdogs",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.5065643,-82.2981889"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hokes-mill-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.525,
+          37.69722
+        ]
+      },
+      "properties": {
+        "slug": "hokes-mill-covered-bridge",
+        "name": "Hokes Mill Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "New River-Greenbrier Valley",
+        "county": "Greenbrier",
+        "certified": false,
+        "url": "/directory/hokes-mill-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.69722,-80.525"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "indian-creek-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.57278,
+          37.54722
+        ]
+      },
+      "properties": {
+        "slug": "indian-creek-covered-bridge",
+        "name": "Indian Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "New River-Greenbrier Valley",
+        "county": "Monroe",
+        "certified": false,
+        "url": "/directory/indian-creek-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.54722,-80.57278"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "international-mothers-day-shrine",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0183333,
+          39.3408333
+        ]
+      },
+      "properties": {
+        "slug": "international-mothers-day-shrine",
+        "name": "International Mother's Day Shrine",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "Mountaineer Country",
+        "county": "Taylor",
+        "certified": false,
+        "url": "/directory/international-mothers-day-shrine",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3408333,-80.0183333"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kanawha-falls",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.206461,
+          38.143029
+        ]
+      },
+      "properties": {
+        "slug": "kanawha-falls",
+        "name": "Kanawha Falls",
+        "category": "Attraction",
+        "type": "waterfall",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/kanawha-falls",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.143029,-81.206461"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "keyser-inn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0020672,
+          39.4107572
+        ]
+      },
+      "properties": {
+        "slug": "keyser-inn",
+        "name": "Keyser Inn",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Mineral",
+        "certified": false,
+        "url": "/directory/keyser-inn",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4107572,-79.0020672"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kimball-war-memorial",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.506411,
+          37.42536
+        ]
+      },
+      "properties": {
+        "slug": "kimball-war-memorial",
+        "name": "Kimball War Memorial",
+        "category": "Attraction",
+        "type": "monument",
+        "region": "New River-Greenbrier Valley",
+        "county": "McDowell",
+        "certified": false,
+        "url": "/directory/kimball-war-memorial",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.425360,-81.506411"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "laurel-creek-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.62667,
+          37.56111
+        ]
+      },
+      "properties": {
+        "slug": "laurel-creek-covered-bridge",
+        "name": "Laurel Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "New River-Greenbrier Valley",
+        "county": "Monroe",
+        "certified": false,
+        "url": "/directory/laurel-creek-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.56111,-80.62667"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "locust-creek-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.25028,
+          38.07944
+        ]
+      },
+      "properties": {
+        "slug": "locust-creek-covered-bridge",
+        "name": "Locust Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/locust-creek-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.07944,-80.25028"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "marlinton-motor-inn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0928951,
+          38.2662799
+        ]
+      },
+      "properties": {
+        "slug": "marlinton-motor-inn",
+        "name": "Marlinton Motor Inn",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas County",
+        "certified": false,
+        "url": "/directory/marlinton-motor-inn",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.2662799,-80.0928951"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mason-dixon-historical-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.115225,
+          39.7132193
+        ]
+      },
+      "properties": {
+        "slug": "mason-dixon-historical-park",
+        "name": "Mason-Dixon Historical Park",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
+        "certified": false,
+        "url": "/directory/mason-dixon-historical-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.7132193,-80.115225"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mingo-saloon-lodge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.050517,
+          38.5017403
+        ]
+      },
+      "properties": {
+        "slug": "mingo-saloon-lodge",
+        "name": "Mingo Saloon & Lodge",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Randolph County",
+        "certified": false,
+        "url": "/directory/mingo-saloon-lodge",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.5017403,-80.050517"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mothman-harley-davidson",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.4381504,
+          39.380613
+        ]
+      },
+      "properties": {
+        "slug": "mothman-harley-davidson",
+        "name": "Mothman Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Mid-Ohio Valley",
+        "county": "Wood County",
+        "certified": false,
+        "url": "/directory/mothman-harley-davidson",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.380613,-81.4381504"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mud-river-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.13944,
+          38.43083
+        ]
+      },
+      "properties": {
+        "slug": "mud-river-covered-bridge",
+        "name": "Mud River Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Metro Valley",
+        "county": "Cabell",
+        "certified": false,
+        "url": "/directory/mud-river-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.43083,-82.13944"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "outlaw-bar-grill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3652011,
+          37.457514
+        ]
+      },
+      "properties": {
+        "slug": "outlaw-bar-grill",
+        "name": "Outlaw Bar & Grill",
+        "category": "Bar",
+        "type": "food",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Wyoming County",
+        "certified": false,
+        "url": "/directory/outlaw-bar-grill",
+        "maps": "https://www.google.com/maps/search/?api=1&query=37.457514,-81.3652011"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "page-coal-and-coke-company-store",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.46463,
+          37.349536
+        ]
+      },
+      "properties": {
+        "slug": "page-coal-and-coke-company-store",
+        "name": "Page Coal and Coke Company Store",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "New River-Greenbrier Valley",
+        "county": "McDowell",
+        "certified": false,
+        "url": "/directory/page-coal-and-coke-company-store",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.349536,-81.464630"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "philippi-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.04361,
+          39.15306
+        ]
+      },
+      "properties": {
+        "slug": "philippi-covered-bridge",
+        "name": "Philippi Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Barbour",
+        "certified": false,
+        "url": "/directory/philippi-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.15306,-80.04361"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "preston-county-inn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.688648,
+          39.4725304
+        ]
+      },
+      "properties": {
+        "slug": "preston-county-inn",
+        "name": "Preston County Inn",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Mountaineer Country",
+        "county": "Preston County",
+        "certified": false,
+        "url": "/directory/preston-county-inn",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.4725304,-79.688648"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rgs-almost-heaven-harley-davidson",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.28078839999999,
+          39.3065257
+        ]
+      },
+      "properties": {
+        "slug": "rgs-almost-heaven-harley-davidson",
+        "name": "RG's Almost Heaven Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Mountaineer Country",
+        "county": "Harrison County",
+        "certified": false,
+        "url": "/directory/rgs-almost-heaven-harley-davidson",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.3065257,-80.2807884"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rider-s-paradise",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3493179,
+          37.4460792
+        ]
+      },
+      "properties": {
+        "slug": "rider-s-paradise",
+        "name": "Rider's Paradise",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Wyoming County",
+        "certified": false,
+        "url": "/directory/rider-s-paradise",
+        "maps": "https://www.google.com/maps/search/?api=1&query=37.4460792,-81.3493179"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rifrafters-campground",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1258067,
+          38.0477943
+        ]
+      },
+      "properties": {
+        "slug": "rifrafters-campground",
+        "name": "Rifrafters Campground",
+        "category": "Campground",
+        "type": "camping",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette County",
+        "certified": false,
+        "url": "/directory/rifrafters-campground",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.0477943,-81.1258067"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rosemarys-thyme",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.6534144,
+          39.4586445
+        ]
+      },
+      "properties": {
+        "slug": "rosemarys-thyme",
+        "name": "Rosemary's Thyme",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Preston County",
+        "certified": false,
+        "url": "/directory/rosemarys-thyme",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.4586445,-79.6534144"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sarvis-fork-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.64472,
+          38.92139
+        ]
+      },
+      "properties": {
+        "slug": "sarvis-fork-covered-bridge",
+        "name": "Sarvis Fork Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mid-Ohio Valley",
+        "county": "Jackson",
+        "certified": false,
+        "url": "/directory/sarvis-fork-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.92139,-81.64472"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "simpson-creek-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.27972,
+          39.30861
+        ]
+      },
+      "properties": {
+        "slug": "simpson-creek-covered-bridge",
+        "name": "Simpson Creek Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountaineer Country",
+        "county": "Harrison",
+        "certified": false,
+        "url": "/directory/simpson-creek-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30861,-80.27972"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "skyline-lodge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.11621074996972,
+          37.6240212953488
+        ]
+      },
+      "properties": {
+        "slug": "skyline-lodge",
+        "name": "Skyline Lodge",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh County",
+        "certified": false,
+        "url": "/directory/skyline-lodge",
+        "maps": "https://www.google.com/maps/search/?api=1&query=37.6240212953488,-81.11621074996972"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "slanesville-general-store",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.5231614,
+          39.3736064
+        ]
+      },
+      "properties": {
+        "slug": "slanesville-general-store",
+        "name": "Slanesville General Store",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/slanesville-general-store",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3736064,-78.5231614"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sleepy-creek-wma",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.145711,
+          39.534471
+        ]
+      },
+      "properties": {
+        "slug": "sleepy-creek-wma",
+        "name": "Sleepy Creek Wildlife Management Area",
+        "category": "Attraction",
+        "type": "park",
+        "region": "Eastern Panhandle",
+        "county": "Morgan",
+        "certified": false,
+        "url": "/directory/sleepy-creek-wma",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.534471,-78.145711"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "smoke-on-the-water-bbq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8215328,
+          38.9124865
+        ]
+      },
+      "properties": {
+        "slug": "smoke-on-the-water-bbq",
+        "name": "Smoke on the Water BBQ",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Randolph County",
+        "certified": false,
+        "url": "/directory/smoke-on-the-water-bbq",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.9124865,-79.8215328"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "south-branch-smokehouse",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9630275,
+          39.0835666
+        ]
+      },
+      "properties": {
+        "slug": "south-branch-smokehouse",
+        "name": "South Branch Smokehouse",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Hardy County",
+        "certified": false,
+        "url": "/directory/south-branch-smokehouse",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.0835666,-78.9630275"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "staats-mill-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.62611,
+          38.74278
+        ]
+      },
+      "properties": {
+        "slug": "staats-mill-covered-bridge",
+        "name": "Staats Mill Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mid-Ohio Valley",
+        "county": "Jackson",
+        "certified": false,
+        "url": "/directory/staats-mill-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.74278,-81.62611"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sterling-drive-in",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5719915,
+          37.4410034
+        ]
+      },
+      "properties": {
+        "slug": "sterling-drive-in",
+        "name": "Sterling Drive-In",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "McDowell",
+        "certified": false,
+        "url": "/directory/sterling-drive-in",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4410034,-81.5719915"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "summersville-lake-dam-overlook",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.890895,
+          38.220313
+        ]
+      },
+      "properties": {
+        "slug": "summersville-lake-dam-overlook",
+        "name": "Summersville Lake Dam Overlook",
+        "category": "Attraction",
+        "type": "overlook",
+        "region": "Mountain Lakes",
+        "county": "Nicholas",
+        "certified": false,
+        "url": "/directory/summersville-lake-dam-overlook",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.220313,-80.890895"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "summersville-lake-retreat-lighthouse",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.864641,
+          38.200427
+        ]
+      },
+      "properties": {
+        "slug": "summersville-lake-retreat-lighthouse",
+        "name": "Summersville Lake Retreat & Lighthouse",
+        "category": "Campground",
+        "type": "camping",
+        "region": "Mountain Lakes",
+        "county": "Nicholas",
+        "certified": false,
+        "url": "/directory/summersville-lake-retreat-lighthouse",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.200427,-80.864641"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "taco-todds-savage-tacos",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.6910459,
+          37.3019705
+        ]
+      },
+      "properties": {
+        "slug": "taco-todds-savage-tacos",
+        "name": "Taco Todd's Savage Tacos",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "McDowell",
+        "certified": false,
+        "url": "/directory/taco-todds-savage-tacos",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-gateway-restaurant",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4600502,
+          38.7174622
+        ]
+      },
+      "properties": {
+        "slug": "the-gateway-restaurant",
+        "name": "The Gateway Restaurant",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Pendleton County",
+        "certified": false,
+        "url": "/directory/the-gateway-restaurant",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.7174622,-79.4600502"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-hutte",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2011881,
+          38.7059394
+        ]
+      },
+      "properties": {
+        "slug": "the-hutte",
+        "name": "The Hutte",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Randolph County",
+        "certified": false,
+        "url": "/directory/the-hutte",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.7059394,-80.2011881"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-purple-fiddle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4990796,
+          39.1483174
+        ]
+      },
+      "properties": {
+        "slug": "the-purple-fiddle",
+        "name": "The Purple Fiddle",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Tucker County",
+        "certified": false,
+        "url": "/directory/the-purple-fiddle",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.1483174,-79.4990796"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-social-tap",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2673701,
+          39.2729423
+        ]
+      },
+      "properties": {
+        "slug": "the-social-tap",
+        "name": "The Social Tap",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Harrison County",
+        "certified": false,
+        "url": "/directory/the-social-tap",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.2729423,-80.2673701"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-tractor-bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8514876,
+          38.2026449
+        ]
+      },
+      "properties": {
+        "slug": "the-tractor-bar",
+        "name": "The Tractor Bar",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Nicholas County",
+        "certified": false,
+        "url": "/directory/the-tractor-bar",
+        "maps": "https://www.google.com/maps/search/?api=1&query=38.2026449,-80.8514876"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "triple-s-harley-davidson",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.01417359999999,
+          39.6581795
+        ]
+      },
+      "properties": {
+        "slug": "triple-s-harley-davidson",
+        "name": "Triple S Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Mountaineer Country",
+        "county": "Monongalia County",
+        "certified": false,
+        "url": "/directory/triple-s-harley-davidson",
+        "maps": "https://www.google.com/maps/search/?api=1&query=39.6581795,-80.0141736"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tygart-lake-state-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.011187,
+          39.28324
+        ]
+      },
+      "properties": {
+        "slug": "tygart-lake-state-park",
+        "name": "Tygart Lake State Park",
+        "category": "Attraction",
+        "type": "park",
+        "region": "Mountaineer Country",
+        "county": "Taylor",
+        "certified": false,
+        "url": "/directory/tygart-lake-state-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.283240,-80.011187"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "valley-harley-davidson",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5920605,
+          40.0640359
+        ]
+      },
+      "properties": {
+        "slug": "valley-harley-davidson",
+        "name": "Valley Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Northern Panhandle",
+        "county": "Ohio County",
+        "certified": false,
+        "url": "/directory/valley-harley-davidson",
+        "maps": "https://www.google.com/maps/search/?api=1&query=40.0640359,-80.5920605"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "walkersville-covered-bridge",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.46083,
+          38.85833
+        ]
+      },
+      "properties": {
+        "slug": "walkersville-covered-bridge",
+        "name": "Walkersville Covered Bridge",
+        "category": "Attraction",
+        "type": "bridge",
+        "region": "Mountain Lakes",
+        "county": "Lewis",
+        "certified": false,
+        "url": "/directory/walkersville-covered-bridge",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.85833,-80.46083"
       }
     }
   ]

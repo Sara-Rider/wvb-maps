@@ -14,9 +14,16 @@
 //   Business Name
 //   Business Category      (one of the 13 canonical values)
 //   Attraction Type        (optional; used only when Business Category = Attraction)
+//   Type Token             (optional but PREFERRED - the stored glyph token; see below)
 //   Latitude
 //   Longitude
 //   Certified              (optional; true/1/yes = gold ring pin)
+//
+// GLYPH SOURCE OF TRUTH (Decision 61 - one classification, computed once):
+// when a row carries `Type Token`, that value IS the glyph and nothing is
+// re-derived. resolveGlyphToken() below is a FALLBACK for rows that lack it.
+// Every fallback is counted in the run log, so a mismatch between what the CMS
+// stored and what this renderer would have guessed is visible, not silent.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -139,6 +146,7 @@ function loadRows() {
   const iName = col("business name");
   const iCat = col("business category");
   const iAtt = col("attraction type");
+  const iTok = firstCol(["type token", "type-token", "typetoken"]);
   const iLat = col("latitude");
   const iLng = col("longitude");
   const iCert = col("certified");
@@ -149,11 +157,20 @@ function loadRows() {
     const name = (r[iName] || "").trim();
     const lat = parseFloat(r[iLat]);
     const lng = parseFloat(r[iLng]);
-    const glyph = resolveGlyphToken(r[iCat], iAtt >= 0 ? r[iAtt] : "");
+
+    // The stored token wins; derive only when the column is absent or empty.
+    const stored = iTok >= 0 ? (r[iTok] || "").trim().toLowerCase() : "";
+    const derived = resolveGlyphToken(r[iCat], iAtt >= 0 ? r[iAtt] : "");
+    const glyph = stored || derived;
+    const tokenSource = stored ? "stored" : "derived";
+    const disagrees = Boolean(stored) && stored !== derived;
+    const unknown = !GLYPHS[glyph];
+
     const certified = iCert >= 0 ? isCertified(r[iCert]) : false;
     const id = (iId >= 0 && r[iId] && r[iId].trim()) ? r[iId].trim() : slug(name);
     const hasCoords = Number.isFinite(lat) && Number.isFinite(lng);
-    return { id, name, category: (r[iCat] || "").trim(), glyph, certified, lat, lng, hasCoords };
+    return { id, name, category: (r[iCat] || "").trim(), glyph, derived,
+             tokenSource, disagrees, unknown, certified, lat, lng, hasCoords };
   });
 }
 
@@ -211,7 +228,25 @@ const skipped = rows.filter(r => !r.hasCoords);
 console.log(`Rows: ${rows.length}  |  renderable: ${renderable.length}  |  no coords (skipped): ${skipped.length}`);
 console.log("Glyph resolution:");
 for (const r of rows) {
-  console.log(`  ${r.hasCoords ? "OK " : "-- "} ${r.category.padEnd(18)} -> ${r.glyph.padEnd(12)} ${r.certified ? "[certified] " : ""}${r.name}`);
+  console.log(`  ${r.hasCoords ? "OK " : "-- "} ${r.category.padEnd(18)} -> ${r.glyph.padEnd(12)} [${r.tokenSource}] ${r.certified ? "[certified] " : ""}${r.name}`);
+}
+
+const fellBack = rows.filter(r => r.tokenSource === "derived");
+const conflicts = rows.filter(r => r.disagrees);
+const unknowns = rows.filter(r => r.unknown);
+console.log(`\nToken source — stored: ${rows.length - fellBack.length}   derived (fallback): ${fellBack.length}`);
+if (fellBack.length) {
+  console.log("  DERIVED (no Type Token column value — publish should supply it):");
+  for (const r of fellBack) console.log(`    - ${r.name} -> ${r.glyph}`);
+}
+if (conflicts.length) {
+  console.log("  CONFLICT — stored token differs from what this renderer would derive.");
+  console.log("  The STORED value is used. Investigate the mismatch, do not 'fix' it here:");
+  for (const r of conflicts) console.log(`    - ${r.name}: stored=${r.glyph}  derived=${r.derived}`);
+}
+if (unknowns.length) {
+  console.log("  UNKNOWN TOKEN — no artwork; falls back to the `other` mark:");
+  for (const r of unknowns) console.log(`    - ${r.name}: ${r.glyph}`);
 }
 if (skipped.length) console.log("NO-COORD rows will be skipped:", skipped.map(r => r.name).join(", "));
 
@@ -228,7 +263,7 @@ const browser = await puppeteer.launch({
     "--ignore-gpu-blocklist","--enable-webgl"],
 });
 
-const index = [["id","name","category","glyph","certified","filename","raw_url"]];
+const index = [["id","name","category","glyph","token_source","certified","filename","raw_url"]];
 try {
   for (const row of renderable) {
     const page = await browser.newPage();
@@ -240,7 +275,7 @@ try {
       await new Promise((r) => setTimeout(r, 1000));
       await page.screenshot({ path: path.join(outDir, file), clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT } });
       const url = `https://raw.githubusercontent.com/${REPO}/${REF}/renders/${file}`;
-      index.push([row.id, row.name, row.category, row.glyph, String(row.certified), file, url]);
+      index.push([row.id, row.name, row.category, row.glyph, row.tokenSource, String(row.certified), file, url]);
       console.log("rendered", file);
     } catch (e) {
       console.log("FAILED", row.name, "-", e.message);
