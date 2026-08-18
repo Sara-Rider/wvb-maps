@@ -1,0 +1,13 @@
+# macOS — Finder writes these into any folder you open. Never content.
+.DS_Store
+._*
+
+# Python — build_directory_feed.py leaves these behind when run locally.
+__pycache__/
+*.pyc
+
+# Node — render-batch.mjs pulls puppeteer in when run locally.
+node_modules/
+
+# Scratch. If a folder named _to_delete shows up, it is cruft, not work.
+_to_delete/
