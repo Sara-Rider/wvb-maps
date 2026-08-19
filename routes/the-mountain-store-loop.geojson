@@ -1,0 +1,57 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.5231614,
+     39.3736064
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 1,
+    "slug": "slanesville-general-store",
+    "name": "Slanesville General Store",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Working general store and deli in Slanesville, WV -- lunch stop on the Mountain Store Loop.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "url": "/directory/slanesville-general-store",
+    "website": null,
+    "tel": "tel:+13044967677",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3736064,-78.5231614"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.0020672,
+     39.4107572
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 2,
+    "slug": "keyser-inn",
+    "name": "Keyser Inn",
+    "category": "Lodging",
+    "type": "lodging",
+    "short": "Overnight stop in Keyser, WV for the two-day Mountain Store Loop. Free breakfast and parking, no elevator.",
+    "region": "Potomac Highlands",
+    "county": "Mineral",
+    "certified": false,
+    "url": "/directory/keyser-inn",
+    "website": null,
+    "tel": "tel:+13047880913",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4107572,-79.0020672"
+   }
+  }
+ ]
+}

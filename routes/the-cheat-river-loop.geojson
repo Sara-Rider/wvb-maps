@@ -1,0 +1,135 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.715076,
+     39.320581
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 1,
+    "slug": "cool-springs-park",
+    "name": "Cool Springs Park",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Rowlesburg roadside institution -- part gas station, part diner, part curiosity shop. Open daily.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "url": "/directory/cool-springs-park",
+    "website": null,
+    "tel": "tel:+13044549511",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.320581,-79.715076"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0183333,
+     39.3408333
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 2,
+    "slug": "international-mothers-day-shrine",
+    "name": "International Mother's Day Shrine",
+    "category": "Attraction \\ Sight to See",
+    "type": "attraction",
+    "short": "Birthplace of Mother's Day as a national observance, in downtown Grafton. Seasonal hours, call ahead.",
+    "region": "Mountaineer Country",
+    "county": "Taylor",
+    "certified": false,
+    "url": "/directory/international-mothers-day-shrine",
+    "website": "https://www.internationalmothersdayshrine.org",
+    "tel": "tel:+13042651589",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3408333,-80.0183333"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.011187,
+     39.28324
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 3,
+    "slug": "tygart-lake-state-park",
+    "name": "Tygart Lake State Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "park",
+    "short": "Lake, dam overlook, lodge, and on-site dining a few minutes from Grafton.",
+    "region": "Mountaineer Country",
+    "county": "Taylor",
+    "certified": false,
+    "url": "/directory/tygart-lake-state-park",
+    "website": "https://wvstateparks.com/parks/tygart-lake-state-park/",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.283240,-80.011187"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.3377228,
+     39.516449
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 4,
+    "slug": "hamilton-round-barn",
+    "name": "Hamilton Round Barn",
+    "category": "Attraction \\ Sight to See",
+    "type": "attraction",
+    "short": "1911 dairy barn turned museum in Mannington. Narrow visiting window, plan ahead.",
+    "region": "Mountaineer Country",
+    "county": "Marion",
+    "certified": false,
+    "url": "/directory/hamilton-round-barn",
+    "website": null,
+    "tel": "tel:+13049867053",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.516449,-80.3377228"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.115225,
+     39.7132193
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 5,
+    "slug": "mason-dixon-historical-park",
+    "name": "Mason-Dixon Historical Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "attraction",
+    "short": "Monuments, hiking, and picnicking along Dunkard Creek near Core, marking the historic Mason-Dixon Line survey.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "url": "/directory/mason-dixon-historical-park",
+    "website": null,
+    "tel": "tel:+13048794101",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.7132193,-80.115225"
+   }
+  }
+ ]
+}

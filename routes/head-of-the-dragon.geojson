@@ -1,0 +1,161 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.506411,
+     37.42536
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 1,
+    "slug": "kimball-war-memorial",
+    "name": "Kimball War Memorial",
+    "category": "Attraction \\ Sight to See",
+    "type": "monument",
+    "short": "First memorial in the US built to honor African American WWI veterans, restored and open on the hill above Kimball.",
+    "region": "New River-Greenbrier Valley",
+    "county": "McDowell",
+    "certified": false,
+    "url": "/directory/kimball-war-memorial",
+    "website": "https://wvtourism.com/company/kimball-world-war-i-memorial/",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.425360,-81.506411"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.46463,
+     37.349536
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 2,
+    "slug": "page-coal-and-coke-company-store",
+    "name": "Page Coal and Coke Company Store",
+    "category": "Attraction \\ Sight to See",
+    "type": "attraction",
+    "short": "1914 brick company store in Pageton, National Register-listed, one of the best-preserved coal camp buildings left in McDowell County.",
+    "region": "New River-Greenbrier Valley",
+    "county": "McDowell",
+    "certified": false,
+    "url": "/directory/page-coal-and-coke-company-store",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.349536,-81.464630"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5565115,
+     37.4288957
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 3,
+    "slug": "coaltown-tavern",
+    "name": "Coaltown Tavern",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Burgers, wings, and a full bar in downtown Welch -- the reliable lunch stop on the Head of the Dragon loop.",
+    "region": "New River-Greenbrier Valley",
+    "county": "McDowell",
+    "certified": false,
+    "url": "/directory/coaltown-tavern",
+    "website": "https://coaltowntavern.com/",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4288957,-81.5565115"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5719915,
+     37.4410034
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 4,
+    "slug": "sterling-drive-in",
+    "name": "Sterling Drive-In",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Classic drive-in in Welch, WV -- quick eats between stops on the Head of the Dragon loop.",
+    "region": "New River-Greenbrier Valley",
+    "county": "McDowell",
+    "certified": false,
+    "url": "/directory/sterling-drive-in",
+    "website": null,
+    "tel": "tel:+13044363271",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4410034,-81.5719915"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.691245,
+     37.300875
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 5,
+    "slug": "bunkys-burgers",
+    "name": "Bunky's Burgers",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Burgers in War, WV, near the Hatfield-McCoy Warrior trailhead. Closed Sundays.",
+    "region": "New River-Greenbrier Valley",
+    "county": "McDowell",
+    "certified": false,
+    "url": "/directory/bunkys-burgers",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.300875,-81.691245"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.6910459,
+     37.3019705
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 6,
+    "slug": "taco-todds-savage-tacos",
+    "name": "Taco Todd's Savage Tacos",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Tacos in War, WV -- short afternoon hours, worth timing your stop around.",
+    "region": "New River-Greenbrier Valley",
+    "county": "McDowell",
+    "certified": false,
+    "url": "/directory/taco-todds-savage-tacos",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459"
+   }
+  }
+ ]
+}

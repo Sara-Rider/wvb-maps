@@ -1,0 +1,57 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.1758881,
+     39.6298459
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 1,
+    "slug": "hillbilly-heaven-bar-and-grill",
+    "name": "Hillbilly Heaven Bar & Grill",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Berkeley Springs roadhouse -- burgers, steak platters, pool tables, and weekend live music.",
+    "region": "Eastern Panhandle",
+    "county": "Morgan",
+    "certified": false,
+    "url": "/directory/hillbilly-heaven-bar-and-grill",
+    "website": "https://hillbillyheavenbarandgrill.com/",
+    "tel": "tel:+13042580004",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6298459,-78.1758881"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.145711,
+     39.534471
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 2,
+    "slug": "sleepy-creek-wma",
+    "name": "Sleepy Creek Wildlife Management Area",
+    "category": "Attraction \\ Sight to See",
+    "type": "park",
+    "short": "23,000-acre WMA spanning Berkeley and Morgan counties, with a 205-acre lake and scenic overlooks.",
+    "region": "Eastern Panhandle",
+    "county": "Morgan",
+    "certified": false,
+    "url": "/directory/sleepy-creek-wma",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.534471,-78.145711"
+   }
+  }
+ ]
+}

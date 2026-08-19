@@ -1,0 +1,31 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.018736,
+     37.894284
+    ]
+   },
+   "properties": {
+    "kind": "stop",
+    "order": 1,
+    "slug": "chief-logan-state-park",
+    "name": "Chief Logan State Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "park",
+    "short": "State park lodge, museum, and hiking near Chapmanville -- the anchor stop on the Little Coal River Scenic Loop.",
+    "region": "Hatfield-McCoy Mountains",
+    "county": "Logan",
+    "certified": false,
+    "url": "/directory/chief-logan-state-park",
+    "website": "https://wvstateparks.com/parks/chief-logan-state-park/",
+    "tel": "tel:+13047927125",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.894284,-82.018736"
+   }
+  }
+ ]
+}
