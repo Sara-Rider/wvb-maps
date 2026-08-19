@@ -13,13 +13,19 @@ routes/<slug>.geojson. Convention, no CMS fields, no bound attributes.
 
 INPUT AND OUTPUT ARE DIFFERENT DIRECTORIES — this matters
 ---------------------------------------------------------
-    tracks/<slug>.geojson    AUTHORED. The road geometry, exported from Furkot
-                             and committed by hand. Never written by this
-                             script. One LineString or MultiLineString.
+    gpx/<slug>.gpx           AUTHORED, preferred. The same GPX riders download.
+                             Must be exported from Furkot with the DETAILED
+                             TRACK option enabled, or it carries turn points
+                             instead of road geometry and the line cuts corners.
+                             One Furkot export serves both the rider download
+                             and the map.
 
-    routes/<slug>.geojson    GENERATED. Overwritten on every run. The authored
-                             track plus one Point per stop, read live from the
-                             route's The Stops reference.
+    tracks/<slug>.geojson    AUTHORED, legacy. Honoured when no GPX exists, for
+                             routes done before the GPX path was added.
+
+    routes/<slug>.geojson    GENERATED. Overwritten on every run. The road plus
+                             one Point per stop, read live from the route's The
+                             Stops reference.
 
 Same shape as directory.csv (authored) -> directory.geojson (generated). If you
 edit a file under routes/ by hand, the next run silently discards it.
@@ -43,8 +49,11 @@ alphabetical, not distance-sorted.
 import json
 import os
 import sys
+import xml.etree.ElementTree as ET
 
 import requests
+
+from gpx_track import parse_gpx   # simplify() is used by the all-routes index feed, not here
 
 API = "https://api.webflow.com/v2"
 ROUTES_COLLECTION_ID = "6a4024b595fb0b707c589010"
@@ -54,8 +63,9 @@ TRAVEL_REGIONS_COLLECTION_ID = "6a559020e2cb0cdf4ac5d4ca"
 TOKEN = os.environ.get("WEBFLOW_API_TOKEN") or os.environ.get("WEBFLOW_TOKEN")
 HDRS = {"Authorization": f"Bearer {TOKEN}", "accept": "application/json"}
 
-TRACK_DIR = "tracks"
-OUT_DIR = "routes"
+GPX_DIR = "gpx"        # authored: the same GPX riders download
+TRACK_DIR = "tracks"   # legacy authored GeoJSON, still honoured
+OUT_DIR = "routes"     # generated, overwritten every run
 
 VALID_TOKENS = {
     "overlook", "waterfall", "bridge", "monument", "park", "scenic-road",
@@ -101,18 +111,50 @@ def region_names():
 
 
 def load_track(slug):
-    """Read the authored track. Returns a list of features, or [] if none."""
-    path = os.path.join(TRACK_DIR, f"{slug}.geojson")
-    if not os.path.exists(path):
-        return []
-    with open(path, encoding="utf-8") as fh:
+    """Read the authored road geometry. Returns (features, note).
+
+    Looks for the GPX first, because that is the file the founder already
+    produces for riders to download — one Furkot export, one artifact, no hand
+    conversion. Falls back to a committed GeoJSON track for routes done before
+    that changed.
+
+        gpx/<slug>.gpx           preferred. Must be exported from Furkot with
+                                 the DETAILED TRACK option on, or it carries
+                                 turn points instead of road geometry.
+        tracks/<slug>.geojson    legacy, still honoured.
+    """
+    gpx_path = os.path.join(GPX_DIR, f"{slug}.gpx")
+    if os.path.exists(gpx_path):
+        try:
+            segments, source, meta = parse_gpx(gpx_path)
+        except Exception as exc:                       # malformed XML
+            return [], f"{slug}: {gpx_path} could not be parsed ({exc})"
+        if not segments:
+            return [], (f"{slug}: {gpx_path} contains no drawable geometry "
+                        f"(trkpt={meta['trkpt']} rtept={meta['rtept']} "
+                        f"wpt={meta['wpt']}). Re-export from Furkot with the "
+                        "detailed track option enabled.")
+        geom = ({"type": "LineString", "coordinates": segments[0]}
+                if len(segments) == 1
+                else {"type": "MultiLineString", "coordinates": segments})
+        note = None
+        if source == "rtept":
+            note = (f"{slug}: built from route points, not a track, so the line "
+                    "cuts corners. Re-export from Furkot with the detailed "
+                    "track option enabled.")
+        return [{"type": "Feature", "geometry": geom, "properties": {}}], note
+
+    geo_path = os.path.join(TRACK_DIR, f"{slug}.geojson")
+    if not os.path.exists(geo_path):
+        return [], None
+    with open(geo_path, encoding="utf-8") as fh:
         fc = json.load(fh)
     feats = fc.get("features") if isinstance(fc, dict) else None
     if feats is None:                      # a bare geometry, not a collection
         feats = [{"type": "Feature", "geometry": fc, "properties": {}}]
-    return [f for f in feats
-            if (f.get("geometry") or {}).get("type")
-            in ("LineString", "MultiLineString")]
+    return ([f for f in feats
+             if (f.get("geometry") or {}).get("type")
+             in ("LineString", "MultiLineString")], None)
 
 
 def build():
@@ -138,6 +180,7 @@ def build():
         "business-category", {})
 
     written, findings, notes = [], [], []
+    seen_slugs = set()
 
     for route in all_items(ROUTES_COLLECTION_ID):
         fd = route.get("fieldData", {})
@@ -148,12 +191,16 @@ def build():
             continue
 
         features = []
+        seen_slugs.add(slug)
 
         # ---- the road ------------------------------------------------
-        track = load_track(slug)
+        track, track_note = load_track(slug)
+        if track_note:
+            findings.append(track_note)
         if not track:
-            notes.append(f"{slug}: no tracks/{slug}.geojson — feed will carry "
-                         "stops only, and the embed will draw pins with no line")
+            notes.append(f"{slug}: no gpx/{slug}.gpx and no tracks/{slug}.geojson "
+                         "— feed will carry stops only, and the route page will "
+                         "draw pins with no line")
         for f in track:
             f["properties"] = {
                 "kind": "track",
@@ -235,6 +282,18 @@ def build():
         tracks = sum(1 for f in features if f["properties"]["kind"] == "track")
         stops = sum(1 for f in features if f["properties"]["kind"] == "stop")
         written.append(f"{out_path}  {tracks} track, {stops} stops")
+
+    # ---- a GPX matching no route is the failure mode that just bit us --
+    # A file named for the route TITLE rather than the SLUG is invisible to
+    # load_track and produces a silent "no track" note. Name it here instead.
+    if os.path.isdir(GPX_DIR):
+        for fn in sorted(os.listdir(GPX_DIR)):
+            if not fn.lower().endswith(".gpx"):
+                continue
+            if fn[:-4] not in seen_slugs:
+                findings.append(
+                    f"{GPX_DIR}/{fn} matches no published route slug. Rename it "
+                    f"to <slug>.gpx. Known slugs: {', '.join(sorted(seen_slugs))}")
 
     # ---- report -------------------------------------------------------
     print(f"{len(written)} route feed(s) written:")
