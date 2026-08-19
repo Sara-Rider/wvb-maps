@@ -45,7 +45,7 @@ jobs:
           WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
         run: |
           set -o pipefail
-          python scripts/build_route_feeds.py 2>&1 | tee build.log
+          python scripts/build_route_feed.py 2>&1 | tee build.log
 
       - name: Commit only if a feed changed
         run: |
