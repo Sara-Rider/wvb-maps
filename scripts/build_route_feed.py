@@ -48,6 +48,7 @@ alphabetical, not distance-sorted.
 
 import json
 import os
+import re
 import sys
 import xml.etree.ElementTree as ET
 
@@ -110,7 +111,45 @@ def region_names():
             for it in all_items(TRAVEL_REGIONS_COLLECTION_ID, live=False)}
 
 
-def load_track(slug):
+def _norm_name(filename):
+    """Furkot export naming -> slug form. 'The_Cheat_River_Loop.gpx' becomes
+    'the-cheat-river-loop'. Deterministic: lowercase, underscores and spaces to
+    hyphens, collapse repeats. Not fuzzy matching — a fixed transformation
+    between two known naming conventions."""
+    stem = re.sub(r"\.gpx$", "", filename, flags=re.I)
+    stem = re.sub(r"[\s_]+", "-", stem.strip().lower())
+    stem = re.sub(r"-{2,}", "-", stem).strip("-")
+    return stem
+
+
+def _dethe(s):
+    """Furkot keeps the leading 'The'; some Webflow slugs drop it. Compare both
+    ways so 'the-head-of-the-dragon' finds the route 'head-of-the-dragon'."""
+    return s[4:] if s.startswith("the-") else s
+
+
+def index_gpx():
+    """Map every GPX in gpx/ to the route slug it belongs to.
+
+    Returns (by_slug, unmatched, collisions). Accepting the exporter's own
+    filename removes the step that failed three times: renaming five files by
+    hand, consistently, before every run. The mapping is printed on every run,
+    so a file matching the wrong route is visible rather than silent."""
+    by_slug, unmatched, collisions = {}, [], []
+    if not os.path.isdir(GPX_DIR):
+        return by_slug, unmatched, collisions
+    for fn in sorted(os.listdir(GPX_DIR)):
+        if not fn.lower().endswith(".gpx"):
+            continue
+        key = _dethe(_norm_name(fn))
+        if key in by_slug:
+            collisions.append((key, by_slug[key], fn))
+            continue
+        by_slug[key] = fn
+    return by_slug, unmatched, collisions
+
+
+def load_track(slug, gpx_index=None):
     """Read the authored road geometry. Returns (features, note).
 
     Looks for the GPX first, because that is the file the founder already
@@ -124,6 +163,10 @@ def load_track(slug):
         tracks/<slug>.geojson    legacy, still honoured.
     """
     gpx_path = os.path.join(GPX_DIR, f"{slug}.gpx")
+    if not os.path.exists(gpx_path) and gpx_index:
+        fn = gpx_index.get(_dethe(slug))
+        if fn:
+            gpx_path = os.path.join(GPX_DIR, fn)
     if os.path.exists(gpx_path):
         try:
             segments, source, meta = parse_gpx(gpx_path)
@@ -181,6 +224,11 @@ def build():
 
     written, findings, notes = [], [], []
     seen_slugs = set()
+    gpx_index, _unused, gpx_collisions = index_gpx()
+    matched_files = set()
+    for key, fn, other in gpx_collisions:
+        findings.append(f"{GPX_DIR}/{fn} and {GPX_DIR}/{other} both resolve to "
+                        f"the same route '{key}'. Remove or rename one.")
 
     for route in all_items(ROUTES_COLLECTION_ID):
         fd = route.get("fieldData", {})
@@ -194,7 +242,13 @@ def build():
         seen_slugs.add(slug)
 
         # ---- the road ------------------------------------------------
-        track, track_note = load_track(slug)
+        track, track_note = load_track(slug, gpx_index)
+        if _dethe(slug) in gpx_index:
+            fn = gpx_index[_dethe(slug)]
+            matched_files.add(fn)
+            if fn != f"{slug}.gpx":
+                notes.append(f"{GPX_DIR}/{fn} -> {slug} (matched by name "
+                             "normalisation, not an exact filename)")
         if track_note:
             findings.append(track_note)
         if not track:
@@ -283,17 +337,20 @@ def build():
         stops = sum(1 for f in features if f["properties"]["kind"] == "stop")
         written.append(f"{out_path}  {tracks} track, {stops} stops")
 
-    # ---- a GPX matching no route is the failure mode that just bit us --
-    # A file named for the route TITLE rather than the SLUG is invisible to
-    # load_track and produces a silent "no track" note. Name it here instead.
-    if os.path.isdir(GPX_DIR):
-        for fn in sorted(os.listdir(GPX_DIR)):
-            if not fn.lower().endswith(".gpx"):
-                continue
-            if fn[:-4] not in seen_slugs:
-                findings.append(
-                    f"{GPX_DIR}/{fn} matches no published route slug. Rename it "
-                    f"to <slug>.gpx. Known slugs: {', '.join(sorted(seen_slugs))}")
+    # ---- a GPX that belongs to no route -------------------------------
+    # Only a FAIL when a route is ALSO missing geometry, which is the signature
+    # of a naming mistake. A spare GPX alongside six healthy routes is just a
+    # file waiting for its CMS item, and should not block every future run.
+    routes_missing_track = [w for w in written if " 0 track," in w]
+    for fn in sorted(set(gpx_index.values()) - matched_files):
+        msg = (f"{GPX_DIR}/{fn} belongs to no published route. Known slugs: "
+               f"{', '.join(sorted(seen_slugs))}")
+        if routes_missing_track:
+            findings.append(msg + " — and a route is missing its geometry, so "
+                                  "this is probably a naming mismatch.")
+        else:
+            notes.append(msg + " — every route already has geometry, so this is "
+                               "most likely a route not yet in the CMS.")
 
     # ---- report -------------------------------------------------------
     print(f"{len(written)} route feed(s) written:")
