@@ -66,6 +66,8 @@ jobs:
         if: env.PURGE == '1'
         run: |
           curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes/"
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes/"
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes-index.geojson"
           echo "Requested jsDelivr purge for routes/."
 
       - name: Fail the run if the builder reported a hard finding
