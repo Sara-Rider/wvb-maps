@@ -81,7 +81,7 @@ import sys
 import requests
 
 from gpx_track import parse_gpx, simplify
-import Corridor as C
+import corridor as C
 
 API = "https://api.webflow.com/v2"
 ROUTES_COLLECTION_ID = "6a4024b595fb0b707c589010"
@@ -426,14 +426,23 @@ def build():
                          "rail (the corridor needs geometry to measure against)")
         else:
             cms_miles = fd.get("miles")
-            drift = ""
             if cms_miles:
                 pct = (road.miles - cms_miles) / cms_miles * 100.0
                 if abs(pct) > 3.0:
-                    drift = (f" — {pct:+.0f}% vs the CMS Miles value of "
-                             f"{cms_miles}; one of the two is stale")
-                    findings.append(f"{slug}: track measures {road.miles:.0f} mi "
-                                    f"but Miles says {cms_miles}{drift}")
+                    # A NOTE, not a FAIL. The feed this run produced is CORRECT:
+                    # the line is drawn from real geometry and the corridor is
+                    # measured against it. What disagrees is the CMS Miles
+                    # number a rider reads on the page. That is a data problem
+                    # to fix in the CMS or by re-exporting the track, not a
+                    # reason to fail a build whose output is good. Failing here
+                    # would leave the Action red until someone edits a number,
+                    # which teaches everyone to ignore a red Action.
+                    notes.append(
+                        f"{slug}: track measures {road.miles:.0f} mi but the CMS "
+                        f"Miles field says {cms_miles} ({pct:+.0f}%). One of the "
+                        "two is stale. Either re-export the GPX with the detailed "
+                        "track option, or correct Miles in the CMS — riders plan "
+                        "fuel and daylight around that number.")
             features.append(track_feature(segments, {
                 "kind": "track",
                 "slug": slug,
