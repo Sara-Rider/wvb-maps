@@ -19525,6 +19525,7 @@
     "slug": "the-cheat-river-loop",
     "name": "The Cheat River Loop",
     "miles": 143,
+    "trackMiles": 144.1,
     "difficulty": "Beginner",
     "surface": "Paved",
     "region": "Mountaineer Country",
@@ -19659,6 +19660,223 @@
     "website": null,
     "tel": "tel:+13048794101",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.7132193,-80.115225"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.6534144,
+     39.4586445
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "rosemarys-thyme",
+    "name": "Rosemary's Thyme",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Family-owned authentic Mexican in Kingwood with Cheat River and golf-course views - right by the Preston County Inn.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.39,
+    "routeMile": 0.55,
+    "url": "/directory/rosemarys-thyme",
+    "website": null,
+    "tel": "tel:+13043296750",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4586445,-79.6534144"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.28078839999999,
+     39.3065257
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "rgs-almost-heaven-harley-davidson",
+    "name": "RG's Almost Heaven Harley-Davidson",
+    "category": "Motorcycle Dealers",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Family-run Harley-Davidson dealer near Bridgeport - sales, service, parts, and gear, in business since 1977.",
+    "region": "Mountaineer Country",
+    "county": "Harrison",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 12.53,
+    "routeMile": 40.95,
+    "url": "/directory/rgs-almost-heaven-harley-davidson",
+    "website": "https://www.almostheavenhd.com",
+    "tel": "tel:+13046230484",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3065257,-80.28078839999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0864936,
+     39.3886464
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-valley-falls-state-park",
+    "name": "Almost Heaven Swing - Valley Falls State Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Overlooks the cascades of Valley Falls, a stop on the WV Waterfall Trail; cross the bridge and follow the paved path.",
+    "region": "Mountaineer Country",
+    "county": "Marion",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 2.08,
+    "routeMile": 47.47,
+    "url": "/directory/almost-heaven-swing-valley-falls-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3886464,-80.0864936"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.16806,
+     39.50583
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "barrackville-covered-bridge",
+    "name": "Barrackville Covered Bridge",
+    "category": "Attraction \\ Sight to See",
+    "type": "bridge",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Built 1853 by Lemuel Chenoweth, a 146-ft Burr-arch span and one of the oldest covered bridges in West Virginia.",
+    "region": "Mountaineer Country",
+    "county": "Marion",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.79,
+    "routeMile": 56.81,
+    "url": "/directory/barrackville-covered-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.50583,-80.16806"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4525,
+     39.67222
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "fish-creek-covered-bridge",
+    "name": "Fish Creek Covered Bridge",
+    "category": "Attraction \\ Sight to See",
+    "type": "bridge",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "ca. 1881 King-post covered bridge over Fish Creek at Hundred.",
+    "region": "Northern Panhandle",
+    "county": "Wetzel",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.83,
+    "routeMile": 80.45,
+    "url": "/directory/fish-creek-covered-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.67222,-80.4525"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01417359999999,
+     39.6581795
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "triple-s-harley-davidson",
+    "name": "Triple S Harley-Davidson",
+    "category": "Motorcycle Dealers",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Full Harley-Davidson dealer in Morgantown, right off I-79 Exit 155 - bikes, parts, service, and gear.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.18,
+    "routeMile": 112.5,
+    "url": "/directory/triple-s-harley-davidson",
+    "website": "https://www.tripleshd.com",
+    "tel": "tel:+13042848244",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6581795,-80.01417359999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.688648,
+     39.4725304
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "preston-county-inn",
+    "name": "Preston County Inn",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Historic 1857 inn on Kingwood's Main Street, with its own restaurant and bar - a characterful Preston County overnight.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.03,
+    "routeMile": 143.83,
+    "url": "/directory/preston-county-inn",
+    "website": "https://www.prestoncountyinn.com",
+    "tel": "tel:+13043292220",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4725304,-79.688648"
    }
   }
  ]

@@ -19153,6 +19153,7 @@
     "slug": "head-of-the-dragon",
     "name": "The Head of the Dragon",
     "miles": 93,
+    "trackMiles": 92.5,
     "difficulty": "Intermediate",
     "surface": "Paved",
     "region": "New River-Greenbrier Valley",
@@ -19313,6 +19314,130 @@
     "website": null,
     "tel": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.2190507,
+     37.2580386
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "cole-harley-davidson",
+    "name": "Cole Harley-Davidson",
+    "category": "Motorcycle Dealers",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Family-owned Harley-Davidson dealer in downtown Bluefield - the southern-WV service and gear stop.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Mercer",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 13.17,
+    "routeMile": 81.64,
+    "url": "/directory/cole-harley-davidson",
+    "website": "https://colehd.com",
+    "tel": "tel:+13043248116",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.2580386,-81.2190507"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.3493179,
+     37.4460792
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "full-throttle-at-riders-paradise",
+    "name": "Full Throttle at Riders Paradise",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "The bar at Rider's Paradise, relaunching under new operators — not yet open.",
+    "region": "Hatfield-McCoy Mountains",
+    "county": "Wyoming",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 4.74,
+    "routeMile": 85.96,
+    "url": "/directory/full-throttle-at-riders-paradise",
+    "website": "https://www.ridersparadisewv.com",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4460792,-81.3493179"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.3493179,
+     37.4460792
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "rider-s-paradise",
+    "name": "Rider's Paradise",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Cabin lodging on the Pinnacle Creek trail system at Herndon — ride from the door.",
+    "region": "Hatfield-McCoy Mountains",
+    "county": "Wyoming",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 4.74,
+    "routeMile": 85.96,
+    "url": "/directory/rider-s-paradise",
+    "website": "https://www.ridersparadisewv.com",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4460792,-81.3493179"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.3652011,
+     37.457514
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "outlaw-bar-grill",
+    "name": "Outlaw Bar & Grill",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Trailside bar and grill on the Pinnacle Creek / Outlaw system — you can ride to the door instead of trailering in.",
+    "region": "Hatfield-McCoy Mountains",
+    "county": "Wyoming",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 4.5,
+    "routeMile": 85.97,
+    "url": "/directory/outlaw-bar-grill",
+    "website": "https://outlawbarandgrill.com",
+    "tel": "tel:+13042948873",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.457514,-81.3652011"
    }
   }
  ]

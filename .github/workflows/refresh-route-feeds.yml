@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name  "wvb-feed-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add routes
+          git add routes routes-index.geojson
           if git diff --staged --quiet; then
             echo "No changes — route feeds already current."
           else
@@ -66,8 +66,8 @@ jobs:
         if: env.PURGE == '1'
         run: |
           curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes/"
-          echo "Requested jsDelivr purge for routes/."
-
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes-index.geojson"
+          echo "Requested jsDelivr purge for routes/ and routes-index.geojson."
       - name: Fail the run if the builder reported a hard finding
         if: always()
         run: |

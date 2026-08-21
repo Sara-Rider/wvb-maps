@@ -8373,6 +8373,7 @@
     "slug": "the-summersville-loop",
     "name": "The Summersville Loop",
     "miles": 120,
+    "trackMiles": 126.9,
     "difficulty": "Intermediate",
     "surface": "Paved",
     "region": "New River-Greenbrier Valley",
@@ -8533,6 +8534,254 @@
     "website": null,
     "tel": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.007329,-80.948414"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8825683,
+     38.2222182
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "fat-eddies",
+    "name": "Fat Eddie's",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Hot dogs, burgers, and blended ice-cream 'storms' a half-mile from Summersville Lake and the Gauley - a warm-weather rider refuel.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.01,
+    "routeMile": 0.28,
+    "url": "/directory/fat-eddies",
+    "website": "https://lakesideoutfitterswv.com",
+    "tel": "tel:+13048720788",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2222182,-80.8825683"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.85603,
+     38.24576
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-summersville-lake-state-park",
+    "name": "Almost Heaven Swing - Summersville Lake State Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Overlooks Summersville Lake, the 'Little Bahamas of the East,' at the state's newest park; short uphill walk.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 2.14,
+    "routeMile": 0.37,
+    "url": "/directory/almost-heaven-swing-summersville-lake-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.24576,-80.85603"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.864641,
+     38.200427
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "summersville-lake-retreat-lighthouse",
+    "name": "Summersville Lake Retreat & Lighthouse",
+    "category": "Campground",
+    "type": "camping",
+    "lane": "camping",
+    "laneLabel": "Camping",
+    "short": "Cabins, RV and tent sites, vintage campers, pontoon and watercraft rentals, and lighthouse tours — voted Best Campground in West Virginia five years running.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.12,
+    "routeMile": 2.24,
+    "url": "/directory/summersville-lake-retreat-lighthouse",
+    "website": "https://summersvillelakeretreat.com",
+    "tel": "tel:+13048725975",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.200427,-80.864641"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.12003399999999,
+     38.050171
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "bear-mountain-cabins-campground",
+    "name": "Bear Mountain Cabins & Campground",
+    "category": "Campground",
+    "type": "camping",
+    "lane": "camping",
+    "laneLabel": "Camping",
+    "short": "Cabins, RV, and tent sites a mile from the New River Gorge Bridge - Amish-built cabins and a general store with hand-dipped ice cream.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.87,
+    "routeMile": 64.68,
+    "url": "/directory/bear-mountain-cabins-campground",
+    "website": "https://bearmountaincamping.com",
+    "tel": "tel:+13045732267",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.050171,-81.12003399999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.1032132,
+     38.05228109999999
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "cathedral-cafe",
+    "name": "Cathedral Cafe",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Coffee, breakfast, and lunch inside a converted 120-year-old church in downtown Fayetteville - a New River Gorge staple.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.01,
+    "routeMile": 64.8,
+    "url": "/directory/cathedral-cafe",
+    "website": "https://www.thecathedralcafe.com",
+    "tel": "tel:+13045740202",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.05228109999999,-81.1032132"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.1258067,
+     38.0477943
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "rifrafters-campground",
+    "name": "Rifrafters Campground",
+    "category": "Campground",
+    "type": "camping",
+    "lane": "camping",
+    "laneLabel": "Camping",
+    "short": "Quiet family campground two miles from the New River Gorge Bridge, off Rt 19 - RV, tent, and rustic cabin sites.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.13,
+    "routeMile": 65.83,
+    "url": "/directory/rifrafters-campground",
+    "website": "https://www.rifrafters.com",
+    "tel": "tel:+13045741065",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.0477943,-81.1258067"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9768304,
+     37.9944401
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-babcock-state-park",
+    "name": "Almost Heaven Swing - Babcock State Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Swing framed on the Glade Creek Grist Mill, one of the most photographed spots in West Virginia; short walk from the main lot.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.86,
+    "routeMile": 105.78,
+    "url": "/directory/almost-heaven-swing-babcock-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8514876,
+     38.2026449
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-tractor-bar",
+    "name": "The Tractor Bar",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Live-music bar off Route 19 at Mount Nebo, a short run from Summersville Lake.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.69,
+    "routeMile": 124.34,
+    "url": "/directory/the-tractor-bar",
+    "website": "https://tractorbarwv.com",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2026449,-80.8514876"
    }
   }
  ]

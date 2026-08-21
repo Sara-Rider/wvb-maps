@@ -13805,6 +13805,7 @@
     "slug": "mills-gap-mountain-loop",
     "name": "Mills Gap Mountain Loop",
     "miles": 96,
+    "trackMiles": 96.2,
     "difficulty": "Intermediate",
     "surface": "Paved",
     "region": "Eastern Panhandle",
@@ -13861,6 +13862,37 @@
     "website": null,
     "tel": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.534471,-78.145711"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.3102554,
+     39.5085891
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-cacapon-resort-state-park",
+    "name": "Almost Heaven Swing - Cacapon Resort State Park",
+    "category": "Attraction \\ Sight to See",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Cacapon Mountain Overlook with endless mountain views; swing closed seasonally Nov 1-Mar 31.",
+    "region": "Eastern Panhandle",
+    "county": "Morgan",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.09,
+    "routeMile": 10.25,
+    "url": "/directory/almost-heaven-swing-cacapon-resort-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5085891,-78.3102554"
    }
   }
  ]

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build one map feed per published route: routes/<slug>.geojson
 
+Repo path: scripts/build_route_feed.py
 Third sibling of build_directory_feed.py and build_events_feed.py.
 
 WHY ONE FILE PER ROUTE
@@ -23,50 +24,89 @@ INPUT AND OUTPUT ARE DIFFERENT DIRECTORIES — this matters
     tracks/<slug>.geojson    AUTHORED, legacy. Honoured when no GPX exists, for
                              routes done before the GPX path was added.
 
-    routes/<slug>.geojson    GENERATED. Overwritten on every run. The road plus
-                             one Point per stop, read live from the route's The
-                             Stops reference.
+    routes/<slug>.geojson    GENERATED. Overwritten on every run. The road, one
+                             Point per curated stop, and one Point per nearby
+                             business the corridor calculation selected.
 
 Same shape as directory.csv (authored) -> directory.geojson (generated). If you
 edit a file under routes/ by hand, the next run silently discards it.
 
-FEED CONTRACT — one FeatureCollection, mixed geometry, told apart by type:
+FEED CONTRACT — one FeatureCollection, mixed geometry, told apart by `kind`:
 
-    LineString / MultiLineString   the road
-      properties: kind="track", slug, name, miles, difficulty, surface,
-                  region, gpx
+    LineString / MultiLineString   kind="track"     the road
+      slug, name, miles, trackMiles, difficulty, surface, region, gpx
 
-    Point                          a stop, in ride order
-      properties: kind="stop", order, slug, name, category, type, region,
-                  county, certified, url, maps
+    Point                          kind="stop"      a curated stop, ride order
+      order, slug, name, category, type, short, region, county, certified,
+      url, website, tel, maps
 
-`type` on a stop is the canonical 15-token directory glyph, read from
-type-token and never re-derived (Decision 66). `order` is the position in The
-Stops, which is author-controlled (Decision 64) — the ride sequence, not
-alphabetical, not distance-sorted.
+    Point                          kind="nearby"    a computed corridor listing
+      slug, name, category, type, lane, laneLabel, short, region, county,
+      certified, featured, reserved, offRouteMiles, routeMile, url, website,
+      tel, maps
+
+`type` is the canonical 15-token directory glyph, read from type-token and
+never re-derived (Decision 66). `order` on a stop is the position in The Stops,
+which is author-controlled (Decision 64) — the ride sequence, not alphabetical,
+not distance-sorted. `lane` on a nearby listing is the 8-lane collapse of those
+tokens; see scripts/corridor.py for why 15 becomes 8.
+
+THIS SCRIPT WRITES TO THE CMS
+------------------------------
+Every other feed builder is read-only against Webflow. This one is not: it
+writes the computed corridor back to each route's Nearby Businesses field, so
+a native Collection List can render the rail as real, indexed, crawlable links
+instead of pins that only exist inside a canvas element. That is the whole
+reason the field exists.
+
+The write is narrow on purpose:
+  * one field, on one collection, never anything else
+  * skipped entirely when the computed set matches what is already there, so a
+    no-op run does not republish six items and churn lastPublished
+  * refused when the computed set is EMPTY but the stored one is not, because
+    that pattern is the signature of a failed geometry load, not of a corridor
+    that genuinely emptied. Set WVB_FORCE_EMPTY=1 to override deliberately.
+  * skipped entirely with WVB_SKIP_CMS=1, which leaves the map feeds intact
+
+Requires env WEBFLOW_API_TOKEN. Note this token now needs CMS WRITE scope; a
+read-only token still builds every feed correctly and reports the write as
+skipped rather than failing the run.
 """
 
 import json
 import os
 import re
 import sys
-import xml.etree.ElementTree as ET
 
 import requests
 
-from gpx_track import parse_gpx   # simplify() is used by the all-routes index feed, not here
+from gpx_track import parse_gpx, simplify
+import Corridor as C
 
 API = "https://api.webflow.com/v2"
 ROUTES_COLLECTION_ID = "6a4024b595fb0b707c589010"
 DIRECTORY_COLLECTION_ID = "6a402eec052b0585b4a0452e"
 TRAVEL_REGIONS_COLLECTION_ID = "6a559020e2cb0cdf4ac5d4ca"
 
+NEARBY_FIELD = "nearby-businesses"
+STOPS_FIELD = "related-businesses"
+
 TOKEN = os.environ.get("WEBFLOW_API_TOKEN") or os.environ.get("WEBFLOW_TOKEN")
 HDRS = {"Authorization": f"Bearer {TOKEN}", "accept": "application/json"}
+
+SKIP_CMS = os.environ.get("WVB_SKIP_CMS") == "1"
+FORCE_EMPTY = os.environ.get("WVB_FORCE_EMPTY") == "1"
 
 GPX_DIR = "gpx"        # authored: the same GPX riders download
 TRACK_DIR = "tracks"   # legacy authored GeoJSON, still honoured
 OUT_DIR = "routes"     # generated, overwritten every run
+INDEX_OUT = "routes-index.geojson"   # generated, feeds the /routes map
+
+# Tolerance for the all-routes index feed. Six full tracks are ~1.5 MB of
+# coordinates; at the zoom where you can see all of West Virginia at once, a
+# 4,878-vertex line and a 48-vertex line are the same picture. Route PAGES
+# always get full fidelity — this decimation applies to the index only.
+INDEX_TOLERANCE_MILES = 0.15
 
 VALID_TOKENS = {
     "overlook", "waterfall", "bridge", "monument", "park", "scenic-road",
@@ -131,13 +171,13 @@ def _dethe(s):
 def index_gpx():
     """Map every GPX in gpx/ to the route slug it belongs to.
 
-    Returns (by_slug, unmatched, collisions). Accepting the exporter's own
-    filename removes the step that failed three times: renaming five files by
-    hand, consistently, before every run. The mapping is printed on every run,
-    so a file matching the wrong route is visible rather than silent."""
-    by_slug, unmatched, collisions = {}, [], []
+    Returns (by_slug, collisions). Accepting the exporter's own filename
+    removes the step that failed three times: renaming five files by hand,
+    consistently, before every run. The mapping is printed on every run, so a
+    file matching the wrong route is visible rather than silent."""
+    by_slug, collisions = {}, []
     if not os.path.isdir(GPX_DIR):
-        return by_slug, unmatched, collisions
+        return by_slug, collisions
     for fn in sorted(os.listdir(GPX_DIR)):
         if not fn.lower().endswith(".gpx"):
             continue
@@ -146,16 +186,15 @@ def index_gpx():
             collisions.append((key, by_slug[key], fn))
             continue
         by_slug[key] = fn
-    return by_slug, unmatched, collisions
+    return by_slug, collisions
 
 
 def load_track(slug, gpx_index=None):
-    """Read the authored road geometry. Returns (features, note).
+    """Read the authored road geometry. Returns (segments, note).
 
-    Looks for the GPX first, because that is the file the founder already
-    produces for riders to download — one Furkot export, one artifact, no hand
-    conversion. Falls back to a committed GeoJSON track for routes done before
-    that changed.
+    segments is a list of coordinate lists, [[lon, lat], ...] — the same shape
+    gpx_track.parse_gpx returns, so the drawn line and the corridor measurement
+    come from one geometry rather than two.
 
         gpx/<slug>.gpx           preferred. Must be exported from Furkot with
                                  the DETAILED TRACK option on, or it carries
@@ -177,15 +216,13 @@ def load_track(slug, gpx_index=None):
                         f"(trkpt={meta['trkpt']} rtept={meta['rtept']} "
                         f"wpt={meta['wpt']}). Re-export from Furkot with the "
                         "detailed track option enabled.")
-        geom = ({"type": "LineString", "coordinates": segments[0]}
-                if len(segments) == 1
-                else {"type": "MultiLineString", "coordinates": segments})
         note = None
         if source == "rtept":
             note = (f"{slug}: built from route points, not a track, so the line "
-                    "cuts corners. Re-export from Furkot with the detailed "
-                    "track option enabled.")
-        return [{"type": "Feature", "geometry": geom, "properties": {}}], note
+                    "cuts corners AND the corridor is measured against a line "
+                    "the road does not follow. Re-export from Furkot with the "
+                    "detailed track option enabled.")
+        return segments, note
 
     geo_path = os.path.join(TRACK_DIR, f"{slug}.geojson")
     if not os.path.exists(geo_path):
@@ -194,10 +231,135 @@ def load_track(slug, gpx_index=None):
         fc = json.load(fh)
     feats = fc.get("features") if isinstance(fc, dict) else None
     if feats is None:                      # a bare geometry, not a collection
-        feats = [{"type": "Feature", "geometry": fc, "properties": {}}]
-    return ([f for f in feats
-             if (f.get("geometry") or {}).get("type")
-             in ("LineString", "MultiLineString")], None)
+        feats = [{"type": "Feature", "geometry": fc}]
+    segments = []
+    for f in feats:
+        g = f.get("geometry") or {}
+        if g.get("type") == "LineString":
+            segments.append(g["coordinates"])
+        elif g.get("type") == "MultiLineString":
+            segments.extend(g["coordinates"])
+    return segments, None
+
+
+def track_feature(segments, props):
+    geom = ({"type": "LineString", "coordinates": segments[0]}
+            if len(segments) == 1
+            else {"type": "MultiLineString", "coordinates": segments})
+    return {"type": "Feature", "geometry": geom, "properties": props}
+
+
+# ---- the candidate pool ------------------------------------------------
+
+def directory_candidates(directory, dir_categories, regions):
+    """Every published directory listing that can be measured, as a flat list.
+
+    Built once and reused for all six routes. A listing with no coordinate is
+    dropped here rather than per route, so the run log names it once instead of
+    six times.
+    """
+    pool, no_coord = [], []
+    for item_id, d in directory.items():
+        name = (d.get("name") or "").strip()
+        try:
+            lat = float(str(d.get("latitude")).strip())
+            lng = float(str(d.get("longitude")).strip())
+        except (TypeError, ValueError):
+            no_coord.append(name or item_id)
+            continue
+        token = (d.get("type-token") or "").strip().lower()
+        if token not in VALID_TOKENS:
+            token = "other"
+        dslug = (d.get("slug") or "").strip()
+        pool.append({
+            "id": item_id,
+            "slug": dslug,
+            "name": name,
+            "lon": lng,
+            "lat": lat,
+            "type": token,
+            "lane": C.lane_for(token),
+            "category": dir_categories.get(d.get("business-category"), ""),
+            "short": (d.get("short-description") or "").strip(),
+            "region": regions.get(d.get("travel-region"), ""),
+            "county": (d.get("county") or "").strip(),
+            "certified": bool(d.get("certified")),
+            "featured": C.is_featured(d.get("featured-until")),
+            "website": d.get("website-2"),
+            "tel": d.get("tel-link"),
+            "maps": d.get("maps-url-2")
+                    or ("https://www.google.com/maps/dir/?api=1"
+                        f"&destination={lat},{lng}"),
+        })
+    return pool, no_coord
+
+
+def nearby_feature(c):
+    return {
+        "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [c["lon"], c["lat"]]},
+        "properties": {
+            "kind": "nearby",
+            "slug": c["slug"],
+            "name": c["name"],
+            "category": c["category"],
+            "type": c["type"],
+            "lane": c["lane"],
+            "laneLabel": C.LANE_LABEL.get(c["lane"], "Other"),
+            "short": c["short"],
+            "region": c["region"],
+            "county": c["county"],
+            "certified": c["certified"],
+            "featured": c["featured"],
+            "reserved": bool(c.get("reserved")),
+            "offRouteMiles": c["off_miles"],
+            "routeMile": c["route_mile"],
+            "url": f"/directory/{c['slug']}",
+            "website": c["website"],
+            "tel": c["tel"],
+            "maps": c["maps"],
+        },
+    }
+
+
+# ---- writing the rail back to the CMS ----------------------------------
+
+def push_nearby(route_id, is_draft, item_ids, current):
+    """Write the computed rail to the route's Nearby Businesses field.
+
+    Returns (status, detail). Never raises — a CMS failure must not cost the
+    map feeds, which are already written by the time this runs.
+    """
+    if SKIP_CMS:
+        return "skipped", "WVB_SKIP_CMS=1"
+    if list(current or []) == list(item_ids):
+        return "unchanged", ""
+    if not item_ids and current and not FORCE_EMPTY:
+        return "refused", ("computed rail is empty but the stored one is not — "
+                           "this is what a failed geometry load looks like. "
+                           "Set WVB_FORCE_EMPTY=1 if the emptying is real.")
+
+    # A draft route has no live record to patch; write staged and let the
+    # founder's publish carry it.
+    suffix = "" if is_draft else "/live"
+    url = f"{API}/collections/{ROUTES_COLLECTION_ID}/items/{route_id}{suffix}"
+    try:
+        r = requests.patch(
+            url,
+            headers={**HDRS, "content-type": "application/json"},
+            json={"fieldData": {NEARBY_FIELD: item_ids}},
+            timeout=30,
+        )
+    except requests.RequestException as exc:
+        return "error", str(exc)
+    if r.status_code in (401, 403):
+        return "no-permission", (
+            f"HTTP {r.status_code} — WEBFLOW_API_TOKEN cannot write CMS items. "
+            "Give the token CMS write scope, or set WVB_SKIP_CMS=1 to stop "
+            "attempting the write.")
+    if not r.ok:
+        return "error", f"HTTP {r.status_code} {r.text[:200]}"
+    return ("written-staged" if is_draft else "written-live"), f"{len(item_ids)} refs"
 
 
 def build():
@@ -222,9 +384,12 @@ def build():
     dir_categories = option_names(DIRECTORY_COLLECTION_ID).get(
         "business-category", {})
 
-    written, findings, notes = [], [], []
+    pool, no_coord = directory_candidates(directory, dir_categories, regions)
+
+    written, findings, notes, cms_log = [], [], [], []
+    index_features, index_skipped, renamed = [], [], []
     seen_slugs = set()
-    gpx_index, _unused, gpx_collisions = index_gpx()
+    gpx_index, gpx_collisions = index_gpx()
     matched_files = set()
     for key, fn, other in gpx_collisions:
         findings.append(f"{GPX_DIR}/{fn} and {GPX_DIR}/{other} both resolve to "
@@ -240,36 +405,49 @@ def build():
 
         features = []
         seen_slugs.add(slug)
+        if route.get("isDraft"):
+            notes.append(f"{slug}: route item is a DRAFT — the feed is built, "
+                         "but /routes/{0} is not live yet".format(slug))
 
         # ---- the road ------------------------------------------------
-        track, track_note = load_track(slug, gpx_index)
+        segments, track_note = load_track(slug, gpx_index)
         if _dethe(slug) in gpx_index:
             fn = gpx_index[_dethe(slug)]
             matched_files.add(fn)
             if fn != f"{slug}.gpx":
-                notes.append(f"{GPX_DIR}/{fn} -> {slug} (matched by name "
-                             "normalisation, not an exact filename)")
+                renamed.append(f"{fn} -> {slug}")
         if track_note:
             findings.append(track_note)
-        if not track:
+
+        road = C.Corridor(segments) if segments else None
+        if not segments:
             notes.append(f"{slug}: no gpx/{slug}.gpx and no tracks/{slug}.geojson "
-                         "— feed will carry stops only, and the route page will "
-                         "draw pins with no line")
-        for f in track:
-            f["properties"] = {
+                         "— feed will carry stops only, no line and no nearby "
+                         "rail (the corridor needs geometry to measure against)")
+        else:
+            cms_miles = fd.get("miles")
+            drift = ""
+            if cms_miles:
+                pct = (road.miles - cms_miles) / cms_miles * 100.0
+                if abs(pct) > 3.0:
+                    drift = (f" — {pct:+.0f}% vs the CMS Miles value of "
+                             f"{cms_miles}; one of the two is stale")
+                    findings.append(f"{slug}: track measures {road.miles:.0f} mi "
+                                    f"but Miles says {cms_miles}{drift}")
+            features.append(track_feature(segments, {
                 "kind": "track",
                 "slug": slug,
                 "name": name,
-                "miles": fd.get("miles"),
+                "miles": cms_miles,
+                "trackMiles": round(road.miles, 1),
                 "difficulty": difficulty.get(fd.get("difficulty"), ""),
                 "surface": surface.get(fd.get("surface-type"), ""),
                 "region": regions.get(fd.get("travel-region"), ""),
                 "gpx": fd.get("gpx-download-link-2"),
-            }
-            features.append(f)
+            }))
 
         # ---- the stops, in authored order ----------------------------
-        stop_ids = fd.get("related-businesses") or []
+        stop_ids = fd.get(STOPS_FIELD) or []
         if not stop_ids:
             notes.append(f"{slug}: The Stops is empty")
 
@@ -327,6 +505,89 @@ def build():
                 },
             })
 
+        # ---- the nearby corridor -------------------------------------
+        # A curated stop is never also a nearby listing: it is already pinned,
+        # already in the ride order, and already in the body copy. Repeating it
+        # in the rail would read as two different businesses with one name.
+        chosen = []
+        if road:
+            stop_set = set(stop_ids)
+            candidates = [c for c in pool if c["id"] not in stop_set]
+            kept = C.gather(road, candidates)
+            chosen, promoted, dropped = C.select(kept)
+            features.extend(nearby_feature(c) for c in chosen)
+
+            lanes = {}
+            for c in chosen:
+                lanes[c["lane"]] = lanes.get(c["lane"], 0) + 1
+            lane_summary = " ".join(
+                f"{ln}:{lanes[ln]}" for ln in C.LANE_ORDER if ln in lanes)
+            empty = [ln for ln in C.LANE_ORDER if ln not in lanes]
+            notes.append(f"{slug}: nearby {len(chosen)} of {len(kept)} in range "
+                         f"[{lane_summary or 'none'}]")
+            # Only worth naming the empty lanes when the rail is otherwise
+            # populated. On a route with nothing at all, "0 of 0" already said
+            # it, and listing all eight lanes buries the routes that do have a
+            # partial gap worth acting on.
+            if empty and chosen:
+                notes.append(f"{slug}: no coverage in {', '.join(empty)} — "
+                             "a genuine gap in the directory along this route, "
+                             "not a bug")
+            if promoted:
+                notes.append(f"{slug}: Certified reserve promoted "
+                             + ", ".join(c["name"] for c in promoted))
+            if dropped:
+                notes.append(f"{slug}: {len(dropped)} in-range listing(s) cut by "
+                             "the 3-per-lane cap")
+
+        # ---- the all-routes index ------------------------------------
+        # A DRAFT route is deliberately excluded. Its page 404s, so drawing it
+        # on /routes would be an invitation to a dead end — the one thing a
+        # discovery map must never do.
+        if route.get("isDraft"):
+            index_skipped.append(slug)
+        elif segments:
+            thin = [simplify(s, INDEX_TOLERANCE_MILES) for s in segments]
+            thin = [s for s in thin if len(s) >= 2]
+            index_features.append({
+                "type": "Feature",
+                "geometry": ({"type": "LineString", "coordinates": thin[0]}
+                             if len(thin) == 1
+                             else {"type": "MultiLineString", "coordinates": thin}),
+                "properties": {
+                    "kind": "route",
+                    "slug": slug,
+                    "name": name,
+                    "miles": fd.get("miles"),
+                    "rideTime": (fd.get("ride-time") or "").strip(),
+                    "difficulty": difficulty.get(fd.get("difficulty"), ""),
+                    "surface": surface.get(fd.get("surface-type"), ""),
+                    "region": regions.get(fd.get("travel-region"), ""),
+                    "secondaryRegion": regions.get(fd.get("secondary-region"), ""),
+                    "short": (fd.get("short-description") or "").strip(),
+                    "image": (fd.get("featured-image") or {}).get("url"),
+                    "stops": len(stop_ids),
+                    "nearby": len(chosen),
+                    "url": f"/routes/{slug}",
+                },
+            })
+            # A start marker, so the index map can label a route at a zoom
+            # where the lines are two pixels wide and unclickable.
+            start = thin[0][0]
+            index_features.append({
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": start},
+                "properties": {
+                    "kind": "route-start",
+                    "slug": slug,
+                    "name": name,
+                    "miles": fd.get("miles"),
+                    "region": regions.get(fd.get("travel-region"), ""),
+                    "url": f"/routes/{slug}",
+                },
+            })
+
+        # ---- write the feed ------------------------------------------
         out_path = os.path.join(OUT_DIR, f"{slug}.geojson")
         with open(out_path, "w", encoding="utf-8") as fh:
             json.dump({"type": "FeatureCollection", "features": features},
@@ -335,7 +596,14 @@ def build():
 
         tracks = sum(1 for f in features if f["properties"]["kind"] == "track")
         stops = sum(1 for f in features if f["properties"]["kind"] == "stop")
-        written.append(f"{out_path}  {tracks} track, {stops} stops")
+        near = sum(1 for f in features if f["properties"]["kind"] == "nearby")
+        written.append(f"{out_path}  {tracks} track, {stops} stops, {near} nearby")
+
+        # ---- write the rail back to the CMS ---------------------------
+        status, detail = push_nearby(
+            route["id"], bool(route.get("isDraft")),
+            [c["id"] for c in chosen], fd.get(NEARBY_FIELD) or [])
+        cms_log.append(f"{slug}: {status}" + (f" — {detail}" if detail else ""))
 
     # ---- a GPX that belongs to no route -------------------------------
     # Only a FAIL when a route is ALSO missing geometry, which is the signature
@@ -352,10 +620,47 @@ def build():
             notes.append(msg + " — every route already has geometry, so this is "
                                "most likely a route not yet in the CMS.")
 
+    # ---- the /routes index feed ---------------------------------------
+    with open(INDEX_OUT, "w", encoding="utf-8") as fh:
+        json.dump({
+            "type": "FeatureCollection",
+            "metadata": {
+                "name": "West Virginia Bikers — all published routes",
+                "purpose": "Feeds the /routes index map. Lines are simplified "
+                           f"to {INDEX_TOLERANCE_MILES} mi; route pages use the "
+                           "full-fidelity per-route feed.",
+                "contract": "kind=route (line) and kind=route-start (point)",
+                "count": sum(1 for f in index_features
+                             if f["properties"]["kind"] == "route"),
+            },
+            "features": index_features,
+        }, fh, ensure_ascii=False, indent=1)
+        fh.write("\n")
+    if index_skipped:
+        notes.append(f"{INDEX_OUT} omits {len(index_skipped)} draft route(s) "
+                     f"({', '.join(sorted(index_skipped))}) — a draft page 404s, "
+                     "and the index must not link to a dead end. They appear "
+                     "the run after you publish them.")
+
+    if renamed:
+        notes.append("GPX filenames matched by normalisation, not exactly: "
+                     + "; ".join(renamed))
+
+    if no_coord:
+        notes.append(f"{len(no_coord)} directory listing(s) have no usable "
+                     "coordinate and were excluded from every corridor: "
+                     + ", ".join(sorted(no_coord)))
+
     # ---- report -------------------------------------------------------
     print(f"{len(written)} route feed(s) written:")
     for w in written:
         print("  " + w)
+    n_index = sum(1 for f in index_features if f["properties"]["kind"] == "route")
+    print(f"{INDEX_OUT}: {n_index} published route(s)")
+    print(f"corridor pool: {len(pool)} published listings with coordinates")
+    print("Nearby Businesses (CMS):")
+    for c in cms_log:
+        print("  " + c)
     for n in notes:
         print("  NOTE " + n)
     for f in findings:
