@@ -81,7 +81,7 @@ import sys
 import requests
 
 from gpx_track import parse_gpx, simplify
-import corridor as C
+import Corridor as C
 
 API = "https://api.webflow.com/v2"
 ROUTES_COLLECTION_ID = "6a4024b595fb0b707c589010"
