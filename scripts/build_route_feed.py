@@ -62,7 +62,9 @@ reason the field exists.
 The write is narrow on purpose:
   * one field, on one collection, never anything else
   * skipped entirely when the computed set matches what is already there, so a
-    no-op run does not republish six items and churn lastPublished
+    no-op run does not republish six items and churn lastPublished. The stored
+    value for that comparison is read from the STAGED items endpoint, because
+    the live one does not return this field — see stored_nearby().
   * refused when the computed set is EMPTY but the stored one is not, because
     that pattern is the signature of a failed geometry load, not of a corridor
     that genuinely emptied. Set WVB_FORCE_EMPTY=1 to override deliberately.
@@ -348,6 +350,29 @@ def ref_ids(value):
     return out
 
 
+def stored_nearby():
+    """{routeItemId: [reference ids]} for Nearby Businesses, read from the
+    STAGED items endpoint.
+
+    WHY NOT READ IT FROM THE LIVE RESPONSE, LIKE EVERYTHING ELSE HERE
+    -----------------------------------------------------------------
+    Because the live response does not carry this field. Verified by the run
+    log: every route reported `stored 0` on a run whose inputs had not changed
+    at all, while the staged endpoint returned the full, correctly ordered
+    reference list the previous run had written. Comparing the computed rail
+    against a field that is never present makes "has this changed?" always
+    answer yes, which turns the skip-when-unchanged guard into write-every-run
+    and republishes four route items on every no-op build.
+
+    So the feed still reads LIVE — the map must show what is published — and
+    only this one comparison reads staged. One extra request per run.
+    """
+    out = {}
+    for it in all_items(ROUTES_COLLECTION_ID, live=False):
+        out[it["id"]] = ref_ids((it.get("fieldData") or {}).get(NEARBY_FIELD))
+    return out
+
+
 def push_nearby(route_id, is_draft, item_ids, current):
     """Write the computed rail to the route's Nearby Businesses field.
 
@@ -357,7 +382,7 @@ def push_nearby(route_id, is_draft, item_ids, current):
     if SKIP_CMS:
         return "skipped", "WVB_SKIP_CMS=1"
 
-    stored = ref_ids(current)
+    stored = ref_ids(current) if current and isinstance(current[0], (str, dict)) else list(current or [])
     if stored == item_ids:
         return "unchanged", ""
 
@@ -427,6 +452,7 @@ def build():
         "business-category", {})
 
     pool, no_coord = directory_candidates(directory, dir_categories, regions)
+    stored_rails = {} if SKIP_CMS else stored_nearby()
 
     written, findings, notes, cms_log = [], [], [], []
     index_features, index_skipped, renamed = [], [], []
@@ -653,7 +679,7 @@ def build():
         # ---- write the rail back to the CMS ---------------------------
         status, detail = push_nearby(
             route["id"], bool(route.get("isDraft")),
-            [c["id"] for c in chosen], fd.get(NEARBY_FIELD) or [])
+            [c["id"] for c in chosen], stored_rails.get(route["id"], []))
         cms_log.append(f"{slug}: {status}" + (f" — {detail}" if detail else ""))
 
     # ---- a GPX that belongs to no route -------------------------------
