@@ -81,7 +81,7 @@ import sys
 import requests
 
 from gpx_track import parse_gpx, simplify
-import Corridor as C
+import corridor as C
 
 API = "https://api.webflow.com/v2"
 ROUTES_COLLECTION_ID = "6a4024b595fb0b707c589010"
@@ -96,6 +96,9 @@ HDRS = {"Authorization": f"Bearer {TOKEN}", "accept": "application/json"}
 
 SKIP_CMS = os.environ.get("WVB_SKIP_CMS") == "1"
 FORCE_EMPTY = os.environ.get("WVB_FORCE_EMPTY") == "1"
+# Prints the raw stored reference value when a write is triggered. Only useful
+# while diagnosing a guard that will not settle; noisy otherwise.
+DEBUG_CMS = os.environ.get("WVB_DEBUG_CMS") == "1"
 
 GPX_DIR = "gpx"        # authored: the same GPX riders download
 TRACK_DIR = "tracks"   # legacy authored GeoJSON, still honoured
@@ -324,6 +327,27 @@ def nearby_feature(c):
 
 # ---- writing the rail back to the CMS ----------------------------------
 
+def ref_ids(value):
+    """Normalise a MultiReference value to a plain list of item id strings.
+
+    The staged and live item endpoints do not have to serialise a reference
+    the same way, and they don't always: one returns bare id strings, the
+    other can return objects. Comparing those two shapes never matches, so the
+    skip-when-unchanged guard silently degrades into "write every run" —
+    exactly the churn the guard exists to prevent. Accept both shapes rather
+    than trust either.
+    """
+    out = []
+    for v in value or []:
+        if isinstance(v, str):
+            out.append(v)
+        elif isinstance(v, dict):
+            got = v.get("id") or v.get("_id") or v.get("itemId")
+            if got:
+                out.append(str(got))
+    return out
+
+
 def push_nearby(route_id, is_draft, item_ids, current):
     """Write the computed rail to the route's Nearby Businesses field.
 
@@ -332,9 +356,26 @@ def push_nearby(route_id, is_draft, item_ids, current):
     """
     if SKIP_CMS:
         return "skipped", "WVB_SKIP_CMS=1"
-    if list(current or []) == list(item_ids):
+
+    stored = ref_ids(current)
+    if stored == item_ids:
         return "unchanged", ""
-    if not item_ids and current and not FORCE_EMPTY:
+
+    # Say WHY this run is writing. A bare "written-live" on a run with
+    # identical inputs looks like success and is actually a broken guard; the
+    # only way to tell the two apart from a log is to print the comparison.
+    if not stored:
+        why = "stored 0 — field empty, or absent from the live response"
+    elif set(stored) == set(item_ids):
+        why = f"stored {len(stored)}, same set but different order"
+    else:
+        added = len(set(item_ids) - set(stored))
+        gone = len(set(stored) - set(item_ids))
+        why = f"stored {len(stored)}, +{added} -{gone}"
+    if DEBUG_CMS:
+        why += f" | raw={str(current)[:160]}"
+
+    if not item_ids and stored and not FORCE_EMPTY:
         return "refused", ("computed rail is empty but the stored one is not — "
                            "this is what a failed geometry load looks like. "
                            "Set WVB_FORCE_EMPTY=1 if the emptying is real.")
@@ -359,7 +400,8 @@ def push_nearby(route_id, is_draft, item_ids, current):
             "attempting the write.")
     if not r.ok:
         return "error", f"HTTP {r.status_code} {r.text[:200]}"
-    return ("written-staged" if is_draft else "written-live"), f"{len(item_ids)} refs"
+    return (("written-staged" if is_draft else "written-live"),
+            f"{len(item_ids)} refs ({why})")
 
 
 def build():
