@@ -1,4 +1,4 @@
-Repo path: .github/workflows/refresh-route-feeds.yml
+#Repo path: .github/workflows/refresh-route-feeds.yml
 #
 # Generates routes/<slug>.geojson for EVERY published route, from:
 #   tracks/<slug>.geojson   authored road geometry (Furkot export, hand-committed)
