@@ -1,4 +1,4 @@
-# Repo path: .github/workflows/refresh-route-feeds.yml
+Repo path: .github/workflows/refresh-route-feeds.yml
 #
 # Generates routes/<slug>.geojson for EVERY published route, from:
 #   tracks/<slug>.geojson   authored road geometry (Furkot export, hand-committed)
@@ -46,6 +46,18 @@ jobs:
         run: |
           set -o pipefail
           python scripts/build_route_feed.py 2>&1 | tee build.log
+
+      # `tee -a`, not `tee`. The step above CREATES build.log; a plain tee here
+      # would truncate it and throw away the feed report along with any FAIL it
+      # already recorded. Appending also means the existing FAIL gate at the
+      # bottom of this file covers this script for free — no second gate to
+      # write, and no second gate to forget.
+      - name: Keep every listing-url pointing at its own listing
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+        run: |
+          set -o pipefail
+          python scripts/sync_listing_urls.py 2>&1 | tee -a build.log
 
       - name: Commit only if a feed changed
         run: |
