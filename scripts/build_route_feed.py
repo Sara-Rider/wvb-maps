@@ -88,6 +88,14 @@ import corridor as C
 API = "https://api.webflow.com/v2"
 ROUTES_COLLECTION_ID = "6a4024b595fb0b707c589010"
 DIRECTORY_COLLECTION_ID = "6a402eec052b0585b4a0452e"
+
+# A route whose Secondary Region is this is understood to leave West Virginia.
+# See the cross-border route decision: the Directory is WV-only by design, so
+# an out-of-state stretch has no listings and never will. That is the expected
+# state, not a coverage gap, and the run log has to say so — otherwise the
+# route reports six empty lanes every run forever, and a NOTE nobody can act
+# on is how you teach someone to stop reading NOTEs.
+OUT_OF_STATE_REGION = "Out of State"
 TRAVEL_REGIONS_COLLECTION_ID = "6a559020e2cb0cdf4ac5d4ca"
 
 NEARBY_FIELD = "nearby-businesses"
@@ -606,10 +614,19 @@ def build():
             # populated. On a route with nothing at all, "0 of 0" already said
             # it, and listing all eight lanes buries the routes that do have a
             # partial gap worth acting on.
-            if empty and chosen:
+            crosses_line = (regions.get(fd.get("secondary-region"), "")
+                            == OUT_OF_STATE_REGION)
+            if empty and chosen and not crosses_line:
                 notes.append(f"{slug}: no coverage in {', '.join(empty)} — "
                              "a genuine gap in the directory along this route, "
                              "not a bug")
+            elif empty and chosen and crosses_line:
+                # Same missing lanes, a different meaning. Naming the cause
+                # stops this reading as a directory to go and fill.
+                notes.append(f"{slug}: no coverage in {', '.join(empty)} — "
+                             "this route leaves West Virginia and the "
+                             "Directory is WV-only, so the out-of-state "
+                             "stretch has no listings by design")
             if promoted:
                 notes.append(f"{slug}: Certified reserve promoted "
                              + ", ".join(c["name"] for c in promoted))
