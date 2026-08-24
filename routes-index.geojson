@@ -2704,7 +2704,7 @@
     "kind": "route",
     "slug": "the-summersville-loop",
     "name": "The Summersville Loop",
-    "miles": 120,
+    "miles": 127,
     "rideTime": "1-2 days",
     "difficulty": "Intermediate",
     "surface": "Paved",
@@ -2730,7 +2730,7 @@
     "kind": "route-start",
     "slug": "the-summersville-loop",
     "name": "The Summersville Loop",
-    "miles": 120,
+    "miles": 127,
     "region": "New River-Greenbrier Valley",
     "url": "/routes/the-summersville-loop"
    }
