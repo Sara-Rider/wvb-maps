@@ -1,0 +1,550 @@
+<!-- WEST VIRGINIA BIKERS — Route Map · v5 · 2026-08-20
+     Lives on the Routes TEMPLATE and serves EVERY route. Feed is derived from
+     the route slug in the URL — see "Feed resolution" below.
+
+     NAMING (settled 2026-08-21). Riders see two lists: "The Stops", which the
+     founder curated and wrote about, and "Along the Way", which this build
+     computed. The contrast is AUTHORSHIP, not distance — the per-card mileage
+     already states distance exactly, and any heading that promises quality
+     ("Worth the Detour") or asserts position ("Off the Route") is wrong for
+     some listing on some route. Five of the twenty currently in range sit
+     under a quarter-mile off the road; two sit past twelve.
+
+     `kind:"nearby"` stays the feed key. That is plumbing, and Events will use
+     the identical field under the heading "Nearby" — a point has things near
+     it, a line has things along it.
+
+     v5 adds the computed rail. The feed carries three kinds of feature and
+     the embed tells them apart by `kind`:
+
+       track   the road
+       stop    a curated stop, author-ordered, the editorial spine of the ride
+       nearby  a computed corridor listing — inside its lane's radius of the
+               road, ranked, capped at three per lane, ordered by route mile
+
+     v4 feeds have no `kind`, so a Point without one is treated as a stop and
+     an old feed still renders exactly as it did.
+
+     THREE VISUAL CHANNELS, NEVER CROSSED
+     ------------------------------------
+       icon            what the place IS (the 15 canonical glyphs)
+       gold ring+size  Certified, and nothing else
+       opacity         curated stop (solid) vs computed nearby (softened)
+
+     Certified owns size, so the stop/nearby distinction cannot also use it —
+     a big pin has to mean one thing. Opacity is the third axis and it is the
+     right one: a nearby listing is genuinely secondary to a stop the founder
+     chose. Featured (paid) gets NO map treatment at all. Its placement benefit
+     is that it ranks first inside its lane, which is a real benefit; making it
+     louder on the map would put a paid mark next to the Certified mark, and
+     the Brand & Design System is explicit that those two must never read
+     alike. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
+<style>
+  .wvb-map-shell{
+    --slate:#3D5A6B; --gold:#C8922A; --gold-hover:#A8791F;
+    --green:#2D5016; --asphalt:#1A1A1A; --mist:#F2F0EB;
+    display:grid; grid-template-columns:1.6fr 1fr; gap:16px;
+    height:620px; font-family:'Raleway',system-ui,sans-serif; color:var(--asphalt);
+  }
+  .wvb-map__map{ width:100%; height:100%; border-radius:10px; overflow:hidden; }
+  .wvb-map__list{
+    overflow-y:auto; padding-right:4px; max-height:620px;
+    scrollbar-width:thin; scrollbar-color:var(--slate) transparent;
+  }
+  .wvb-map__list-title{
+    font-family:'Cinzel',serif; font-size:15px; letter-spacing:.02em;
+    color:var(--slate); text-transform:uppercase; margin:0 0 10px; font-weight:600;
+  }
+  .wvb-map__list-title + .wvb-map__sub{ margin-top:-6px; }
+  .wvb-map__sub{ font-size:12px; color:#7a746a; margin:0 0 10px; line-height:1.4; }
+  .wvb-map__section{ margin-top:22px; padding-top:18px; border-top:1px solid #e2ddd2; }
+
+  .wvb-map__chips{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
+  .wvb-map__chip{
+    font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    border:1px solid #d8d2c6; background:#fff; color:#6b665d;
+    border-radius:999px; padding:5px 11px; cursor:pointer; line-height:1;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .wvb-map__chip:hover{ border-color:var(--slate); color:var(--slate); }
+  .wvb-map__chip.is-on{ background:var(--slate); border-color:var(--slate); color:var(--mist); }
+
+  .wvb-map__row{
+    border:1px solid #e2ddd2; border-left:4px solid transparent;
+    border-radius:8px; padding:10px 12px; margin-bottom:8px; cursor:pointer;
+    transition:border-color .12s ease, background .12s ease, transform .06s ease;
+    background:#fff;
+  }
+  .wvb-map__row:hover,
+  .wvb-map__row.is-active{
+    border-color:#e2ddd2; border-left-color:var(--gold);
+    background:var(--mist); transform:translateX(1px);
+  }
+  .wvb-map__row.is-certified{ border-left-color:var(--gold); }
+  .wvb-map__row.is-nearby{ background:#fbfaf7; }
+  .wvb-map__row-head{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .wvb-map__row-name{ font-weight:700; font-size:15px; color:var(--slate); }
+  .wvb-map__row-seq{ display:inline-block; min-width:19px; height:19px;
+    line-height:19px; text-align:center; border-radius:50%;
+    background:var(--slate); color:var(--mist); font-size:11px;
+    font-weight:700; margin-right:7px; vertical-align:1px; }
+  .wvb-map__row-cat{ font-size:12px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin-top:2px; }
+  .wvb-map__row-desc{ font-size:13px; line-height:1.4; margin-top:6px; color:#3a3a3a; }
+  .wvb-map__row-meta{ font-size:12px; color:#6b665d; margin-top:6px; font-weight:600; }
+  .wvb-map__badge{
+    display:inline-block; font-size:10px; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase; color:#fff; background:var(--gold);
+    border-radius:999px; padding:2px 8px; white-space:nowrap;
+  }
+  /* Featured is a PAID mark and must not read like the Certified badge.
+     Outline, slate, no gold anywhere near it. */
+  .wvb-map__badge--featured{
+    background:transparent; color:var(--slate); border:1px solid var(--slate);
+  }
+  .wvb-map__empty{ font-size:13px; color:#7a746a; padding:12px 0; line-height:1.5; }
+
+  .wvb-pop{ font-family:'Raleway',system-ui,sans-serif; max-width:230px; }
+  .wvb-pop__name{ font-family:'Cinzel',serif; font-weight:600; font-size:15px; color:var(--slate); }
+  .wvb-pop__cat{ font-size:11px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin:2px 0 6px; }
+  .wvb-pop__desc{ font-size:13px; line-height:1.4; margin-bottom:8px; }
+  .wvb-pop__meta{ font-size:12px; color:#6b665d; font-weight:600; margin-bottom:8px; }
+  .wvb-pop__links a{ color:var(--gold-hover); font-weight:600; font-size:13px; text-decoration:none; }
+  .wvb-pop__links a:hover{ text-decoration:underline; }
+  .wvb-map-shell .maplibregl-popup-content{ border-radius:10px; padding:12px 14px; }
+
+  @media (max-width:820px){
+    .wvb-map-shell{ grid-template-columns:1fr; height:auto; }
+    .wvb-map__map{ height:360px; }
+    .wvb-map__list{ max-height:none; }
+  }
+</style>
+
+<div class="wvb-map-shell">
+  <div id="wvb-map" class="wvb-map__map"></div>
+  <div class="wvb-map__list" id="wvb-list">
+    <p class="wvb-map__list-title">The Stops</p>
+    <div id="wvb-rows"><p class="wvb-map__empty">Loading the ride…</p></div>
+    <div class="wvb-map__section" id="wvb-nearby-section" hidden>
+      <p class="wvb-map__list-title">Along the Way</p>
+      <p class="wvb-map__sub" id="wvb-nearby-sub"></p>
+      <div class="wvb-map__chips" id="wvb-chips"></div>
+      <div id="wvb-nearby-rows"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* ---- Feed resolution ------------------------------------------------
+     This embed lives on the Routes TEMPLATE, so it serves every route. v3
+     hardcoded Summersville's two feed URLs and Summersville's centre, which
+     meant publishing any second route would have drawn Summersville's line
+     on it. Only one route was published, so nothing was visibly wrong.
+
+     v4 derived the feed from the slug in the URL: /routes/<slug> fetches
+     routes/<slug>.geojson — ONE file per route holding the road, the stops
+     and (since v5) the nearby rail, told apart by `kind`. No CMS fields, no
+     bound attributes (which the Data API cannot write anyway), nothing to
+     fill in per route.
+
+     CENTER is a fallback only. The map always fits to the data it loaded, so
+     a route in the Eastern Panhandle frames itself. */
+  const SLUG = (function () {
+    var parts = location.pathname.split('?')[0].replace(/\/+$/, '').split('/');
+    return parts[parts.length - 1] || '';
+  })();
+
+  const CFG = {
+    FEED_URL:     'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes/' + SLUG + '.geojson',
+    FEED_URL_RAW: 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/routes/' + SLUG + '.geojson',
+    CENTER: [-80.55, 38.85], ZOOM: 7,
+    STYLE: 'https://tiles.openfreemap.org/styles/liberty'
+  };
+  const BRAND = { slate:'#3D5A6B', gold:'#C8922A', green:'#2D5016', asphalt:'#1A1A1A', mist:'#F2F0EB' };
+
+  // Chip order is rider priority, not alphabetical: what you need, then what
+  // you want, then where you sleep. Mirrors LANE_ORDER in scripts/corridor.py.
+  const LANE_ORDER = ['fuel','food','attraction','moto','lodging','camping','guides','other'];
+  const LANE_LABEL = {
+    fuel:'Fuel', food:'Food & Drink', attraction:'See & Do', moto:'Moto Service',
+    lodging:'Lodging', camping:'Camping', guides:'Guides & Outfitters', other:'Other'
+  };
+
+  // ---- Canonical glyph set — 15 tokens ------------------------------------
+  // Ported verbatim from tools/render-map/render-batch.mjs GLYPHS. The card
+  // tile and the map pin draw the same mark because they share this artwork.
+  // Attraction sub-types resolve first, then the service lane, then the
+  // fallbacks: `attraction` for a blank-subtype Attraction, `other` for
+  // anything unmapped. One vocabulary per taxonomy — never add alongside.
+  const GLYPH = {
+    // attraction sub-types (7)
+    'overlook':     '<circle cx="7.5" cy="15" r="4"/><circle cx="16.5" cy="15" r="4"/><path d="M7.5 11V7"/><path d="M16.5 11V7"/><path d="M7.5 7h9"/>',
+    'waterfall':    '<path d="M12 3c2.5 3.5 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 2.5-5.5 5-9z"/>',
+    'bridge':       '<path d="M3 17v-3a9 9 0 0 1 18 0v3"/><path d="M3 14h18"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/>',
+    'monument':     '<path d="M5 9h14l-7-6z"/><path d="M9 9v10"/><path d="M15 9v10"/><path d="M6 21h12"/>',
+    'park':         '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
+    'scenic-road':  '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
+    'swing':        '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
+    // service lanes (7)
+    'lodging':      '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
+    'food':         '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
+    'camping':      '<path d="M12 4l8 15H4z"/><path d="M12 4v15"/>',
+    'moto':         '<path d="M15 6.5a3.5 3.5 0 0 0-4.7 4.6L4 17.5 6.5 20l6.4-6.3A3.5 3.5 0 0 0 17.5 9l-2 2-1.5-1.5z"/>',
+    'fuel':         '<path d="M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 20h11"/><path d="M7 8h5"/><path d="M14 10l3 3v4a2 2 0 0 0 4 0V8l-3-3"/>',
+    'guides':       '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
+    'other':        '<circle cx="12" cy="12" r="3.2"/>',
+    // attraction fallback (1) — blank subtype is a valid authored state
+    'attraction':   '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>'
+  };
+
+  const markSVG = (token) =>
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"'
+    + ' fill="none" stroke="' + BRAND.mist + '" stroke-width="2" stroke-linecap="round"'
+    + ' stroke-linejoin="round">' + GLYPH[token] + '</svg>';
+
+  // icon-image is generated from GLYPH, so the token list has exactly one home.
+  function iconImageExpression() {
+    const expr = ['match', ['get', 'type']];
+    Object.keys(GLYPH).forEach(function (t) { expr.push(t, 'wvb-' + t); });
+    expr.push('wvb-other');   // unmapped or missing token
+    return expr;
+  }
+
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+  const miles = n => (n == null ? '' : (n < 0.15 ? 'on the route'
+    : (Math.round(n * 10) / 10) + ' mi off route'));
+
+  const map = new maplibregl.Map({
+    container: 'wvb-map', style: CFG.STYLE, center: CFG.CENTER, zoom: CFG.ZOOM,
+    cooperativeGestures: true
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
+
+  const rowsEl       = document.getElementById('wvb-rows');
+  const nearbyEl     = document.getElementById('wvb-nearby-rows');
+  const nearbySecEl  = document.getElementById('wvb-nearby-section');
+  const nearbySubEl  = document.getElementById('wvb-nearby-sub');
+  const chipsEl      = document.getElementById('wvb-chips');
+  const rowById = {};
+  const featureById = {};
+  let hoveredId = null;
+  let activeLanes = null;   // null = show every lane
+
+  const popup = new maplibregl.Popup({ closeButton:true, closeOnClick:true, offset:14 });
+
+  function setHover(id, on) {
+    if (id == null) return;
+    map.setFeatureState({ source:'pins', id }, { hover: on });
+    const row = rowById[id];
+    if (row) row.classList.toggle('is-active', on);
+  }
+
+  function popupHTML(p) {
+    const badges = [];
+    if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
+    if (p.featured && !p.certified) badges.push('<span class="wvb-map__badge wvb-map__badge--featured">Featured</span>');
+    // v3 had `if (tel) ... else if (maps)`, so any stop with a phone number
+    // silently lost its Directions link — the one link a rider on a route
+    // actually needs. The links are independent now, and the listing itself
+    // is linked, which v3 never did because the old pins feed had no url.
+    const links = [];
+    if (p.url)     links.push('<a href="'+esc(p.url)+'">View listing &rarr;</a>');
+    if (p.maps)    links.push('<a href="'+esc(p.maps)+'" target="_blank" rel="noopener">Directions</a>');
+    if (p.website) links.push('<a href="'+esc(p.website)+'" target="_blank" rel="noopener">Visit site</a>');
+    if (p.tel)     links.push('<a href="'+esc(p.tel)+'">Call</a>');
+    const meta = p.kind === 'nearby'
+      ? 'Mile ' + Math.round(p.routeMile) + ' &middot; ' + miles(p.offRouteMiles)
+      : '';
+    return '<div class="wvb-pop">'
+      + '<div class="wvb-pop__name">'+esc(p.name)+' '+badges.join(' ')+'</div>'
+      + (p.category ? '<div class="wvb-pop__cat">'+esc(p.category)+'</div>' : '')
+      + (meta ? '<div class="wvb-pop__meta">'+meta+'</div>' : '')
+      + (p.short ? '<div class="wvb-pop__desc">'+esc(p.short)+'</div>' : '')
+      + (links.length ? '<div class="wvb-pop__links">'+links.join(' &middot; ')+'</div>' : '')
+      + '</div>';
+  }
+
+  function openFor(feature, fly) {
+    const p = feature.properties;
+    const c = feature.geometry.coordinates.slice();
+    popup.setLngLat(c).setHTML(popupHTML(p)).addTo(map);
+    if (fly) map.flyTo({ center:c, zoom: Math.max(map.getZoom(), 12) });
+    const row = rowById[p.slug];
+    if (row) {
+      Object.values(rowById).forEach(r => r.classList.remove('is-active'));
+      row.classList.add('is-active');
+      row.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+  }
+
+  function makeRow(f, isNearby) {
+    const p = f.properties;
+    const row = document.createElement('div');
+    row.className = 'wvb-map__row'
+      + (p.certified ? ' is-certified' : '')
+      + (isNearby ? ' is-nearby' : '');
+    row.setAttribute('data-id', p.slug);
+    if (isNearby) row.setAttribute('data-lane', p.lane || 'other');
+    const badges = [];
+    if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
+    if (p.featured && !p.certified) badges.push('<span class="wvb-map__badge wvb-map__badge--featured">Featured</span>');
+    // The Stops is author-ordered (Decision 64) and the feed carries that
+    // position, so show it. Without a number the list looks arbitrary and
+    // the ride sequence — the whole point of the ordering — is invisible.
+    // A nearby listing has no sequence: it is not part of the ride, it is
+    // beside it, and numbering it would imply an itinerary nobody wrote.
+    const seq = (!isNearby && p.order) ? '<span class="wvb-map__row-seq">'+p.order+'</span> ' : '';
+    row.innerHTML =
+      '<div class="wvb-map__row-head">'+seq+'<span class="wvb-map__row-name">'+esc(p.name)+'</span>'+badges.join(' ')+'</div>'
+      + (p.category ? '<div class="wvb-map__row-cat">'+esc(p.category)+'</div>' : '')
+      + (p.short ? '<div class="wvb-map__row-desc">'+esc(p.short)+'</div>' : '')
+      + (isNearby ? '<div class="wvb-map__row-meta">Mile '+Math.round(p.routeMile)+' &middot; '+miles(p.offRouteMiles)+'</div>' : '');
+    row.addEventListener('mouseenter', () => { setHover(p.slug, true); });
+    row.addEventListener('mouseleave', () => { setHover(p.slug, false); });
+    row.addEventListener('click', () => openFor(f, true));
+    rowById[p.slug] = row;
+    return row;
+  }
+
+  function buildStops(features) {
+    if (!features.length) {
+      rowsEl.innerHTML = '<p class="wvb-map__empty">No stops listed for this ride yet.</p>';
+      return;
+    }
+    rowsEl.innerHTML = '';
+    features.forEach(f => rowsEl.appendChild(makeRow(f, false)));
+  }
+
+  /* The nearby rail. Chips are built ONLY for lanes this route actually has,
+     because a chip that filters to nothing is a promise the directory cannot
+     keep. An empty lane is a real coverage gap, and the honest way to show it
+     is to not offer the chip at all. */
+  function buildNearby(features) {
+    if (!features.length) {
+      nearbySecEl.hidden = true;
+      return;
+    }
+    nearbySecEl.hidden = false;
+
+    const present = LANE_ORDER.filter(l => features.some(f => (f.properties.lane || 'other') === l));
+    nearbySubEl.textContent =
+      features.length + ' directory listing' + (features.length === 1 ? '' : 's')
+      + ' on or near this route, in the order you reach them.';
+
+    chipsEl.innerHTML = '';
+    const chips = [];
+    function paint() {
+      chips.forEach(c => c.el.classList.toggle('is-on',
+        activeLanes === null ? c.lane === null : (c.lane !== null && activeLanes.has(c.lane))));
+      nearbyEl.querySelectorAll('.wvb-map__row').forEach(r => {
+        r.style.display = (activeLanes === null || activeLanes.has(r.getAttribute('data-lane')))
+          ? '' : 'none';
+      });
+      applyLaneFilter();
+    }
+    function chip(label, lane) {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'wvb-map__chip';
+      el.textContent = label;
+      el.addEventListener('click', function () {
+        if (lane === null) { activeLanes = null; }
+        else {
+          if (activeLanes === null) activeLanes = new Set();
+          if (activeLanes.has(lane)) activeLanes.delete(lane); else activeLanes.add(lane);
+          if (!activeLanes.size) activeLanes = null;   // nothing on = everything on
+        }
+        paint();
+      });
+      chipsEl.appendChild(el);
+      chips.push({ el, lane });
+    }
+    chip('All', null);
+    present.forEach(l => chip(LANE_LABEL[l] || l, l));
+
+    nearbyEl.innerHTML = '';
+    features.forEach(f => nearbyEl.appendChild(makeRow(f, true)));
+    paint();
+  }
+
+  function applyLaneFilter() {
+    if (!map.getLayer('pins')) return;
+    // A stop is never filtered out. It is the ride; the chips are about what
+    // is beside the ride.
+    const f = activeLanes === null
+      ? null
+      : ['any',
+          ['!=', ['get','kind'], 'nearby'],
+          ['in', ['get','lane'], ['literal', Array.from(activeLanes)]]];
+    ['pins','pin-icons'].forEach(id => { if (map.getLayer(id)) map.setFilter(id, f); });
+  }
+
+  function loadIcons() {
+    return Promise.all(Object.keys(GLYPH).map(token => new Promise(resolve => {
+      const name = 'wvb-' + token;
+      const img = new Image(48, 48);
+      img.onload = () => { try { if (!map.hasImage(name)) map.addImage(name, img, { pixelRatio: 2 }); } catch (e) {} resolve(); };
+      img.onerror = () => resolve();
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markSVG(token));
+    })));
+  }
+
+  map.on('load', async () => {
+    /* v5.1 — a CDN that HANGS is a different failure from a CDN that 404s,
+       and only the second one was handled. jsDelivr packs the repo on a cold
+       cache after a fresh commit, which is exactly the minute someone reloads
+       the page. A request that never settles leaves the map initialised, the
+       list stuck on "Loading the ride…" and NOTHING in the console — the worst
+       kind of failure, because it looks like nothing happened. The timeout
+       turns a hang into a rejection so the raw fallback actually gets a turn. */
+    const FETCH_TIMEOUT_MS = 4000;
+    const fetchJSON = async (url) => {
+      const ctl = new AbortController();
+      const timer = setTimeout(function () { ctl.abort(); }, FETCH_TIMEOUT_MS);
+      try { const r = await fetch(url, { cache:'no-store', signal: ctl.signal }); return await r.json(); }
+      catch (e) { console.warn('WVB map: failed to load', url, e); return null; }
+      finally { clearTimeout(timer); }
+    };
+    // One feed, with a raw fallback because jsDelivr 404s or stalls on a cold
+    // cache for the first minute or so after a fresh commit.
+    const [feed] = await Promise.all([
+      fetchJSON(CFG.FEED_URL).then(function (d) {
+        if (d && d.features) return d;
+        console.warn('WVB map: jsDelivr feed unavailable; falling back to raw.');
+        return fetchJSON(CFG.FEED_URL_RAW);
+      }),
+      loadIcons()
+    ]);
+
+    if (!feed || !feed.features) {
+      console.warn('WVB map: no feed at routes/' + SLUG + '.geojson. This route '
+        + 'has no map yet — commit gpx/' + SLUG + '.gpx and run the route '
+        + 'feed builder.');
+      var shell = document.querySelector('.wvb-map-shell');
+      if (shell) shell.style.display = 'none';
+      return;
+    }
+
+    const all = feed.features.filter(function (f) { return f && f.geometry; });
+    const trackFeatures = all.filter(function (f) {
+      return f.geometry.type === 'LineString' || f.geometry.type === 'MultiLineString';
+    });
+    const trackData = trackFeatures.length
+      ? { type: 'FeatureCollection', features: trackFeatures } : null;
+
+    const points = all.filter(function (f) {
+      return f.geometry.type === 'Point'
+        && Array.isArray(f.geometry.coordinates)
+        && f.properties && f.properties.slug;
+    });
+    // A v4 feed has no `kind`. Treat those Points as stops so an old feed
+    // still renders the way it always did.
+    const stops  = points.filter(f => (f.properties.kind || 'stop') !== 'nearby');
+    const nearby = points.filter(f => f.properties.kind === 'nearby');
+
+    if (!trackData) {
+      console.info('WVB map: no line geometry for ' + SLUG + ' — drawing stops only.');
+    }
+
+    const b = new maplibregl.LngLatBounds();
+    const walk = (arr) => arr.forEach(c => Array.isArray(c[0]) ? walk(c) : b.extend(c));
+
+    if (trackData) {
+      map.addSource('track', { type:'geojson', data: trackData });
+      map.addLayer({ id:'track-casing', type:'line', source:'track',
+        layout:{ 'line-join':'round','line-cap':'round' },
+        paint:{ 'line-color':BRAND.asphalt, 'line-width':7, 'line-opacity':0.35 } });
+      map.addLayer({ id:'track-line', type:'line', source:'track',
+        layout:{ 'line-join':'round','line-cap':'round' },
+        paint:{ 'line-color':BRAND.gold, 'line-width':4 } });
+      (trackData.features || []).forEach(f => { if (f.geometry) walk(f.geometry.coordinates); });
+    }
+
+    // Any token the artwork does not know draws the `other` mark rather than
+    // nothing at all. Logged so a vocabulary drift is visible, not silent.
+    const unknown = [...new Set(points.map(f => f.properties.type).filter(t => t && !GLYPH[t]))];
+    if (unknown.length) console.warn('WVB map: unmapped type token(s), drawing `other`:', unknown);
+
+    points.forEach(f => { featureById[f.properties.slug] = f; });
+
+    map.addSource('pins', {
+      type:'geojson',
+      data:{ type:'FeatureCollection', features: points },
+      promoteId:'slug'
+    });
+
+    /* Certified is a GOLD RING on a slate pin, plus size — never a gold fill.
+       The Brand & Design System is explicit: base pin is Mountain Slate, and
+       Route Gold ring + larger size is what Certified means. v3 inverted it,
+       filling the pin gold and ringing it in Mist White, which read as a
+       different KIND of place rather than a trusted one.
+
+       Nearby pins carry the SAME rules and differ only in opacity, so the
+       Certified signal reads identically whether the listing is a curated
+       stop or a corridor find — which is the point of an earned mark. */
+    const isNearby = ['==', ['get','kind'], 'nearby'];
+    map.addLayer({
+      id:'pins', type:'circle', source:'pins',
+      paint:{
+        'circle-radius':['case', ['boolean',['feature-state','hover'],false], 12,
+                                 ['get','certified'], 10, 8],
+        'circle-color':BRAND.slate,
+        'circle-opacity':['case', ['boolean',['feature-state','hover'],false], 1,
+                                  isNearby, 0.72, 1],
+        'circle-stroke-width':['case', ['get','certified'], 3, 1.5],
+        'circle-stroke-color':['case', ['get','certified'], BRAND.gold, BRAND.mist],
+        'circle-stroke-opacity':['case', ['boolean',['feature-state','hover'],false], 1,
+                                         isNearby, 0.72, 1]
+      }
+    });
+
+    map.addLayer({
+      id:'pin-icons', type:'symbol', source:'pins',
+      layout:{
+        'icon-image': iconImageExpression(),
+        'icon-size':0.5,
+        'icon-allow-overlap':true,
+        'icon-ignore-placement':true
+      },
+      paint:{
+        'icon-opacity':['case', ['boolean',['feature-state','hover'],false], 1,
+                                isNearby, 0.8, 1]
+      }
+    });
+
+    buildStops(stops);
+    buildNearby(nearby);
+
+    /* Fit to the ROAD AND ITS STOPS ONLY — never to the nearby rail.
+       A moto lane reaches 15 miles, so one Harley dealer off the far end
+       would frame the whole county and shrink the route to a squiggle. The
+       nearby pins are still there; clicking a row flies to one. The map's
+       first impression should be the ride. */
+    stops.forEach(f => b.extend(f.geometry.coordinates));
+    if (!b.isEmpty()) map.fitBounds(b, { padding:40, maxZoom:13, duration:0 });
+
+    map.on('mousemove', 'pins', (e) => {
+      map.getCanvas().style.cursor = 'pointer';
+      const id = e.features[0].id;  // promoteId:'slug' -> this IS the slug
+      if (hoveredId !== id) { setHover(hoveredId, false); hoveredId = id; setHover(id, true); }
+    });
+    map.on('mouseleave', 'pins', () => {
+      map.getCanvas().style.cursor = '';
+      setHover(hoveredId, false); hoveredId = null;
+    });
+    // e.features[0] on a click carries a flattened copy; use the original so
+    // the popup sees the same property types the feed declared.
+    map.on('click', 'pins', (e) => {
+      const f = featureById[e.features[0].id] || e.features[0];
+      openFor(f, false);
+    });
+  });
+})();
+</script>
