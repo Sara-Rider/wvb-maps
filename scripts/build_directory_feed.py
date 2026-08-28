@@ -71,6 +71,8 @@ ATTRACTION_TO_TOKEN = {
     "scenic road/byway": "scenic-road",
     "scenic road": "scenic-road",
     "byway": "scenic-road",
+    "historical site": "historic",
+    "historic site": "historic",
 }
 
 VALID_TOKENS = set(CATEGORY_TO_TOKEN.values()) | set(ATTRACTION_TO_TOKEN.values())
