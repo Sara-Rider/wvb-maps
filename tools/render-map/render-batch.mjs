@@ -94,6 +94,8 @@ const ATTRACTION_TO_GLYPH = {
   "byway": "scenic-road",
   "scenic road/byway": "scenic-road",
   "swing": "swing",
+  "historical site": "historic",
+  "historic site": "historic",
 };
 
 function resolveGlyphToken(category, attractionType) {
