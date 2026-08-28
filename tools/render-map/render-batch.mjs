@@ -60,6 +60,7 @@ const GLYPHS = {
   guides: '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
   attraction: '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>',
   other: '<circle cx="12" cy="12" r="3.2"/>',
+  historic: '<path d="M12 3l8 4.5H4z"/><path d="M7 7.5v9"/><path d="M12 7.5v9"/><path d="M17 7.5v9"/><path d="M4.5 16.5h15"/><path d="M3 20h18"/>',
 };
 
 // Business Category (13 canonical) -> glyph token
