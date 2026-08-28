@@ -42,6 +42,7 @@ const GLYPHS = {
   park: '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
   "scenic-road": '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
   swing: '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
+  historic: '<path d="M12 3l8 4.5H4z"/><path d="M7 7.5v9"/><path d="M12 7.5v9"/><path d="M17 7.5v9"/><path d="M4.5 16.5h15"/><path d="M3 20h18"/>',
   // Service-lane categories
   food: '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
   lodging: '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
