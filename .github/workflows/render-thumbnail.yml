@@ -28,7 +28,7 @@ on:
         required: false
         default: ""
       attraction_type:
-        description: "Attraction Type (overlook, waterfall, bridge, monument, park, scenic-road, swing) - wins over category"
+        description: "Attraction Type (overlook, waterfall, bridge, monument, park, scenic-road, swing, historic) - wins over category"
         required: false
         default: "overlook"
       certified:
