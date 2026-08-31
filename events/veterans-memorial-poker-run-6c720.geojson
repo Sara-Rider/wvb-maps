@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4672236,
+     39.0382717
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "veterans-memorial-poker-run-6c720",
+    "name": "Veterans Memorial Poker Run",
+    "type": "poker-run",
+    "typeLabel": "Poker Run",
+    "region": "Mountain Lakes",
+    "date": "2026-09-26T04:00:00.000Z",
+    "endDate": null,
+    "locationName": "Mountaineer Military Museum",
+    "status": "Free",
+    "url": "/events/veterans-memorial-poker-run-6c720",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0382717,-80.4672236"
+   }
+  }
+ ]
+}

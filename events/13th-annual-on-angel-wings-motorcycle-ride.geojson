@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5809962,
+     38.3374495
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "13th-annual-on-angel-wings-motorcycle-ride",
+    "name": "13th Annual On Angel Wings Motorcycle Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-09-19T04:00:00.000Z",
+    "endDate": null,
+    "locationName": "Hubbard Hospice House",
+    "status": "Free",
+    "url": "/events/13th-annual-on-angel-wings-motorcycle-ride",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3374495,-81.5809962"
+   }
+  }
+ ]
+}

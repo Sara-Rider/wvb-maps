@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9684422,
+     39.2850799
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "head-for-the-hills-festival-2026",
+    "name": "Head for the Hills Festival 2026",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-10T04:00:00.000Z",
+    "endDate": "2026-09-12T04:00:00.000Z",
+    "locationName": "Pennsboro Speedway",
+    "status": "Free",
+    "url": "/events/head-for-the-hills-festival-2026",
+    "link": "https://head-for-the-hills-festival.square.site",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2850799,-80.9684422"
+   }
+  }
+ ]
+}

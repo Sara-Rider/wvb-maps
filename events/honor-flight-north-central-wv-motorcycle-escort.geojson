@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4549026,
+     38.5976262
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "honor-flight-north-central-wv-motorcycle-escort",
+    "name": "Honor Flight North Central WV Motorcycle Escort",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Mountaineer Country",
+    "date": "2026-09-11T04:00:00.000Z",
+    "endDate": null,
+    "locationName": "Meuse-Argonne VRW Post 573",
+    "status": "Free",
+    "url": "/events/honor-flight-north-central-wv-motorcycle-escort",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
+   }
+  }
+ ]
+}
