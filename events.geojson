@@ -6,54 +6,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -79.95446799999999,
-     39.6304078
-    ]
-   },
-   "properties": {
-    "slug": "triple-s-h-d-bike-night-powered-by-harley-davidson",
-    "name": "Triple S H-D Bike Night powered by Harley-Davidson",
-    "type": "bike-night",
-    "typeLabel": "Bike Night",
-    "region": "Mountaineer Country",
-    "date": "2026-08-14T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Triple S H-D",
-    "status": "Free",
-    "url": "/events/triple-s-h-d-bike-night-powered-by-harley-davidson",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6304078,-79.95446799999999"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.2320276,
-     38.9939872
-    ]
-   },
-   "properties": {
-    "slug": "dice-run-benefit-ride-for-paul-smith-funeral-expenses",
-    "name": "Dice Run Benefit Ride for Paul Smith Funeral Expenses",
-    "type": "poker-run",
-    "typeLabel": "Poker Run",
-    "region": "Mountain Lakes",
-    "date": "2026-08-15T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Buchannon Moose Lodge",
-    "status": "Free",
-    "url": "/events/dice-run-benefit-ride-for-paul-smith-funeral-expenses",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9939872,-80.2320276"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -80.4549026,
      38.5976262
     ]
@@ -78,30 +30,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.25619809999999,
-     39.2864787
-    ]
-   },
-   "properties": {
-    "slug": "poker-run-for-those-still-fighting-a9a45",
-    "name": "Poker Run for Those Still Fighting",
-    "type": "poker-run",
-    "typeLabel": "Poker Run",
-    "region": "Mountaineer Country",
-    "date": "2026-08-29T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "RG's Almost Heaven Harley-Davidson",
-    "status": "Free",
-    "url": "/events/poker-run-for-those-still-fighting-a9a45",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2864787,-80.25619809999999"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -78.75668390000001,
      39.3420431
     ]
@@ -119,54 +47,6 @@
     "url": "/events/13th-annual-freedom-ride-22948",
     "link": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3420431,-78.75668390000001"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.8525981,
-     38.2812203
-    ]
-   },
-   "properties": {
-    "slug": "bike-night-benefit-for-widows-sons",
-    "name": "Bike Night Benefit for Widows Sons",
-    "type": "bike-night",
-    "typeLabel": "Bike Night",
-    "region": "Mountain Lakes",
-    "date": "2026-08-28T00:00:00.000Z",
-    "endDate": null,
-    "locationName": "Maloneys",
-    "status": "Free",
-    "url": "/events/bike-night-benefit-for-widows-sons",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2812203,-80.8525981"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -78.7981064,
-     39.3004324
-    ]
-   },
-   "properties": {
-    "slug": "3rd-annual-true-brothers-benefit-ride-in-honor-of-michelle-stum",
-    "name": "3rd Annual True Brothers Benefit Ride in Honor of Michelle Stum",
-    "type": "charity-ride",
-    "typeLabel": "Charity Ride",
-    "region": "Potomac Highlands",
-    "date": "2026-08-07T04:00:00.000Z",
-    "endDate": "2026-08-09T04:00:00.000Z",
-    "locationName": "Pavilion 5, Hampshire Park",
-    "status": "Free",
-    "url": "/events/3rd-annual-true-brothers-benefit-ride-in-honor-of-michelle-stum",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3004324,-78.7981064"
    }
   },
   {
@@ -215,78 +95,6 @@
     "url": "/events/head-for-the-hills-festival-2026",
     "link": "https://head-for-the-hills-festival.square.site",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2850799,-80.9684422"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.4549026,
-     38.5976262
-    ]
-   },
-   "properties": {
-    "slug": "saddle-sore-iron-butt-challenge",
-    "name": "Saddle Sore Iron Butt Challenge",
-    "type": "charity-ride",
-    "typeLabel": "Charity Ride",
-    "region": "Mid-Ohio Valley",
-    "date": "2026-08-08T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Love's Travel Stop",
-    "status": "Free",
-    "url": "/events/saddle-sore-iron-butt-challenge",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -79.687309,
-     39.4720171
-    ]
-   },
-   "properties": {
-    "slug": "operation-activet-5th-annual-celebration-ride-poker-run",
-    "name": "Operation Activet 5th Annual Celebration Ride Poker Run",
-    "type": "poker-run",
-    "typeLabel": "Poker Run",
-    "region": "Mountaineer Country",
-    "date": "2026-08-22T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Rifle Harley-Davidson",
-    "status": "Free",
-    "url": "/events/operation-activet-5th-annual-celebration-ride-poker-run",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4720171,-79.687309"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -81.64785940000002,
-     38.3611303
-    ]
-   },
-   "properties": {
-    "slug": "pops-knuckles-veterans-poker-run",
-    "name": "Pops Knuckles Veterans Poker Run",
-    "type": "poker-run",
-    "typeLabel": "Poker Run",
-    "region": "Metro Valley",
-    "date": "2026-08-15T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Eagles Riders FOE 519",
-    "status": "Free",
-    "url": "/events/pops-knuckles-veterans-poker-run",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3611303,-81.64785940000002"
    }
   },
   {
