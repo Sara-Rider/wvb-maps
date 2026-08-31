@@ -1,0 +1,51 @@
+name: Build event nearby feeds
+
+# Manual for now — press "Run workflow" on the Actions tab.
+# Add a schedule (or fold these steps into the existing feed workflow) once
+# it has run clean a few times.
+on:
+  workflow_dispatch:
+    inputs:
+      skip_cms:
+        description: "Write feed files only, do NOT touch the Webflow Nearby field"
+        type: boolean
+        default: true
+      force_empty:
+        description: "Allow a computed rail to overwrite a non-empty stored one"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Build per-event nearby feeds
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+          WVB_SKIP_CMS: ${{ inputs.skip_cms && '1' || '0' }}
+          WVB_FORCE_EMPTY: ${{ inputs.force_empty && '1' || '0' }}
+        run: python scripts/build_event_nearby.py
+
+      - name: Commit the feeds
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add events
+          if git diff --staged --quiet; then
+            echo "No feed changes to commit."
+          else
+            git commit -m "Rebuild per-event nearby feeds"
+            git push
+          fi
