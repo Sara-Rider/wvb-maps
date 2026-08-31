@@ -59,6 +59,11 @@ EVENT_TYPE_TO_TOKEN = {
     "Race": "race",
     "Festival": "festival",
     "Show": "show",
+    # The CMS option was renamed "Bike Night" -> "Bike Day/Night". Both are
+    # mapped: the current name so the rename is honoured, and the old one so a
+    # feed rebuilt against an un-migrated collection does not silently
+    # downgrade every bike night to `other`. Two keys, one token, one mark.
+    "Bike Day/Night": "bike-night",
     "Bike Night": "bike-night",
     "Other": "other",
 }
