@@ -1,0 +1,253 @@
+<!-- WEST VIRGINIA BIKERS — Related events · v2 · 2026-09-01
+     EVENTS TEMPLATE. Paste below the Nearby businesses section.
+
+     WHAT IT IS — TWO STRIPS, NOT ONE
+     ---------------------------------
+       1. MORE AT THIS LOCATION — other upcoming events at the same venue.
+          This is the commercially important half. A dealership running a
+          monthly bike night wants all of them surfaced from any one of them,
+          and a rider who found one wants to know it runs again.
+       2. MORE RIDES NEAR HERE — upcoming events within 60 miles, nearest
+          first. What else could I ride while I am out there.
+
+     Location goes FIRST because it is the more specific relationship. A
+     venue match is never repeated in the proximity strip.
+
+     WHY THE VENUE MATCH IS ON COORDINATES, NOT NAME
+     ------------------------------------------------
+     `locationName` is free text and drifts — "Triple S H-D" and "Triple S
+     Harley-Davidson" are the same place typed twice. Coordinates do not
+     drift, and the geocoding has already run. Two events within 0.2 miles
+     of each other are at the same venue.
+
+     This is deliberately the same key recommended for the Directory
+     dedupe mechanism, and it means this strip needs NOTHING from the
+     Venue/Host fields to work today. When those fields reach the feed,
+     the match can upgrade from coordinates to the link without changing
+     what a rider sees.
+
+     WHY IT IS AN EMBED AND NOT A COLLECTION LIST
+     ---------------------------------------------
+     Webflow can filter a Collection List by a reference field, but it cannot
+     filter by DISTANCE — there is no way to express "within 60 miles of the
+     current item" in the Designer. Region was the available proxy and it is
+     the wrong axis: WV tourism regions are large, so an event 90 miles away
+     inside one region would show while one 15 miles away across the line
+     would not.
+
+     The distance is already computable in the browser. `events.geojson`
+     carries every published event with a Point geometry, so this reads the
+     same feed the events index map uses and does the arithmetic itself.
+     No CMS field, no Make change, no Designer filter. Same architecture as
+     the nearby-businesses rail.
+
+     The same is true of the venue strip: Webflow could filter a Collection
+     List by a Venue reference, but that field is empty on 15 of 17 events
+     and would show nothing for months. Coordinates work now.
+
+     UPCOMING ONLY — DELIBERATELY UNLIKE THE INDEX
+     ----------------------------------------------
+     Decision 88 (as amended 2026-09-01) keeps past events everywhere and
+     labels them. This section is the stated exception: a strip headed
+     "more rides near here" that surfaces last month's rally is the same
+     trust failure as a bad map pin, repeated on every event page. A
+     multi-day event counts as upcoming until its END date, which the feed
+     carries even though the page does not.
+
+     IT HIDES ITSELF WHEN EMPTY
+     ---------------------------
+     No empty state. The page already says "nothing in the directory near
+     this event yet" under the map, and two apologies on one page reads as
+     a broken site rather than an honest one.
+
+     RADIUS
+     ------
+     60 miles, up to 3 events. A rider will detour an hour for a good rally
+     and will not cross the state for one. At 5 published events this shows
+     something in north-central WV and nothing in the south, which is the
+     honest answer rather than a padded list. Widen MAX_MILES if the
+     calendar thickens and the strip still looks thin. -->
+
+<style>
+  .wvb-ne{ margin:44px 0 0; font-family:'Raleway',system-ui,sans-serif; }
+  .wvb-ne__h{
+    font-family:'Cinzel',Georgia,serif; color:#C8922A; font-size:13px;
+    letter-spacing:.2em; text-transform:uppercase; margin:0 0 4px;
+  }
+  .wvb-ne__sub{ font-size:13px; color:#7a756c; margin:0 0 18px; }
+  .wvb-ne__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+  .wvb-ne__card{
+    display:block; text-decoration:none; color:inherit;
+    border:1px solid #e4e0d8; border-radius:6px; padding:14px 16px;
+    background:#fff; transition:border-color .12s ease, transform .12s ease;
+  }
+  .wvb-ne__card:hover{ border-color:#3D5A6B; transform:translateY(-1px); }
+  .wvb-ne__type{
+    font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:#6b665d; margin:0 0 6px;
+  }
+  .wvb-ne__name{ font-size:15px; font-weight:700; line-height:1.35; color:#2b2925; margin:0 0 8px; }
+  .wvb-ne__meta{ font-size:12px; color:#7a756c; margin:0; }
+  .wvb-ne__dot{ opacity:.5; }
+</style>
+
+<div class="wvb-ne" id="wvb-ne-venue" hidden>
+  <p class="wvb-ne__h">More at this location</p>
+  <p class="wvb-ne__sub" id="wvb-ne-venue-sub"></p>
+  <div class="wvb-ne__grid" id="wvb-ne-venue-grid"></div>
+</div>
+
+<div class="wvb-ne" id="wvb-ne" hidden>
+  <p class="wvb-ne__h">More rides near here</p>
+  <p class="wvb-ne__sub" id="wvb-ne-sub"></p>
+  <div class="wvb-ne__grid" id="wvb-ne-grid"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var FEED_JS  = 'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events.geojson';
+  var FEED_RAW = 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/events.geojson';
+  var MAX_MILES  = 60;
+  var MAX_CARDS  = 3;
+  var SAME_VENUE = 0.2;   // miles — same car park, not the next town
+
+  var root  = document.getElementById('wvb-ne');
+  var grid  = document.getElementById('wvb-ne-grid');
+  var sub   = document.getElementById('wvb-ne-sub');
+  var vRoot = document.getElementById('wvb-ne-venue');
+  var vGrid = document.getElementById('wvb-ne-venue-grid');
+  var vSub  = document.getElementById('wvb-ne-venue-sub');
+  if (!root || !vRoot) return;
+  // Render once, whatever happens. Guards against the embed being pasted
+  // twice on a page and against any double DOMContentLoaded.
+  if (root.getAttribute('data-wvb-ne')) return;
+  root.setAttribute('data-wvb-ne', '1');
+
+  var slug = (location.pathname.match(/\/events\/([^\/]+)\/?$/) || [])[1];
+  if (!slug) return;
+
+  function miles(lon1, lat1, lon2, lat2) {
+    var R = 3958.8, rad = Math.PI / 180;
+    var dLat = (lat2 - lat1) * rad, dLon = (lon2 - lon1) * rad;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+      + Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  /* An event is upcoming until the END of its last day. The feed carries
+     endDate even though nothing on the page renders it, so a three-day
+     festival stays listed while it is still running — the multi-day case
+     the card labeller cannot see. */
+  function upcoming(p) {
+    var end = Date.parse(p.endDate || p.date);
+    if (isNaN(end)) return false;
+    var d = new Date(end); d.setHours(23, 59, 59, 999);
+    return d >= new Date();
+  }
+
+  function fmtDate(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function card(e, showMiles) {
+    var a = document.createElement('a');
+    a.className = 'wvb-ne__card';
+    a.href = e.url;
+    a.innerHTML =
+      '<p class="wvb-ne__type">' + esc(e.typeLabel || 'Event') + '</p>'
+      + '<p class="wvb-ne__name">' + esc(e.name) + '</p>'
+      + '<p class="wvb-ne__meta">' + fmtDate(e.date)
+      + (showMiles
+          ? ' <span class="wvb-ne__dot">&middot;</span> ' + Math.round(e.mi) + ' mi away'
+            + (e.locationName ? ' <span class="wvb-ne__dot">&middot;</span> ' + esc(e.locationName) : '')
+          : '')
+      + '</p>';
+    return a;
+  }
+
+  /* The venue strip drops the distance and the venue name — both are the
+     same for every card in it, and repeating "0 mi away · Triple S H-D"
+     three times is noise. The heading already said where. */
+  function renderVenue(list, venueName) {
+    if (!list.length) return;
+    vSub.textContent = (venueName ? venueName + ' \u2014 ' : '')
+      + (list.length === 1 ? 'one more ride coming up here.'
+                           : list.length + ' more rides coming up here.');
+    list.forEach(function (e) { vGrid.appendChild(card(e, false)); });
+    vRoot.hidden = false;
+  }
+
+  function render(list) {
+    if (!list.length) return;                 // stays hidden, §"IT HIDES ITSELF"
+    sub.textContent = list.length === 1
+      ? 'One other ride within ' + MAX_MILES + ' miles.'
+      : list.length + ' more rides within ' + MAX_MILES + ' miles.';
+    list.forEach(function (e) { grid.appendChild(card(e, true)); });
+    root.hidden = false;
+  }
+
+  function build(fc) {
+    var feats = (fc && fc.features) || [];
+    var self = null;
+    feats.forEach(function (f) { if (f.properties && f.properties.slug === slug) self = f; });
+    if (!self || !self.geometry) return;      // this event has no coordinate
+
+    var c = self.geometry.coordinates;
+    var atVenue = [], near = [];
+
+    feats.forEach(function (f) {
+      var p = f.properties || {};
+      if (p.slug === slug) return;            // never list the event you are on
+      if (!f.geometry || !f.geometry.coordinates) return;
+      if (!upcoming(p)) return;               // upcoming only, both strips
+      var d = miles(c[0], c[1], f.geometry.coordinates[0], f.geometry.coordinates[1]);
+      var e = { name: p.name, url: p.url, date: p.date, typeLabel: p.typeLabel,
+                locationName: p.locationName, mi: d };
+
+      /* Same venue wins. Without this an event at the same address is 0 miles
+         away and would appear in BOTH strips, which reads as a bug. */
+      if (d <= SAME_VENUE) { atVenue.push(e); return; }
+      if (d <= MAX_MILES) near.push(e);
+    });
+
+    // A venue series is chronological — what is coming up here, in order.
+    atVenue.sort(function (a, b) { return Date.parse(a.date) - Date.parse(b.date); });
+    // Proximity is spatial — what is closest to where I already am.
+    near.sort(function (a, b) { return a.mi - b.mi; });
+
+    renderVenue(atVenue.slice(0, MAX_CARDS), self.properties.locationName);
+    render(near.slice(0, MAX_CARDS));
+  }
+
+  /* jsDelivr first with a short abort, raw as the fallback — the same
+     pattern the map embeds use, because jsDelivr can 404 on a cold cache
+     right after a commit. */
+  function load() {
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 4000) : null;
+    fetch(FEED_JS, ctl ? { signal: ctl.signal } : undefined)
+      .then(function (r) { if (!r.ok) throw new Error('cdn'); return r.json(); })
+      .then(function (j) { if (timer) clearTimeout(timer); build(j); })
+      .catch(function () {
+        if (timer) clearTimeout(timer);
+        fetch(FEED_RAW).then(function (r) { return r.json(); }).then(build).catch(function () {});
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load);
+  } else {
+    load();
+  }
+})();
+</script>

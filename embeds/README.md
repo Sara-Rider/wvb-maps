@@ -26,11 +26,13 @@ embeds not yet captured.
 | `route-map-v5.html` | Routes Template | `6a4024b595fb0b707c58903f` | `9277e0dc-29cd-15cf-d2ea-1aaa748d86b3` | **captured**, hash-verified 2026-08-24 |
 | `event-map-v1.html` | Events Template | `6a40315929504b278760f847` | `30424dc4-cf8d-893d-3159-825796e9475c` | **captured**, authored 2026-08-31 |
 | `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | Routes: `90a47261-edd7-9c86-3b02-c58fe873ed5c` · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured**, authored 2026-09-01 — one file, two pages |
+| `event-nearby-events-v1.html` | Events Template | `6a40315929504b278760f847` | `4437fa9a-67d5-7755-9cf3-32ebb5ebd361` | **captured**, authored 2026-09-01 |
+| `past-event-label-v1.html` | **site-wide footer** — every page | *(not a page)* | registered script `wvb_past_event_label` v1.0.0 | **captured**, authored 2026-09-01 — deployed minified |
 | `analytics-listing-v1.html` | **site-wide footer** — every page | *(not a page)* | registered script `wvb_listing_analytics` v1.1.0 | **captured**, authored 2026-09-01 — deployed minified, see below |
 | `routes-index-map-v1.html` | Routes index (`/routes`) | `6a4323c3ffbb654b0544ce9a` | `488481e7-5954-f417-f990-fa3b4fad40a8` | **captured**, hash-verified 2026-08-24 |
 | `directory-index-map-v4.html` | Directory index (`/directory`) | `6a4cf5c229093f504573d969` | `f88db4da-0e6c-5c8b-b739-06ae5db87a57` | *pending capture* |
 | `events-index-map.html` | Events index (`/events`) | `6a53ea8c11d198283b0c3388` | `30662914-5465-51da-185a-d1e71824b322` | *pending capture* |
-| `footer.html` | **component** "WVB Footer Code Embed" | component `8104788d-3819-39d7-3b8b-c6dd5c035850` | same id as component | *pending capture* |
+| `footer.html` | **component** "WVB Footer Code Embed" | component `8104788d-3819-39d7-3b8b-c6dd5c035850` | same id as component | **captured** 2026-09-01 — it is a single HTML embed, so its links are API-editable |
 | `home-embed-1.html` | Home | `6a3fd40a0f5ec7334ab9f593` | `096857e1-28b8-a7ce-52ed-e83d021d1bf0` | *pending capture, contents unidentified* |
 | `home-embed-2.html` | Home | `6a3fd40a0f5ec7334ab9f593` | `64c0dd02-fcb8-ad16-263a-14ff15541f0d` | *pending capture, contents unidentified* |
 
@@ -94,8 +96,11 @@ Home, Directory index, Routes index, Routes Template, Directories Template,
 Events, Events Template and Submit a Listing — eight pages, one definition.
 Editing the component updates all eight; editing an instance does not.
 
-Two known placeholders inside it, both waiting on pages that do not exist yet:
-**About** links to `/`, and there is **no Privacy link**.
+**2026-09-01:** Privacy Policy and Terms of Use links added to the bottom bar,
+both live. **About still points at `/`** — it was briefly pointed at `/about`
+and reverted, because that page exists only as an empty draft and a footer link
+to a 404 on every page is worse than a link home. Repoint it to `/about` when
+that page has content.
 
 ## Versioning
 
