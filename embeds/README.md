@@ -24,6 +24,8 @@ embeds not yet captured.
 | file | deployed on | page id | element id | status |
 | :--- | :--- | :--- | :--- | :--- |
 | `route-map-v5.html` | Routes Template | `6a4024b595fb0b707c58903f` | `9277e0dc-29cd-15cf-d2ea-1aaa748d86b3` | **captured**, hash-verified 2026-08-24 |
+| `event-map-v1.html` | Events Template | `6a40315929504b278760f847` | `30424dc4-cf8d-893d-3159-825796e9475c` | **captured**, authored 2026-08-31 |
+| `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | *Routes: not yet placed* · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured**, authored 2026-09-01 — one file, two pages |
 | `routes-index-map-v1.html` | Routes index (`/routes`) | `6a4323c3ffbb654b0544ce9a` | `488481e7-5954-f417-f990-fa3b4fad40a8` | **captured**, hash-verified 2026-08-24 |
 | `directory-index-map-v4.html` | Directory index (`/directory`) | `6a4cf5c229093f504573d969` | `f88db4da-0e6c-5c8b-b739-06ae5db87a57` | *pending capture* |
 | `events-index-map.html` | Events index (`/events`) | `6a53ea8c11d198283b0c3388` | `30662914-5465-51da-185a-d1e71824b322` | *pending capture* |
@@ -33,6 +35,13 @@ embeds not yet captured.
 
 **Not tracked, deliberately:** the Password / 401 page carries three embeds
 that are Webflow system internals, not authored code.
+
+## One file deployed twice
+
+`grid-lane-filter-v1.html` is the first embed here that is pasted onto **two**
+pages. It is written to be page-agnostic — it finds its grids by class and does
+nothing if none are present — so both deployments take identical content. If you
+edit it, update **both** Designer embeds, not one.
 
 ## The footer is a component, not a page embed
 
