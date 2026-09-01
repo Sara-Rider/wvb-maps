@@ -21,23 +21,55 @@ Element IDs are the part that cannot be reconstructed later. A file with no
 deployment address is just orphaned code, so the address is recorded even for
 embeds not yet captured.
 
+**Status means three different things and the difference matters:**
+
+| status | what it means | exposure if the Designer copy is lost |
+| :--- | :--- | :--- |
+| **captured** | the file is committed in this folder | none |
+| **captured, not committed** | the file exists but is not in this folder | total — one copy, in one place |
+| *pending capture* | never copied out; **exists only in the Designer** | total, and nobody has a copy to commit |
+
+*Pending capture* is the standing exposure. The Designer has no history, so a
+bad paste or a deleted element takes the only copy with it. See **Why four
+embeds cannot be captured from the API** below.
+
 | file | deployed on | page id | element id | status |
 | :--- | :--- | :--- | :--- | :--- |
 | `route-map-v5.html` | Routes Template | `6a4024b595fb0b707c58903f` | `9277e0dc-29cd-15cf-d2ea-1aaa748d86b3` | **captured**, hash-verified 2026-08-24 |
-| `event-map-v1.html` | Events Template | `6a40315929504b278760f847` | `30424dc4-cf8d-893d-3159-825796e9475c` | **captured**, authored 2026-08-31 |
-| `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | Routes: `90a47261-edd7-9c86-3b02-c58fe873ed5c` · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured**, authored 2026-09-01 — one file, two pages |
+| `event-map-v1.html` | Events Template | `6a40315929504b278760f847` | `30424dc4-cf8d-893d-3159-825796e9475c` | **captured, not committed** — authored 2026-08-31 |
+| `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | Routes: `90a47261-edd7-9c86-3b02-c58fe873ed5c` · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured, not committed** — authored 2026-09-01, one file, two pages |
 | `event-nearby-events-v1.html` | Events Template | `6a40315929504b278760f847` | `4437fa9a-67d5-7755-9cf3-32ebb5ebd361` | **captured**, authored 2026-09-01 |
 | `past-event-label-v2.html` | Events index **and** Events Template | `6a53ea8c11d198283b0c3388` / `6a40315929504b278760f847` | Index: `17783b95-d07d-2a44-7aa5-3547df39b5bb` · Template: `cacb5da0-d66e-52de-2156-1ffcf9bca672` | **captured**, v2 2026-09-01 — one file, two pages |
 | `analytics-listing-v1.html` | **site-wide footer** — every page | *(not a page)* | registered script `wvb_listing_analytics` v1.1.0 | **captured**, authored 2026-09-01 — deployed minified, see below |
 | `routes-index-map-v1.html` | Routes index (`/routes`) | `6a4323c3ffbb654b0544ce9a` | `488481e7-5954-f417-f990-fa3b4fad40a8` | **captured**, hash-verified 2026-08-24 |
 | `directory-index-map-v4.html` | Directory index (`/directory`) | `6a4cf5c229093f504573d969` | `f88db4da-0e6c-5c8b-b739-06ae5db87a57` | *pending capture* |
 | `events-index-map.html` | Events index (`/events`) | `6a53ea8c11d198283b0c3388` | `30662914-5465-51da-185a-d1e71824b322` | *pending capture* |
-| `footer.html` | **component** "WVB Footer Code Embed" | component `8104788d-3819-39d7-3b8b-c6dd5c035850` | same id as component | **captured** 2026-09-01 — it is a single HTML embed, so its links are API-editable |
+| `footer.html` | **component** "WVB Footer Code Embed" | component `8104788d-3819-39d7-3b8b-c6dd5c035850` | same id as component | **captured, not committed** — 2026-09-01; a single HTML embed, so its links are API-editable |
 | `home-embed-1.html` | Home | `6a3fd40a0f5ec7334ab9f593` | `096857e1-28b8-a7ce-52ed-e83d021d1bf0` | *pending capture, contents unidentified* |
 | `home-embed-2.html` | Home | `6a3fd40a0f5ec7334ab9f593` | `64c0dd02-fcb8-ad16-263a-14ff15541f0d` | *pending capture, contents unidentified* |
 
 **Not tracked, deliberately:** the Password / 401 page carries three embeds
 that are Webflow system internals, not authored code.
+
+## Why four embeds cannot be captured from the API
+
+Tested 2026-09-01, so nobody has to test it again:
+
+- **`data_element_tool` → `query_elements`** resolves the element and returns
+  `{"type":"HtmlEmbed"}` and its visibility. **It does not return the embed's
+  content.** There is no read action for it anywhere in the Data API.
+- **`element_snapshot_tool`** returns `{"status":false}` on an HtmlEmbed.
+- **Reading the rendered output through a browser** returns the embed content
+  correctly for `past-event-label`, but the map embeds come back withheld as
+  query-string data. That is the right outcome, not an obstacle to route
+  around: a MapLibre style URL carries its key in the query string, so the
+  guard is doing exactly the job it exists for. **Do not encode, chunk or
+  otherwise dress up the content to get it through.**
+
+So the four remaining files come out of the Designer by hand, by the procedure
+at the bottom of this file, and there is no automated shortcut. Do the two home
+embeds first — they are the only ones whose contents nobody has identified, so
+they are the only ones that could not be rebuilt from knowledge if lost.
 
 ## Two files deployed twice
 

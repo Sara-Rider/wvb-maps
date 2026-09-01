@@ -1,0 +1,197 @@
+<!-- WEST VIRGINIA BIKERS — Card Grid Lane Filter · v1 · 2026-09-01
+     Adds the lane chips to the CMS CARD GRID, below the map, on the Routes
+     Template and the Events Template.
+
+     WHY THIS IS SEPARATE FROM THE MAP EMBED
+     ----------------------------------------
+     The chips inside route-map-v5 / event-map-v1 filter the rail beside the
+     map, which that embed renders itself from the GeoJSON feed. The cards
+     further down the page are a different thing entirely: Webflow renders
+     them server-side from the CMS, and the map embed cannot reach them.
+     Same content, two renderers — so two filters. This one owns the cards.
+
+     IT READS THE LANE OFF THE CARD, NOT OUT OF THE CMS
+     ---------------------------------------------------
+     The card already prints its Business Category in `.route-biz-category`.
+     Business Category collapses to the eight lanes with no ambiguity, so the
+     filter reads the text that is already on screen. That means:
+
+       * no hidden bound div to add to the card
+       * no new CMS field
+       * no Designer work beyond pasting this embed
+
+     The alternative — binding `type-token` into a hidden element — is the
+     pattern the Events index uses, and it is the better one WHEN the value
+     is not already visible. Here it is visible. Do not add a hidden field to
+     duplicate a string the card is already showing.
+
+     WHICH GRIDS IT FILTERS
+     -----------------------
+     Only `.route-biz-grid.is-nearby` — the computed rail. **The Stops is
+     never filtered.** It is author-ordered and it is the editorial spine of
+     the ride; hiding a curated stop behind a chip would let the filter edit
+     the founder's sequence. The map embed makes exactly the same exclusion.
+
+     Also filters any grid marked `[data-wvb-lane-filter]`, so a grid that
+     does not carry the route classes can opt in.
+
+     TO USE IT ON THE EVENTS TEMPLATE
+     ---------------------------------
+     Give the Nearby Collection List the classes `route-biz-grid is-nearby`
+     and paste this embed on that page too. Nothing else changes. -->
+
+<style>
+  .wvb-gf__chips{
+    display:flex; flex-wrap:wrap; gap:6px; margin:0 0 18px;
+    font-family:'Raleway',system-ui,sans-serif;
+  }
+  .wvb-gf__chip{
+    font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    border:1px solid #d8d2c6; background:#fff; color:#6b665d;
+    border-radius:999px; padding:6px 13px; cursor:pointer; line-height:1;
+    font-family:inherit;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .wvb-gf__chip:hover{ border-color:#3D5A6B; color:#3D5A6B; }
+  .wvb-gf__chip.is-on{ background:#3D5A6B; border-color:#3D5A6B; color:#F2F0EB; }
+  .wvb-gf__chip:focus-visible{ outline:2px solid #C8922A; outline-offset:2px; }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  // Chip order is rider priority, not alphabetical: what you need, then what
+  // you want, then where you sleep. Mirrors LANE_ORDER in scripts/corridor.py.
+  var LANE_ORDER = ['fuel','food','attraction','moto','lodging','camping','guides','other'];
+  var LANE_LABEL = {
+    fuel:'Fuel', food:'Food & Drink', attraction:'See & Do', moto:'Moto Service',
+    lodging:'Lodging', camping:'Camping', guides:'Guides & Outfitters', other:'Other'
+  };
+
+  /* Business Category -> lane. The same eight-lane collapse the corridor uses,
+     expressed against the CMS option names rather than the glyph tokens,
+     because the option name is what the card prints. Keys are normalised
+     (lowercased, de-pluralised) before lookup. */
+  var CATEGORY_TO_LANE = {
+    'lodging':'lodging',
+    'restaurant':'food',
+    'bar':'food',
+    'campground':'camping',
+    'motorcycle dealer':'moto',
+    'repair shop':'moto',
+    'tire shop':'moto',
+    'paint shop':'moto',
+    'fuel':'fuel',
+    'attraction':'attraction',
+    'tour guide':'guides',
+    'outfitter':'guides',
+    'other':'other'
+  };
+
+  /* Tolerant on purpose. The category string has been seen rendered as
+     "Motorcycle Dealers" and as "Attraction \ Sight to See" in different
+     surfaces, and a filter that silently drops a card because of a plural is
+     worse than no filter. Anything unrecognised lands in `other` rather than
+     vanishing. */
+  function laneOf(text) {
+    var t = String(text || '').toLowerCase().trim();
+    if (!t) return 'other';
+    t = t.split(/[\\\/|·]/)[0].trim();          // "attraction \ sight to see" -> "attraction"
+    t = t.replace(/\s+/g, ' ');
+    if (CATEGORY_TO_LANE[t]) return CATEGORY_TO_LANE[t];
+    var singular = t.replace(/s$/, '');
+    return CATEGORY_TO_LANE[singular] || 'other';
+  }
+
+  function cardsIn(grid) {
+    return [].slice.call(grid.querySelectorAll('.w-dyn-item'));
+  }
+
+  function build(grid) {
+    var items = cardsIn(grid);
+    if (!items.length) return;   // nothing to filter
+
+    var lanes = [];
+    items.forEach(function (item) {
+      var catEl = item.querySelector('.route-biz-category');
+      var lane = laneOf(catEl ? catEl.textContent : '');
+      item.setAttribute('data-wvb-lane', lane);
+      if (lanes.indexOf(lane) === -1) lanes.push(lane);
+    });
+
+    /* A chip that filters to nothing is a promise the directory cannot keep,
+       so chips exist only for lanes actually PRESENT in this grid.
+
+       A single-lane grid still gets its row — "All · See & Do" filters
+       nothing, but the map embed on the same page shows exactly that, and two
+       surfaces of one dataset disagreeing about whether filters exist reads as
+       a bug to everyone except the person who wrote both. Consistency wins
+       over tidiness here. v1 skipped it and looked broken on the Cacapon
+       route. */
+    var present = LANE_ORDER.filter(function (l) { return lanes.indexOf(l) !== -1; });
+    if (!present.length) return;
+
+    var active = null;   // null = every lane on
+    var chips = [];
+
+    var bar = document.createElement('div');
+    bar.className = 'wvb-gf__chips';
+    bar.setAttribute('role', 'group');
+    bar.setAttribute('aria-label', 'Filter listings by type');
+    grid.parentNode.insertBefore(bar, grid);
+
+    function paint() {
+      chips.forEach(function (c) {
+        var on = active === null ? (c.lane === null) : (c.lane !== null && active.indexOf(c.lane) !== -1);
+        c.el.classList.toggle('is-on', on);
+        c.el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      items.forEach(function (item) {
+        var show = active === null || active.indexOf(item.getAttribute('data-wvb-lane')) !== -1;
+        item.style.display = show ? '' : 'none';
+      });
+    }
+
+    function chip(label, lane) {
+      var el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'wvb-gf__chip';
+      el.textContent = label;
+      el.addEventListener('click', function () {
+        if (lane === null) {
+          active = null;
+        } else {
+          if (active === null) active = [];
+          var i = active.indexOf(lane);
+          if (i === -1) active.push(lane); else active.splice(i, 1);
+          if (!active.length) active = null;   // nothing on = everything on
+        }
+        paint();
+      });
+      bar.appendChild(el);
+      chips.push({ el: el, lane: lane });
+    }
+
+    chip('All', null);
+    present.forEach(function (l) { chip(LANE_LABEL[l] || l, l); });
+    paint();
+  }
+
+  function init() {
+    var grids = [].slice.call(
+      document.querySelectorAll('.route-biz-grid.is-nearby, [data-wvb-lane-filter]'));
+    grids.forEach(function (g) {
+      if (g.getAttribute('data-wvb-filtered')) return;   // never build twice
+      g.setAttribute('data-wvb-filtered', '1');
+      build(g);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

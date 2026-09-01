@@ -1,0 +1,559 @@
+<!-- WEST VIRGINIA BIKERS — Event Map · v1 · 2026-08-31
+     Lives on the Events TEMPLATE and serves EVERY event. Feed is derived from
+     the event slug in the URL: /events/<slug> fetches events/<slug>.geojson.
+
+     A PORT OF route-map-v5.html, NOT A REWRITE
+     -------------------------------------------
+     Same shell, same chips, same rows, same popup, same brand rules, same
+     fetch-with-raw-fallback and the same 4s abort. A route is a line and an
+     event is a point; everything downstream of that is identical, so anything
+     that differs below differs on purpose:
+
+       * no track. There is no line, so no track source, no casing, no fit to
+         a road. The map centres on the event.
+       * the event's OWN pin, drawn from the nine event glyphs (wvbe-),
+         alongside the fifteen directory glyphs (wvb-) used by stops and
+         nearby. Two vocabularies, two namespaces, no collision — the same
+         split the Events Index map already makes.
+       * `miles` replaces `routeMile` / `offRouteMiles`. "2.3 mi away", not
+         "Mile 82 · 13.2 mi off route", because there is no mile 82.
+       * the heading is "Nearby", not "Along the Way". A point has things near
+         it; a line has things along it. Settled in route-map-v5's header and
+         recorded in the Routes `nearby-businesses` field description.
+
+     THREE VISUAL CHANNELS, NEVER CROSSED — unchanged from v5
+       icon            what the place IS
+       gold ring+size  Certified, and nothing else
+       opacity         curated stop (solid) vs computed nearby (softened)
+
+     The EVENT pin is exempt from the Certified channel: an event is not a
+     business and cannot be Certified. It carries the paid size treatment
+     (Featured/Sponsored -> larger) that the Events Index map already uses,
+     and never a gold ring. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
+<style>
+  .wvb-map-shell{
+    --slate:#3D5A6B; --gold:#C8922A; --gold-hover:#A8791F;
+    --green:#2D5016; --asphalt:#1A1A1A; --mist:#F2F0EB;
+    display:grid; grid-template-columns:1.6fr 1fr; gap:16px;
+    height:620px; font-family:'Raleway',system-ui,sans-serif; color:var(--asphalt);
+  }
+  .wvb-map__map{ width:100%; height:100%; border-radius:10px; overflow:hidden; }
+  .wvb-map__list{
+    overflow-y:auto; padding-right:4px; max-height:620px;
+    scrollbar-width:thin; scrollbar-color:var(--slate) transparent;
+  }
+  .wvb-map__list-title{
+    font-family:'Cinzel',serif; font-size:15px; letter-spacing:.02em;
+    color:var(--slate); text-transform:uppercase; margin:0 0 10px; font-weight:600;
+  }
+  .wvb-map__list-title + .wvb-map__sub{ margin-top:-6px; }
+  .wvb-map__sub{ font-size:12px; color:#7a746a; margin:0 0 10px; line-height:1.4; }
+  .wvb-map__section{ margin-top:22px; padding-top:18px; border-top:1px solid #e2ddd2; }
+
+  .wvb-map__chips{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
+  .wvb-map__chip{
+    font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    border:1px solid #d8d2c6; background:#fff; color:#6b665d;
+    border-radius:999px; padding:5px 11px; cursor:pointer; line-height:1;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .wvb-map__chip:hover{ border-color:var(--slate); color:var(--slate); }
+  .wvb-map__chip.is-on{ background:var(--slate); border-color:var(--slate); color:var(--mist); }
+
+  .wvb-map__row{
+    border:1px solid #e2ddd2; border-left:4px solid transparent;
+    border-radius:8px; padding:10px 12px; margin-bottom:8px; cursor:pointer;
+    transition:border-color .12s ease, background .12s ease, transform .06s ease;
+    background:#fff;
+  }
+  .wvb-map__row:hover,
+  .wvb-map__row.is-active{
+    border-color:#e2ddd2; border-left-color:var(--gold);
+    background:var(--mist); transform:translateX(1px);
+  }
+  .wvb-map__row.is-certified{ border-left-color:var(--gold); }
+  .wvb-map__row.is-nearby{ background:#fbfaf7; }
+  .wvb-map__row-head{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .wvb-map__row-name{ font-weight:700; font-size:15px; color:var(--slate); }
+  .wvb-map__row-seq{ display:inline-block; min-width:19px; height:19px;
+    line-height:19px; text-align:center; border-radius:50%;
+    background:var(--slate); color:var(--mist); font-size:11px;
+    font-weight:700; margin-right:7px; vertical-align:1px; }
+  .wvb-map__row-cat{ font-size:12px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin-top:2px; }
+  .wvb-map__row-desc{ font-size:13px; line-height:1.4; margin-top:6px; color:#3a3a3a; }
+  .wvb-map__row-meta{ font-size:12px; color:#6b665d; margin-top:6px; font-weight:600; }
+  .wvb-map__badge{
+    display:inline-block; font-size:10px; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase; color:#fff; background:var(--gold);
+    border-radius:999px; padding:2px 8px; white-space:nowrap;
+  }
+  .wvb-map__badge--featured{
+    background:transparent; color:var(--slate); border:1px solid var(--slate);
+  }
+  .wvb-map__empty{ font-size:13px; color:#7a746a; padding:12px 0; line-height:1.5; }
+  .wvb-map__empty a{ color:var(--gold-hover); font-weight:600; text-decoration:none; }
+  .wvb-map__empty a:hover{ text-decoration:underline; }
+
+  .wvb-pop{ font-family:'Raleway',system-ui,sans-serif; max-width:230px; }
+  .wvb-pop__name{ font-family:'Cinzel',serif; font-weight:600; font-size:15px; color:var(--slate); }
+  .wvb-pop__cat{ font-size:11px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin:2px 0 6px; }
+  .wvb-pop__desc{ font-size:13px; line-height:1.4; margin-bottom:8px; }
+  .wvb-pop__meta{ font-size:12px; color:#6b665d; font-weight:600; margin-bottom:8px; }
+  .wvb-pop__links a{ color:var(--gold-hover); font-weight:600; font-size:13px; text-decoration:none; }
+  .wvb-pop__links a:hover{ text-decoration:underline; }
+  .wvb-map-shell .maplibregl-popup-content{ border-radius:10px; padding:12px 14px; }
+
+  @media (max-width:820px){
+    .wvb-map-shell{ grid-template-columns:1fr; height:auto; }
+    .wvb-map__map{ height:360px; }
+    .wvb-map__list{ max-height:none; }
+  }
+</style>
+
+<div class="wvb-map-shell">
+  <div id="wvb-map" class="wvb-map__map"></div>
+  <div class="wvb-map__list" id="wvb-list">
+    <div id="wvb-stops-section" hidden>
+      <p class="wvb-map__list-title">The Stops</p>
+      <p class="wvb-map__sub">Directory listings on this event's route, in order.</p>
+      <div id="wvb-rows"></div>
+    </div>
+    <div class="wvb-map__section" id="wvb-nearby-section" hidden>
+      <p class="wvb-map__list-title">Nearby</p>
+      <p class="wvb-map__sub" id="wvb-nearby-sub"></p>
+      <div class="wvb-map__chips" id="wvb-chips"></div>
+      <div id="wvb-nearby-rows"></div>
+    </div>
+    <!-- Copy matches the Routes "Along the Way" empty state, adapted from
+         "along this route" to "near this event". Deliberately the same two
+         offers: the form for someone ready to fill one in, and the group for
+         someone who will only ever drop a name in a comment. Most riders are
+         the second kind. -->
+    <div id="wvb-none" class="wvb-map__empty" hidden>
+      No directory listings near this event yet. Know a biker-friendly stop out here?
+      <a href="/submit-a-listing">Submit it</a> &mdash; or drop it in the
+      <a href="https://www.facebook.com/groups/1217512825018903" target="_blank" rel="noopener">WV Bikers group</a>
+      and we'll take it from there.
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const SLUG = (function () {
+    var parts = location.pathname.split('?')[0].replace(/\/+$/, '').split('/');
+    return parts[parts.length - 1] || '';
+  })();
+
+  const CFG = {
+    FEED_URL:     'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events/' + SLUG + '.geojson',
+    FEED_URL_RAW: 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/events/' + SLUG + '.geojson',
+    CENTER: [-80.55, 38.85], ZOOM: 7,
+    EVENT_ZOOM: 11,
+    STYLE: 'https://tiles.openfreemap.org/styles/liberty'
+  };
+  const BRAND = { slate:'#3D5A6B', gold:'#C8922A', green:'#2D5016', asphalt:'#1A1A1A', mist:'#F2F0EB' };
+
+  // Mirrors LANE_ORDER / LANE_LABEL in scripts/corridor.py, which the event
+  // nearby pass imports rather than copies. Three homes for this list would be
+  // two too many; this one exists because a browser cannot import Python.
+  const LANE_ORDER = ['fuel','food','attraction','moto','lodging','camping','guides','other'];
+  const LANE_LABEL = {
+    fuel:'Fuel', food:'Food & Drink', attraction:'See & Do', moto:'Moto Service',
+    lodging:'Lodging', camping:'Camping', guides:'Guides & Outfitters', other:'Other'
+  };
+
+  // ---- Directory glyphs — 15 tokens, wvb- ---------------------------------
+  // Verbatim from route-map-v5.html, which took them from
+  // tools/render-map/render-batch.mjs GLYPHS. Stops and nearby draw these.
+  const GLYPH = {
+    'overlook':     '<circle cx="7.5" cy="15" r="4"/><circle cx="16.5" cy="15" r="4"/><path d="M7.5 11V7"/><path d="M16.5 11V7"/><path d="M7.5 7h9"/>',
+    'waterfall':    '<path d="M12 3c2.5 3.5 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 2.5-5.5 5-9z"/>',
+    'bridge':       '<path d="M3 17v-3a9 9 0 0 1 18 0v3"/><path d="M3 14h18"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/>',
+    'monument':     '<path d="M5 9h14l-7-6z"/><path d="M9 9v10"/><path d="M15 9v10"/><path d="M6 21h12"/>',
+    'park':         '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
+    'scenic-road':  '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
+    'swing':        '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
+    'lodging':      '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
+    'food':         '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
+    'camping':      '<path d="M12 4l8 15H4z"/><path d="M12 4v15"/>',
+    'moto':         '<path d="M15 6.5a3.5 3.5 0 0 0-4.7 4.6L4 17.5 6.5 20l6.4-6.3A3.5 3.5 0 0 0 17.5 9l-2 2-1.5-1.5z"/>',
+    'fuel':         '<path d="M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 20h11"/><path d="M7 8h5"/><path d="M14 10l3 3v4a2 2 0 0 0 4 0V8l-3-3"/>',
+    'guides':       '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
+    'other':        '<circle cx="12" cy="12" r="3.2"/>',
+    'attraction':   '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>'
+  };
+
+  // ---- Event glyphs — 9 tokens, wvbe- -------------------------------------
+  // Verbatim from the Events Index map embed, which took them from
+  // event-glyphs.mjs. Namespaced wvbe- so they cannot collide with the fifteen
+  // directory marks — both vocabularies are on THIS map, which is the only
+  // page where they meet. Do not add a token here without adding the matching
+  // Event Type option, or the reverse.
+  const EGLYPH = {
+    'rally':        '<path d="M4.5 21V6"/><path d="M19.5 21V6"/><path d="M4.5 6.5h15v6.5h-15z"/>',
+    'poker-run':    '<rect x="6" y="3.5" width="12" height="17" rx="2"/><path d="M12 8.5l2.4 3.5L12 15.5 9.6 12z"/>',
+    'charity-ride': '<path d="M12 20.5C12 20.5 4.5 16 4.5 10.8A3.9 3.9 0 0 1 12 8.4a3.9 3.9 0 0 1 7.5 2.4c0 5.2-7.5 9.7-7.5 9.7z"/>',
+    'group-ride':   '<circle cx="12" cy="5.8" r="2.2"/><circle cx="6.8" cy="12.4" r="2.2"/><circle cx="17.2" cy="12.4" r="2.2"/><path d="M4 19.5h16"/>',
+    'race':         '<path d="M5 21V3.5"/><path d="M5 4.5h14v9H5z"/><path d="M5 4.5h4.7v4.5H5z"/><path d="M14.3 9h4.7v4.5h-4.7z"/>',
+    'festival':     '<path d="M3 5.5h18"/><path d="M6 5.5l2.7 5.5 2.7-5.5"/><path d="M13.6 5.5l2.7 5.5L19 5.5"/><path d="M12 13v7"/>',
+    'show':         '<path d="M8 3.5h8V9a4 4 0 0 1-8 0z"/><path d="M8 5H5.4A2.6 2.6 0 0 0 8 7.6"/><path d="M16 5h2.6A2.6 2.6 0 0 1 16 7.6"/><path d="M12 13v4"/><path d="M8.5 20.5h7"/>',
+    'bike-night':   '<path d="M15.8 3.4a8.6 8.6 0 1 0 4.8 15.4 9.1 9.1 0 0 1-4.8-15.4z"/>',
+    'other':        '<circle cx="12" cy="12" r="3.2"/>'
+  };
+
+  const markSVG = (glyph) =>
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"'
+    + ' fill="none" stroke="' + BRAND.mist + '" stroke-width="2" stroke-linecap="round"'
+    + ' stroke-linejoin="round">' + glyph + '</svg>';
+
+  /* One icon-image expression covering BOTH vocabularies, keyed on `icon` —
+     a property this embed writes onto every feature at load time. Matching on
+     `type` alone could not work here: `other` is a token in both sets and
+     would have to resolve to two different marks in one expression. */
+  function iconImageExpression() {
+    const expr = ['match', ['get', 'icon']];
+    Object.keys(GLYPH).forEach(t => expr.push('wvb-' + t, 'wvb-' + t));
+    Object.keys(EGLYPH).forEach(t => expr.push('wvbe-' + t, 'wvbe-' + t));
+    expr.push('wvb-other');
+    return expr;
+  }
+
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+  const miles = n => (n == null ? '' : (n < 0.15 ? 'at the venue'
+    : (Math.round(n * 10) / 10) + ' mi away'));
+
+  const map = new maplibregl.Map({
+    container: 'wvb-map', style: CFG.STYLE, center: CFG.CENTER, zoom: CFG.ZOOM,
+    cooperativeGestures: true
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
+
+  const rowsEl       = document.getElementById('wvb-rows');
+  const stopsSecEl   = document.getElementById('wvb-stops-section');
+  const nearbyEl     = document.getElementById('wvb-nearby-rows');
+  const nearbySecEl  = document.getElementById('wvb-nearby-section');
+  const nearbySubEl  = document.getElementById('wvb-nearby-sub');
+  const chipsEl      = document.getElementById('wvb-chips');
+  const noneEl       = document.getElementById('wvb-none');
+  const rowById = {};
+  const featureById = {};
+  let hoveredId = null;
+  let activeLanes = null;   // null = show every lane
+
+  const popup = new maplibregl.Popup({ closeButton:true, closeOnClick:true, offset:14 });
+
+  function setHover(id, on) {
+    if (id == null) return;
+    map.setFeatureState({ source:'pins', id }, { hover: on });
+    const row = rowById[id];
+    if (row) row.classList.toggle('is-active', on);
+  }
+
+  function popupHTML(p) {
+    // The event itself gets a different popup: it is not a listing, it has no
+    // category or Certified state, and the rider is already on its page.
+    if (p.kind === 'event') {
+      const links = [];
+      if (p.maps) links.push('<a href="'+esc(p.maps)+'" target="_blank" rel="noopener">Directions</a>');
+      if (p.link) links.push('<a href="'+esc(p.link)+'" target="_blank" rel="noopener">Event details</a>');
+      return '<div class="wvb-pop">'
+        + '<div class="wvb-pop__name">'+esc(p.name)+'</div>'
+        + (p.typeLabel ? '<div class="wvb-pop__cat">'+esc(p.typeLabel)+'</div>' : '')
+        + (p.locationName ? '<div class="wvb-pop__meta">'+esc(p.locationName)+'</div>' : '')
+        + (links.length ? '<div class="wvb-pop__links">'+links.join(' &middot; ')+'</div>' : '')
+        + '</div>';
+    }
+    const badges = [];
+    if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
+    if (p.featured && !p.certified) badges.push('<span class="wvb-map__badge wvb-map__badge--featured">Featured</span>');
+    const links = [];
+    if (p.url)     links.push('<a href="'+esc(p.url)+'">View listing &rarr;</a>');
+    if (p.maps)    links.push('<a href="'+esc(p.maps)+'" target="_blank" rel="noopener">Directions</a>');
+    if (p.website) links.push('<a href="'+esc(p.website)+'" target="_blank" rel="noopener">Visit site</a>');
+    if (p.tel)     links.push('<a href="'+esc(p.tel)+'">Call</a>');
+    const meta = p.kind === 'nearby' ? miles(p.miles) : '';
+    return '<div class="wvb-pop">'
+      + '<div class="wvb-pop__name">'+esc(p.name)+' '+badges.join(' ')+'</div>'
+      + (p.category ? '<div class="wvb-pop__cat">'+esc(p.category)+'</div>' : '')
+      + (meta ? '<div class="wvb-pop__meta">'+meta+'</div>' : '')
+      + (p.short ? '<div class="wvb-pop__desc">'+esc(p.short)+'</div>' : '')
+      + (links.length ? '<div class="wvb-pop__links">'+links.join(' &middot; ')+'</div>' : '')
+      + '</div>';
+  }
+
+  function openFor(feature, fly) {
+    const p = feature.properties;
+    const c = feature.geometry.coordinates.slice();
+    popup.setLngLat(c).setHTML(popupHTML(p)).addTo(map);
+    if (fly) map.flyTo({ center:c, zoom: Math.max(map.getZoom(), 12) });
+    const row = rowById[p.slug];
+    if (row) {
+      Object.values(rowById).forEach(r => r.classList.remove('is-active'));
+      row.classList.add('is-active');
+      row.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+  }
+
+  function makeRow(f, isNearby) {
+    const p = f.properties;
+    const row = document.createElement('div');
+    row.className = 'wvb-map__row'
+      + (p.certified ? ' is-certified' : '')
+      + (isNearby ? ' is-nearby' : '');
+    row.setAttribute('data-id', p.slug);
+    if (isNearby) row.setAttribute('data-lane', p.lane || 'other');
+    const badges = [];
+    if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
+    if (p.featured && !p.certified) badges.push('<span class="wvb-map__badge wvb-map__badge--featured">Featured</span>');
+    const seq = (!isNearby && p.order) ? '<span class="wvb-map__row-seq">'+p.order+'</span> ' : '';
+    row.innerHTML =
+      '<div class="wvb-map__row-head">'+seq+'<span class="wvb-map__row-name">'+esc(p.name)+'</span>'+badges.join(' ')+'</div>'
+      + (p.category ? '<div class="wvb-map__row-cat">'+esc(p.category)+'</div>' : '')
+      + (p.short ? '<div class="wvb-map__row-desc">'+esc(p.short)+'</div>' : '')
+      + (isNearby ? '<div class="wvb-map__row-meta">'+miles(p.miles)+'</div>' : '');
+    row.addEventListener('mouseenter', () => { setHover(p.slug, true); });
+    row.addEventListener('mouseleave', () => { setHover(p.slug, false); });
+    row.addEventListener('click', () => openFor(f, true));
+    rowById[p.slug] = row;
+    return row;
+  }
+
+  function buildStops(features) {
+    if (!features.length) { stopsSecEl.hidden = true; return; }
+    stopsSecEl.hidden = false;
+    rowsEl.innerHTML = '';
+    features.forEach(f => rowsEl.appendChild(makeRow(f, false)));
+  }
+
+  /* Chips are built ONLY for lanes this event actually has, because a chip
+     that filters to nothing is a promise the directory cannot keep. An empty
+     lane is a real coverage gap, and the honest way to show it is to not offer
+     the chip at all. */
+  function buildNearby(features) {
+    if (!features.length) { nearbySecEl.hidden = true; return; }
+    nearbySecEl.hidden = false;
+
+    const present = LANE_ORDER.filter(l => features.some(f => (f.properties.lane || 'other') === l));
+    nearbySubEl.textContent =
+      features.length + ' directory listing' + (features.length === 1 ? '' : 's')
+      + ' near this event, closest first.';
+
+    chipsEl.innerHTML = '';
+    const chips = [];
+    function paint() {
+      chips.forEach(c => c.el.classList.toggle('is-on',
+        activeLanes === null ? c.lane === null : (c.lane !== null && activeLanes.has(c.lane))));
+      nearbyEl.querySelectorAll('.wvb-map__row').forEach(r => {
+        r.style.display = (activeLanes === null || activeLanes.has(r.getAttribute('data-lane')))
+          ? '' : 'none';
+      });
+      applyLaneFilter();
+    }
+    function chip(label, lane) {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'wvb-map__chip';
+      el.textContent = label;
+      el.addEventListener('click', function () {
+        if (lane === null) { activeLanes = null; }
+        else {
+          if (activeLanes === null) activeLanes = new Set();
+          if (activeLanes.has(lane)) activeLanes.delete(lane); else activeLanes.add(lane);
+          if (!activeLanes.size) activeLanes = null;   // nothing on = everything on
+        }
+        paint();
+      });
+      chipsEl.appendChild(el);
+      chips.push({ el, lane });
+    }
+    chip('All', null);
+    present.forEach(l => chip(LANE_LABEL[l] || l, l));
+
+    nearbyEl.innerHTML = '';
+    features.forEach(f => nearbyEl.appendChild(makeRow(f, true)));
+    paint();
+  }
+
+  function applyLaneFilter() {
+    if (!map.getLayer('pins')) return;
+    // The event pin and its curated stops are never filtered out. The chips
+    // are about what is NEAR the event, not the event itself.
+    const f = activeLanes === null
+      ? null
+      : ['any',
+          ['!=', ['get','kind'], 'nearby'],
+          ['in', ['get','lane'], ['literal', Array.from(activeLanes)]]];
+    ['pins','pin-icons'].forEach(id => { if (map.getLayer(id)) map.setFilter(id, f); });
+  }
+
+  function loadIcons() {
+    const jobs = [];
+    const add = (name, glyph) => jobs.push(new Promise(resolve => {
+      const img = new Image(48, 48);
+      img.onload = () => { try { if (!map.hasImage(name)) map.addImage(name, img, { pixelRatio: 2 }); } catch (e) {} resolve(); };
+      img.onerror = () => resolve();
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markSVG(glyph));
+    }));
+    Object.keys(GLYPH).forEach(t => add('wvb-' + t, GLYPH[t]));
+    Object.keys(EGLYPH).forEach(t => add('wvbe-' + t, EGLYPH[t]));
+    return Promise.all(jobs);
+  }
+
+  map.on('load', async () => {
+    /* A CDN that HANGS is a different failure from a CDN that 404s. jsDelivr
+       packs the repo on a cold cache after a fresh commit, which is exactly
+       the minute someone reloads the page. A request that never settles leaves
+       the map initialised and the list empty with NOTHING in the console. The
+       timeout turns a hang into a rejection so the raw fallback gets a turn. */
+    const FETCH_TIMEOUT_MS = 4000;
+    const fetchJSON = async (url) => {
+      const ctl = new AbortController();
+      const timer = setTimeout(function () { ctl.abort(); }, FETCH_TIMEOUT_MS);
+      try { const r = await fetch(url, { cache:'no-store', signal: ctl.signal }); return await r.json(); }
+      catch (e) { console.warn('WVB event map: failed to load', url, e); return null; }
+      finally { clearTimeout(timer); }
+    };
+    const [feed] = await Promise.all([
+      fetchJSON(CFG.FEED_URL).then(function (d) {
+        if (d && d.features) return d;
+        console.warn('WVB event map: jsDelivr feed unavailable; falling back to raw.');
+        return fetchJSON(CFG.FEED_URL_RAW);
+      }),
+      loadIcons()
+    ]);
+
+    if (!feed || !feed.features) {
+      console.warn('WVB event map: no feed at events/' + SLUG + '.geojson. This '
+        + 'event has no map yet — check it has a coordinate, then run the '
+        + '"Build event nearby feeds" Action.');
+      var shell = document.querySelector('.wvb-map-shell');
+      if (shell) shell.style.display = 'none';
+      return;
+    }
+
+    const points = feed.features.filter(function (f) {
+      return f && f.geometry && f.geometry.type === 'Point'
+        && Array.isArray(f.geometry.coordinates)
+        && f.properties && f.properties.slug;
+    });
+
+    const eventF = points.filter(f => f.properties.kind === 'event');
+    const stops  = points.filter(f => f.properties.kind === 'stop');
+    const nearby = points.filter(f => f.properties.kind === 'nearby');
+
+    if (!eventF.length) {
+      console.warn('WVB event map: feed has no `event` feature — cannot centre. '
+        + 'Rebuild events/' + SLUG + '.geojson.');
+      var shell2 = document.querySelector('.wvb-map-shell');
+      if (shell2) shell2.style.display = 'none';
+      return;
+    }
+
+    /* Resolve every feature to a concrete icon name ONCE, here, rather than
+       inside a MapLibre expression. Two vocabularies share the token `other`,
+       so the namespace has to be decided by `kind` before the expression sees
+       it. Unknown tokens fall back to the `other` mark of their own set and
+       are logged, so vocabulary drift is visible rather than silent. */
+    const unknown = [];
+    points.forEach(function (f) {
+      const p = f.properties;
+      const t = p.type;
+      if (p.kind === 'event') {
+        p.icon = EGLYPH[t] ? 'wvbe-' + t : 'wvbe-other';
+        if (!EGLYPH[t]) unknown.push('event:' + t);
+      } else {
+        p.icon = GLYPH[t] ? 'wvb-' + t : 'wvb-other';
+        if (!GLYPH[t]) unknown.push('directory:' + t);
+      }
+      featureById[p.slug] = f;
+    });
+    if (unknown.length) console.warn('WVB event map: unmapped type token(s), drawing `other`:', [...new Set(unknown)]);
+
+    map.addSource('pins', {
+      type:'geojson',
+      data:{ type:'FeatureCollection', features: points },
+      promoteId:'slug'
+    });
+
+    /* Certified is a GOLD RING on a slate pin, plus size — never a gold fill.
+       Nearby pins carry the SAME rules and differ only in opacity, so the
+       Certified signal reads identically whether a listing is a curated stop
+       or a corridor find. The EVENT pin sits outside that system: it cannot be
+       Certified, and its size channel carries paid placement instead, matching
+       the Events Index map (13 paid / 10 standard). */
+    const isNearby = ['==', ['get','kind'], 'nearby'];
+    const isEvent  = ['==', ['get','kind'], 'event'];
+    const isPaid   = ['match', ['get','status'], 'Featured', true, 'Sponsored', true, false];
+
+    map.addLayer({
+      id:'pins', type:'circle', source:'pins',
+      paint:{
+        'circle-radius':['case',
+          ['boolean',['feature-state','hover'],false], 12,
+          isEvent, ['case', isPaid, 13, 10],
+          ['get','certified'], 10, 8],
+        'circle-color':BRAND.slate,
+        'circle-opacity':['case', ['boolean',['feature-state','hover'],false], 1,
+                                  isNearby, 0.72, 1],
+        'circle-stroke-width':['case', isEvent, 1.5, ['get','certified'], 3, 1.5],
+        'circle-stroke-color':['case', isEvent, BRAND.mist,
+                                       ['get','certified'], BRAND.gold, BRAND.mist],
+        'circle-stroke-opacity':['case', ['boolean',['feature-state','hover'],false], 1,
+                                         isNearby, 0.72, 1]
+      }
+    });
+
+    map.addLayer({
+      id:'pin-icons', type:'symbol', source:'pins',
+      layout:{
+        'icon-image': iconImageExpression(),
+        'icon-size':['case', isEvent, ['case', isPaid, 0.46, 0.38], 0.5],
+        'icon-allow-overlap':true,
+        'icon-ignore-placement':true
+      },
+      paint:{
+        'icon-opacity':['case', ['boolean',['feature-state','hover'],false], 1,
+                                isNearby, 0.8, 1]
+      }
+    });
+
+    buildStops(stops);
+    buildNearby(nearby);
+    noneEl.hidden = !!(stops.length || nearby.length);
+
+    /* Frame the EVENT and its curated stops — never the nearby rail. A moto
+       lane reaches 15 miles, so one dealer off the far edge would zoom the map
+       out to a whole county and lose the venue. The nearby pins are still
+       drawn; clicking a row flies to one. */
+    const b = new maplibregl.LngLatBounds();
+    eventF.concat(stops).forEach(f => b.extend(f.geometry.coordinates));
+    if (stops.length) {
+      map.fitBounds(b, { padding:60, maxZoom:13, duration:0 });
+    } else {
+      map.jumpTo({ center: eventF[0].geometry.coordinates, zoom: CFG.EVENT_ZOOM });
+    }
+
+    map.on('mousemove', 'pins', (e) => {
+      map.getCanvas().style.cursor = 'pointer';
+      const id = e.features[0].id;  // promoteId:'slug' -> this IS the slug
+      if (hoveredId !== id) { setHover(hoveredId, false); hoveredId = id; setHover(id, true); }
+    });
+    map.on('mouseleave', 'pins', () => {
+      map.getCanvas().style.cursor = '';
+      setHover(hoveredId, false); hoveredId = null;
+    });
+    map.on('click', 'pins', (e) => {
+      const f = featureById[e.features[0].id] || e.features[0];
+      openFor(f, false);
+    });
+  });
+})();
+</script>
