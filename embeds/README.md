@@ -25,7 +25,8 @@ embeds not yet captured.
 | :--- | :--- | :--- | :--- | :--- |
 | `route-map-v5.html` | Routes Template | `6a4024b595fb0b707c58903f` | `9277e0dc-29cd-15cf-d2ea-1aaa748d86b3` | **captured**, hash-verified 2026-08-24 |
 | `event-map-v1.html` | Events Template | `6a40315929504b278760f847` | `30424dc4-cf8d-893d-3159-825796e9475c` | **captured**, authored 2026-08-31 |
-| `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | *Routes: not yet placed* · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured**, authored 2026-09-01 — one file, two pages |
+| `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | Routes: `90a47261-edd7-9c86-3b02-c58fe873ed5c` · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured**, authored 2026-09-01 — one file, two pages |
+| `analytics-listing-v1.html` | **site-wide footer** — every page | *(not a page)* | registered script `wvb_listing_analytics` v1.1.0 | **captured**, authored 2026-09-01 — deployed minified, see below |
 | `routes-index-map-v1.html` | Routes index (`/routes`) | `6a4323c3ffbb654b0544ce9a` | `488481e7-5954-f417-f990-fa3b4fad40a8` | **captured**, hash-verified 2026-08-24 |
 | `directory-index-map-v4.html` | Directory index (`/directory`) | `6a4cf5c229093f504573d969` | `f88db4da-0e6c-5c8b-b739-06ae5db87a57` | *pending capture* |
 | `events-index-map.html` | Events index (`/events`) | `6a53ea8c11d198283b0c3388` | `30662914-5465-51da-185a-d1e71824b322` | *pending capture* |
@@ -42,6 +43,49 @@ that are Webflow system internals, not authored code.
 pages. It is written to be page-agnostic — it finds its grids by class and does
 nothing if none are present — so both deployments take identical content. If you
 edit it, update **both** Designer embeds, not one.
+
+**It has a prerequisite the embed cannot enforce.** The filter binds to
+`.route-biz-grid.is-nearby`. Those two classes must sit on the **Collection
+List**, never on the Collection Item. Current state, both correct:
+
+| page | element | classes |
+| :--- | :--- | :--- |
+| Routes Template | Collection List `a7ed15ab-…eb5a` (The Stops) | `route-biz-grid` |
+| Routes Template | Collection List `290ebdcc-…d33b` (Along the Way) | `route-biz-grid` `is-nearby` |
+| Events Template | Collection List `1fdf34bf-…3cd8` (Nearby) | `route-biz-grid` `is-nearby` |
+
+In the Navigator the List and the Item sit adjacent and both read "Collection
+List" until one of them is renamed by a class, so it is easy to select the
+wrong one. Putting the classes on the **Item** makes every card its own grid
+container and the cards collapse into narrow vertical strips — that happened on
+Routes on 2026-09-01 and the fix was to clear the Item's classes, not to change
+the CSS. If the cards ever go stringy, check which of the two carries the class
+before touching anything else.
+
+## The one script that is not pasted into the Designer
+
+`analytics-listing-v1.html` is deployed as a **registered site script**
+(`wvb_listing_analytics`), not into a Designer embed and **not** into the site's
+freeform footer block. Three reasons:
+
+1. **It must run on every page**, and it finds its targets by class rather than
+   belonging to any one of them.
+2. **Registered scripts are additive.** The freeform footer block holds the
+   routes-index filter script; `set_site_freeform_code` replaces that block
+   whole, so appending there would have put an unrelated working script at risk
+   on every edit. A registered script attaches alongside it and touches nothing.
+3. **Rollback is one call** — `remove_site_script` with `wvb_listing_analytics`.
+   No captured blob to restore, nothing to retype.
+
+**It is deployed minified**, because Webflow caps a registered inline script at
+2,000 characters and the readable source is ~4,300. The file here is the
+readable source and the record; the runtime is `terser -c -m --toplevel` of the
+`<script>` body, verified to pass the same test as the source. **Re-minify from
+this file — never edit the minified form.** Bump the version and re-register.
+
+**The parameters it sends (`listing_slug`, `surface`, `context_path`, `lane`)
+do nothing in GA4 reports until they are registered** as event-scoped Custom
+Definitions. Registration is not retroactive for reporting.
 
 ## The footer is a component, not a page embed
 

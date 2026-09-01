@@ -1,0 +1,185 @@
+<!-- WEST VIRGINIA BIKERS — Listing exposure analytics · v1.1 · 2026-09-01
+     SITE-WIDE FOOTER custom code. Not a page embed.
+
+     WHAT IT MEASURES AND WHY IT EXISTS
+     -----------------------------------
+     Two numbers the Measurement Spec's locked advertiser standard needs and
+     GA4 cannot produce on its own:
+
+       wvb_listing_impression  a listing appeared, in a rail or a card grid,
+                               on somebody else's page
+       wvb_listing_click       a rider clicked through to that listing
+
+     GA4 already gives per-listing detail views for free, because a listing
+     detail page has its own URL. These two do not come for free:
+
+       * An impression has NO URL. A card rendered inside a route page is
+         invisible to pageview analytics. If the slug is not captured at the
+         moment it renders, that number does not exist and CANNOT be
+         reconstructed later. This is the only perishable measurement on the
+         site — Decision 99.
+       * GA4's built-in `click` fires for OUTBOUND links only. A rider tapping
+         a directory card navigates internally, so today that click is not
+         recorded anywhere.
+
+     WHY SITE-WIDE AND NOT INSIDE THE EMBEDS
+     ----------------------------------------
+     Three renderers produce listing tiles — route-map-v5, event-map-v1 and
+     the CMS card grids. Putting the tracking inside each one means three
+     copies to keep in sync, and grid-lane-filter already carries a
+     two-page-drift hazard. Measurement is decoupled from rendering: this
+     script finds tiles by the handles they already expose and needs no edit
+     to any embed. One file, one deployment target.
+
+     "APPEARED" MEANS SEEN, NOT RENDERED
+     ------------------------------------
+     An impression fires when a tile is at least half visible for a full
+     second — not when it enters the DOM. A card below the fold that nobody
+     scrolled to is not an impression in any sense a business would accept,
+     and the first time an advertiser asks what "appeared" means, the answer
+     has to survive the question. Counting renders would inflate every number
+     on the site and cost more trust than it buys.
+
+     One impression per listing per pageview, per surface. Re-filtering the
+     grid or scrolling back up does not count again.
+
+     REPORTING SETUP STILL REQUIRED — WITHOUT IT THESE ARE INVISIBLE
+     ---------------------------------------------------------------
+     The parameters below collect immediately but do NOT appear in reports
+     until they are registered in GA4 as event-scoped Custom Definitions:
+
+         listing_slug · surface · context_path · lane
+
+     Admin -> Custom definitions -> Create custom dimension, one per
+     parameter, scope Event. Registration is not retroactive in reports,
+     though the raw data is retained — so register them the same day this
+     goes live. -->
+
+<script>
+(function () {
+  'use strict';
+
+  if (typeof window.gtag !== 'function') return;   // no GA4, no-op
+
+  var seen = Object.create(null);                  // surface|slug -> true
+  var DWELL = 1000;                                // ms at >=50% visible
+  var PATH  = location.pathname;
+
+  /* Slug is the join key back to the CMS. The rail already stamps it on
+     every row; a card only has its href, and the last path segment of
+     /directory/<slug> is that same value. Never guess from the name. */
+  function slugFromHref(href) {
+    if (!href) return null;
+    var m = String(href).split('?')[0].split('#')[0].match(/\/directory\/([^\/]+)\/?$/);
+    return m ? m[1] : null;
+  }
+
+  function send(name, el) {
+    var key = el.__wvbSurface + '|' + el.__wvbSlug;
+    if (name === 'wvb_listing_impression') {
+      if (seen[key]) return;
+      seen[key] = true;
+    }
+    window.gtag('event', name, {
+      listing_slug: el.__wvbSlug,
+      surface:      el.__wvbSurface,
+      context_path: PATH,
+      lane:         el.__wvbLane || 'unknown'
+    });
+  }
+
+  var timers = new WeakMap();
+
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+        if (timers.has(e.target)) return;
+        timers.set(e.target, setTimeout(function () {
+          send('wvb_listing_impression', e.target);
+          io.unobserve(e.target);
+        }, DWELL));
+      } else {
+        var t = timers.get(e.target);
+        if (t) { clearTimeout(t); timers.delete(e.target); }
+      }
+    });
+  }, { threshold: [0, 0.5, 1] }) : null;
+
+  function track(el, slug, surface, lane) {
+    if (!el || !slug || el.__wvbTracked) return;
+    el.__wvbTracked = true;
+    el.__wvbSlug    = slug;
+    el.__wvbSurface = surface;
+    el.__wvbLane    = lane;
+
+    /* Capture phase, because the card is a link and the navigation that
+       follows can tear the page down before a bubbled handler runs. */
+    el.addEventListener('click', function () { send('wvb_listing_click', el); }, true);
+
+    if (io) io.observe(el); else send('wvb_listing_impression', el);
+  }
+
+  /* Which page this is. Kept coarse on purpose: the surface is what a
+     business is buying exposure on, and finer detail lives in context_path. */
+  function pageKind() {
+    if (/^\/routes\//.test(PATH)) return 'route';
+    if (/^\/events\//.test(PATH)) return 'event';
+    if (/^\/directory\//.test(PATH)) return 'directory';
+    return 'other';
+  }
+
+  function scan() {
+    var kind = pageKind();
+
+    // The map rail — route-map-v5 and event-map-v1 render identical markup
+    // and already stamp the slug and the lane. No embed edit needed.
+    // The rail splits the same way the grid does. The embed marks a computed
+    // row with is-nearby; without reading it, The Stops and Along the Way
+    // collapse into one surface and the editorial-vs-computed distinction —
+    // the one Decision 96 prices — is lost exactly where the map lives.
+    // The Stops rows carry no data-lane by design, so lane reads 'unknown'
+    // there rather than being invented.
+    [].forEach.call(document.querySelectorAll('.wvb-map__row[data-id]'), function (row) {
+      track(row, row.getAttribute('data-id'),
+            kind + (row.classList.contains('is-nearby') ? '_rail_nearby' : '_rail'),
+            row.getAttribute('data-lane') || null);
+    });
+
+    // The CMS card grids. grid-lane-filter has already written data-wvb-lane
+    // on the item by the time anything is visible; if it has not, the lane
+    // reads 'unknown' rather than being invented here.
+    [].forEach.call(document.querySelectorAll('a[href*="/directory/"]'), function (a) {
+      var slug = slugFromHref(a.getAttribute('href'));
+      if (!slug) return;
+      var item = a.closest('.w-dyn-item');
+      if (!item) return;                      // not a card; ignore nav/body links
+      var grid = a.closest('.route-biz-grid');
+      track(a, slug,
+            kind + (grid && grid.classList.contains('is-nearby') ? '_grid_nearby' : '_grid'),
+            item.getAttribute('data-wvb-lane'));
+    });
+  }
+
+  /* The rail is built after a network fetch, and the grid can be re-ordered
+     by the lane filter, so a single pass at load would miss most of it.
+     Observe the document and rescan, throttled. */
+  var pending = null;
+  function rescan() {
+    if (pending) return;
+    pending = setTimeout(function () { pending = null; scan(); }, 300);
+  }
+
+  function init() {
+    scan();
+    if ('MutationObserver' in window) {
+      new MutationObserver(rescan).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
