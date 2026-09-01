@@ -27,7 +27,7 @@ embeds not yet captured.
 | `event-map-v1.html` | Events Template | `6a40315929504b278760f847` | `30424dc4-cf8d-893d-3159-825796e9475c` | **captured**, authored 2026-08-31 |
 | `grid-lane-filter-v1.html` | Routes Template **and** Events Template | `6a4024b595fb0b707c58903f` / `6a40315929504b278760f847` | Routes: `90a47261-edd7-9c86-3b02-c58fe873ed5c` · Events: `515ef29d-00c1-4b3a-5a82-25f9e627bdb0` | **captured**, authored 2026-09-01 — one file, two pages |
 | `event-nearby-events-v1.html` | Events Template | `6a40315929504b278760f847` | `4437fa9a-67d5-7755-9cf3-32ebb5ebd361` | **captured**, authored 2026-09-01 |
-| `past-event-label-v1.html` | **site-wide footer** — every page | *(not a page)* | registered script `wvb_past_event_label` v1.0.0 | **captured**, authored 2026-09-01 — deployed minified |
+| `past-event-label-v2.html` | Events index **and** Events Template | `6a53ea8c11d198283b0c3388` / `6a40315929504b278760f847` | Index: `17783b95-d07d-2a44-7aa5-3547df39b5bb` · Template: `cacb5da0-d66e-52de-2156-1ffcf9bca672` | **captured**, v2 2026-09-01 — one file, two pages |
 | `analytics-listing-v1.html` | **site-wide footer** — every page | *(not a page)* | registered script `wvb_listing_analytics` v1.1.0 | **captured**, authored 2026-09-01 — deployed minified, see below |
 | `routes-index-map-v1.html` | Routes index (`/routes`) | `6a4323c3ffbb654b0544ce9a` | `488481e7-5954-f417-f990-fa3b4fad40a8` | **captured**, hash-verified 2026-08-24 |
 | `directory-index-map-v4.html` | Directory index (`/directory`) | `6a4cf5c229093f504573d969` | `f88db4da-0e6c-5c8b-b739-06ae5db87a57` | *pending capture* |
@@ -39,14 +39,22 @@ embeds not yet captured.
 **Not tracked, deliberately:** the Password / 401 page carries three embeds
 that are Webflow system internals, not authored code.
 
-## One file deployed twice
+## Two files deployed twice
 
-`grid-lane-filter-v1.html` is the first embed here that is pasted onto **two**
-pages. It is written to be page-agnostic — it finds its grids by class and does
-nothing if none are present — so both deployments take identical content. If you
-edit it, update **both** Designer embeds, not one.
+`grid-lane-filter-v1.html` and `past-event-label-v2.html` are each pasted onto
+**two** pages. Both are page-agnostic — they find their targets by class and do
+nothing when none are present — so both deployments take identical content.
+**Edit one, edit both.**
 
-**It has a prerequisite the embed cannot enforce.** The filter binds to
+`past-event-label` was a site-wide registered script at v1 and moved to page
+embeds at v2. The reason is worth keeping: it needs to read `endDate` from
+`events.geojson`, because no page renders an end date, and the fetch pushed it
+past the 2,000-character cap on a registered inline script. It never did
+anything outside the two events pages, so site-wide was over-scoped anyway.
+The registered script `wvb_past_event_label` has been removed — **do not
+re-register it.**
+
+**`grid-lane-filter-v1.html` has a prerequisite the embed cannot enforce.** The filter binds to
 `.route-biz-grid.is-nearby`. Those two classes must sit on the **Collection
 List**, never on the Collection Item. Current state, both correct:
 

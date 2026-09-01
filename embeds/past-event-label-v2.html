@@ -1,0 +1,194 @@
+<!-- WEST VIRGINIA BIKERS — Past event labelling · v2 · 2026-09-01
+     PAGE EMBED. Events index (/events) AND Events Template. Both pages,
+     identical content — like grid-lane-filter, edit one and edit both.
+
+     THE RULE THIS IMPLEMENTS
+     -------------------------
+     Decision 88, as amended 2026-09-01: past events are RETAINED and shown
+     AS PAST in every view. Never hidden, never filtered out, never
+     presented as current. This marks and demotes; it removes nothing.
+
+     WHAT CHANGED FROM v1, AND WHY IT MOVED OFF THE SITE-WIDE SCRIPT
+     ---------------------------------------------------------------
+     v1 ran as a registered site script and could only see the START date,
+     because that is all the page renders. A three-day festival running
+     Sep 10-12 was marked "Past event" on Sep 11, while it was still going —
+     wrong on exactly the events worth travelling for.
+
+     `endDate` is not in the DOM anywhere: not on the card, not on the
+     detail page, and the detail page has no `.event-data-store` at all.
+     It IS in `events.geojson`, which every events surface can already
+     reach. So this version reads the feed.
+
+     That needs more code than a registered inline script is allowed
+     (2,000 characters; v1 was at 1,991). Rather than fight the cap, the
+     script moved to the two pages that actually need it. It never did
+     anything on a route or directory page, so site-wide was over-scoped
+     from the start. The registered script `wvb_past_event_label` is
+     removed — do not leave both running.
+
+     IT STILL WORKS IF THE FEED DOES NOT
+     ------------------------------------
+     Feed lookup is an upgrade, not a dependency. If the fetch fails, is
+     slow, or the event is missing from it, each surface falls back to the
+     start date it can read from the page — exactly v1's behaviour. A
+     labelling script must never be the reason a page looks broken.
+
+     AN EVENT IS PAST ONLY AFTER ITS LAST DAY ENDS
+     ----------------------------------------------
+     Compared against the end of the final day, local time. An event
+     happening TODAY reads as current. Marking today's ride as past would
+     be worse than not labelling at all. -->
+
+<style>
+  .wvb-past{ opacity:.72; }
+  .wvb-past-badge{
+    display:inline-block; font-family:'Raleway',system-ui,sans-serif;
+    font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    background:#6b665d; color:#F2F0EB; border-radius:3px; padding:4px 8px; line-height:1;
+  }
+  .wvb-past-note{
+    font-family:'Raleway',system-ui,sans-serif; font-size:13px; line-height:1.5;
+    color:#6b665d; background:#f4f2ed; border-left:3px solid #6b665d;
+    padding:10px 12px; margin:0 0 18px;
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  var FEED_JS  = 'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events.geojson';
+  var FEED_RAW = 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/events.geojson';
+
+  if (document.documentElement.getAttribute('data-wvb-past')) return;  // once per page
+  document.documentElement.setAttribute('data-wvb-past', '1');
+
+  var ends = null;   // slug -> ISO end (or start) date, once the feed lands
+
+  /* Past means the whole event is over, so compare against the END of the
+     last day. Start date is the fallback when no end date is known. */
+  function isPast(value) {
+    var t = Date.parse(String(value || '').trim());
+    if (isNaN(t)) return false;
+    var d = new Date(t);
+    d.setHours(23, 59, 59, 999);
+    return d < new Date();
+  }
+
+  function slugFromHref(href) {
+    var m = String(href || '').split('?')[0].split('#')[0].match(/\/events\/([^\/]+)\/?$/);
+    return m ? m[1] : null;
+  }
+
+  /* The feed's endDate is preferred wherever we can identify the event.
+     `fallback` is whatever the page itself renders — the start date. */
+  function pastFor(slug, fallback) {
+    if (ends && slug && ends[slug]) return isPast(ends[slug]);
+    return isPast(fallback);
+  }
+
+  function markCards() {
+    [].forEach.call(document.querySelectorAll('.w-dyn-item'), function (item) {
+      var d = item.querySelector('.event-data-date');
+      if (!d) return;                                   // not an event card
+
+      var link = item.querySelector('a[href*="/events/"]');
+      var slug = link ? slugFromHref(link.getAttribute('href')) : null;
+      var past = pastFor(slug, d.textContent);
+
+      // Re-runs are allowed: the feed can arrive after the first pass and
+      // flip a card back to current. Only the badge is guarded.
+      item.classList.toggle('wvb-past', past);
+      if (past && !item.querySelector('.wvb-past-badge')) {
+        var badge = document.createElement('span');
+        badge.className = 'wvb-past-badge';
+        badge.textContent = 'Past event';
+        // Sits with the Featured badge so the two read as the same kind of
+        // mark rather than two unrelated decorations.
+        var host = item.querySelector('.event-card-image-wrap,.event-card-body');
+        if (host) host.appendChild(badge);
+      }
+      if (past) {
+        /* Past events move BELOW the upcoming ones, never out of the list.
+           Leading with what a rider can still ride is a display choice and
+           does not touch retention. */
+        var parent = item.parentNode;
+        if (parent) parent.appendChild(item);
+      }
+    });
+  }
+
+  function markDetail() {
+    var slug = slugFromHref(location.pathname);
+    if (!slug) return;
+
+    // The stat row prints date, venue and type through one class. Only the
+    // date parses, so take the first value that does rather than assuming a
+    // position a layout change would silently break.
+    var fallback = null;
+    var vals = document.querySelectorAll('.event-stat-value');
+    for (var i = 0; i < vals.length; i++) {
+      var raw = (vals[i].textContent || '').trim();
+      if (!isNaN(Date.parse(raw))) { fallback = raw; break; }
+    }
+
+    var existing = document.querySelector('.wvb-past-note');
+    if (!pastFor(slug, fallback)) {
+      if (existing) existing.remove();       // feed corrected an earlier pass
+      return;
+    }
+    if (existing) return;
+
+    var note = document.createElement('p');
+    note.className = 'wvb-past-note';
+    note.textContent = 'This ride has already happened. Past events stay on the site '
+      + 'so riders can see what runs each year.';
+
+    var title = document.querySelector('.event-hero-title');
+    var anchor = title && title.parentNode ? title.parentNode : document.body;
+    anchor.insertBefore(note, title || anchor.firstChild);
+  }
+
+  function run() { markCards(); markDetail(); }
+
+  function loadFeed() {
+    function accept(fc) {
+      ends = {};
+      ((fc && fc.features) || []).forEach(function (f) {
+        var p = f.properties || {};
+        if (p.slug) ends[p.slug] = p.endDate || p.date;
+      });
+      run();                                  // second pass, now with end dates
+    }
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 4000) : null;
+    fetch(FEED_JS, ctl ? { signal: ctl.signal } : undefined)
+      .then(function (r) { if (!r.ok) throw new Error('cdn'); return r.json(); })
+      .then(function (j) { if (timer) clearTimeout(timer); accept(j); })
+      .catch(function () {
+        if (timer) clearTimeout(timer);
+        fetch(FEED_RAW).then(function (r) { return r.json(); }).then(accept).catch(function () {});
+      });
+  }
+
+  function init() {
+    run();          // first pass on start dates, so nothing waits on the network
+    loadFeed();     // then correct multi-day events once the feed lands
+    // The index filter re-renders and reorders cards, so re-run behind it.
+    if ('MutationObserver' in window) {
+      var pending = null;
+      new MutationObserver(function () {
+        if (pending) return;
+        pending = setTimeout(function () { pending = null; markCards(); }, 300);
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
