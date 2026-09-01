@@ -6,8 +6,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.4549026,
-     38.5976262
+     -80.341551,
+     39.2813314
     ]
    },
    "properties": {
@@ -19,11 +19,131 @@
     "region": "Mountaineer Country",
     "date": "2026-09-11T04:00:00.000Z",
     "endDate": null,
-    "locationName": "Meuse-Argonne VRW Post 573",
+    "locationName": "Meuse-Argonne VFW Post 573",
     "status": "Free",
     "url": "/events/honor-flight-north-central-wv-motorcycle-escort",
     "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2813314,-80.341551"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.2779955,
+     39.2820332
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "brickside-bar-grille",
+    "name": "Brickside Bar & Grille",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Sports bar and grill off the I-79 interchange at Bridgeport.",
+    "region": "Mountaineer Country",
+    "county": "Harrison",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.43,
+    "url": "/directory/brickside-bar-grille",
+    "website": "https://bricksidebargrille.com",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2820332,-80.2779955"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.28078839999999,
+     39.3065257
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "rgs-almost-heaven-harley-davidson",
+    "name": "RG's Almost Heaven Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Family-run Harley-Davidson dealer near Bridgeport - sales, service, parts, and gear, in business since 1977.",
+    "region": "Mountaineer Country",
+    "county": "Harrison",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.71,
+    "url": "/directory/rgs-almost-heaven-harley-davidson",
+    "website": "https://www.almostheavenhd.com",
+    "tel": "tel:+13046230484",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3065257,-80.28078839999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.27972,
+     39.30861
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "simpson-creek-covered-bridge",
+    "name": "Simpson Creek Covered Bridge",
+    "category": "Attraction",
+    "type": "bridge",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "1881 Multiple-Kingpost covered bridge over Simpson Creek near Bridgeport.",
+    "region": "Mountaineer Country",
+    "county": "Harrison",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.83,
+    "url": "/directory/simpson-creek-covered-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.30861,-80.27972"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.2673701,
+     39.2729423
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-social-tap",
+    "name": "The Social Tap",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Taproom and pub on Anmoore Road at Bridgeport, off the I-79 corridor.",
+    "region": "Mountaineer Country",
+    "county": "Harrison",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 4.05,
+    "url": "/directory/the-social-tap",
+    "website": "https://www.thesocialtapwv.com",
+    "tel": "tel:+13048489218",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2729423,-80.2673701"
    }
   }
  ]
