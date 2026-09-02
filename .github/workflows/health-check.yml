@@ -1,0 +1,104 @@
+# Weekly health check — opens a GitHub issue when something is wrong
+#
+# HOW THE ALERT REACHES YOU
+# -------------------------
+# It opens an issue on this repo. GitHub emails you about issues on your own
+# repositories by default, so the alert lands in your inbox with no new
+# service, no new account and no cost.
+#
+# When nothing is wrong it does nothing at all — no issue, no email, no
+# comment. Silence means healthy. That is deliberate: a check that pings you
+# every week gets filtered into a folder within a month, and then it may as
+# well not exist.
+#
+# If an alert issue is already open it adds a comment instead of opening a
+# second one, so a problem you have not got to yet does not become a pile of
+# duplicate issues.
+#
+# WHY WEEKLY
+# ----------
+# Everything it checks is slow-moving: a stale feed, a bad coordinate, an
+# empty field. None of it is an outage. Monday morning is early enough to fix
+# something before the weekend riders arrive, and rare enough that an email
+# from this workflow still means something when it arrives.
+
+name: Health check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * 1'      # Mondays 12:00 UTC — about 8am ET
+
+permissions:
+  contents: read
+  issues: write               # lets it open and comment on the alert issue
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # continue-on-error so a failing check still reaches the issue step.
+      # Without this the job stops here and the alert never gets written,
+      # which would reproduce the exact failure this workflow exists to fix.
+      - name: Run the health check
+        id: check
+        continue-on-error: true
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+        run: python scripts/health_check.py
+
+      - name: Raise or update the alert
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          {
+            cat health-report.md
+            echo
+            echo "---"
+            echo "[Full run log]($RUN_URL) · opened automatically by the Health check workflow."
+          } > issue-body.md
+
+          EXISTING=$(gh issue list --label health-check --state open \
+                       --limit 1 --json number --jq '.[0].number // empty')
+
+          if [ -n "$EXISTING" ]; then
+            echo "Updating existing alert issue #$EXISTING"
+            gh issue comment "$EXISTING" --body-file issue-body.md
+          else
+            echo "Opening a new alert issue"
+            gh label create health-check \
+              --description "Automated feed and data health alerts" \
+              --color B60205 2>/dev/null || true
+            gh issue create \
+              --title "Health check: something needs attention" \
+              --label health-check \
+              --body-file issue-body.md
+          fi
+
+      # A clean run closes an open alert, so the issue list reflects reality
+      # rather than becoming a graveyard of problems that were fixed quietly.
+      - name: Close the alert if everything is healthy
+        if: steps.check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          EXISTING=$(gh issue list --label health-check --state open \
+                       --limit 1 --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue close "$EXISTING" \
+              --comment "Resolved — the next health check found nothing wrong."
+          fi
