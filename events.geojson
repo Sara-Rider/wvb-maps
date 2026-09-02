@@ -6,8 +6,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.4549026,
-     38.5976262
+     -80.341551,
+     39.2813314
     ]
    },
    "properties": {
@@ -18,11 +18,11 @@
     "region": "Mountaineer Country",
     "date": "2026-09-11T04:00:00.000Z",
     "endDate": null,
-    "locationName": "Meuse-Argonne VRW Post 573",
+    "locationName": "Meuse-Argonne VFW Post 573",
     "status": "Free",
     "url": "/events/honor-flight-north-central-wv-motorcycle-escort",
     "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2813314,-80.341551"
    }
   },
   {
