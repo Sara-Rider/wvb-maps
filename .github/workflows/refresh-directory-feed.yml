@@ -59,3 +59,5 @@ jobs:
         run: |
           curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/directory.geojson"
           echo "Requested jsDelivr purge."
+      - name: Purge jsDelivr cache
+        run: curl -sS https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/directory.geojson
