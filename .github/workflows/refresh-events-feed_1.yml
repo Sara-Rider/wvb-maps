@@ -92,23 +92,15 @@ jobs:
           git add events.geojson events/
           if git diff --staged --quiet; then
             echo "No change — feeds already current."
-            : > "$RUNNER_TEMP/changed-feeds.txt"
           else
-            git diff --staged --name-only > "$RUNNER_TEMP/changed-feeds.txt"
             git commit -m "Rebuild events.geojson and nearby feeds"
             git push
+            echo "PURGE=1" >> "$GITHUB_ENV"
           fi
 
-      - name: Purge jsDelivr cache
+      - name: Purge jsDelivr cache (only if something changed)
+        if: env.PURGE == '1'
         run: |
-          if [ ! -s "$RUNNER_TEMP/changed-feeds.txt" ]; then
-            echo "Nothing changed; nothing to purge."
-            exit 0
-          fi
-          while read -r f; do
-            [ -n "$f" ] || continue
-            echo "Purging $f"
-            curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/$f" || true
-            echo
-            sleep 1
-          done < "$RUNNER_TEMP/changed-feeds.txt"
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events.geojson"
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events/"
+          echo "Requested jsDelivr purge for events.geojson and events/."
