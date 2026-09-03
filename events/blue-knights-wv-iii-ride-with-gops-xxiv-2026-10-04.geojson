@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4327011,
+     38.4237059
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "blue-knights-wv-iii-ride-with-gops-xxiv-2026-10-04",
+    "name": "Blue Knights WV III Ride with GOPS XXIV",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-10-04T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Buddy's BBQ",
+    "status": "Free",
+    "url": "/events/blue-knights-wv-iii-ride-with-gops-xxiv-2026-10-04",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4237059,-82.4327011"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4514955,
+     38.4188813
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "black-sheep-harley-davidson",
+    "name": "Black Sheep Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Award-winning Harley-Davidson dealer in downtown Huntington - and yes, there's an in-store diner.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 1.07,
+    "url": "/directory/black-sheep-harley-davidson",
+    "website": "https://blacksheephd.com",
+    "tel": "tel:+13045231340",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4188813,-82.4514955"
+   }
+  }
+ ]
+}

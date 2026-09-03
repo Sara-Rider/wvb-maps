@@ -6,119 +6,23 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.341551,
-     39.2813314
+     -82.4327011,
+     38.4237059
     ]
    },
    "properties": {
-    "slug": "honor-flight-north-central-wv-motorcycle-escort",
-    "name": "Honor Flight North Central WV Motorcycle Escort",
-    "type": "charity-ride",
-    "typeLabel": "Charity Ride",
-    "region": "Mountaineer Country",
-    "date": "2026-09-11T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Meuse-Argonne VFW Post 573",
-    "status": "Free",
-    "url": "/events/honor-flight-north-central-wv-motorcycle-escort",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2813314,-80.341551"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -78.75668390000001,
-     39.3420431
-    ]
-   },
-   "properties": {
-    "slug": "13th-annual-freedom-ride-22948",
-    "name": "13th Annual Freedom Ride",
-    "type": "charity-ride",
-    "typeLabel": "Charity Ride",
-    "region": "Potomac Highlands",
-    "date": "2026-09-12T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Romney Cycle",
-    "status": "Free",
-    "url": "/events/13th-annual-freedom-ride-22948",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3420431,-78.75668390000001"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -81.5809962,
-     38.3374495
-    ]
-   },
-   "properties": {
-    "slug": "13th-annual-on-angel-wings-motorcycle-ride",
-    "name": "13th Annual On Angel Wings Motorcycle Ride",
+    "slug": "blue-knights-wv-iii-ride-with-gops-xxiv-2026-10-04",
+    "name": "Blue Knights WV III Ride with GOPS XXIV",
     "type": "charity-ride",
     "typeLabel": "Charity Ride",
     "region": "Metro Valley",
-    "date": "2026-09-19T04:00:00.000Z",
+    "date": "2026-10-04T12:00:00.000Z",
     "endDate": null,
-    "locationName": "Hubbard Hospice House",
+    "locationName": "Buddy's BBQ",
     "status": "Free",
-    "url": "/events/13th-annual-on-angel-wings-motorcycle-ride",
+    "url": "/events/blue-knights-wv-iii-ride-with-gops-xxiv-2026-10-04",
     "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3374495,-81.5809962"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.9684422,
-     39.2850799
-    ]
-   },
-   "properties": {
-    "slug": "head-for-the-hills-festival-2026",
-    "name": "Head for the Hills Festival 2026",
-    "type": "festival",
-    "typeLabel": "Festival",
-    "region": "Mid-Ohio Valley",
-    "date": "2026-09-10T04:00:00.000Z",
-    "endDate": "2026-09-12T04:00:00.000Z",
-    "locationName": "Pennsboro Speedway",
-    "status": "Free",
-    "url": "/events/head-for-the-hills-festival-2026",
-    "link": "https://head-for-the-hills-festival.square.site",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2850799,-80.9684422"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.4672236,
-     39.0382717
-    ]
-   },
-   "properties": {
-    "slug": "veterans-memorial-poker-run-6c720",
-    "name": "Veterans Memorial Poker Run",
-    "type": "poker-run",
-    "typeLabel": "Poker Run",
-    "region": "Mountain Lakes",
-    "date": "2026-09-26T04:00:00.000Z",
-    "endDate": null,
-    "locationName": "Mountaineer Military Museum",
-    "status": "Free",
-    "url": "/events/veterans-memorial-poker-run-6c720",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0382717,-80.4672236"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4237059,-82.4327011"
    }
   }
  ]
