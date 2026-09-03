@@ -6,6 +6,102 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.75717860000002,
+     39.35489
+    ]
+   },
+   "properties": {
+    "slug": "13th-annual-freedom-ride-2026-09-12",
+    "name": "13th Annual Freedom Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-09-12T12:00:00.000Z",
+    "endDate": "2026-09-12T12:00:00.000Z",
+    "locationName": "Romney Cycle",
+    "status": "Free",
+    "url": "/events/13th-annual-freedom-ride-2026-09-12",
+    "link": "facebook.com/VeteransAppreciationandFreedomRide",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5059778,
+     38.202285599999996
+    ]
+   },
+   "properties": {
+    "slug": "west-virginia-gold-star-mothers-kickoff-ride-2026-10-09",
+    "name": "West Virginia Gold Star Mothers Kickoff Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-10-09T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Walmart Supercenter, Quincy",
+    "status": "Free",
+    "url": "/events/west-virginia-gold-star-mothers-kickoff-ride-2026-10-09",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.202285599999996,-81.5059778"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4382095,
+     39.3807182
+    ]
+   },
+   "properties": {
+    "slug": "3rd-annual-end-of-summer-bash-2026-10-03",
+    "name": "3rd Annual End of Summer Bash",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-10-03T12:00:00.000Z",
+    "endDate": "2026-10-04T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/3rd-annual-end-of-summer-bash-2026-10-03",
+    "link": "www.mothmanhd.com",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3807182,-81.4382095"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0139465,
+     39.6590728
+    ]
+   },
+   "properties": {
+    "slug": "operation-activet-5th-annual-celebration-ride-poker-run-2026-08-22",
+    "name": "Operation Activet 5th Annual Celebration Ride Poker Run",
+    "type": "poker-run",
+    "typeLabel": "Poker Run",
+    "region": "Mountaineer Country",
+    "date": "2026-08-22T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Triple S Harley-Davidson",
+    "status": "Free",
+    "url": "/events/operation-activet-5th-annual-celebration-ride-poker-run-2026-08-22",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6590728,-80.0139465"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -82.4327011,
      38.4237059
     ]

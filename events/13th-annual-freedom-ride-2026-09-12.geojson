@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.75717860000002,
+     39.35489
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "13th-annual-freedom-ride-2026-09-12",
+    "name": "13th Annual Freedom Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-09-12T12:00:00.000Z",
+    "endDate": "2026-09-12T12:00:00.000Z",
+    "locationName": "Romney Cycle",
+    "status": "Free",
+    "url": "/events/13th-annual-freedom-ride-2026-09-12",
+    "link": "facebook.com/VeteransAppreciationandFreedomRide",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
+   }
+  }
+ ]
+}

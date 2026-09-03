@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5059778,
+     38.202285599999996
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "west-virginia-gold-star-mothers-kickoff-ride-2026-10-09",
+    "name": "West Virginia Gold Star Mothers Kickoff Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-10-09T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Walmart Supercenter, Quincy",
+    "status": "Free",
+    "url": "/events/west-virginia-gold-star-mothers-kickoff-ride-2026-10-09",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.202285599999996,-81.5059778"
+   }
+  }
+ ]
+}
