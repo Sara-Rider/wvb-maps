@@ -12,41 +12,31 @@
 # A route with no tracks/<slug>.geojson still gets a feed, carrying its stops
 # with no line. A route with neither gets an empty feed, and the embed hides
 # the map rather than drawing another route's.
-
 name: Rebuild route map feeds
-
 on:
   workflow_dispatch: {}
-
   repository_dispatch:
     types: [routes-changed]
-
 permissions:
   contents: write
-
 concurrency:
   group: refresh-route-feeds
   cancel-in-progress: false
-
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - run: pip install requests
-
       - name: Rebuild every route feed from live Webflow Routes
         env:
           WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
         run: |
           set -o pipefail
           python scripts/build_route_feed.py 2>&1 | tee build.log
-
       # `tee -a`, not `tee`. The step above CREATES build.log; a plain tee here
       # would truncate it and throw away the feed report along with any FAIL it
       # already recorded. Appending also means the existing FAIL gate at the
@@ -58,7 +48,6 @@ jobs:
         run: |
           set -o pipefail
           python scripts/sync_listing_urls.py 2>&1 | tee -a build.log
-
       - name: Commit only if a feed changed
         run: |
           git config user.name  "wvb-feed-bot"
@@ -71,9 +60,10 @@ jobs:
             git push
             echo "PURGE=1" >> "$GITHUB_ENV"
           fi
-
       # jsDelivr purges a whole directory with /gh/user/repo@main/dir/ — one
-      # call covers every route feed, however many there are.
+      # call covers every route feed, however many there are. Verified working
+      # 2026-09-03: the purge API returns status "finished" for a trailing-slash
+      # path, with both CDN providers acknowledging.
       - name: Purge jsDelivr cache (only if something changed)
         if: env.PURGE == '1'
         run: |
@@ -90,4 +80,3 @@ jobs:
             exit 1
           fi
           echo "No hard findings."
-
