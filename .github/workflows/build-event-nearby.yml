@@ -38,7 +38,7 @@ jobs:
           WVB_FORCE_EMPTY: ${{ inputs.force_empty && '1' || '0' }}
         run: python scripts/build_event_nearby.py
 
-          - name: Commit the feeds
+      - name: Commit the feeds
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
