@@ -27,7 +27,15 @@
 # remember, which for a solo operator is the whole point.
 #
 # build-event-nearby.yml is left in place and untouched — it is still the way
-# to rebuild just the nearby feeds without touching events.geojson.
+# to rebuild just the nearby feeds without touching events.geojson. Both write
+# events/, so they share the `events-feeds` concurrency group and wait for each
+# other rather than racing to push.
+#
+# CDN
+# ---
+# Decision 41: the site reads these feeds through jsDelivr, so a commit alone
+# does not update the site. jsDelivr can serve a cached copy for up to ~7 days.
+# The purge step below is what makes a rebuild visible.
 #
 # SCHEDULE
 # --------
@@ -36,40 +44,30 @@
 # from the map for under two hours. Tighten the cron if that ever feels long;
 # the commit step is a no-op when nothing changed, so a more frequent run costs
 # nothing but a few seconds of runner time.
-
 name: Refresh events feed
-
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 */2 * * *'
-
 permissions:
   contents: write        # lets the built-in token commit the rebuilt files
 concurrency:
   group: events-feeds
   cancel-in-progress: false
-  
-jobs:
-  refresh:
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         run: pip install requests
-
       - name: Build events.geojson
         env:
           WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
         run: python scripts/build_events_feed.py
-
       # Fail loudly rather than committing an empty or truncated feed over a
       # good one. A feed with no features is always a bug — the site has
       # published events — and silently replacing a working file with an empty
@@ -84,12 +82,10 @@ jobs:
           if n == 0:
               sys.exit('REFUSING TO COMMIT: events.geojson built with zero features')
           PY
-
       - name: Build per-event nearby feeds
         env:
           WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
         run: python scripts/build_event_nearby.py
-
       - name: Commit the feeds
         run: |
           git config user.name  "github-actions[bot]"
@@ -102,7 +98,6 @@ jobs:
             git push
             echo "PURGE=1" >> "$GITHUB_ENV"
           fi
-
       - name: Purge jsDelivr cache (only if something changed)
         if: env.PURGE == '1'
         run: |
