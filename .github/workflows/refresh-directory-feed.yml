@@ -6,9 +6,7 @@
 # Runs manually now (Actions tab -> Run workflow) so you can test it today.
 # The SCHEDULE stays OFF until launch: uncomment the two lines under `schedule`
 # and set the cron when you know your cadence.
-
 name: Refresh directory proximity feed
-
 on:
   workflow_dispatch: {}          # manual run — test now, and run on demand anytime
   # ---- LAUNCH: uncomment and pick ONE cron to turn on the schedule ----
@@ -16,31 +14,24 @@ on:
   #   - cron: '0 8 * * 1'        # weekly     — Mondays 08:00 UTC
   #   - cron: '0 8 1,15 * *'     # bi-weekly  — 1st & 15th, 08:00 UTC
   #   - cron: '0 8 1 * *'        # monthly    — 1st of month, 08:00 UTC
-
 permissions:
   contents: write                # lets the built-in token commit the rebuilt file
-
 concurrency:                     # never let two runs push at once
   group: refresh-directory-feed
   cancel-in-progress: false
-
 jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - run: pip install requests
-
       - name: Rebuild directory.geojson from live Webflow directory
         env:
           WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
         run: python scripts/build_directory_feed.py
-
       - name: Commit only if the feed changed
         run: |
           git config user.name  "wvb-feed-bot"
@@ -53,11 +44,8 @@ jobs:
             git push
             echo "PURGE=1" >> "$GITHUB_ENV"
           fi
-
       - name: Purge jsDelivr cache (only if the file changed)
         if: env.PURGE == '1'
         run: |
           curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/directory.geojson"
           echo "Requested jsDelivr purge."
-      - name: Purge jsDelivr cache
-        run: curl -sS https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/directory.geojson
