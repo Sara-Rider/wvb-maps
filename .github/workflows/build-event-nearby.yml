@@ -17,6 +17,9 @@ on:
 
 permissions:
   contents: write
+  concurrency:
+  group: events-feeds
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -51,8 +54,4 @@ jobs:
             echo "PURGE=1" >> "$GITHUB_ENV"
           fi
 
-      - name: Purge jsDelivr cache (only if something changed)
-        if: env.PURGE == '1'
-        run: |
-          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events/"
           echo "Requested jsDelivr purge for events/."
