@@ -46,7 +46,12 @@ on:
 
 permissions:
   contents: write        # lets the built-in token commit the rebuilt files
-
+concurrency:
+  group: events-feeds
+  cancel-in-progress: false
+  
+jobs:
+  refresh:
 jobs:
   refresh:
     runs-on: ubuntu-latest
