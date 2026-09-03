@@ -96,3 +96,5 @@ jobs:
             git commit -m "Rebuild events.geojson and nearby feeds"
             git push
           fi
+      - name: Purge jsDelivr cache
+        run: curl -sS https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events.geojson
