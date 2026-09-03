@@ -38,14 +38,30 @@ jobs:
           WVB_FORCE_EMPTY: ${{ inputs.force_empty && '1' || '0' }}
         run: python scripts/build_event_nearby.py
 
-      - name: Commit the feeds
+          - name: Commit the feeds
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add events
           if git diff --staged --quiet; then
             echo "No feed changes to commit."
+            : > "$RUNNER_TEMP/changed-feeds.txt"
           else
+            git diff --staged --name-only > "$RUNNER_TEMP/changed-feeds.txt"
             git commit -m "Rebuild per-event nearby feeds"
             git push
           fi
+
+      - name: Purge jsDelivr cache
+        run: |
+          if [ ! -s "$RUNNER_TEMP/changed-feeds.txt" ]; then
+            echo "Nothing changed; nothing to purge."
+            exit 0
+          fi
+          while read -r f; do
+            [ -n "$f" ] || continue
+            echo "Purging $f"
+            curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/$f" || true
+            echo
+            sleep 1
+          done < "$RUNNER_TEMP/changed-feeds.txt"
