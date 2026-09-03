@@ -1,5 +1,4 @@
 name: Build event nearby feeds
-
 # Manual for now — press "Run workflow" on the Actions tab.
 # Add a schedule (or fold these steps into the existing feed workflow) once
 # it has run clean a few times.
@@ -14,33 +13,27 @@ on:
         description: "Allow a computed rail to overwrite a non-empty stored one"
         type: boolean
         default: false
-
 permissions:
   contents: write
-  concurrency:
+concurrency:
   group: events-feeds
   cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: pip install requests
-
       - name: Build per-event nearby feeds
         env:
           WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
           WVB_SKIP_CMS: ${{ inputs.skip_cms && '1' || '0' }}
           WVB_FORCE_EMPTY: ${{ inputs.force_empty && '1' || '0' }}
         run: python scripts/build_event_nearby.py
-
       - name: Commit the feeds
         run: |
           git config user.name  "github-actions[bot]"
@@ -53,5 +46,8 @@ jobs:
             git push
             echo "PURGE=1" >> "$GITHUB_ENV"
           fi
-
+      - name: Purge jsDelivr cache (only if something changed)
+        if: env.PURGE == '1'
+        run: |
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/events/"
           echo "Requested jsDelivr purge for events/."
