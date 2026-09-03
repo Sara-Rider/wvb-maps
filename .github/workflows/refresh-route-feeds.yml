@@ -90,5 +90,4 @@ jobs:
             exit 1
           fi
           echo "No hard findings."
-      - name: Purge jsDelivr cache
-        run: curl -sS https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes-index.geojson
+
