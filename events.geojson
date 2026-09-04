@@ -6,6 +6,78 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.2808099,
+     39.3065122
+    ]
+   },
+   "properties": {
+    "slug": "bike-day-at-rg-s-almost-heaven-harley-davidson-2026-09-19",
+    "name": "Bike Day at RG's Almost Heaven Harley-Davidson",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": "2026-09-19T12:00:00.000Z",
+    "locationName": "RG's Almost Heaven Harley-Davidson",
+    "status": "Free",
+    "url": "/events/bike-day-at-rg-s-almost-heaven-harley-davidson-2026-09-19",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3065122,-80.2808099"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.8617617,
+     39.2881453
+    ]
+   },
+   "properties": {
+    "slug": "5th-annual-patriot-ride-2026-09-11",
+    "name": "5th Annual Patriot Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Eastern Panhandle",
+    "date": "2026-09-11T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "ALR Post 71, Charles Town",
+    "status": "Free",
+    "url": "/events/5th-annual-patriot-ride-2026-09-11",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2881453,-77.8617617"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5493273,
+     39.2834993
+    ]
+   },
+   "properties": {
+    "slug": "odinsons-bike-night-2026-09-03",
+    "name": "Odinsons Bike Night",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-03T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "American Legion Post 15",
+    "status": "Free",
+    "url": "/events/odinsons-bike-night-2026-09-03",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2834993,-81.5493273"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -78.75717860000002,
      39.35489
     ]

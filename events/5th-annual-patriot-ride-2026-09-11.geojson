@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.8617617,
+     39.2881453
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "5th-annual-patriot-ride-2026-09-11",
+    "name": "5th Annual Patriot Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Eastern Panhandle",
+    "date": "2026-09-11T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "ALR Post 71, Charles Town",
+    "status": "Free",
+    "url": "/events/5th-annual-patriot-ride-2026-09-11",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2881453,-77.8617617"
+   }
+  }
+ ]
+}

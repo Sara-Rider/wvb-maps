@@ -1,0 +1,90 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5493273,
+     39.2834993
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "odinsons-bike-night-2026-09-03",
+    "name": "Odinsons Bike Night",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-03T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "American Legion Post 15",
+    "status": "Free",
+    "url": "/events/odinsons-bike-night-2026-09-03",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2834993,-81.5493273"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5649343,
+     39.264891
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-blennerhassett-island-historical-state-park",
+    "name": "Almost Heaven Swing - Blennerhassett Island Historical State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Forested spot beside the historic mansion, reached by a 20-minute ferry; open seasonally May-October.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 1.54,
+    "url": "/directory/almost-heaven-swing-blennerhassett-island-historical-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.264891,-81.5649343"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mothman-harley-davidson",
+    "name": "Mothman Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "The Mid-Ohio Valley's authorized Harley-Davidson dealer in Williamstown — service, parts, and gear right off I-77 at the Ohio line.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 9.0,
+    "url": "/directory/mothman-harley-davidson",
+    "website": "https://www.mothmanhd.com",
+    "tel": "tel:+13043752530",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  }
+ ]
+}
