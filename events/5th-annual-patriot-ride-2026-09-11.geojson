@@ -25,6 +25,36 @@
     "link": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2881453,-77.8617617"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.86176169999999,
+     39.28834874305949
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-71",
+    "name": "American Legion Post 71",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "Charles Town post with a canteen, a Legion Riders chapter and Friday-night bands, a short walk off the historic district.",
+    "region": "Eastern Panhandle",
+    "county": "Jefferson",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.01,
+    "url": "/directory/american-legion-post-71",
+    "website": "https://www.legionpost71wv.org/",
+    "tel": "tel:+13047257212",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28834874305949,-77.86176169999999"
+   }
   }
  ]
 }
