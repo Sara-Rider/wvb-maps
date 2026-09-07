@@ -1,19 +1,8 @@
 id,name,category,glyph,token_source,certified,filename,raw_url
-black-bear-burritos,Black Bear Burritos,Restaurant,food,stored,false,dir-black-bear-burritos.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-black-bear-burritos.png
-c-j-maggie-s-american-grill-elkins,C.J. Maggie's American Grill - Elkins,Restaurant,food,stored,false,dir-c-j-maggie-s-american-grill-elkins.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-c-j-maggie-s-american-grill-elkins.png
-casey-s-family-restaurant-shinnston,Casey's Family Restaurant - Shinnston,Restaurant,food,stored,false,dir-casey-s-family-restaurant-shinnston.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-casey-s-family-restaurant-shinnston.png
-drovers-inn,Drovers Inn,Restaurant,food,stored,false,dir-drovers-inn.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-drovers-inn.png
-farmer-s-daughter-market-butcher,Farmer's Daughter Market & Butcher,Restaurant,food,stored,false,dir-farmer-s-daughter-market-butcher.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-farmer-s-daughter-market-butcher.png
-hellbender-burritos,Hellbender Burritos,Restaurant,food,stored,false,dir-hellbender-burritos.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-hellbender-burritos.png
-jack-horner-s-corner,Jack Horner's Corner,Other,other,stored,false,dir-jack-horner-s-corner.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-jack-horner-s-corner.png
-little-sicily,Little Sicily,Restaurant,food,stored,false,dir-little-sicily.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-little-sicily.png
-main-street-grill-romney,Main Street Grill - Romney,Restaurant,food,stored,false,dir-main-street-grill-romney.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-main-street-grill-romney.png
-north-end-tavern-brewery,North End Tavern & Brewery,Bar,food,stored,false,dir-north-end-tavern-brewery.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-north-end-tavern-brewery.png
-pizzas-and-cream,Pizzas and Cream,Restaurant,food,stored,false,dir-pizzas-and-cream.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-pizzas-and-cream.png
-romney-cycles,Romney Cycles,Motorcycle Dealer,moto,stored,false,dir-romney-cycles.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-romney-cycles.png
-screech-owl-brewing,Screech Owl Brewing,Bar,food,stored,false,dir-screech-owl-brewing.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-screech-owl-brewing.png
-sirianni-s-pizza-cafe,Sirianni's Pizza Cafe,Restaurant,food,stored,false,dir-sirianni-s-pizza-cafe.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-sirianni-s-pizza-cafe.png
-south-texas-barbecue-company,South Texas Barbecue Company,Restaurant,food,stored,false,dir-south-texas-barbecue-company.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-south-texas-barbecue-company.png
-the-corner-shop,The Corner Shop,Restaurant,food,stored,false,dir-the-corner-shop.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-the-corner-shop.png
-the-custard-stand,The Custard Stand,Restaurant,food,stored,false,dir-the-custard-stand.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-the-custard-stand.png
-whistle-punk-grill-taphouse,Whistle Punk Grill & Taphouse,Bar,food,stored,false,dir-whistle-punk-grill-taphouse.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-whistle-punk-grill-taphouse.png
+6a558ef7c698d45d4b07d272,Keyser Inn,Lodging,lodging,stored,false,dir-6a558ef7c698d45d4b07d272.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558ef7c698d45d4b07d272.png
+6a558829d57e2c3d1ed5024e,Sterling Drive-In,Restaurant,food,stored,false,dir-6a558829d57e2c3d1ed5024e.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558829d57e2c3d1ed5024e.png
+6a558829d57e2c3d1ed50252,Taco Todd's Savage Tacos,Restaurant,food,stored,false,dir-6a558829d57e2c3d1ed50252.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558829d57e2c3d1ed50252.png
+6a430ee4a33c8326465e9a64,Greenbrier Grille and Lodge,Restaurant,food,stored,false,dir-6a430ee4a33c8326465e9a64.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a430ee4a33c8326465e9a64.png
+6a558ef7c698d45d4b07d262,Hillbilly Heaven Bar & Grill,Restaurant,food,stored,false,dir-6a558ef7c698d45d4b07d262.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558ef7c698d45d4b07d262.png
+6a558ef7c698d45d4b07d270,Slanesville General Store,Restaurant,food,stored,false,dir-6a558ef7c698d45d4b07d270.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558ef7c698d45d4b07d270.png
+6a558829d57e2c3d1ed5024c,Coaltown Tavern,Restaurant,food,stored,false,dir-6a558829d57e2c3d1ed5024c.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558829d57e2c3d1ed5024c.png
