@@ -1,8 +1,8 @@
 id,name,category,glyph,token_source,certified,filename,raw_url
-6a558ef7c698d45d4b07d272,Keyser Inn,Lodging,lodging,stored,false,dir-6a558ef7c698d45d4b07d272.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558ef7c698d45d4b07d272.png
-6a558829d57e2c3d1ed5024e,Sterling Drive-In,Restaurant,food,stored,false,dir-6a558829d57e2c3d1ed5024e.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558829d57e2c3d1ed5024e.png
-6a558829d57e2c3d1ed50252,Taco Todd's Savage Tacos,Restaurant,food,stored,false,dir-6a558829d57e2c3d1ed50252.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558829d57e2c3d1ed50252.png
-6a430ee4a33c8326465e9a64,Greenbrier Grille and Lodge,Restaurant,food,stored,false,dir-6a430ee4a33c8326465e9a64.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a430ee4a33c8326465e9a64.png
-6a558ef7c698d45d4b07d262,Hillbilly Heaven Bar & Grill,Restaurant,food,stored,false,dir-6a558ef7c698d45d4b07d262.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558ef7c698d45d4b07d262.png
-6a558ef7c698d45d4b07d270,Slanesville General Store,Restaurant,food,stored,false,dir-6a558ef7c698d45d4b07d270.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558ef7c698d45d4b07d270.png
-6a558829d57e2c3d1ed5024c,Coaltown Tavern,Restaurant,food,stored,false,dir-6a558829d57e2c3d1ed5024c.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-6a558829d57e2c3d1ed5024c.png
+keyser-inn,Keyser Inn,Lodging,lodging,stored,false,dir-keyser-inn.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-keyser-inn.png
+sterling-drive-in,Sterling Drive-In,Restaurant,food,stored,false,dir-sterling-drive-in.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-sterling-drive-in.png
+taco-todd-s-savage-tacos,Taco Todd's Savage Tacos,Restaurant,food,stored,false,dir-taco-todd-s-savage-tacos.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-taco-todd-s-savage-tacos.png
+greenbrier-grille-and-lodge,Greenbrier Grille and Lodge,Restaurant,food,stored,false,dir-greenbrier-grille-and-lodge.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-greenbrier-grille-and-lodge.png
+hillbilly-heaven-bar-grill,Hillbilly Heaven Bar & Grill,Restaurant,food,stored,false,dir-hillbilly-heaven-bar-grill.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-hillbilly-heaven-bar-grill.png
+slanesville-general-store,Slanesville General Store,Restaurant,food,stored,false,dir-slanesville-general-store.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-slanesville-general-store.png
+coaltown-tavern,Coaltown Tavern,Restaurant,food,stored,false,dir-coaltown-tavern.png,https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/renders/dir-coaltown-tavern.png
