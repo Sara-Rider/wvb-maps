@@ -1,8 +1,8 @@
-Business Name,Latitude,Longitude,Type Token,Business Category,Attraction Type,Address,County,Travel Region,Webflow Item ID
-Keyser Inn,39.41091055101128,-79.00209938650774,lodging,Lodging,,"51 Josie Drive, Keyser, WV 26726",Mineral,Potomac Highlands,6a558ef7c698d45d4b07d272
-Sterling Drive-In,37.44120358397532,-81.5720773306873,food,Restaurant,,"788 Stewart St, Welch, WV 24801",McDowell,New River-Greenbrier Valley,6a558829d57e2c3d1ed5024e
-Taco Todd's Savage Tacos,37.30199080674365,-81.6910517738418,food,Restaurant,,"3 River Road, War, WV",McDowell,New River-Greenbrier Valley,6a558829d57e2c3d1ed50252
-Greenbrier Grille and Lodge,38.22443541183142,-80.09556142328172,food,Restaurant,,"814 1st Ave., Marlinton, WV 24954",Pocahontas,Potomac Highlands,6a430ee4a33c8326465e9a64
-Hillbilly Heaven Bar & Grill,39.62999050491401,-78.1758237269845,food,Restaurant,,"3280 Martinsburg Rd, Berkeley Springs, WV 25411",Morgan,Eastern Panhandle,6a558ef7c698d45d4b07d262
-Slanesville General Store,39.37376812633502,-78.52312921349225,food,Restaurant,,"100 North Main Street, Slanesville, WV 25444",Hampshire,Potomac Highlands,6a558ef7c698d45d4b07d270
-Coaltown Tavern,37.42906183701886,-81.55646858465634,food,Restaurant,,"905 Virginia Ave, Welch, WV 24801",McDowell,New River-Greenbrier Valley,6a558829d57e2c3d1ed5024c
+Business Name,Latitude,Longitude,Type Token,Business Category,Attraction Type
+Keyser Inn,39.41091055101128,-79.00209938650774,lodging,Lodging,
+Sterling Drive-In,37.44120358397532,-81.5720773306873,food,Restaurant,
+Taco Todd's Savage Tacos,37.30199080674365,-81.6910517738418,food,Restaurant,
+Greenbrier Grille and Lodge,38.22443541183142,-80.09556142328172,food,Restaurant,
+Hillbilly Heaven Bar & Grill,39.62999050491401,-78.1758237269845,food,Restaurant,
+Slanesville General Store,39.37376812633502,-78.52312921349225,food,Restaurant,
+Coaltown Tavern,37.42906183701886,-81.55646858465634,food,Restaurant,
