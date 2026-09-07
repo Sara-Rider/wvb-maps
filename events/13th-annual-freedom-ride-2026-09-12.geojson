@@ -55,6 +55,36 @@
     "tel": "tel:+13048223933",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7022996,
+     39.3291121
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "main-street-grill-romney",
+    "name": "Main Street Grill - Romney",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Steakhouse and American kitchen at Romney - the town's sit-down dinner, on the US 50 run.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.46,
+    "url": "/directory/main-street-grill-romney",
+    "website": "https://www.main-st-grill.com",
+    "tel": "tel:+13048224745",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3291121,-78.7022996"
+   }
   }
  ]
 }

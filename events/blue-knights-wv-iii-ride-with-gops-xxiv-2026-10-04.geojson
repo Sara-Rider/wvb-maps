@@ -31,6 +31,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -82.43272255767182,
+     38.4238613990011
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "buddy-s-all-american-bar-b-que",
+    "name": "Buddy's All American Bar-B-Que",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Huntington barbecue joint with a screened-in porch and a summer Thursday bike night that takes over the parking lot.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.01,
+    "url": "/directory/buddy-s-all-american-bar-b-que",
+    "website": "https://www.wvbbq.com/",
+    "tel": "tel:+13045229869",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4238613990011,-82.43272255767182"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -82.4514955,
      38.4188813
     ]

@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -79.9714631,
+     39.6540244
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "black-bear-burritos",
+    "name": "Black Bear Burritos",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Long-running Morgantown burrito spot on University Avenue at Evansdale.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.32,
+    "url": "/directory/black-bear-burritos",
+    "website": "https://www.blackbearburritos.com",
+    "tel": "tel:+13047774867",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.04,
      39.62389
     ]
