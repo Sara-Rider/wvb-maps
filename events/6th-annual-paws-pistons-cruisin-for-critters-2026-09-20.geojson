@@ -1,0 +1,150 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5459568,
+     39.2940119
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "6th-annual-paws-pistons-cruisin-for-critters-2026-09-20",
+    "name": "6th Annual Paws & Pistons Cruisin' for Critters",
+    "type": "show",
+    "typeLabel": "Show",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-20T12:00:00.000Z",
+    "endDate": "2026-09-20T12:00:00.000Z",
+    "locationName": "Astorg Auto Pre-Owned on Lakeview",
+    "status": "Free",
+    "url": "/events/6th-annual-paws-pistons-cruisin-for-critters-2026-09-20",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2940119,-81.5459568"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5493273,
+     39.2834993
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-15",
+    "name": "American Legion Post 15",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "Members-and-guests post on Parkersburg's south side with an active Legion Riders chapter - and bike nights that open the lot to everybody.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.75,
+    "url": "/directory/american-legion-post-15",
+    "website": null,
+    "tel": "tel:+13044855891",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2834993,-81.5493273"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.53305540000001,
+     39.2874294
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "north-end-tavern-brewery",
+    "name": "North End Tavern & Brewery",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Tavern and brewery on Emerson Avenue in Parkersburg, known locally as the NET.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.83,
+    "url": "/directory/north-end-tavern-brewery",
+    "website": "https://www.netbrewery.com",
+    "tel": "tel:+13044285854",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2874294,-81.53305540000001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5649343,
+     39.264891
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-blennerhassett-island-historical-state-park",
+    "name": "Almost Heaven Swing - Blennerhassett Island Historical State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Forested spot beside the historic mansion, reached by a 20-minute ferry; open seasonally May-October.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.26,
+    "url": "/directory/almost-heaven-swing-blennerhassett-island-historical-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.264891,-81.5649343"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mothman-harley-davidson",
+    "name": "Mothman Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "The Mid-Ohio Valley's authorized Harley-Davidson dealer in Williamstown — service, parts, and gear right off I-77 at the Ohio line.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 8.34,
+    "url": "/directory/mothman-harley-davidson",
+    "website": "https://www.mothmanhd.com",
+    "tel": "tel:+13043752530",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  }
+ ]
+}

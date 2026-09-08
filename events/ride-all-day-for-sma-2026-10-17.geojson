@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.1838848,
+     38.9090188
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "ride-all-day-for-sma-2026-10-17",
+    "name": "Ride All Day For SMA",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "",
+    "date": "2026-10-17T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Gateway Plaza",
+    "status": "Free",
+    "url": "/events/ride-all-day-for-sma-2026-10-17",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9090188,-78.1838848"
+   }
+  }
+ ]
+}

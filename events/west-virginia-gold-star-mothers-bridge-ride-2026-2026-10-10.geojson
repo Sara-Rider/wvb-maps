@@ -1,0 +1,90 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8279175,
+     38.30382480000001
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "west-virginia-gold-star-mothers-bridge-ride-2026-2026-10-10",
+    "name": "West Virginia Gold Star Mothers Bridge Ride 2026",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Mountain Lakes",
+    "date": "2026-10-10T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Summersville Arena & Conference Center",
+    "status": "Free",
+    "url": "/events/west-virginia-gold-star-mothers-bridge-ride-2026-2026-10-10",
+    "link": "https://www.bridgeride.org",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.30382480000001,-80.8279175"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.85603,
+     38.24576
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "almost-heaven-swing-summersville-lake-state-park",
+    "name": "Almost Heaven Swing - Summersville Lake State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Overlooks Summersville Lake, the 'Little Bahamas of the East,' at the state's newest park; short uphill walk.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 4.28,
+    "url": "/directory/almost-heaven-swing-summersville-lake-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.24576,-80.85603"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.864641,
+     38.200427
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "summersville-lake-retreat-lighthouse",
+    "name": "Summersville Lake Retreat & Lighthouse",
+    "category": "Campground",
+    "type": "camping",
+    "lane": "camping",
+    "laneLabel": "Camping",
+    "short": "Cabins, RV and tent sites, vintage campers, pontoon and watercraft rentals, and lighthouse tours — voted Best Campground in West Virginia five years running.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 7.4,
+    "url": "/directory/summersville-lake-retreat-lighthouse",
+    "website": "https://summersvillelakeretreat.com",
+    "tel": "tel:+13048725975",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.200427,-80.864641"
+   }
+  }
+ ]
+}

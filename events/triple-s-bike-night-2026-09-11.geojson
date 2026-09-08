@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.75239599999999,
+     39.508032
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "triple-s-bike-night-2026-09-11",
+    "name": "Triple S Bike Night",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-09-11T12:00:00.000Z",
+    "endDate": "2026-09-12T12:00:00.000Z",
+    "locationName": "Smokin' Jack's",
+    "status": "Free",
+    "url": "/events/triple-s-bike-night-2026-09-11",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.508032,-79.75239599999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.688648,
+     39.4725304
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "preston-county-inn",
+    "name": "Preston County Inn",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Historic 1857 inn on Kingwood's Main Street, with its own restaurant and bar - a characterful Preston County overnight.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 4.23,
+    "url": "/directory/preston-county-inn",
+    "website": "https://www.prestoncountyinn.com",
+    "tel": "tel:+13043292220",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4725304,-79.688648"
+   }
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0502702,
+     38.5013869
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "pow-mia-memorial-ride-ceremony-2026-10-03",
+    "name": "POW-MIA Memorial Ride & Ceremony",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-10-03T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "The Mingo Saloon & Lodge",
+    "status": "Free",
+    "url": "/events/pow-mia-memorial-ride-ceremony-2026-10-03",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5013869,-80.0502702"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.050517,
+     38.5017403
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mingo-saloon-lodge",
+    "name": "Mingo Saloon & Lodge",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Biker-friendly Irish inn, restaurant, and pub on US-219 near Snowshoe — a longtime motorcycle-tour overnight stop.",
+    "region": "Potomac Highlands",
+    "county": "Randolph",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.03,
+    "url": "/directory/mingo-saloon-lodge",
+    "website": "https://themingosaloonandlodge.com",
+    "tel": "tel:+13043396917",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5017403,-80.050517"
+   }
+  }
+ ]
+}

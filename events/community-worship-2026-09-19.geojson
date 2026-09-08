@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.3442805,
+     38.7716018
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "community-worship-2026-09-19",
+    "name": "Community Worship",
+    "type": "other",
+    "typeLabel": "Other",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Freshwater Park",
+    "status": "Free",
+    "url": "/events/community-worship-2026-09-19",
+    "link": "https://www.facebook.com/events/freshwater-park-spencer-wv/community-worship/1116246384091152/",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.7716018,-81.3442805"
+   }
+  }
+ ]
+}

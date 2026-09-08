@@ -11,6 +11,294 @@
     ]
    },
    "properties": {
+    "slug": "bike-day-and-meet-your-match-test-ride-day-2026-09-19",
+    "name": "Bike Day and Meet your Match Test Ride Day",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "RG's Almost Heaven Harley-Davidson",
+    "status": "Free",
+    "url": "/events/bike-day-and-meet-your-match-test-ride-day-2026-09-19",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3065122,-80.2808099"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.09360989999999,
+     38.223141
+    ]
+   },
+   "properties": {
+    "slug": "bike-night-at-old-mountain-tavern-2026-09-09",
+    "name": "Bike Night at Old Mountain Tavern",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Potomac Highlands",
+    "date": "2026-09-09T12:00:00.000Z",
+    "endDate": "2026-09-10T12:00:00.000Z",
+    "locationName": "Old Mountain Tavern",
+    "status": "Free",
+    "url": "/events/bike-night-at-old-mountain-tavern-2026-09-09",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223141,-80.09360989999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.8597175,
+     39.288990299999995
+    ]
+   },
+   "properties": {
+    "slug": "charles-town-car-show-2026-09-05",
+    "name": "Charles Town Car Show",
+    "type": "show",
+    "typeLabel": "Show",
+    "region": "Eastern Panhandle",
+    "date": "2026-09-05T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Charles Town",
+    "status": "Free",
+    "url": "/events/charles-town-car-show-2026-09-05",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.288990299999995,-77.8597175"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4382095,
+     39.3807182
+    ]
+   },
+   "properties": {
+    "slug": "game-day-garage-pre-game-wvu-vs-uva-2026-09-19",
+    "name": "Game Day Garage Pre-Game! WVU vs. UVA",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": "2026-09-19T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/game-day-garage-pre-game-wvu-vs-uva-2026-09-19",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3807182,-81.4382095"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.75239599999999,
+     39.508032
+    ]
+   },
+   "properties": {
+    "slug": "triple-s-bike-night-2026-09-11",
+    "name": "Triple S Bike Night",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-09-11T12:00:00.000Z",
+    "endDate": "2026-09-12T12:00:00.000Z",
+    "locationName": "Smokin' Jack's",
+    "status": "Free",
+    "url": "/events/triple-s-bike-night-2026-09-11",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.508032,-79.75239599999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5459568,
+     39.2940119
+    ]
+   },
+   "properties": {
+    "slug": "6th-annual-paws-pistons-cruisin-for-critters-2026-09-20",
+    "name": "6th Annual Paws & Pistons Cruisin' for Critters",
+    "type": "show",
+    "typeLabel": "Show",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-20T12:00:00.000Z",
+    "endDate": "2026-09-20T12:00:00.000Z",
+    "locationName": "Astorg Auto Pre-Owned on Lakeview",
+    "status": "Free",
+    "url": "/events/6th-annual-paws-pistons-cruisin-for-critters-2026-09-20",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2940119,-81.5459568"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8279175,
+     38.30382480000001
+    ]
+   },
+   "properties": {
+    "slug": "west-virginia-gold-star-mothers-bridge-ride-2026-2026-10-10",
+    "name": "West Virginia Gold Star Mothers Bridge Ride 2026",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Mountain Lakes",
+    "date": "2026-10-10T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Summersville Arena & Conference Center",
+    "status": "Free",
+    "url": "/events/west-virginia-gold-star-mothers-bridge-ride-2026-2026-10-10",
+    "link": "https://www.bridgeride.org",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.30382480000001,-80.8279175"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.3442805,
+     38.7716018
+    ]
+   },
+   "properties": {
+    "slug": "community-worship-2026-09-19",
+    "name": "Community Worship",
+    "type": "other",
+    "typeLabel": "Other",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Freshwater Park",
+    "status": "Free",
+    "url": "/events/community-worship-2026-09-19",
+    "link": "https://www.facebook.com/events/freshwater-park-spencer-wv/community-worship/1116246384091152/",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.7716018,-81.3442805"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.1838848,
+     38.9090188
+    ]
+   },
+   "properties": {
+    "slug": "ride-all-day-for-sma-2026-10-17",
+    "name": "Ride All Day For SMA",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "",
+    "date": "2026-10-17T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Gateway Plaza",
+    "status": "Free",
+    "url": "/events/ride-all-day-for-sma-2026-10-17",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9090188,-78.1838848"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0502702,
+     38.5013869
+    ]
+   },
+   "properties": {
+    "slug": "pow-mia-memorial-ride-ceremony-2026-10-03",
+    "name": "POW-MIA Memorial Ride & Ceremony",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-10-03T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "The Mingo Saloon & Lodge",
+    "status": "Free",
+    "url": "/events/pow-mia-memorial-ride-ceremony-2026-10-03",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5013869,-80.0502702"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9862241,
+     39.2801669
+    ]
+   },
+   "properties": {
+    "slug": "2026-head-for-the-hills-festival-2026-09-10",
+    "name": "2026 Head for the Hills Festival",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-09-10T12:00:00.000Z",
+    "endDate": "2026-09-12T12:00:00.000Z",
+    "locationName": "Pennsboro Speedway",
+    "status": "Free",
+    "url": "/events/2026-head-for-the-hills-festival-2026-09-10",
+    "link": "www.headforthehillswv.com",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801669,-80.9862241"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8381789,
+     38.934396199999995
+    ]
+   },
+   "properties": {
+    "slug": "bike-night-at-shades-bar-grill-2026-09-15",
+    "name": "Bike Night at Shades Bar & Grill",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountain Lakes",
+    "date": "2026-09-15T12:00:00.000Z",
+    "endDate": "2026-09-16T12:00:00.000Z",
+    "locationName": "Shades Bar & Grill",
+    "status": "Free",
+    "url": "/events/bike-night-at-shades-bar-grill-2026-09-15",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.934396199999995,-80.8381789"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.2808099,
+     39.3065122
+    ]
+   },
+   "properties": {
     "slug": "bike-day-at-rg-s-almost-heaven-harley-davidson-2026-09-19",
     "name": "Bike Day at RG's Almost Heaven Harley-Davidson",
     "type": "bike-night",

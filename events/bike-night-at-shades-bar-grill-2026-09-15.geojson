@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8381789,
+     38.934396199999995
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "bike-night-at-shades-bar-grill-2026-09-15",
+    "name": "Bike Night at Shades Bar & Grill",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountain Lakes",
+    "date": "2026-09-15T12:00:00.000Z",
+    "endDate": "2026-09-16T12:00:00.000Z",
+    "locationName": "Shades Bar & Grill",
+    "status": "Free",
+    "url": "/events/bike-night-at-shades-bar-grill-2026-09-15",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.934396199999995,-80.8381789"
+   }
+  }
+ ]
+}

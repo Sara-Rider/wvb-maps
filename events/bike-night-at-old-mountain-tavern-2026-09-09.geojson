@@ -1,0 +1,90 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.09360989999999,
+     38.223141
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "bike-night-at-old-mountain-tavern-2026-09-09",
+    "name": "Bike Night at Old Mountain Tavern",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Potomac Highlands",
+    "date": "2026-09-09T12:00:00.000Z",
+    "endDate": "2026-09-10T12:00:00.000Z",
+    "locationName": "Old Mountain Tavern",
+    "status": "Free",
+    "url": "/events/bike-night-at-old-mountain-tavern-2026-09-09",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223141,-80.09360989999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.09556142328172,
+     38.22443541183142
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "greenbrier-grille-and-lodge",
+    "name": "Greenbrier Grille and Lodge",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Home cooked meals right on the Greenbrier River in Marlinton — dine inside or on the deck with amazing river views and feed the ducks.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.14,
+    "url": "/directory/greenbrier-grille-and-lodge",
+    "website": "https://greenbriergrille.com",
+    "tel": "tel:+13047997233",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22443541183142,-80.09556142328172"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0928951,
+     38.2662799
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "marlinton-motor-inn",
+    "name": "Marlinton Motor Inn",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Rider-favorite motor inn on Rt 219 near Marlinton, 25 miles south of Snowshoe - pool, lounge, and mountain views.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.98,
+    "url": "/directory/marlinton-motor-inn",
+    "website": "http://marlintonmotorinn.com",
+    "tel": "tel:+13047994711",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2662799,-80.0928951"
+   }
+  }
+ ]
+}

@@ -31,8 +31,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.01417359999999,
-     39.6581795
+     -80.01418433096829,
+     39.65834466648963
     ]
    },
    "properties": {
@@ -49,11 +49,11 @@
     "certified": false,
     "featured": false,
     "reserved": false,
-    "miles": 0.06,
+    "miles": 0.05,
     "url": "/directory/triple-s-harley-davidson",
     "website": "https://www.tripleshd.com",
     "tel": "tel:+13042848244",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6581795,-80.01417359999999"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.65834466648963,-80.01418433096829"
    }
   },
   {

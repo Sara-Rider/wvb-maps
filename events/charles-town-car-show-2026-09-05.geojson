@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.8597175,
+     39.288990299999995
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "charles-town-car-show-2026-09-05",
+    "name": "Charles Town Car Show",
+    "type": "show",
+    "typeLabel": "Show",
+    "region": "Eastern Panhandle",
+    "date": "2026-09-05T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Charles Town",
+    "status": "Free",
+    "url": "/events/charles-town-car-show-2026-09-05",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.288990299999995,-77.8597175"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.86176169999999,
+     39.28834874305949
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-71",
+    "name": "American Legion Post 71",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "Charles Town post with a canteen, a Legion Riders chapter and Friday-night bands, a short walk off the historic district.",
+    "region": "Eastern Panhandle",
+    "county": "Jefferson",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.12,
+    "url": "/directory/american-legion-post-71",
+    "website": "https://www.legionpost71wv.org/",
+    "tel": "tel:+13047257212",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28834874305949,-77.86176169999999"
+   }
+  }
+ ]
+}
