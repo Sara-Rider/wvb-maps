@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.4325015,
+     39.3052389
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "9th-annual-ride-supporting-k9s-for-warriors-2026-09-19",
+    "name": "9th Annual Ride Supporting K9s For Warriors",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "The American Legion Post 137",
+    "status": "Free",
+    "url": "/events/9th-annual-ride-supporting-k9s-for-warriors-2026-09-19",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3052389,-78.4325015"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.4317056,
+     39.2973107
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "farmer-s-daughter-market-butcher",
+    "name": "Farmer's Daughter Market & Butcher",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Market, butcher and burger counter on US 50 at Capon Bridge - a WV Living best-burger winner.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.55,
+    "url": "/directory/farmer-s-daughter-market-butcher",
+    "website": "https://www.farmersdaughterwv.com",
+    "tel": "tel:+13048562550",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2973107,-78.4317056"
+   }
+  }
+ ]
+}

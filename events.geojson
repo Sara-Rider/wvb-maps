@@ -6,6 +6,150 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.34236159999999,
+     39.2814213
+    ]
+   },
+   "properties": {
+    "slug": "the-return-of-bike-night-at-ritzy-lunch-2026-09-17",
+    "name": "The Return of Bike Night at Ritzy Lunch",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-09-17T12:00:00.000Z",
+    "endDate": "2026-09-17T12:00:00.000Z",
+    "locationName": "Ritzy Lunch",
+    "status": "Free",
+    "url": "/events/the-return-of-bike-night-at-ritzy-lunch-2026-09-17",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2814213,-80.34236159999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4549026,
+     38.5976262
+    ]
+   },
+   "properties": {
+    "slug": "2-million-bikers-2-dc-resurrection-2026-2026-09-11",
+    "name": "2 Million Bikers 2 DC Resurrection 2026",
+    "type": "group-ride",
+    "typeLabel": "Group Ride",
+    "region": "Out of State",
+    "date": "2026-09-11T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Washington DC",
+    "status": "Free",
+    "url": "/events/2-million-bikers-2-dc-resurrection-2026-2026-09-11",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.72575379999999,
+     39.307037099999995
+    ]
+   },
+   "properties": {
+    "slug": "2nd-annual-teresa-hogbin-coleman-memorial-ride-2026-10-10",
+    "name": "2nd Annual Teresa Hogbin Coleman Memorial Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-10-10T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "KSU",
+    "status": "Free",
+    "url": "/events/2nd-annual-teresa-hogbin-coleman-memorial-ride-2026-10-10",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.307037099999995,-78.72575379999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7548364,
+     39.341184
+    ]
+   },
+   "properties": {
+    "slug": "patriots-poker-run-to-flight-93-2026-10-10",
+    "name": "Patriots Poker Run to Flight 93",
+    "type": "poker-run",
+    "typeLabel": "Poker Run",
+    "region": "Potomac Highlands",
+    "date": "2026-10-10T12:00:00.000Z",
+    "endDate": "2026-10-10T12:00:00.000Z",
+    "locationName": "American Legion Post 91",
+    "status": "Free",
+    "url": "/events/patriots-poker-run-to-flight-93-2026-10-10",
+    "link": "https://www.facebook.com/yfwpost1101romneywv",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.341184,-78.7548364"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.4325015,
+     39.3052389
+    ]
+   },
+   "properties": {
+    "slug": "9th-annual-ride-supporting-k9s-for-warriors-2026-09-19",
+    "name": "9th Annual Ride Supporting K9s For Warriors",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Potomac Highlands",
+    "date": "2026-09-19T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "The American Legion Post 137",
+    "status": "Free",
+    "url": "/events/9th-annual-ride-supporting-k9s-for-warriors-2026-09-19",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3052389,-78.4325015"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.59972800000001,
+     38.327427199999995
+    ]
+   },
+   "properties": {
+    "slug": "the-valkyries-ladies-club-6th-annual-think-pink-ride-2026-10-04",
+    "name": "The Valkyries Ladies Club 6th Annual Think Pink Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-10-04T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "CAMC Cancer Center",
+    "status": "Free",
+    "url": "/events/the-valkyries-ladies-club-6th-annual-think-pink-ride-2026-10-04",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.327427199999995,-81.59972800000001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.2808099,
      39.3065122
     ]

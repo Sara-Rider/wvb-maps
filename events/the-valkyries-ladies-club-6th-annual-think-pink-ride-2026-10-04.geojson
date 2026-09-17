@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.59972800000001,
+     38.327427199999995
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "the-valkyries-ladies-club-6th-annual-think-pink-ride-2026-10-04",
+    "name": "The Valkyries Ladies Club 6th Annual Think Pink Ride",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-10-04T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "CAMC Cancer Center",
+    "status": "Free",
+    "url": "/events/the-valkyries-ladies-club-6th-annual-think-pink-ride-2026-10-04",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.327427199999995,-81.59972800000001"
+   }
+  }
+ ]
+}

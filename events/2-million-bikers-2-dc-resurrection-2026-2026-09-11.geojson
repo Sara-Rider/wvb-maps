@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4549026,
+     38.5976262
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "2-million-bikers-2-dc-resurrection-2026-2026-09-11",
+    "name": "2 Million Bikers 2 DC Resurrection 2026",
+    "type": "group-ride",
+    "typeLabel": "Group Ride",
+    "region": "Out of State",
+    "date": "2026-09-11T12:00:00.000Z",
+    "endDate": null,
+    "locationName": "Washington DC",
+    "status": "Free",
+    "url": "/events/2-million-bikers-2-dc-resurrection-2026-2026-09-11",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
+   }
+  }
+ ]
+}
