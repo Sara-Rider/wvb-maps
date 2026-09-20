@@ -1,15 +1,31 @@
 name: Render directory map thumbnails (BATCH)
 
-# Renders a map thumbnail for every row in tools/render-map/directory.csv,
-# using the locked defaults (zoom 12.5 / pin 110). Commits the PNGs to /renders
-# plus a render-index.csv (id -> raw URL) for the write-back step.
+# Renders a map thumbnail for every row that needs one, using the locked
+# defaults (zoom 12.5 / pin 110), commits the PNGs to /renders, and stamps
+# `Map Rendered` back onto those Airtable records.
 #
-# Before running: export your Directory as directory.csv (columns in
-# directory.template.csv) and commit it to tools/render-map/directory.csv.
+# THE CENSUS COMES FROM AIRTABLE, NOT FROM A COMMITTED CSV.
+# It reads the "5 · Render census" view (viw7WbMSIDu8PjJ7c) — the same queue the
+# operator reads in the Monday block — so there is one definition of the queue.
+# Nothing has to be exported, and no hidden-field state in a view can change
+# what the filenames are keyed on.
+#
+# THE TRIGGER STAYS MANUAL, DELIBERATELY. Run it when you mean to.
+#
+# Requires a repo secret AIRTABLE_TOKEN: a personal access token on the WVB
+# Operations base with data.records:read and data.records:write.
+# SOURCE=csv falls back to the legacy tools/render-map/directory.csv hand-off;
+# that path cannot stamp Map Rendered, because a CSV carries no record IDs.
 
 on:
   workflow_dispatch:
     inputs:
+      source:
+        description: "Census source: airtable (default) or csv (legacy hand-off)"
+        required: false
+        default: "airtable"
+        type: choice
+        options: ["airtable", "csv"]
       zoom:
         description: "Map zoom (locked default 12.5)"
         required: false
@@ -18,6 +34,21 @@ on:
         description: "Pin size px (locked default 110)"
         required: false
         default: "110"
+      stamp:
+        description: "Write Map Rendered back to Airtable after a successful push"
+        required: false
+        default: true
+        type: boolean
+      render_all:
+        description: "Ignore Needs Render and re-render every row the view returns (full coverage rebuild)"
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: "Read the census and print what WOULD render. No browser, no PNGs, no commit, no stamp."
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -41,11 +72,16 @@ jobs:
       - name: Render all thumbnails
         working-directory: tools/render-map
         env:
+          SOURCE: ${{ github.event.inputs.source }}
           IN_ZOOM: ${{ github.event.inputs.zoom }}
           IN_PIN: ${{ github.event.inputs.pin }}
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          RENDER_ALL: ${{ github.event.inputs.render_all == 'true' && '1' || '' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
         run: node render-batch.mjs
 
       - name: Commit renders
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name "wvb-map-bot"
           git config user.email "actions@users.noreply.github.com"
@@ -53,11 +89,25 @@ jobs:
           git commit -m "Batch render directory thumbnails" || echo "No changes to commit"
           git push
 
+      # Runs only after the push above succeeded. A stamp claims a tile exists
+      # in the repo — stamping a render that never landed would silence the
+      # census on a listing that still has no picture.
+      - name: Stamp Map Rendered in Airtable
+        if: ${{ github.event.inputs.stamp != 'false' && github.event.inputs.source != 'csv' && github.event.inputs.dry_run != 'true' }}
+        working-directory: tools/render-map
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: node stamp-rendered.mjs
+
       - name: Summary
         run: |
           echo "### Batch render complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "PNGs committed to /renders. Index (id -> raw URL):" >> $GITHUB_STEP_SUMMARY
+          echo "Source: \`${{ github.event.inputs.source }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "PNGs committed to /renders. Receipt (id -> raw URL):" >> $GITHUB_STEP_SUMMARY
           echo "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/renders/render-index.csv" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "The build log lists each row's category -> glyph resolution and any no-coord rows that were skipped." >> $GITHUB_STEP_SUMMARY
+          echo "**render-index.csv is a receipt, not an inventory.** The /renders folder is the inventory." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The build log lists each row's category -> glyph resolution, any no-coord rows that were skipped, and any record that rendered but could not be stamped." >> $GITHUB_STEP_SUMMARY
