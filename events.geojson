@@ -30,30 +30,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.4549026,
-     38.5976262
-    ]
-   },
-   "properties": {
-    "slug": "2-million-bikers-2-dc-resurrection-2026-2026-09-11",
-    "name": "2 Million Bikers 2 DC Resurrection 2026",
-    "type": "group-ride",
-    "typeLabel": "Group Ride",
-    "region": "Out of State",
-    "date": "2026-09-11T12:00:00.000Z",
-    "endDate": null,
-    "locationName": "Washington DC",
-    "status": "Free",
-    "url": "/events/2-million-bikers-2-dc-resurrection-2026-2026-09-11",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5976262,-80.4549026"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -78.72575379999999,
      39.307037099999995
     ]
@@ -191,30 +167,6 @@
     "url": "/events/bike-night-at-old-mountain-tavern-2026-09-09",
     "link": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223141,-80.09360989999999"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -77.8597175,
-     39.288990299999995
-    ]
-   },
-   "properties": {
-    "slug": "charles-town-car-show-2026-09-05",
-    "name": "Charles Town Car Show",
-    "type": "show",
-    "typeLabel": "Show",
-    "region": "Eastern Panhandle",
-    "date": "2026-09-05T12:00:00.000Z",
-    "endDate": null,
-    "locationName": "Charles Town",
-    "status": "Free",
-    "url": "/events/charles-town-car-show-2026-09-05",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.288990299999995,-77.8597175"
    }
   },
   {
