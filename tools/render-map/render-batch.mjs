@@ -224,7 +224,29 @@ map.on('load', () => {
 }
 
 // ---- Main ----
-const rows = loadRows();
+// ---- Source: Airtable census (default) or the legacy committed CSV ----
+// SOURCE=csv forces the old hand-off. Otherwise the census comes from the
+// "5 · Render census" view — the same queue the operator reads in Airtable.
+const SOURCE = (process.env.SOURCE || "airtable").trim().toLowerCase();
+
+let rows;
+if (SOURCE === "csv") {
+  console.log(`Source: CSV (${CSV_PATH})`);
+  rows = loadRows();
+} else {
+  const { requireToken, fetchCensus, toRow, CENSUS_VIEW_ID } =
+    await import("./airtable-source.mjs");
+  const token = requireToken();
+  console.log(`Source: Airtable view ${CENSUS_VIEW_ID} (5 · Render census)`);
+  const recs = await fetchCensus({ token });
+  rows = recs.map(r => toRow(r, { slug, resolveGlyphToken, GLYPHS }));
+  console.log(`Census returned ${rows.length} row(s) needing a tile.`);
+  if (!rows.length) {
+    console.log("Nothing to render. The census is empty — every pin has a current tile.");
+    process.exit(0);
+  }
+}
+
 const renderable = rows.filter(r => r.hasCoords);
 const skipped = rows.filter(r => !r.hasCoords);
 
@@ -267,6 +289,9 @@ const browser = await puppeteer.launch({
 });
 
 const index = [["id","name","category","glyph","token_source","certified","filename","raw_url"]];
+// Only rows whose PNG was actually written land here. This is what the
+// write-back stamps, so a row that failed to render must never reach it.
+const stamped = [];
 try {
   for (const row of renderable) {
     const page = await browser.newPage();
@@ -279,6 +304,7 @@ try {
       await page.screenshot({ path: path.join(outDir, file), clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT } });
       const url = `https://raw.githubusercontent.com/${REPO}/${REF}/renders/${file}`;
       index.push([row.id, row.name, row.category, row.glyph, row.tokenSource, String(row.certified), file, url]);
+      if (row.recordId) stamped.push({ recordId: row.recordId, name: row.name, filename: file });
       console.log("rendered", file);
     } catch (e) {
       console.log("FAILED", row.name, "-", e.message);
@@ -292,4 +318,17 @@ try {
 
 const csvOut = index.map(r => r.map(v => /[",\n]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : v).join(",")).join("\n");
 fs.writeFileSync(path.join(outDir, "render-index.csv"), csvOut);
+
+// The manifest the write-back consumes. Written even when empty so a stale one
+// from a previous run can never be stamped twice.
+fs.writeFileSync(
+  path.join(outDir, "rendered-records.json"),
+  JSON.stringify({ source: SOURCE, renderedAt: new Date().toISOString(), rendered: stamped }, null, 2)
+);
+
 console.log(`\nDone. ${index.length - 1} rendered. Index: renders/render-index.csv`);
+if (SOURCE === "csv") {
+  console.log("CSV source — no Airtable record IDs, so Map Rendered cannot be stamped for this run.");
+} else {
+  console.log(`${stamped.length} record(s) queued for the Map Rendered write-back.`);
+}
