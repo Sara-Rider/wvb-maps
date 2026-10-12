@@ -294,30 +294,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -78.1838848,
-     38.9090188
-    ]
-   },
-   "properties": {
-    "slug": "ride-all-day-for-sma-2026-10-17",
-    "name": "Ride All Day For SMA",
-    "type": "charity-ride",
-    "typeLabel": "Charity Ride",
-    "region": "Out of State",
-    "date": "2026-10-17T12:00:00.000Z",
-    "endDate": null,
-    "locationName": "Gateway Plaza",
-    "status": "Free",
-    "url": "/events/ride-all-day-for-sma-2026-10-17",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9090188,-78.1838848"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -80.0502702,
      38.5013869
     ]
@@ -551,30 +527,6 @@
     "url": "/events/operation-activet-5th-annual-celebration-ride-poker-run-2026-08-22",
     "link": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6590728,-80.0139465"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -82.4327011,
-     38.4237059
-    ]
-   },
-   "properties": {
-    "slug": "blue-knights-wv-iii-ride-with-gops-xxiv-2026-10-04",
-    "name": "Blue Knights WV III Ride with GOPS XXIV",
-    "type": "charity-ride",
-    "typeLabel": "Charity Ride",
-    "region": "Metro Valley",
-    "date": "2026-10-04T12:00:00.000Z",
-    "endDate": null,
-    "locationName": "Buddy's BBQ",
-    "status": "Free",
-    "url": "/events/blue-knights-wv-iii-ride-with-gops-xxiv-2026-10-04",
-    "link": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4237059,-82.4327011"
    }
   }
  ]
