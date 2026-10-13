@@ -31,8 +31,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -77.86176169999999,
-     39.28834874305949
+     -77.86175700953504,
+     39.28815976023299
     ]
    },
    "properties": {
@@ -49,11 +49,11 @@
     "certified": false,
     "featured": false,
     "reserved": false,
-    "miles": 0.01,
+    "miles": 0.0,
     "url": "/directory/american-legion-post-71",
     "website": "https://www.legionpost71wv.org/",
     "tel": "tel:+13047257212",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28834874305949,-77.86176169999999"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28815976023299,-77.86175700953504"
    }
   }
  ]
