@@ -21093,39 +21093,13 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.14864,
-     37.95986
-    ]
-   },
-   "properties": {
-    "kind": "stop",
-    "order": 5,
-    "slug": "coal-heritage-trail",
-    "name": "Coal Heritage Trail",
-    "category": "Attraction",
-    "type": "scenic-road",
-    "short": "A National Scenic Byway through the historic coal-mining communities of southern West Virginia.",
-    "region": "New River-Greenbrier Valley",
-    "county": "Fayette",
-    "certified": false,
-    "url": "/directory/coal-heritage-trail",
-    "website": null,
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -80.948414,
      38.007329
     ]
    },
    "properties": {
     "kind": "stop",
-    "order": 6,
+    "order": 5,
     "slug": "babcock-state-park",
     "name": "Babcock State Park",
     "category": "Attraction",
@@ -21324,6 +21298,37 @@
     "website": "https://www.rifrafters.com",
     "tel": "tel:+13045741065",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.048196740791504,-81.1274308610222"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.14864,
+     37.95986
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "coal-heritage-trail",
+    "name": "Coal Heritage Trail",
+    "category": "Attraction",
+    "type": "scenic-road",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "A National Scenic Byway through the historic coal-mining communities of southern West Virginia.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.0,
+    "routeMile": 72.32,
+    "url": "/directory/coal-heritage-trail",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864"
    }
   },
   {
