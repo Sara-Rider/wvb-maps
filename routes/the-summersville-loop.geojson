@@ -20998,7 +20998,7 @@
     "order": 1,
     "slug": "summersville-lake-dam-overlook",
     "name": "Summersville Lake Dam Overlook",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "overlook",
     "short": "Roadside overlook above Summersville Lake — West Virginia's largest lake, known for some of the clearest, deepest-blue water in the eastern United States.",
     "region": "Mountain Lakes",
@@ -21024,7 +21024,7 @@
     "order": 2,
     "slug": "hawks-nest-state-park",
     "name": "Hawks Nest State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "overlook",
     "short": "State park in Ansted with a canyon-rim overlook high above the New River Gorge.",
     "region": "New River-Greenbrier Valley",
@@ -21050,7 +21050,7 @@
     "order": 3,
     "slug": "kanawha-falls",
     "name": "Kanawha Falls",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "waterfall",
     "short": "A wide, roadside waterfall on the Kanawha River at Glen Ferris — no hiking required.",
     "region": "New River-Greenbrier Valley",
@@ -21076,7 +21076,7 @@
     "order": 4,
     "slug": "fayette-station-road-tunney-hunsaker-bridge",
     "name": "Fayette Station Road & Tunney Hunsaker Bridge",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "scenic-road",
     "short": "A steep, switchbacked road descending into the New River Gorge to a river-level bridge beneath the New River Gorge Bridge.",
     "region": "New River-Greenbrier Valley",
@@ -21102,7 +21102,7 @@
     "order": 5,
     "slug": "coal-heritage-trail",
     "name": "Coal Heritage Trail",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "scenic-road",
     "short": "A National Scenic Byway through the historic coal-mining communities of southern West Virginia.",
     "region": "New River-Greenbrier Valley",
@@ -21128,7 +21128,7 @@
     "order": 6,
     "slug": "babcock-state-park",
     "name": "Babcock State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "park",
     "short": "State park home to the Glade Creek Grist Mill, purported to be the most photographed spot in West Virginia.",
     "region": "New River-Greenbrier Valley",
@@ -21184,7 +21184,7 @@
     "kind": "nearby",
     "slug": "almost-heaven-swing-summersville-lake-state-park",
     "name": "Almost Heaven Swing - Summersville Lake State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "swing",
     "lane": "attraction",
     "laneLabel": "See & Do",
@@ -21238,8 +21238,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.12003399999999,
-     38.050171
+     -81.11999069902846,
+     38.05011863844972
     ]
    },
    "properties": {
@@ -21256,12 +21256,12 @@
     "certified": false,
     "featured": false,
     "reserved": false,
-    "offRouteMiles": 0.87,
+    "offRouteMiles": 0.86,
     "routeMile": 64.77,
     "url": "/directory/bear-mountain-cabins-campground",
     "website": "https://bearmountaincamping.com",
     "tel": "tel:+13045732267",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.050171,-81.12003399999999"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.05011863844972,-81.11999069902846"
    }
   },
   {
@@ -21300,8 +21300,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.1258067,
-     38.0477943
+     -81.1274308610222,
+     38.048196740791504
     ]
    },
    "properties": {
@@ -21318,12 +21318,12 @@
     "certified": false,
     "featured": false,
     "reserved": false,
-    "offRouteMiles": 1.13,
-    "routeMile": 65.91,
+    "offRouteMiles": 1.22,
+    "routeMile": 65.93,
     "url": "/directory/rifrafters-campground",
     "website": "https://www.rifrafters.com",
     "tel": "tel:+13045741065",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.0477943,-81.1258067"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.048196740791504,-81.1274308610222"
    }
   },
   {
@@ -21339,7 +21339,7 @@
     "kind": "nearby",
     "slug": "almost-heaven-swing-babcock-state-park",
     "name": "Almost Heaven Swing - Babcock State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "swing",
     "lane": "attraction",
     "laneLabel": "See & Do",

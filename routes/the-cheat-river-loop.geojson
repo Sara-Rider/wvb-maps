@@ -19572,8 +19572,8 @@
     "order": 2,
     "slug": "international-mothers-day-shrine",
     "name": "International Mother's Day Shrine",
-    "category": "Attraction \\ Sight to See",
-    "type": "attraction",
+    "category": "Attraction",
+    "type": "other",
     "short": "Birthplace of Mother's Day as a national observance, in downtown Grafton. Seasonal hours, call ahead.",
     "region": "Mountaineer Country",
     "county": "Taylor",
@@ -19598,7 +19598,7 @@
     "order": 3,
     "slug": "tygart-lake-state-park",
     "name": "Tygart Lake State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "park",
     "short": "Lake, dam overlook, lodge, and on-site dining a few minutes from Grafton.",
     "region": "Mountaineer Country",
@@ -19624,8 +19624,8 @@
     "order": 4,
     "slug": "hamilton-round-barn",
     "name": "Hamilton Round Barn",
-    "category": "Attraction \\ Sight to See",
-    "type": "attraction",
+    "category": "Attraction",
+    "type": "other",
     "short": "1911 dairy barn turned museum in Mannington. Narrow visiting window, plan ahead.",
     "region": "Mountaineer Country",
     "county": "Marion",
@@ -19650,8 +19650,8 @@
     "order": 5,
     "slug": "mason-dixon-historical-park",
     "name": "Mason-Dixon Historical Park",
-    "category": "Attraction \\ Sight to See",
-    "type": "attraction",
+    "category": "Attraction",
+    "type": "park",
     "short": "Monuments, hiking, and picnicking along Dunkard Creek near Core, marking the historic Mason-Dixon Line survey.",
     "region": "Mountaineer Country",
     "county": "Monongalia",
@@ -19688,7 +19688,7 @@
     "offRouteMiles": 1.39,
     "routeMile": 0.55,
     "url": "/directory/rosemarys-thyme",
-    "website": null,
+    "website": "https://www.prestoncountryclub.com/rosemarys-thyme",
     "tel": "tel:+13043296750",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4586445,-79.6534144"
    }
@@ -19706,7 +19706,7 @@
     "kind": "nearby",
     "slug": "rgs-almost-heaven-harley-davidson",
     "name": "RG's Almost Heaven Harley-Davidson",
-    "category": "Motorcycle Dealers",
+    "category": "Motorcycle Dealer",
     "type": "moto",
     "lane": "moto",
     "laneLabel": "Moto Service",
@@ -19737,7 +19737,7 @@
     "kind": "nearby",
     "slug": "almost-heaven-swing-valley-falls-state-park",
     "name": "Almost Heaven Swing - Valley Falls State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "swing",
     "lane": "attraction",
     "laneLabel": "See & Do",
@@ -19768,7 +19768,7 @@
     "kind": "nearby",
     "slug": "barrackville-covered-bridge",
     "name": "Barrackville Covered Bridge",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "bridge",
     "lane": "attraction",
     "laneLabel": "See & Do",
@@ -19799,7 +19799,7 @@
     "kind": "nearby",
     "slug": "fish-creek-covered-bridge",
     "name": "Fish Creek Covered Bridge",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "bridge",
     "lane": "attraction",
     "laneLabel": "See & Do",
@@ -19822,15 +19822,46 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.01417359999999,
-     39.6581795
+     -79.9714631,
+     39.6540244
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "black-bear-burritos",
+    "name": "Black Bear Burritos",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Long-running Morgantown burrito spot on University Avenue at Evansdale.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.64,
+    "routeMile": 111.72,
+    "url": "/directory/black-bear-burritos",
+    "website": "https://www.blackbearburritos.com",
+    "tel": "tel:+13047774867",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
     ]
    },
    "properties": {
     "kind": "nearby",
     "slug": "triple-s-harley-davidson",
     "name": "Triple S Harley-Davidson",
-    "category": "Motorcycle Dealers",
+    "category": "Motorcycle Dealer",
     "type": "moto",
     "lane": "moto",
     "laneLabel": "Moto Service",
@@ -19840,12 +19871,12 @@
     "certified": false,
     "featured": false,
     "reserved": false,
-    "offRouteMiles": 0.18,
-    "routeMile": 112.5,
+    "offRouteMiles": 0.23,
+    "routeMile": 112.51,
     "url": "/directory/triple-s-harley-davidson",
     "website": "https://www.tripleshd.com",
     "tel": "tel:+13042848244",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6581795,-80.01417359999999"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
    }
   },
   {

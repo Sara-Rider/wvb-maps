@@ -10937,8 +10937,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -78.5231614,
-     39.3736064
+     -78.52312921349225,
+     39.37376812633502
     ]
    },
    "properties": {
@@ -10955,7 +10955,7 @@
     "url": "/directory/slanesville-general-store",
     "website": null,
     "tel": "tel:+13044967677",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3736064,-78.5231614"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.37376812633502,-78.52312921349225"
    }
   },
   {
@@ -10963,8 +10963,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -79.0020672,
-     39.4107572
+     -79.00209938650774,
+     39.41091055101128
     ]
    },
    "properties": {
@@ -10979,9 +10979,71 @@
     "county": "Mineral",
     "certified": false,
     "url": "/directory/keyser-inn",
-    "website": null,
+    "website": "https://www.keyserinn.com",
     "tel": "tel:+13047880913",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4107572,-79.0020672"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.41091055101128,-79.00209938650774"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7022996,
+     39.3291121
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "main-street-grill-romney",
+    "name": "Main Street Grill - Romney",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Steakhouse and American kitchen at Romney - the town's sit-down dinner, on the US 50 run.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.03,
+    "routeMile": 20.31,
+    "url": "/directory/main-street-grill-romney",
+    "website": "https://www.main-st-grill.com",
+    "tel": "tel:+13048224745",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3291121,-78.7022996"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.75717860000002,
+     39.35489
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "romney-cycles",
+    "name": "Romney Cycles",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Multi-brand powersports dealer and service shop at Romney, just off US 50.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.84,
+    "routeMile": 24.18,
+    "url": "/directory/romney-cycles",
+    "website": "https://www.romneycycles.com/",
+    "tel": "tel:+13048223933",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
    }
   }
  ]

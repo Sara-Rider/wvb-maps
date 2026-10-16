@@ -4,9 +4,527 @@
   "name": "West Virginia Bikers — all published routes",
   "purpose": "Feeds the /routes index map. Lines are simplified to 0.15 mi; route pages use the full-fidelity per-route feed.",
   "contract": "kind=route (line) and kind=route-start (point)",
-  "count": 6
+  "count": 7
  },
  "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.297512,
+      37.796468
+     ],
+     [
+      -80.283254,
+      37.802068
+     ],
+     [
+      -80.268163,
+      37.789279
+     ],
+     [
+      -80.251163,
+      37.788088
+     ],
+     [
+      -80.229098,
+      37.780164
+     ],
+     [
+      -80.240406,
+      37.759812
+     ],
+     [
+      -80.239907,
+      37.746339
+     ],
+     [
+      -80.22488,
+      37.739534
+     ],
+     [
+      -80.226287,
+      37.727239
+     ],
+     [
+      -80.211168,
+      37.724484
+     ],
+     [
+      -80.201595,
+      37.718743
+     ],
+     [
+      -80.234184,
+      37.676486
+     ],
+     [
+      -80.229522,
+      37.664856
+     ],
+     [
+      -80.237164,
+      37.655699
+     ],
+     [
+      -80.241216,
+      37.630194
+     ],
+     [
+      -80.248892,
+      37.618842
+     ],
+     [
+      -80.229665,
+      37.620082
+     ],
+     [
+      -80.245381,
+      37.602133
+     ],
+     [
+      -80.25266,
+      37.586312
+     ],
+     [
+      -80.247562,
+      37.585191
+     ],
+     [
+      -80.248902,
+      37.582219
+     ],
+     [
+      -80.262799,
+      37.570915
+     ],
+     [
+      -80.243162,
+      37.552986
+     ],
+     [
+      -80.271092,
+      37.53791
+     ],
+     [
+      -80.235606,
+      37.534746
+     ],
+     [
+      -80.249719,
+      37.525381
+     ],
+     [
+      -80.217688,
+      37.531466
+     ],
+     [
+      -80.198664,
+      37.509922
+     ],
+     [
+      -80.184868,
+      37.508116
+     ],
+     [
+      -80.16217,
+      37.498052
+     ],
+     [
+      -80.136884,
+      37.505227
+     ],
+     [
+      -80.109524,
+      37.500888
+     ],
+     [
+      -80.103834,
+      37.486381
+     ],
+     [
+      -80.109445,
+      37.455178
+     ],
+     [
+      -80.152069,
+      37.414688
+     ],
+     [
+      -80.156857,
+      37.381894
+     ],
+     [
+      -80.146577,
+      37.374485
+     ],
+     [
+      -80.109756,
+      37.382434
+     ],
+     [
+      -80.076439,
+      37.379869
+     ],
+     [
+      -80.080464,
+      37.372377
+     ],
+     [
+      -80.088524,
+      37.369207
+     ],
+     [
+      -80.088908,
+      37.358247
+     ],
+     [
+      -80.088524,
+      37.369207
+     ],
+     [
+      -80.080464,
+      37.372377
+     ],
+     [
+      -80.076439,
+      37.379869
+     ],
+     [
+      -80.109756,
+      37.382434
+     ],
+     [
+      -80.149068,
+      37.375192
+     ],
+     [
+      -80.160383,
+      37.359667
+     ],
+     [
+      -80.178874,
+      37.348348
+     ],
+     [
+      -80.210803,
+      37.339307
+     ],
+     [
+      -80.218813,
+      37.341812
+     ],
+     [
+      -80.245888,
+      37.336707
+     ],
+     [
+      -80.282438,
+      37.316041
+     ],
+     [
+      -80.326367,
+      37.301823
+     ],
+     [
+      -80.371768,
+      37.29448
+     ],
+     [
+      -80.371434,
+      37.283713
+     ],
+     [
+      -80.391227,
+      37.280498
+     ],
+     [
+      -80.39463,
+      37.269157
+     ],
+     [
+      -80.410677,
+      37.257943
+     ],
+     [
+      -80.420838,
+      37.277144
+     ],
+     [
+      -80.455807,
+      37.285184
+     ],
+     [
+      -80.495373,
+      37.288015
+     ],
+     [
+      -80.512673,
+      37.306796
+     ],
+     [
+      -80.565662,
+      37.3011
+     ],
+     [
+      -80.59267,
+      37.32085
+     ],
+     [
+      -80.653014,
+      37.318296
+     ],
+     [
+      -80.668281,
+      37.322453
+     ],
+     [
+      -80.675154,
+      37.32969
+     ],
+     [
+      -80.716994,
+      37.339121
+     ],
+     [
+      -80.751167,
+      37.335285
+     ],
+     [
+      -80.765173,
+      37.350212
+     ],
+     [
+      -80.777949,
+      37.349057
+     ],
+     [
+      -80.800033,
+      37.335563
+     ],
+     [
+      -80.807053,
+      37.335572
+     ],
+     [
+      -80.807598,
+      37.348032
+     ],
+     [
+      -80.824874,
+      37.383451
+     ],
+     [
+      -80.800726,
+      37.397343
+     ],
+     [
+      -80.782495,
+      37.39503
+     ],
+     [
+      -80.763978,
+      37.40183
+     ],
+     [
+      -80.72951,
+      37.425042
+     ],
+     [
+      -80.678712,
+      37.447345
+     ],
+     [
+      -80.662701,
+      37.458376
+     ],
+     [
+      -80.657151,
+      37.478315
+     ],
+     [
+      -80.631321,
+      37.478005
+     ],
+     [
+      -80.608336,
+      37.486689
+     ],
+     [
+      -80.60505,
+      37.495654
+     ],
+     [
+      -80.611704,
+      37.500775
+     ],
+     [
+      -80.609155,
+      37.508139
+     ],
+     [
+      -80.616876,
+      37.524617
+     ],
+     [
+      -80.604391,
+      37.526817
+     ],
+     [
+      -80.598907,
+      37.539789
+     ],
+     [
+      -80.5904,
+      37.546433
+     ],
+     [
+      -80.575263,
+      37.546525
+     ],
+     [
+      -80.568823,
+      37.558902
+     ],
+     [
+      -80.572097,
+      37.570167
+     ],
+     [
+      -80.56794,
+      37.573013
+     ],
+     [
+      -80.559393,
+      37.569315
+     ],
+     [
+      -80.552253,
+      37.575039
+     ],
+     [
+      -80.549287,
+      37.587983
+     ],
+     [
+      -80.543488,
+      37.589675
+     ],
+     [
+      -80.540078,
+      37.600757
+     ],
+     [
+      -80.529904,
+      37.609747
+     ],
+     [
+      -80.522775,
+      37.623662
+     ],
+     [
+      -80.492107,
+      37.654801
+     ],
+     [
+      -80.470415,
+      37.664869
+     ],
+     [
+      -80.465994,
+      37.682794
+     ],
+     [
+      -80.441303,
+      37.691628
+     ],
+     [
+      -80.437532,
+      37.705023
+     ],
+     [
+      -80.441528,
+      37.712885
+     ],
+     [
+      -80.420572,
+      37.730157
+     ],
+     [
+      -80.408174,
+      37.743491
+     ],
+     [
+      -80.405928,
+      37.752757
+     ],
+     [
+      -80.397734,
+      37.758076
+     ],
+     [
+      -80.394203,
+      37.780774
+     ],
+     [
+      -80.384336,
+      37.7801
+     ],
+     [
+      -80.37953,
+      37.773118
+     ],
+     [
+      -80.352329,
+      37.772616
+     ],
+     [
+      -80.309844,
+      37.783152
+     ],
+     [
+      -80.297512,
+      37.796468
+     ]
+    ]
+   },
+   "properties": {
+    "kind": "route",
+    "slug": "hanging-rock-tavern-run",
+    "name": "The Hanging Rock Tavern Run",
+    "miles": 163,
+    "rideTime": "6-7 hours",
+    "difficulty": "Intermediate",
+    "surface": "Paved",
+    "region": "New River-Greenbrier Valley",
+    "secondaryRegion": "Out of State",
+    "short": "A 163-mile Greenbrier Valley loop that crosses into Virginia at Sweet Springs, runs the Catawba Valley to the Hanging Rock Tavern, and comes home through Narrows, Union, and Monroe County's covered bridges. A full day for riders who want distance.",
+    "image": null,
+    "stops": 0,
+    "nearby": 3,
+    "url": "/routes/hanging-rock-tavern-run"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.297512,
+     37.796468
+    ]
+   },
+   "properties": {
+    "kind": "route-start",
+    "slug": "hanging-rock-tavern-run",
+    "name": "The Hanging Rock Tavern Run",
+    "miles": 163,
+    "region": "New River-Greenbrier Valley",
+    "url": "/routes/hanging-rock-tavern-run"
+   }
+  },
   {
    "type": "Feature",
    "geometry": {
@@ -343,7 +861,7 @@
     "short": "A 92-mile, two-day loop through Hampshire and Mineral County back roads, with an overnight in Keyser. An easy-paced ride built around small-town stops.",
     "image": null,
     "stops": 2,
-    "nearby": 0,
+    "nearby": 2,
     "url": "/routes/the-mountain-store-loop"
    }
   },
@@ -949,7 +1467,7 @@
     "short": "A 143-mile Mountaineer Country loop through Rowlesburg, Grafton, Mannington, and Core, passing the birthplace of Mother's Day, a working dam, and a century-old round barn. A full day for riders who want distance.",
     "image": null,
     "stops": 5,
-    "nearby": 7,
+    "nearby": 8,
     "url": "/routes/the-cheat-river-loop"
    }
   },
@@ -1275,7 +1793,7 @@
     "short": "A 96-mile Eastern Panhandle loop along the Washington Heritage Trail, crossing Mills Gap and closing out at a Berkeley Springs roadhouse. A full day of mountain views and gap-road curves.",
     "image": null,
     "stops": 2,
-    "nearby": 1,
+    "nearby": 2,
     "url": "/routes/mills-gap-mountain-loop"
    }
   },
@@ -2139,7 +2657,7 @@
     "short": "A 93-mile loop through McDowell County's coal camp towns, from the Kimball War Memorial to the historic company store ruins at Pageton and Elkhorn. Built for one full day of curves, coal country history, and small-town stops along Route 52.",
     "image": null,
     "stops": 6,
-    "nearby": 4,
+    "nearby": 1,
     "url": "/routes/head-of-the-dragon"
    }
   },

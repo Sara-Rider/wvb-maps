@@ -13817,8 +13817,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -78.1758881,
-     39.6298459
+     -78.1758237269845,
+     39.62999050491401
     ]
    },
    "properties": {
@@ -13835,7 +13835,7 @@
     "url": "/directory/hillbilly-heaven-bar-and-grill",
     "website": "https://hillbillyheavenbarandgrill.com/",
     "tel": "tel:+13042580004",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6298459,-78.1758881"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.62999050491401,-78.1758237269845"
    }
   },
   {
@@ -13852,7 +13852,7 @@
     "order": 2,
     "slug": "sleepy-creek-wma",
     "name": "Sleepy Creek Wildlife Management Area",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "park",
     "short": "23,000-acre WMA spanning Berkeley and Morgan counties, with a 205-acre lake and scenic overlooks.",
     "region": "Eastern Panhandle",
@@ -13877,7 +13877,7 @@
     "kind": "nearby",
     "slug": "almost-heaven-swing-cacapon-resort-state-park",
     "name": "Almost Heaven Swing - Cacapon Resort State Park",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "swing",
     "lane": "attraction",
     "laneLabel": "See & Do",
@@ -13893,6 +13893,37 @@
     "website": null,
     "tel": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5085891,-78.3102554"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.86175700953504,
+     39.28815976023299
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-71",
+    "name": "American Legion Post 71",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "Charles Town post with a canteen, a Legion Riders chapter and Friday-night bands, a short walk off the historic district.",
+    "region": "Eastern Panhandle",
+    "county": "Jefferson",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.02,
+    "routeMile": 48.77,
+    "url": "/directory/american-legion-post-71",
+    "website": "https://www.legionpost71wv.org/",
+    "tel": "tel:+13047257212",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28815976023299,-77.86175700953504"
    }
   }
  ]

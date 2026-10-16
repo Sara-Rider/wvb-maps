@@ -19174,7 +19174,7 @@
     "order": 1,
     "slug": "kimball-war-memorial",
     "name": "Kimball War Memorial",
-    "category": "Attraction \\ Sight to See",
+    "category": "Attraction",
     "type": "monument",
     "short": "First memorial in the US built to honor African American WWI veterans, restored and open on the hill above Kimball.",
     "region": "New River-Greenbrier Valley",
@@ -19200,8 +19200,8 @@
     "order": 2,
     "slug": "page-coal-and-coke-company-store",
     "name": "Page Coal and Coke Company Store",
-    "category": "Attraction \\ Sight to See",
-    "type": "attraction",
+    "category": "Attraction",
+    "type": "other",
     "short": "1914 brick company store in Pageton, National Register-listed, one of the best-preserved coal camp buildings left in McDowell County.",
     "region": "New River-Greenbrier Valley",
     "county": "McDowell",
@@ -19217,8 +19217,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.5565115,
-     37.4288957
+     -81.55646858465634,
+     37.42906183701886
     ]
    },
    "properties": {
@@ -19234,8 +19234,8 @@
     "certified": false,
     "url": "/directory/coaltown-tavern",
     "website": "https://coaltowntavern.com/",
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4288957,-81.5565115"
+    "tel": "tel:+16812012327",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.42906183701886,-81.55646858465634"
    }
   },
   {
@@ -19243,8 +19243,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.5719915,
-     37.4410034
+     -81.5720773306873,
+     37.44120358397532
     ]
    },
    "properties": {
@@ -19261,7 +19261,7 @@
     "url": "/directory/sterling-drive-in",
     "website": null,
     "tel": "tel:+13044363271",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4410034,-81.5719915"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.44120358397532,-81.5720773306873"
    }
   },
   {
@@ -19295,8 +19295,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.6910459,
-     37.3019705
+     -81.6910517738418,
+     37.30199080674365
     ]
    },
    "properties": {
@@ -19311,9 +19311,9 @@
     "county": "McDowell",
     "certified": false,
     "url": "/directory/taco-todds-savage-tacos",
-    "website": null,
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459"
+    "website": "https://tacotoddwarwv.com/",
+    "tel": "tel:+16812252004",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.30199080674365,-81.6910517738418"
    }
   },
   {
@@ -19329,7 +19329,7 @@
     "kind": "nearby",
     "slug": "cole-harley-davidson",
     "name": "Cole Harley-Davidson",
-    "category": "Motorcycle Dealers",
+    "category": "Motorcycle Dealer",
     "type": "moto",
     "lane": "moto",
     "laneLabel": "Moto Service",
@@ -19345,99 +19345,6 @@
     "website": "https://colehd.com",
     "tel": "tel:+13043248116",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=37.2580386,-81.2190507"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -81.3493179,
-     37.4460792
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "full-throttle-at-riders-paradise",
-    "name": "Full Throttle at Riders Paradise",
-    "category": "Bar",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
-    "short": "The bar at Rider's Paradise, relaunching under new operators — not yet open.",
-    "region": "Hatfield-McCoy Mountains",
-    "county": "Wyoming",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 4.74,
-    "routeMile": 85.96,
-    "url": "/directory/full-throttle-at-riders-paradise",
-    "website": "https://www.ridersparadisewv.com",
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4460792,-81.3493179"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -81.3493179,
-     37.4460792
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "rider-s-paradise",
-    "name": "Rider's Paradise",
-    "category": "Lodging",
-    "type": "lodging",
-    "lane": "lodging",
-    "laneLabel": "Lodging",
-    "short": "Cabin lodging on the Pinnacle Creek trail system at Herndon — ride from the door.",
-    "region": "Hatfield-McCoy Mountains",
-    "county": "Wyoming",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 4.74,
-    "routeMile": 85.96,
-    "url": "/directory/rider-s-paradise",
-    "website": "https://www.ridersparadisewv.com",
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4460792,-81.3493179"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -81.3652011,
-     37.457514
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "outlaw-bar-grill",
-    "name": "Outlaw Bar & Grill",
-    "category": "Bar",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
-    "short": "Trailside bar and grill on the Pinnacle Creek / Outlaw system — you can ride to the door instead of trailering in.",
-    "region": "Hatfield-McCoy Mountains",
-    "county": "Wyoming",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 4.5,
-    "routeMile": 85.97,
-    "url": "/directory/outlaw-bar-grill",
-    "website": "https://outlawbarandgrill.com",
-    "tel": "tel:+13042948873",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.457514,-81.3652011"
    }
   }
  ]
