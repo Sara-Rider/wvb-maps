@@ -1,51 +1,48 @@
-name: Render directory map thumbnails (BATCH)
+name: Render directory card art
 
-# Renders a map thumbnail for every row that needs one, using the locked
-# defaults (zoom 12.5 / pin 110), commits the PNGs to /renders, and stamps
-# `Map Rendered` back onto those Airtable records.
+# Draws the E3 directory card (generated ridge landscape, travel region over
+# county) for every listing that needs one, commits the PNGs to /renders,
+# points each live Webflow item's featured-image at its new card, and stamps
+# Map Rendered in Airtable for the listings that landed.
 #
-# THE CENSUS COMES FROM AIRTABLE, NOT FROM A COMMITTED CSV.
-# It reads the "5 · Render census" view (viw7WbMSIDu8PjJ7c) — the same queue the
-# operator reads in the Monday block — so there is one definition of the queue.
-# Nothing has to be exported, and no hidden-field state in a view can change
-# what the filenames are keyed on.
+# Replaced the pin-map thumbnail render on 2026-10-19.
+# Spec: WVB_DirectoryCardArt_Spec.md (WVB Business Brain project).
 #
-# THE TRIGGER STAYS MANUAL, DELIBERATELY. Run it when you mean to.
+# THE QUEUE COMES FROM AIRTABLE: view "5 · Render census" on the live base,
+# narrowed to rows whose Needs Render is set. Three ways to run it:
+#   - normal:      leave everything blank — renders what Needs Render asks for
+#   - one record:  put an Airtable record ID in record_ids — the proof run
+#   - everything:  tick render_all — the one-time switch from the old map tiles
 #
-# Requires a repo secret AIRTABLE_TOKEN: a personal access token on the WVB
-# Operations base with data.records:read and data.records:write.
-# SOURCE=csv falls back to the legacy tools/render-map/directory.csv hand-off;
-# that path cannot stamp Map Rendered, because a CSV carries no record IDs.
+# THE TRIGGER STAYS MANUAL. Run it when you mean to.
+#
+# Secrets: AIRTABLE_TOKEN (read + write on the live WVB Operations base),
+#          WEBFLOW_API_TOKEN (CMS read + write).
 
 on:
   workflow_dispatch:
     inputs:
-      source:
-        description: "Census source: airtable (default) or csv (legacy hand-off)"
+      record_ids:
+        description: "Only these Airtable record IDs (comma-separated). Blank = use Needs Render."
         required: false
-        default: "airtable"
-        type: choice
-        options: ["airtable", "csv"]
-      zoom:
-        description: "Map zoom (locked default 12.5)"
-        required: false
-        default: "12.5"
-      pin:
-        description: "Pin size px (locked default 110)"
-        required: false
-        default: "110"
-      stamp:
-        description: "Write Map Rendered back to Airtable after a successful push"
-        required: false
-        default: true
-        type: boolean
+        default: ""
       render_all:
-        description: "Ignore Needs Render and re-render every row the view returns (full coverage rebuild)"
+        description: "Re-render every Verified/Published listing with a pin, ignoring Needs Render"
         required: false
         default: false
         type: boolean
+      write_webflow:
+        description: "Point each listing's Webflow featured-image at its new card"
+        required: false
+        default: true
+        type: boolean
+      stamp:
+        description: "Stamp Map Rendered in Airtable for listings whose card landed"
+        required: false
+        default: true
+        type: boolean
       dry_run:
-        description: "Read the census and print what WOULD render. No browser, no PNGs, no commit, no stamp."
+        description: "Read the queue and print what WOULD render. Nothing drawn, written or stamped."
         required: false
         default: false
         type: boolean
@@ -53,8 +50,12 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: directory-card-art
+  cancel-in-progress: false
+
 jobs:
-  batch:
+  render:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
@@ -65,49 +66,45 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install dependencies (Puppeteer + Chromium)
+      - name: Install dependencies (Puppeteer + Chromium, Raleway)
         working-directory: tools/render-map
-        run: npm install
+        run: npm ci
 
-      - name: Render all thumbnails
+      - name: Render cards
         working-directory: tools/render-map
         env:
-          SOURCE: ${{ github.event.inputs.source }}
-          IN_ZOOM: ${{ github.event.inputs.zoom }}
-          IN_PIN: ${{ github.event.inputs.pin }}
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          RECORD_IDS: ${{ github.event.inputs.record_ids }}
           RENDER_ALL: ${{ github.event.inputs.render_all == 'true' && '1' || '' }}
           DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
         run: node render-batch.mjs
 
-      - name: Commit renders
+      - name: Commit cards
+        id: commit
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name "wvb-map-bot"
           git config user.email "actions@users.noreply.github.com"
           git add renders/
-          git commit -m "Batch render directory thumbnails" || echo "No changes to commit"
+          git commit -m "Render directory card art" || echo "No changes to commit"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      # Runs only after the push above succeeded. A stamp claims a tile exists
-      # in the repo — stamping a render that never landed would silence the
-      # census on a listing that still has no picture.
+      # Runs only after the push: the URL it hands Webflow is pinned to that commit.
+      - name: Write cards to Webflow
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.write_webflow != 'false' }}
+        working-directory: tools/render-map
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+          COMMIT_SHA: ${{ steps.commit.outputs.sha }}
+        run: node webflow-write.mjs
+
+      # Runs last. With write_webflow off, only listings not yet on the site are
+      # safe to stamp, so the stamp step is skipped entirely rather than guessing.
       - name: Stamp Map Rendered in Airtable
-        if: ${{ github.event.inputs.stamp != 'false' && github.event.inputs.source != 'csv' && github.event.inputs.dry_run != 'true' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.stamp != 'false' && github.event.inputs.write_webflow != 'false' }}
         working-directory: tools/render-map
         env:
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
         run: node stamp-rendered.mjs
-
-      - name: Summary
-        run: |
-          echo "### Batch render complete" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Source: \`${{ github.event.inputs.source }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "PNGs committed to /renders. Receipt (id -> raw URL):" >> $GITHUB_STEP_SUMMARY
-          echo "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/renders/render-index.csv" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**render-index.csv is a receipt, not an inventory.** The /renders folder is the inventory." >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "The build log lists each row's category -> glyph resolution, any no-coord rows that were skipped, and any record that rendered but could not be stamped." >> $GITHUB_STEP_SUMMARY

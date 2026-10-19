@@ -4,8 +4,11 @@
 // "for the write-back step" and there was no write-back step, so `Map Rendered`
 // had to be typed by hand on every row and the census never cleared itself.
 //
-// Reads renders/rendered-records.json (written by render-batch.mjs) and PATCHes
-// Map Rendered on exactly those records.
+// Reads renders/rendered-records.json (written by render-batch.mjs, then marked
+// up by webflow-write.mjs) and PATCHes Map Rendered on exactly the records whose
+// card reached Webflow (or that are not on the site yet). A row the Webflow step
+// could not write carries stamp:false and is left alone, so Needs Render keeps
+// asking for it.
 //
 // ORDER MATTERS. This runs AFTER the commit+push succeeds. A stamp says "a tile
 // for this pin exists in the repo" — stamping before the push would claim a tile
@@ -31,10 +34,10 @@ if (!fs.existsSync(manifestPath)) {
 }
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-const rendered = (manifest.rendered || []).filter(r => r.recordId);
+const rendered = (manifest.rendered || []).filter(r => r.recordId && r.stamp !== false);
 
 if (!rendered.length) {
-  console.log("Manifest is empty — nothing to stamp. (A CSV-source run does not produce record IDs.)");
+  console.log("Nothing to stamp.");
   process.exit(0);
 }
 

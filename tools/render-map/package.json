@@ -1,13 +1,14 @@
 {
-  "name": "wvb-map-thumbnail-render",
+  "name": "wvb-directory-card-art",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Render a single WVB directory map thumbnail with a category glyph pin, for zoom/legibility testing before batching.",
+  "description": "Render WVB directory card art (E3: generated ridge landscape, region over county) and write it to Webflow.",
   "scripts": {
-    "render": "node render.mjs"
+    "render": "node render-batch.mjs"
   },
   "dependencies": {
-    "puppeteer": "^23.0.0"
+    "@fontsource/raleway": "^5.3.0",
+    "puppeteer": "^23.11.1"
   }
 }

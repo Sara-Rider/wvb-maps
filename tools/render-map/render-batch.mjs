@@ -1,334 +1,139 @@
-// WVB directory map thumbnails - BATCH
-// -----------------------------------
-// Reads directory.csv, renders one 1200x675 map thumbnail per row (locked
-// defaults zoom 12.5 / pin 110), commits nothing here (the workflow commits).
-// Renders EVERY row with coordinates. It does NOT decide whether a row already
-// has a real photo - that precedence ("never overwrite a real photo") is
-// enforced later at write-back time, so this step is safe and can re-run freely.
+// WVB directory card art - BATCH
+// ------------------------------
+// Renders the E3 card (region over county, generated ridge landscape) for every
+// row the census asks for, as a 2400x1500 PNG named dir-<business-name-slug>.png
+// in /renders. The workflow commits them, writes them to Webflow
+// (webflow-write.mjs) and then stamps Map Rendered (stamp-rendered.mjs).
 //
-// DRY_RUN=1 skips the browser and just prints the resolved manifest - use it to
-// sanity-check parsing + glyph mapping without rendering.
+// This replaced the MapLibre/OpenFreeMap pin-map tile on 2026-10-19. The card
+// art needs no network: the only external input is the Raleway face, which is
+// bundled from @fontsource/raleway and embedded, never fetched.
 //
-// Expected directory.csv columns (header row, case-insensitive; extra columns ignored):
-//   ID (Webflow Item ID preferred; else any stable id) - optional, falls back to a name slug
-//   Business Name
-//   Business Category      (one of the 13 canonical values)
-//   Attraction Type        (optional; used only when Business Category = Attraction)
-//   Type Token             (optional but PREFERRED - the stored glyph token; see below)
-//   Latitude
-//   Longitude
-//   Certified              (optional; true/1/yes = gold ring pin)
-//
-// GLYPH SOURCE OF TRUTH (Decision 61 - one classification, computed once):
-// when a row carries `Type Token`, that value IS the glyph and nothing is
-// re-derived. resolveGlyphToken() below is a FALLBACK for rows that lack it.
-// Every fallback is counted in the run log, so a mismatch between what the CMS
-// stored and what this renderer would have guessed is visible, not silent.
+// DRY_RUN=1 reads the census and prints what WOULD render. No browser, no files.
 
 import fs from "node:fs";
 import path from "node:path";
-// puppeteer is imported lazily below (only when actually rendering) so DRY_RUN works without it
+import { createRequire } from "node:module";
+import { cardSvg, resolveRegion, countyLabel, W, H } from "./card-art.mjs";
+import { requireToken, fetchCensus, toRow, CENSUS_VIEW_ID, BASE_ID } from "./airtable-source.mjs";
 
-const SLATE = "#3D5A6B";
-const GOLD = "#C8922A";
-const MIST = "#F2F0EB";
-
-const ZOOM = parseFloat(process.env.IN_ZOOM ?? "12.5");
-const PIN = parseInt(process.env.IN_PIN ?? "110", 10);
 const DRY_RUN = String(process.env.DRY_RUN ?? "").trim() === "1";
-const CSV_PATH = process.env.CSV_PATH || path.resolve(process.cwd(), "directory.csv");
-const REPO = process.env.GITHUB_REPOSITORY || "Sara-Rider/wvb-maps";
-const REF = process.env.GITHUB_REF_NAME || "main";
+const SCALE = 3; // 800x500 drawing space -> 2400x1500 PNG
 
-const WIDTH = 1200;
-const HEIGHT = 675;
-
-// ---- Glyph set (24x24, outline, stroke = glyph color) ----
-const GLYPHS = {
-  overlook: '<circle cx="7.5" cy="15" r="4"/><circle cx="16.5" cy="15" r="4"/><path d="M7.5 11V7"/><path d="M16.5 11V7"/><path d="M7.5 7h9"/>',
-  waterfall: '<path d="M12 3c2.5 3.5 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 2.5-5.5 5-9z"/>',
-  bridge: '<path d="M3 17v-3a9 9 0 0 1 18 0v3"/><path d="M3 14h18"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/>',
-  monument: '<path d="M5 9h14l-7-6z"/><path d="M9 9v10"/><path d="M15 9v10"/><path d="M6 21h12"/>',
-  park: '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
-  "scenic-road": '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
-  swing: '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
-  food: '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
-  lodging: '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
-  camping: '<path d="M12 4l8 15H4z"/><path d="M12 4v15"/>',
-  fuel: '<path d="M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 20h11"/><path d="M7 8h5"/><path d="M14 10l3 3v4a2 2 0 0 0 4 0V8l-3-3"/>',
-  moto: '<path d="M15 6.5a3.5 3.5 0 0 0-4.7 4.6L4 17.5 6.5 20l6.4-6.3A3.5 3.5 0 0 0 17.5 9l-2 2-1.5-1.5z"/>',
-  guides: '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
-  attraction: '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>',
-  other: '<circle cx="12" cy="12" r="3.2"/>',
-  historic: '<path d="M12 3l8 4.5H4z"/><path d="M7 7.5v9"/><path d="M12 7.5v9"/><path d="M17 7.5v9"/><path d="M4.5 16.5h15"/><path d="M3 20h18"/>',
-};
-
-// Business Category (13 canonical) -> glyph token
-const CATEGORY_TO_GLYPH = {
-  "lodging": "lodging",
-  "restaurant": "food",
-  "bar": "food",              // mug is a deferred custom mark (Decision 37); ships as food glyph for now
-  "campground": "camping",
-  "motorcycle dealer": "moto",
-  "repair shop": "moto",
-  "fuel": "fuel",
-  "attraction": "attraction", // may be overridden by Attraction Type below
-  "tour guide": "guides",
-  "outfitter": "guides",
-  "paint shop": "moto",
-  "tire shop": "moto",
-  "other": "other",
-};
-
-// Attraction Type -> glyph token (used only when category = Attraction and a value is present)
-const ATTRACTION_TO_GLYPH = {
-  "overlook": "overlook",
-  "waterfall": "waterfall",
-  "covered bridge": "bridge",
-  "bridge": "bridge",
-  "monument": "monument",
-  "park": "park",
-  "nature": "park",
-  "park/nature": "park",
-  "scenic road": "scenic-road",
-  "byway": "scenic-road",
-  "scenic road/byway": "scenic-road",
-  "swing": "swing",
-  "historical site": "historic",
-  "historic site": "historic",
-};
-
-function resolveGlyphToken(category, attractionType) {
-  const cat = (category || "").trim().toLowerCase();
-  const at = (attractionType || "").trim().toLowerCase();
-  if (cat === "attraction" && at && ATTRACTION_TO_GLYPH[at]) return ATTRACTION_TO_GLYPH[at];
-  if (CATEGORY_TO_GLYPH[cat]) return CATEGORY_TO_GLYPH[cat];
-  return "other";
-}
-
-function isCertified(v) {
-  const s = (v || "").trim().toLowerCase();
-  return s === "true" || s === "1" || s === "yes" || s === "checked";
-}
-
-function slug(s) {
-  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-}
-
-// ---- Minimal RFC-4180-ish CSV parser (handles quotes, commas, newlines in quotes) ----
-function parseCSV(text) {
-  const rows = [];
-  let row = [], field = "", inQuotes = false;
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (inQuotes) {
-      if (c === '"') {
-        if (text[i + 1] === '"') { field += '"'; i++; }
-        else inQuotes = false;
-      } else field += c;
-    } else {
-      if (c === '"') inQuotes = true;
-      else if (c === ",") { row.push(field); field = ""; }
-      else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
-      else if (c === "\r") { /* skip */ }
-      else field += c;
-    }
-  }
-  if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
-  return rows.filter(r => r.length > 1 || (r.length === 1 && r[0].trim() !== ""));
-}
-
-function loadRows() {
-  const raw = fs.readFileSync(CSV_PATH, "utf8");
-  const grid = parseCSV(raw);
-  if (grid.length < 2) throw new Error("directory.csv has no data rows");
-  const header = grid[0].map(h => h.trim().toLowerCase());
-  const col = (name) => header.indexOf(name);
-  const firstCol = (names) => { for (const n of names) { const i = header.indexOf(n); if (i >= 0) return i; } return -1; };
-  const iId = firstCol(["id", "webflow id", "webflow item id", "webflow-id"]);
-  const iName = col("business name");
-  const iCat = col("business category");
-  const iAtt = col("attraction type");
-  const iTok = firstCol(["type token", "type-token", "typetoken"]);
-  const iLat = col("latitude");
-  const iLng = col("longitude");
-  const iCert = col("certified");
-  if (iName < 0 || iCat < 0 || iLat < 0 || iLng < 0) {
-    throw new Error("directory.csv must include columns: Business Name, Business Category, Latitude, Longitude");
-  }
-  return grid.slice(1).map((r) => {
-    const name = (r[iName] || "").trim();
-    const lat = parseFloat(r[iLat]);
-    const lng = parseFloat(r[iLng]);
-
-    // The stored token wins; derive only when the column is absent or empty.
-    const stored = iTok >= 0 ? (r[iTok] || "").trim().toLowerCase() : "";
-    const derived = resolveGlyphToken(r[iCat], iAtt >= 0 ? r[iAtt] : "");
-    const glyph = stored || derived;
-    const tokenSource = stored ? "stored" : "derived";
-    const disagrees = Boolean(stored) && stored !== derived;
-    const unknown = !GLYPHS[glyph];
-
-    const certified = iCert >= 0 ? isCertified(r[iCert]) : false;
-    const id = (iId >= 0 && r[iId] && r[iId].trim()) ? r[iId].trim() : slug(name);
-    const hasCoords = Number.isFinite(lat) && Number.isFinite(lng);
-    return { id, name, category: (r[iCat] || "").trim(), glyph, derived,
-             tokenSource, disagrees, unknown, certified, lat, lng, hasCoords };
-  });
-}
-
-// ---- Pin + page HTML (identical logic to the single renderer) ----
-function pinHtml(glyphInner, certified) {
-  const size = certified ? Math.round(PIN * 1.27) : PIN;
-  const glyphSize = Math.round(size * 0.5);
-  const borderPx = Math.max(2, Math.round(size * 0.028));
-  const teardrop = `
-    <div style="width:${size}px;height:${size}px;background:${SLATE};
-      border:${borderPx}px solid ${MIST};border-radius:50% 50% 50% 0;
-      transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;">
-      <svg width="${glyphSize}" height="${glyphSize}" viewBox="0 0 24 24"
-        fill="none" stroke="${MIST}" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" style="transform:rotate(45deg);">${glyphInner}</svg>
-    </div>`;
-  if (!certified) return teardrop;
-  const ringPad = Math.round(size * 0.14);
-  return `
-    <div style="padding:${ringPad}px;background:${GOLD};border-radius:50%;
-      border:${borderPx}px solid ${MIST};display:inline-flex;">${teardrop}</div>`;
-}
-
-function pageHtml(row) {
-  const glyphInner = GLYPHS[row.glyph] || GLYPHS.other;
-  const cfg = JSON.stringify({ lat: row.lat, lng: row.lng, zoom: ZOOM });
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"/>
-<link href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<style>html,body{margin:0;padding:0}#map{width:${WIDTH}px;height:${HEIGHT}px}
-.wvb-pin{cursor:default;transform:translateY(2px)}</style></head>
-<body><div id="map"></div>
-<script>
-const CFG = ${cfg};
-const map = new maplibregl.Map({
-  container: 'map', style: 'https://tiles.openfreemap.org/styles/positron',
-  center: [CFG.lng, CFG.lat], zoom: CFG.zoom,
-  attributionControl: false, interactive: false, fadeDuration: 0
-});
-map.on('load', () => {
-  const el = document.createElement('div');
-  el.className = 'wvb-pin';
-  el.innerHTML = ${JSON.stringify(pinHtml(glyphInner, row.certified))};
-  new maplibregl.Marker({ element: el, anchor: 'bottom' }).setLngLat([CFG.lng, CFG.lat]).addTo(map);
-  map.once('idle', () => { window.__ready = true; });
-});
-</script></body></html>`;
-}
-
-// ---- Main ----
-// ---- Source: Airtable census (default) or the legacy committed CSV ----
-// SOURCE=csv forces the old hand-off. Otherwise the census comes from the
-// "5 · Render census" view — the same queue the operator reads in Airtable.
-const SOURCE = (process.env.SOURCE || "airtable").trim().toLowerCase();
-
-let rows;
-if (SOURCE === "csv") {
-  console.log(`Source: CSV (${CSV_PATH})`);
-  rows = loadRows();
-} else {
-  const { requireToken, fetchCensus, toRow, CENSUS_VIEW_ID } =
-    await import("./airtable-source.mjs");
-  const token = requireToken();
-  console.log(`Source: Airtable view ${CENSUS_VIEW_ID} (5 · Render census)`);
-  const recs = await fetchCensus({ token });
-  rows = recs.map(r => toRow(r, { slug, resolveGlyphToken, GLYPHS }));
-  console.log(`Census returned ${rows.length} row(s) needing a tile.`);
-  if (!rows.length) {
-    console.log("Nothing to render. The census is empty — every pin has a current tile.");
-    process.exit(0);
-  }
-}
-
-const renderable = rows.filter(r => r.hasCoords);
-const skipped = rows.filter(r => !r.hasCoords);
-
-console.log(`Rows: ${rows.length}  |  renderable: ${renderable.length}  |  no coords (skipped): ${skipped.length}`);
-console.log("Glyph resolution:");
-for (const r of rows) {
-  console.log(`  ${r.hasCoords ? "OK " : "-- "} ${r.category.padEnd(18)} -> ${r.glyph.padEnd(12)} [${r.tokenSource}] ${r.certified ? "[certified] " : ""}${r.name}`);
-}
-
-const fellBack = rows.filter(r => r.tokenSource === "derived");
-const conflicts = rows.filter(r => r.disagrees);
-const unknowns = rows.filter(r => r.unknown);
-console.log(`\nToken source — stored: ${rows.length - fellBack.length}   derived (fallback): ${fellBack.length}`);
-if (fellBack.length) {
-  console.log("  DERIVED (no Type Token column value — publish should supply it):");
-  for (const r of fellBack) console.log(`    - ${r.name} -> ${r.glyph}`);
-}
-if (conflicts.length) {
-  console.log("  CONFLICT — stored token differs from what this renderer would derive.");
-  console.log("  The STORED value is used. Investigate the mismatch, do not 'fix' it here:");
-  for (const r of conflicts) console.log(`    - ${r.name}: stored=${r.glyph}  derived=${r.derived}`);
-}
-if (unknowns.length) {
-  console.log("  UNKNOWN TOKEN — no artwork; falls back to the `other` mark:");
-  for (const r of unknowns) console.log(`    - ${r.name}: ${r.glyph}`);
-}
-if (skipped.length) console.log("NO-COORD rows will be skipped:", skipped.map(r => r.name).join(", "));
-
-if (DRY_RUN) { console.log("\nDRY_RUN=1 - no rendering, no files written."); process.exit(0); }
+// ---- Census ----
+const token = requireToken();
+console.log(`Source: Airtable base ${BASE_ID}, view ${CENSUS_VIEW_ID} (5 · Render census)`);
+const rows = (await fetchCensus({ token })).map(toRow);
+console.log(`Census returned ${rows.length} row(s) to render.`);
 
 const outDir = path.resolve(process.cwd(), "..", "..", "renders");
 fs.mkdirSync(outDir, { recursive: true });
+const manifestPath = path.join(outDir, "rendered-records.json");
+const writeManifest = (rendered) => fs.writeFileSync(
+  manifestPath,
+  JSON.stringify({ renderedAt: new Date().toISOString(), rendered }, null, 2)
+);
+
+if (!rows.length) {
+  console.log("Nothing to render — every listing has a current card.");
+  if (!DRY_RUN) writeManifest([]);
+  process.exit(0);
+}
+
+// ---- Checks that stop a row rather than draw it wrong ----
+const problems = [];
+const byFile = new Map();
+for (const r of rows) {
+  if (!byFile.has(r.file)) byFile.set(r.file, []);
+  byFile.get(r.file).push(r);
+}
+for (const [file, group] of byFile) {
+  if (group.length > 1) {
+    // Two listings with the same Business Name would overwrite each other's card
+    // and cross-wire the publish lookup. Render neither; name it.
+    for (const r of group) problems.push({ r, why: `shares the filename ${file} with another row — rename one in Airtable` });
+  }
+}
+for (const r of rows) {
+  if (!r.hasCoords) problems.push({ r, why: "no usable latitude/longitude" });
+  else if (!r.county) problems.push({ r, why: "County is blank — the nameplate would read ' COUNTY'" });
+  else if (!r.region) problems.push({ r, why: "Travel Region is blank — check County is a recognised WV county" });
+}
+const blocked = new Set(problems.map(p => p.r.recordId));
+const renderable = rows.filter(r => !blocked.has(r.recordId));
+
+console.log(`Renderable: ${renderable.length}  |  stopped: ${blocked.size}`);
+for (const r of renderable) {
+  const fallback = resolveRegion(r.region) !== r.region ? `  [colourway fallback: ${resolveRegion(r.region)}]` : "";
+  console.log(`  OK  ${r.file.padEnd(58)} ${r.region} / ${countyLabel(r.county)}${fallback}`);
+}
+if (problems.length) {
+  console.log("\nSTOPPED — not rendered, Needs Render stays set:");
+  for (const p of problems) console.log(`  -- ${p.r.name} (${p.r.recordId}): ${p.why}`);
+}
+
+if (DRY_RUN) { console.log("\nDRY_RUN=1 - no rendering, no files written."); process.exit(0); }
+
+// ---- Font: embedded, then proven loaded before anything is drawn ----
+const require = createRequire(import.meta.url);
+const fontB64 = (w) => fs.readFileSync(
+  require.resolve(`@fontsource/raleway/files/raleway-latin-${w}-normal.woff2`)
+).toString("base64");
+const FONT_CSS = [600, 700].map(w =>
+  `@font-face{font-family:'Raleway';font-style:normal;font-weight:${w};` +
+  `src:url(data:font/woff2;base64,${fontB64(w)}) format('woff2');}`
+).join("");
+
+function pageHtml(svg) {
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"/><style>${FONT_CSS}
+html,body{margin:0;padding:0;background:#fff}svg{display:block}</style></head>
+<body>${svg}</body></html>`;
+}
 
 const puppeteer = (await import("puppeteer")).default;
 const browser = await puppeteer.launch({
   headless: "new",
-  args: ["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage",
-    "--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader",
-    "--ignore-gpu-blocklist","--enable-webgl"],
+  args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--font-render-hinting=none"],
 });
 
-const index = [["id","name","category","glyph","token_source","certified","filename","raw_url"]];
-// Only rows whose PNG was actually written land here. This is what the
-// write-back stamps, so a row that failed to render must never reach it.
-const stamped = [];
+const rendered = [];
 try {
-  for (const row of renderable) {
-    const page = await browser.newPage();
-    await page.setViewport({ width: WIDTH, height: HEIGHT, deviceScaleFactor: 2 });
-    const file = `dir-${row.id}.png`;
+  const page = await browser.newPage();
+  await page.setViewport({ width: W, height: H, deviceScaleFactor: SCALE });
+
+  // A missing face falls back silently and every card shifts. Prove both
+  // weights load before the first card; abort the whole run if they do not.
+  await page.setContent(pageHtml(`<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><text font-family="Raleway" font-weight="600">A</text><text font-family="Raleway" font-weight="700">A</text></svg>`));
+  await page.evaluate(async () => {
+    await document.fonts.load("600 23px Raleway");
+    await document.fonts.load("700 38px Raleway");
+  });
+  const fontsOk = await page.evaluate(() =>
+    document.fonts.check("600 23px Raleway") && document.fonts.check("700 38px Raleway") &&
+    [...document.fonts].filter(f => f.family.replace(/['"]/g, "") === "Raleway" && f.status === "loaded").length >= 2
+  );
+  if (!fontsOk) throw new Error("Raleway 600/700 did not load — refusing to render cards with a fallback face.");
+  console.log("\nRaleway 600 and 700 loaded.");
+
+  for (const r of renderable) {
     try {
-      await page.setContent(pageHtml(row), { waitUntil: "networkidle0", timeout: 60000 });
-      await page.waitForFunction("window.__ready === true", { timeout: 60000 });
-      await new Promise((r) => setTimeout(r, 1000));
-      await page.screenshot({ path: path.join(outDir, file), clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT } });
-      const url = `https://raw.githubusercontent.com/${REPO}/${REF}/renders/${file}`;
-      index.push([row.id, row.name, row.category, row.glyph, row.tokenSource, String(row.certified), file, url]);
-      if (row.recordId) stamped.push({ recordId: row.recordId, name: row.name, filename: file });
-      console.log("rendered", file);
+      const svg = cardSvg({ slug: r.seedSlug, lat: r.lat, lng: r.lng, county: r.county, region: r.region });
+      await page.setContent(pageHtml(svg), { waitUntil: "load" });
+      await page.evaluate(() => document.fonts.ready);
+      await page.screenshot({ path: path.join(outDir, r.file), clip: { x: 0, y: 0, width: W, height: H } });
+      rendered.push({
+        recordId: r.recordId, name: r.name, filename: r.file,
+        webflowItemId: r.webflowItemId, hasPhoto: r.hasPhoto,
+      });
+      console.log("rendered", r.file);
     } catch (e) {
-      console.log("FAILED", row.name, "-", e.message);
-    } finally {
-      await page.close();
+      console.log("FAILED", r.name, "-", e.message);
     }
   }
 } finally {
   await browser.close();
 }
 
-const csvOut = index.map(r => r.map(v => /[",\n]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : v).join(",")).join("\n");
-fs.writeFileSync(path.join(outDir, "render-index.csv"), csvOut);
-
-// The manifest the write-back consumes. Written even when empty so a stale one
-// from a previous run can never be stamped twice.
-fs.writeFileSync(
-  path.join(outDir, "rendered-records.json"),
-  JSON.stringify({ source: SOURCE, renderedAt: new Date().toISOString(), rendered: stamped }, null, 2)
-);
-
-console.log(`\nDone. ${index.length - 1} rendered. Index: renders/render-index.csv`);
-if (SOURCE === "csv") {
-  console.log("CSV source — no Airtable record IDs, so Map Rendered cannot be stamped for this run.");
-} else {
-  console.log(`${stamped.length} record(s) queued for the Map Rendered write-back.`);
-}
+// Written even when empty so a stale manifest is never written to Webflow or stamped twice.
+writeManifest(rendered);
+console.log(`\nDone. ${rendered.length} of ${renderable.length} rendered. Manifest: renders/rendered-records.json`);
