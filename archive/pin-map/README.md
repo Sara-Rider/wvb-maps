@@ -12,10 +12,11 @@ Kept so the map tiles can be brought back if WVB returns to them.
   site), plus the last render-index.csv receipt.
 
 ## The full set of map tiles
-Every map tile as it was before the switch is in git at tag `pin-map-final`
-(commit 33975de), under renders/. They are not copied here to keep the repo small.
+Every map tile as it was before the switch is in git on the branch
+`archive/pin-map-final` (commit 33975de), under renders/. They are not copied here to keep the repo small.
 Recover one with:
-    git show pin-map-final:renders/dir-<slug>.png > dir-<slug>.png
+    git fetch origin archive/pin-map-final
+    git show origin/archive/pin-map-final:renders/dir-<slug>.png > dir-<slug>.png
 
 ## To bring the maps back
 1. Copy `tools/*` back into tools/render-map/ and `workflows/*` into .github/workflows/.
