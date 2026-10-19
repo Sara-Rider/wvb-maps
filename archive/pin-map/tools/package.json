@@ -1,0 +1,13 @@
+{
+  "name": "wvb-map-thumbnail-render",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Render a single WVB directory map thumbnail with a category glyph pin, for zoom/legibility testing before batching.",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}
