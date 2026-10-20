@@ -1,0 +1,162 @@
+<!-- WVB — Riding Clubs page · v1 · 2026-10-20
+     Lives in the /riding-clubs PAGE footer custom code (Page settings › Custom code › Before </body>).
+     The map container is an Embed above the filter bar (#wvb-clubs-map); the Region select is an
+     Embed in the filter bar (select[name="Regions"]).
+
+     WHAT IT DOES
+       1. Sorts the club cards into region sections: Statewide first, then regions A–Z. A club in
+          several regions appears in each of them. A Statewide club appears once, under Statewide.
+       2. The Region select filters the sections. Picking a region shows that region AND Statewide,
+          because a Statewide club rides there too. Picking Statewide shows Statewide only.
+       3. The map is the shared region layer (embeds/region-layer-v1.js) with no pins — clubs have no
+          location, only regions. Hover shows "N clubs" (Statewide clubs counted in every region);
+          clicking a region sets the Region select.
+       4. Tidies each card: hides the "Causes this club backs" label when the club backs none, and
+          the whole right-hand column when it has nothing to show.
+
+     Degrades safely: if the script or the map fails, the cards stay in one plain list. -->
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@46a032668dac2f7f9dd156f2ae67aa6660e138ca/embeds/region-layer-v1.js"></script>
+<script>
+(function () {
+  var STATEWIDE = 'Statewide';
+  var STYLE = 'https://tiles.openfreemap.org/styles/liberty';
+  function norm(v) { return String(v == null ? '' : v).trim().toLowerCase(); }
+  function hidden(el) { return !el || el.classList.contains('w-condition-invisible') || getComputedStyle(el).display === 'none'; }
+
+  function regionsOf(card) {
+    return [].slice.call(card.querySelectorAll('.club-card-region .w-dyn-item'))
+      .map(function (i) { return i.textContent.trim(); }).filter(Boolean);
+  }
+
+  function tidy(card) {
+    var side = card.querySelector('.club-card-side');
+    if (!side) return;
+    var chips = side.querySelectorAll('.club-chip');
+    var label = side.querySelector('.club-side-label');
+    var link = side.querySelector('.club-page-link');
+    if (!chips.length && label) label.style.display = 'none';
+    if (!chips.length && hidden(link)) side.style.display = 'none';
+    [].forEach.call(card.querySelectorAll('.club-card-links a'), function (a) {
+      var h = a.getAttribute('href');
+      if (!h || h === '#') a.style.display = 'none';
+    });
+  }
+
+  function boot() {
+    var items = [].slice.call(document.querySelectorAll('.club-card')).map(function (c) {
+      return c.closest('.w-dyn-item') || c;
+    });
+    var select = document.querySelector('select[name="Regions"]');
+    if (!items.length) return;                          // Webflow shows its own "No clubs listed yet"
+
+    var list = items[0].parentNode;                       // the collection list
+    var wrapper = list.closest('.w-dyn-list') || list;
+
+    var clubs = items.map(function (item) {
+      var card = item.querySelector('.club-card') || item;
+      tidy(card);
+      var r = regionsOf(card);
+      var statewide = r.some(function (n) { return norm(n) === norm(STATEWIDE); });
+      return { item: item, regions: statewide ? [STATEWIDE] : r, statewide: statewide };
+    });
+
+    // Group: Statewide first, then the rest A–Z.
+    var groups = {};
+    clubs.forEach(function (c) {
+      c.regions.forEach(function (n) { (groups[n] = groups[n] || []).push(c); });
+    });
+    var names = Object.keys(groups).sort(function (a, b) {
+      if (a === STATEWIDE) return -1; if (b === STATEWIDE) return 1; return a.localeCompare(b);
+    });
+
+    var host = document.createElement('div');
+    host.id = 'clubs-sections';
+    var sections = {};
+    names.forEach(function (n) {
+      var sec = document.createElement('section');
+      sec.setAttribute('data-region', n);
+      var h = document.createElement('h2'); h.className = 'clubs-section-title'; h.textContent = n;
+      var rule = document.createElement('div'); rule.className = 'clubs-section-rule';
+      var body = document.createElement('div'); body.setAttribute('role', 'list');
+      sec.appendChild(h); sec.appendChild(rule); sec.appendChild(body);
+      groups[n].forEach(function (c, i) {
+        var node = c.placed ? c.item.cloneNode(true) : c.item;  // a multi-region club appears in each
+        c.placed = true;
+        node.setAttribute('role', 'listitem');
+        body.appendChild(node);
+      });
+      sections[n] = sec;
+      host.appendChild(sec);
+    });
+    wrapper.parentNode.insertBefore(host, wrapper);
+    wrapper.style.display = 'none';
+
+    function show(choice) {
+      choice = (choice || '').trim();
+      var all = !choice || norm(choice).indexOf('all') === 0;
+      names.forEach(function (n) {
+        // A region shows itself plus Statewide; Statewide shows only itself.
+        var on = all || n === choice || n === STATEWIDE;
+        sections[n].style.display = on ? '' : 'none';
+      });
+    }
+
+    if (select) {
+      // Grey out regions with no clubs (Statewide clubs count everywhere, so only when there are none).
+      var anyStatewide = !!groups[STATEWIDE];
+      [].forEach.call(select.options, function (o) {
+        if (!o.value || norm(o.value).indexOf('all') === 0) return;
+        if (!groups[o.value] && !(anyStatewide && o.value !== STATEWIDE)) o.disabled = true;
+      });
+      select.addEventListener('change', function () { show(select.value); if (layer) layer.refresh(); });
+      show(select.value);
+    }
+
+    // ---- Map (regions only, no pins) ----
+    var layer = null;
+    var mapEl = document.getElementById('wvb-clubs-map');
+    var note = document.getElementById('wvb-clubs-map-note');
+    if (note) {
+      note.textContent = clubs.length + (clubs.length === 1 ? ' club' : ' clubs')
+        + (groups[STATEWIDE] ? ' · Statewide clubs count in every region' : '');
+    }
+    if (!mapEl || typeof maplibregl === 'undefined' || !window.WVBRegionLayer) {
+      var w = document.getElementById('wvb-clubs-map-wrap'); if (w) w.style.display = 'none';
+      return;
+    }
+    var map = new maplibregl.Map({
+      container: mapEl, style: STYLE, center: [-80.55, 38.85], zoom: 6.3,
+      cooperativeGestures: true, attributionControl: { compact: true }
+    });
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+    function countFor(n) {
+      var sw = (groups[STATEWIDE] || []).length;
+      if (n === STATEWIDE) return sw;
+      return (groups[n] || []).length + sw;
+    }
+    function activeNames() {
+      if (!select) return [];
+      var v = select.value.trim();
+      return (!v || norm(v).indexOf('all') === 0 || v === STATEWIDE) ? [] : [v];
+    }
+    function choose(n) {
+      if (!select) return;
+      select.value = n || select.options[0].value;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    map.on('load', function () {
+      layer = WVBRegionLayer.attach({
+        map: map, before: null, avoidLayers: [], noun: ['club', 'clubs'],
+        countFor: countFor, activeNames: activeNames,
+        toggle: function (n) { choose(activeNames()[0] === n ? null : n); },
+        setOnly: function (ns) { choose(ns[0] || null); }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
