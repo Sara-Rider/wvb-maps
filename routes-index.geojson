@@ -711,7 +711,7 @@
     "short": "A 161-mile one-way ride on the Coal Heritage Trail National Scenic Byway, from Bluefield through the McDowell County coal towns and Beckley down to Fayette Station, under the New River Gorge Bridge.",
     "image": null,
     "stops": 6,
-    "nearby": 9,
+    "nearby": 8,
     "url": "/routes/coal-heritage-trail"
    }
   },
@@ -3957,7 +3957,7 @@
     "short": "Gorge roads, waterfall stops, and coal country history — this New River Gorge loop is West Virginia riding at its absolute best.",
     "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6a432cec646ae66df0d8aff0_Fayatte%20Bridge%20New%20River%20WV.jpg",
     "stops": 5,
-    "nearby": 9,
+    "nearby": 8,
     "url": "/routes/the-summersville-loop"
    }
   },

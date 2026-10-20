@@ -21305,37 +21305,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -81.14864,
-     37.95986
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "coal-heritage-trail",
-    "name": "Coal Heritage Trail",
-    "category": "Attraction",
-    "type": "scenic-road",
-    "lane": "attraction",
-    "laneLabel": "See & Do",
-    "short": "A National Scenic Byway through the historic coal-mining communities of southern West Virginia.",
-    "region": "New River-Greenbrier Valley",
-    "county": "Fayette",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 0.0,
-    "routeMile": 72.32,
-    "url": "/directory/coal-heritage-trail",
-    "website": null,
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -80.9768304,
      37.9944401
     ]
