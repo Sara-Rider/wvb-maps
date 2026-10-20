@@ -1,0 +1,283 @@
+<!-- WEST VIRGINIA BIKERS — Story Map · v1 · 2026-10-20
+     Lives on the Articles TEMPLATE (site label: Stories) inside the block
+     data-wvb-slot="article-map", between "Places in this story" and the
+     place-card grid. Serves EVERY story. Feed is derived from the story slug:
+     /articles/<slug> fetches articles/<slug>.geojson
+     (built by scripts/build_article_feeds.py, "Refresh story map feeds").
+
+     A PORT OF route-map-v5.html AND event-map-v1.html, NOT A REWRITE
+     ------------------------------------------------------------------
+     Same glyphs, same pin rules, same popup, same fetch-with-raw-fallback and
+     4s abort. What differs here differs on purpose:
+       * no side list — the place cards under the map ARE the list
+       * the story has no location of its own. Its places are the Directory
+         listings it links, exactly as an event takes its pin from its place
+
+     THE STORY'S DATA DECIDES THE MAP (feed `properties.mode`)
+       route   the linked route's own feed, unchanged: its line and its
+               numbered stops in the route's authored order. A food trail or a
+               covered-bridge trail is a route whose stops are the trail, so
+               the logic is identical to a route page. Story places that are
+               not stops on it are drawn as unnumbered chosen pins.
+       single  one place, plus its nearby-stops softened
+       set     a pin per place, fit to all — no line, no numbers, no nearby
+       none    nothing — the slot is hidden
+
+     THREE VISUAL CHANNELS, NEVER CROSSED — unchanged from route-map-v5
+       icon            what the place IS (the 15 canonical glyphs)
+       gold ring+size  Certified, and nothing else
+       opacity         chosen (solid) vs computed nearby (softened)
+     Featured (paid) gets NO map treatment.
+
+     TAKEDOWN: a pin is drawn only for a place whose card is on this page. An
+     unpublished listing loses its card on the next site publish, and its pin
+     goes with it, before the feed is even rebuilt. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
+<style>
+  .wvb-story-map{
+    --slate:#3D5A6B; --gold:#C8922A; --gold-hover:#A8791F; --asphalt:#1A1A1A; --mist:#F2F0EB;
+    width:100%; height:460px; border-radius:10px; overflow:hidden; margin:0 0 24px;
+    font-family:'Raleway',system-ui,sans-serif; color:var(--asphalt);
+  }
+  @media (max-width:820px){ .wvb-story-map{ height:340px; } }
+  .wvb-story-map[hidden]{ display:none !important; }
+
+  .wvb-pop{ font-family:'Raleway',system-ui,sans-serif; max-width:230px; }
+  .wvb-pop__name{ font-family:'Cinzel',serif; font-weight:600; font-size:15px; color:#3D5A6B; }
+  .wvb-pop__cat{ font-size:11px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin:2px 0 6px; }
+  .wvb-pop__desc{ font-size:13px; line-height:1.4; margin-bottom:8px; }
+  .wvb-pop__links a{ color:#A8791F; font-weight:600; font-size:13px; text-decoration:none; }
+  .wvb-pop__links a:hover{ text-decoration:underline; }
+  .wvb-map__badge{
+    display:inline-block; font-size:10px; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase; color:#fff; background:#C8922A;
+    border-radius:999px; padding:2px 8px; white-space:nowrap; vertical-align:2px;
+  }
+  .wvb-story-map .maplibregl-popup-content{ border-radius:10px; padding:12px 14px; }
+</style>
+
+<div id="wvb-story-map" class="wvb-story-map" hidden></div>
+
+<script>
+(function () {
+  const SLUG = (function () {
+    var parts = location.pathname.split('?')[0].replace(/\/+$/, '').split('/');
+    return parts[parts.length - 1] || '';
+  })();
+
+  const BASE_CDN = 'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/';
+  const BASE_RAW = 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/';
+  const CFG = {
+    CENTER: [-80.55, 38.85], ZOOM: 7, PLACE_ZOOM: 11,
+    STYLE: 'https://tiles.openfreemap.org/styles/liberty'
+  };
+  const BRAND = { slate:'#3D5A6B', gold:'#C8922A', asphalt:'#1A1A1A', mist:'#F2F0EB' };
+
+  const el = document.getElementById('wvb-story-map');
+  if (!el || !SLUG) return;
+
+  // ---- Directory glyphs — the canonical 15 + attraction fallback ----------
+  // Verbatim from route-map-v5.html, which is now the one home for this set.
+  const GLYPH = {
+    'overlook':     '<circle cx="7.5" cy="15" r="4"/><circle cx="16.5" cy="15" r="4"/><path d="M7.5 11V7"/><path d="M16.5 11V7"/><path d="M7.5 7h9"/>',
+    'waterfall':    '<path d="M12 3c2.5 3.5 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 2.5-5.5 5-9z"/>',
+    'bridge':       '<path d="M3 17v-3a9 9 0 0 1 18 0v3"/><path d="M3 14h18"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/>',
+    'monument':     '<path d="M5 9h14l-7-6z"/><path d="M9 9v10"/><path d="M15 9v10"/><path d="M6 21h12"/>',
+    'park':         '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
+    'scenic-road':  '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
+    'swing':        '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
+    'lodging':      '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
+    'food':         '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
+    'camping':      '<path d="M12 4l8 15H4z"/><path d="M12 4v15"/>',
+    'moto':         '<path d="M15 6.5a3.5 3.5 0 0 0-4.7 4.6L4 17.5 6.5 20l6.4-6.3A3.5 3.5 0 0 0 17.5 9l-2 2-1.5-1.5z"/>',
+    'fuel':         '<path d="M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 20h11"/><path d="M7 8h5"/><path d="M14 10l3 3v4a2 2 0 0 0 4 0V8l-3-3"/>',
+    'guides':       '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
+    'other':        '<circle cx="12" cy="12" r="3.2"/>',
+    'attraction':   '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>'
+  };
+  const markSVG = (t) =>
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="'
+    + BRAND.mist + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + GLYPH[t] + '</svg>';
+  function iconImageExpression() {
+    const expr = ['match', ['get', 'type']];
+    Object.keys(GLYPH).forEach(t => expr.push(t, 'wvb-' + t));
+    expr.push('wvb-other');
+    return expr;
+  }
+  const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+  // ---- Which places have a card on this page ---------------------------------
+  // The cards are the story's places as the CMS shows them right now. Reading
+  // their links keeps the map honest between feed rebuilds.
+  function cardSlugs() {
+    const scope = el.closest('section') || document;
+    const set = new Set();
+    scope.querySelectorAll('a[href*="/directory/"]').forEach(a => {
+      const m = (a.getAttribute('href') || '').match(/\/directory\/([^/?#]+)/);
+      if (m) set.add(m[1]);
+    });
+    return set;
+  }
+
+  const FETCH_TIMEOUT_MS = 4000;
+  async function fetchJSON(url) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), FETCH_TIMEOUT_MS);
+    try { const r = await fetch(url, { cache:'no-store', signal: ctl.signal }); return r.ok ? await r.json() : null; }
+    catch (e) { return null; }
+    finally { clearTimeout(timer); }
+  }
+  async function feed(path) {
+    const d = await fetchJSON(BASE_CDN + path);
+    if (d && d.features) return d;
+    return fetchJSON(BASE_RAW + path);   // jsDelivr 404s or stalls on a cold cache
+  }
+
+  function popupHTML(p) {
+    const badge = p.certified ? ' <span class="wvb-map__badge">Certified</span>' : '';
+    const links = [];
+    if (p.url)     links.push('<a href="'+esc(p.url)+'">View listing &rarr;</a>');
+    if (p.maps)    links.push('<a href="'+esc(p.maps)+'" target="_blank" rel="noopener">Directions</a>');
+    if (p.website) links.push('<a href="'+esc(p.website)+'" target="_blank" rel="noopener">Visit site</a>');
+    if (p.tel)     links.push('<a href="'+esc(p.tel)+'">Call</a>');
+    return '<div class="wvb-pop"><div class="wvb-pop__name">'+esc(p.name)+badge+'</div>'
+      + (p.category ? '<div class="wvb-pop__cat">'+esc(p.category)+'</div>' : '')
+      + (p.short ? '<div class="wvb-pop__desc">'+esc(p.short)+'</div>' : '')
+      + (links.length ? '<div class="wvb-pop__links">'+links.join(' &middot; ')+'</div>' : '')
+      + '</div>';
+  }
+
+  (async function () {
+    const story = await feed('articles/' + SLUG + '.geojson');
+    const mode = story && story.properties && story.properties.mode;
+    if (!story || !mode || mode === 'none') return;   // slot stays empty
+
+    const onPage = cardSlugs();
+    const keep = f => f && f.geometry && f.properties && f.properties.slug;
+    // A chosen place is drawn only while its card is on the page. If no card
+    // links were found at all, the grid is not what this code expects, so draw
+    // from the feed rather than draw nothing.
+    const hasCard = s => !onPage.size || onPage.has(s);
+
+    let places = story.features.filter(f => keep(f) && f.properties.kind === 'place' && hasCard(f.properties.slug));
+    let nearby = mode === 'single' ? story.features.filter(f => keep(f) && f.properties.kind === 'nearby') : [];
+    let tracks = [], stops = [];
+
+    if (mode === 'route') {
+      const routeFeeds = await Promise.all((story.properties.routes || []).map(r => feed('routes/' + r + '.geojson')));
+      routeFeeds.forEach(rf => {
+        if (!rf || !rf.features) return;
+        rf.features.forEach(f => {
+          if (!f || !f.geometry) return;
+          const t = f.geometry.type;
+          if (t === 'LineString' || t === 'MultiLineString') tracks.push(f);
+          else if (t === 'Point' && f.properties && f.properties.slug && (f.properties.kind || 'stop') === 'stop') {
+            stops.push(Object.assign({}, f, { properties: Object.assign({}, f.properties, { kind:'stop' }) }));
+          }
+        });
+      });
+      const stopSlugs = new Set(stops.map(f => f.properties.slug));
+      places = places.filter(f => !stopSlugs.has(f.properties.slug));   // a stop is already on the map, numbered
+    } else if (mode === 'single' && !places.length) {
+      return;   // its one place is off the page, so is its map
+    }
+
+    // Two stops sharing a slug (two routes through one place) draw once.
+    const seen = new Set();
+    const points = stops.concat(places, nearby).filter(f => {
+      const s = f.properties.slug;
+      if (seen.has(s)) return false;
+      seen.add(s); return true;
+    });
+    if (!points.length && !tracks.length) return;
+
+    el.hidden = false;
+    const map = new maplibregl.Map({ container: el, style: CFG.STYLE, center: CFG.CENTER, zoom: CFG.ZOOM, cooperativeGestures: true });
+    map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
+    const popup = new maplibregl.Popup({ closeButton:true, closeOnClick:true, offset:14 });
+
+    function loadIcons() {
+      return Promise.all(Object.keys(GLYPH).map(t => new Promise(resolve => {
+        const img = new Image(48, 48);
+        img.onload = () => { try { if (!map.hasImage('wvb-' + t)) map.addImage('wvb-' + t, img, { pixelRatio: 2 }); } catch (e) {} resolve(); };
+        img.onerror = () => resolve();
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markSVG(t));
+      })));
+    }
+
+    map.on('load', async () => {
+      await loadIcons();
+      const b = new maplibregl.LngLatBounds();
+      const walk = arr => arr.forEach(c => Array.isArray(c[0]) ? walk(c) : b.extend(c));
+
+      if (tracks.length) {
+        map.addSource('track', { type:'geojson', data:{ type:'FeatureCollection', features: tracks } });
+        map.addLayer({ id:'track-casing', type:'line', source:'track', layout:{ 'line-join':'round','line-cap':'round' },
+          paint:{ 'line-color':BRAND.asphalt, 'line-width':7, 'line-opacity':0.35 } });
+        map.addLayer({ id:'track-line', type:'line', source:'track', layout:{ 'line-join':'round','line-cap':'round' },
+          paint:{ 'line-color':BRAND.gold, 'line-width':4 } });
+        tracks.forEach(f => walk(f.geometry.coordinates));
+      }
+
+      const unknown = [...new Set(points.map(f => f.properties.type).filter(t => t && !GLYPH[t]))];
+      if (unknown.length) console.warn('WVB story map: unmapped type token(s), drawing `other`:', unknown);
+
+      const byId = {};
+      points.forEach(f => { byId[f.properties.slug] = f; });
+      map.addSource('pins', { type:'geojson', data:{ type:'FeatureCollection', features: points }, promoteId:'slug' });
+
+      // Same paint as route-map-v5: slate pin, gold ring + size for Certified,
+      // nearby softened by opacity only.
+      const isNearby = ['==', ['get','kind'], 'nearby'];
+      const hover = ['boolean', ['feature-state','hover'], false];
+      map.addLayer({ id:'pins', type:'circle', source:'pins', paint:{
+        'circle-radius':['case', hover, 12, ['get','certified'], 10, 8],
+        'circle-color':BRAND.slate,
+        'circle-opacity':['case', hover, 1, isNearby, 0.72, 1],
+        'circle-stroke-width':['case', ['get','certified'], 3, 1.5],
+        'circle-stroke-color':['case', ['get','certified'], BRAND.gold, BRAND.mist],
+        'circle-stroke-opacity':['case', hover, 1, isNearby, 0.72, 1]
+      }});
+      map.addLayer({ id:'pin-icons', type:'symbol', source:'pins',
+        layout:{ 'icon-image': iconImageExpression(), 'icon-size':0.5, 'icon-allow-overlap':true, 'icon-ignore-placement':true },
+        paint:{ 'icon-opacity':['case', hover, 1, isNearby, 0.8, 1] } });
+
+      // Route stops carry the route's authored order. Only they are numbered:
+      // a story place off the route, or a set of places, has no ride sequence.
+      map.addLayer({ id:'pin-order', type:'symbol', source:'pins',
+        filter:['all', ['==', ['get','kind'], 'stop'], ['has', 'order']],
+        layout:{ 'text-field':['to-string', ['get','order']], 'text-size':11,
+          'text-font':['Noto Sans Bold'], 'text-offset':[1.1, -1.1],
+          'text-allow-overlap':true, 'text-ignore-placement':true },
+        paint:{ 'text-color':BRAND.mist, 'text-halo-color':BRAND.slate, 'text-halo-width':3 } });
+
+      // Frame the story — its line, its stops, its places. Never the nearby
+      // pins (same rule as route and event maps): one far listing would frame
+      // a whole county and lose the place the story is about.
+      stops.concat(places).forEach(f => b.extend(f.geometry.coordinates));
+      if (mode === 'single' && !tracks.length && places.length === 1) {
+        map.jumpTo({ center: places[0].geometry.coordinates, zoom: CFG.PLACE_ZOOM });
+      } else if (!b.isEmpty()) {
+        map.fitBounds(b, { padding:48, maxZoom:13, duration:0 });
+      }
+
+      let hovered = null;
+      const setHover = (id, on) => { if (id != null) map.setFeatureState({ source:'pins', id }, { hover:on }); };
+      map.on('mousemove', 'pins', e => {
+        map.getCanvas().style.cursor = 'pointer';
+        const id = e.features[0].id;
+        if (hovered !== id) { setHover(hovered, false); hovered = id; setHover(id, true); }
+      });
+      map.on('mouseleave', 'pins', () => { map.getCanvas().style.cursor = ''; setHover(hovered, false); hovered = null; });
+      map.on('click', 'pins', e => {
+        const f = byId[e.features[0].id] || e.features[0];
+        popup.setLngLat(f.geometry.coordinates.slice()).setHTML(popupHTML(f.properties)).addTo(map);
+      });
+    });
+  })();
+})();
+</script>

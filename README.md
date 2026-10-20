@@ -16,10 +16,11 @@ into Webflow.
 | If you just… | Do you run anything? |
 | :--- | :--- |
 | Approved an event in Airtable | **No.** It publishes itself, and the map catches up within a day |
-| Published a directory listing | **No.** The directory feed refreshes weekly on its own |
+| Published a directory listing | **Yes** — *Refresh directory proximity feed*. Its schedule is off |
 | Changed a route's GPX or stops | **Yes** — *Rebuild route map feeds* |
 | Fixed a wrong coordinate and want the pin right *now* | **Yes** — *Refresh events feed* |
-| Added a new directory listing and want its card image | **Yes** — *Render directory map thumbnail* |
+| Added a new directory listing and want its card image | **Yes** — *Render directory card art* |
+| Linked places or a route to a story | **Yes** — *Refresh story map feeds* (or wait for the daily run) |
 | Got an email about a **Health check** issue | Read the issue. It says what is wrong and what to run |
 
 If you are unsure, running a workflow is safe. They rebuild from the live site
@@ -37,10 +38,10 @@ Find them under the **Actions** tab. Any of them can be run by hand with the
 | :--- | :--- | :--- |
 | **Refresh events feed** | Rebuilds the events map pins and the related-events sections from published Webflow events | daily |
 | **Build event nearby feeds** | Works out which directory listings sit near each event | no — manual |
-| **Refresh directory proximity feed** | Rebuilds the directory map and the "near this route" rails | weekly, Mondays |
+| **Refresh directory proximity feed** | Rebuilds the directory map and the "near this route" rails | no — manual (schedule is off) |
 | **Rebuild route map feeds** | Rebuilds route lines, stops and the listing links on route pages | no — manual |
-| **Render directory map thumbnail** | Draws the little map image on one directory card | no — manual |
-| **Render directory map thumbnails (BATCH)** | Same, for all of them at once | no — manual |
+| **Render directory card art** | Draws the card picture for listings that need one and puts it on the site | no — manual |
+| **Refresh story map feeds** | Rebuilds each story's map from the places and route it links | daily |
 | **Health check** | Looks for stale feeds and bad data, and emails you only if something is wrong | weekly, Mondays |
 
 **The manual ones are manual on purpose.** They cost nothing to run, but they
@@ -99,6 +100,7 @@ on. Any commit re-arms them.
 | `directory.geojson` | Every published directory listing |
 | `routes-index.geojson` | The routes overview map |
 | `events/` | One file per event — the businesses near it |
+| `articles/` | One file per story — its places, and the route it links |
 | `routes/`, `gpx/` | Route lines and their source tracks |
 | `renders/` | Generated card images |
 | `embeds/` | **Copies of the code pasted into Webflow.** See `embeds/README.md` — that folder has rules of its own |

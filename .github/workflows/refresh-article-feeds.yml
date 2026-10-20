@@ -1,0 +1,55 @@
+# Rebuild the story (Articles) map feeds — articles/<slug>.geojson
+#
+# One feed per story, built from what the story links: its Directory listings,
+# its route, and (for a one-place story) that listing's nearby-stops. Nothing is
+# computed here that the directory and route builders do not already own.
+#
+# Runs daily and by hand. Run it by hand after you link places or a route to a
+# story, or after taking a listing down. Between runs the embed already drops a
+# pin whose card has left the page, so a stale feed can never show a closed
+# place.
+#
+# Reads routes/<slug>.geojson to check a linked route has a feed; the route
+# line itself is still built by "Rebuild route map feeds".
+name: Refresh story map feeds
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 7 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: article-feeds
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Build articles/*.geojson
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+        run: python scripts/build_article_feeds.py
+      - name: Commit the feeds
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p articles
+          git add -A articles/
+          if git diff --staged --quiet; then
+            echo "No change — story feeds already current."
+          else
+            git commit -m "Rebuild story map feeds"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+            echo "PURGE=1" >> "$GITHUB_ENV"
+          fi
+      - name: Purge jsDelivr cache (only if something changed)
+        if: env.PURGE == '1'
+        run: |
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/articles/"
+          echo "Requested jsDelivr purge for articles/."
