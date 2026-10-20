@@ -49,10 +49,9 @@
       return c.closest('.w-dyn-item') || c;
     });
     var select = document.querySelector('select[name="Regions"]');
-    if (!items.length) return;                          // Webflow shows its own "No clubs listed yet"
-
-    var list = items[0].parentNode;                       // the collection list
-    var wrapper = list.closest('.w-dyn-list') || list;
+    // No clubs yet: Webflow shows its own "No clubs listed yet"; the map still draws, every region at 0.
+    var list = items.length ? items[0].parentNode : null; // the collection list
+    var wrapper = list ? (list.closest('.w-dyn-list') || list) : null;
 
     var clubs = items.map(function (item) {
       var card = item.querySelector('.club-card') || item;
@@ -90,8 +89,10 @@
       sections[n] = sec;
       host.appendChild(sec);
     });
-    wrapper.parentNode.insertBefore(host, wrapper);
-    wrapper.style.display = 'none';
+    if (wrapper) {
+      wrapper.parentNode.insertBefore(host, wrapper);
+      wrapper.style.display = 'none';
+    }
 
     function show(choice) {
       choice = (choice || '').trim();
