@@ -7,7 +7,8 @@
      Category selects. Clicking a region sets the Region select and fires its change event, so the
      cards and pins filter exactly as if the rider had used the dropdown.
 
-     Counts: listings in that region that also match the current Category choice. The category
+     Counts: listings in that region that also match the current Category choice
+     (and, with map embed v5+, any link-in Attraction Type filter). The category
      names are folded the same way the Directory map embed folds them (its CANON table), because
      the CMS card labels and the select options still differ for three categories.
 
@@ -46,9 +47,11 @@
 
   function countFor(name) {
     var c = categorySel(), cat = c && !isAll(c.value) ? canon(c.value) : '';
+    var F = window.WVBDirFilter;   // map embed v5+: honour a link-in type filter
     return cards().filter(function (card) {
       return norm(card.getAttribute('data-region')) === norm(name)
-        && (!cat || canon(card.getAttribute('data-category')) === cat);
+        && (!cat || canon(card.getAttribute('data-category')) === cat)
+        && (!F || F.typeOk(card));
     }).length;
   }
 
