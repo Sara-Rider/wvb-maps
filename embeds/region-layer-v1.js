@@ -229,7 +229,7 @@
       map.getCanvas().style.cursor = 'pointer';
       var c = o.countFor(n), on = o.activeNames().indexOf(n) !== -1;
       tip.setLngLat(e.lngLat).setHTML('<strong>' + esc(n) + '</strong><small>'
-        + (c === null || c === 0 ? 'No ' + esc(many) + ' listed yet' : c + ' ' + esc(c === 1 ? one : many)) + ' · '
+        + (c === null || c === 0 ? 'No ' + esc(many) + ' yet' : c + ' ' + esc(c === 1 ? one : many)) + ' · '
         + (on ? 'click to remove' : 'click to filter') + '</small>').addTo(map);
     });
     map.on('mouseleave', 'wvb-region-fill', function () {
