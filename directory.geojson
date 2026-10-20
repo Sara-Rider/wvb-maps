@@ -6,9 +6,471 @@
     "contract": "pin data contract v2 — keyed on slug; `type` is the canonical renderer glyph token",
     "join_key": "slug",
     "coordinate_order": "[longitude, latitude]",
-    "count": 89
+    "count": 106
   },
   "features": [
+    {
+      "type": "Feature",
+      "id": "black-bear-burritos",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9714631,
+          39.6540244
+        ]
+      },
+      "properties": {
+        "slug": "black-bear-burritos",
+        "name": "Black Bear Burritos",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
+        "certified": false,
+        "url": "/directory/black-bear-burritos",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "drovers-inn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.55473909999999,
+          40.2800423
+        ]
+      },
+      "properties": {
+        "slug": "drovers-inn",
+        "name": "Drovers Inn",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Northern Panhandle",
+        "county": "Brooke",
+        "certified": false,
+        "url": "/directory/drovers-inn",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=40.2800423,-80.55473909999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "screech-owl-brewing",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.56599109999999,
+          39.5888994
+        ]
+      },
+      "properties": {
+        "slug": "screech-owl-brewing",
+        "name": "Screech Owl Brewing",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Preston",
+        "certified": false,
+        "url": "/directory/screech-owl-brewing",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5888994,-79.56599109999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "c-j-maggie-s-american-grill-elkins",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8497556,
+          38.9255726
+        ]
+      },
+      "properties": {
+        "slug": "c-j-maggie-s-american-grill-elkins",
+        "name": "C.J. Maggie's American Grill - Elkins",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Randolph",
+        "certified": false,
+        "url": "/directory/c-j-maggie-s-american-grill-elkins",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9255726,-79.8497556"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sirianni-s-pizza-cafe",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4662795,
+          39.12874050000001
+        ]
+      },
+      "properties": {
+        "slug": "sirianni-s-pizza-cafe",
+        "name": "Sirianni's Pizza Cafe",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Tucker",
+        "certified": false,
+        "url": "/directory/sirianni-s-pizza-cafe",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.12874050000001,-79.4662795"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "little-sicily",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1901013,
+          37.7821878
+        ]
+      },
+      "properties": {
+        "slug": "little-sicily",
+        "name": "Little Sicily",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh",
+        "certified": false,
+        "url": "/directory/little-sicily",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7821878,-81.1901013"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "main-street-grill-romney",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7022996,
+          39.3291121
+        ]
+      },
+      "properties": {
+        "slug": "main-street-grill-romney",
+        "name": "Main Street Grill - Romney",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/main-street-grill-romney",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3291121,-78.7022996"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hellbender-burritos",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.465791,
+          39.1285649
+        ]
+      },
+      "properties": {
+        "slug": "hellbender-burritos",
+        "name": "Hellbender Burritos",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Tucker",
+        "certified": false,
+        "url": "/directory/hellbender-burritos",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1285649,-79.465791"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pizzas-and-cream",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0399577,
+          38.634946
+        ]
+      },
+      "properties": {
+        "slug": "pizzas-and-cream",
+        "name": "Pizzas and Cream",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Clay",
+        "certified": false,
+        "url": "/directory/pizzas-and-cream",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.634946,-81.0399577"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "south-texas-barbecue-company",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.46626789999999,
+          39.0377576
+        ]
+      },
+      "properties": {
+        "slug": "south-texas-barbecue-company",
+        "name": "South Texas Barbecue Company",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Lewis",
+        "certified": false,
+        "url": "/directory/south-texas-barbecue-company",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0377576,-80.46626789999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-custard-stand",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.4128400614557,
+          38.47948416505829
+        ]
+      },
+      "properties": {
+        "slug": "the-custard-stand",
+        "name": "The Custard Stand",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Webster",
+        "certified": false,
+        "url": "/directory/the-custard-stand",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.47948416505829,-80.4128400614557"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "farmer-s-daughter-market-butcher",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.4317056,
+          39.2973107
+        ]
+      },
+      "properties": {
+        "slug": "farmer-s-daughter-market-butcher",
+        "name": "Farmer's Daughter Market & Butcher",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/farmer-s-daughter-market-butcher",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2973107,-78.4317056"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "north-end-tavern-brewery",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.53305540000001,
+          39.2874294
+        ]
+      },
+      "properties": {
+        "slug": "north-end-tavern-brewery",
+        "name": "North End Tavern & Brewery",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mid-Ohio Valley",
+        "county": "Wood",
+        "certified": false,
+        "url": "/directory/north-end-tavern-brewery",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2874294,-81.53305540000001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "casey-s-family-restaurant-shinnston",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3016772,
+          39.39542460000001
+        ]
+      },
+      "properties": {
+        "slug": "casey-s-family-restaurant-shinnston",
+        "name": "Casey's Family Restaurant - Shinnston",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Harrison",
+        "certified": false,
+        "url": "/directory/casey-s-family-restaurant-shinnston",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.39542460000001,-80.3016772"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "whistle-punk-grill-taphouse",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.5318611,
+          38.2257691
+        ]
+      },
+      "properties": {
+        "slug": "whistle-punk-grill-taphouse",
+        "name": "Whistle Punk Grill & Taphouse",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Nicholas",
+        "certified": false,
+        "url": "/directory/whistle-punk-grill-taphouse",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2257691,-80.5318611"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "jack-horner-s-corner",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.17659739999999,
+          38.1287273
+        ]
+      },
+      "properties": {
+        "slug": "jack-horner-s-corner",
+        "name": "Jack Horner's Corner",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/jack-horner-s-corner",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1287273,-80.17659739999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "american-legion-post-15",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.5493273,
+          39.2834993
+        ]
+      },
+      "properties": {
+        "slug": "american-legion-post-15",
+        "name": "American Legion Post 15",
+        "category": "Club / Post",
+        "type": "other",
+        "region": "Mid-Ohio Valley",
+        "county": "Wood",
+        "certified": false,
+        "url": "/directory/american-legion-post-15",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2834993,-81.5493273"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-corner-shop",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.31172629999999,
+          37.3251331
+        ]
+      },
+      "properties": {
+        "slug": "the-corner-shop",
+        "name": "The Corner Shop",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Mercer",
+        "certified": false,
+        "url": "/directory/the-corner-shop",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3251331,-81.31172629999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "buddy-s-all-american-bar-b-que",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.43272255767182,
+          38.4238613990011
+        ]
+      },
+      "properties": {
+        "slug": "buddy-s-all-american-bar-b-que",
+        "name": "Buddy's All American Bar-B-Que",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Cabell",
+        "certified": false,
+        "url": "/directory/buddy-s-all-american-bar-b-que",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4238613990011,-82.43272255767182"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "american-legion-post-71",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.86175700953504,
+          39.28815976023299
+        ]
+      },
+      "properties": {
+        "slug": "american-legion-post-71",
+        "name": "American Legion Post 71",
+        "category": "Club / Post",
+        "type": "other",
+        "region": "Eastern Panhandle",
+        "county": "Jefferson",
+        "certified": false,
+        "url": "/directory/american-legion-post-71",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28815976023299,-77.86175700953504"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "romney-cycles",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.75717860000002,
+          39.35489
+        ]
+      },
+      "properties": {
+        "slug": "romney-cycles",
+        "name": "Romney Cycles",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/romney-cycles",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
+      }
+    },
     {
       "type": "Feature",
       "id": "casey-s-family-restaurant-enterprise",
@@ -77,50 +539,6 @@
     },
     {
       "type": "Feature",
-      "id": "full-throttle-at-riders-paradise",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.3493179,
-          37.4460792
-        ]
-      },
-      "properties": {
-        "slug": "full-throttle-at-riders-paradise",
-        "name": "Full Throttle at Riders Paradise",
-        "category": "Bar",
-        "type": "food",
-        "region": "Hatfield-McCoy Mountains",
-        "county": "Wyoming",
-        "certified": false,
-        "url": "/directory/full-throttle-at-riders-paradise",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4460792,-81.3493179"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "rider-s-paradise",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.3493179,
-          37.4460792
-        ]
-      },
-      "properties": {
-        "slug": "rider-s-paradise",
-        "name": "Rider's Paradise",
-        "category": "Lodging",
-        "type": "lodging",
-        "region": "Hatfield-McCoy Mountains",
-        "county": "Wyoming",
-        "certified": false,
-        "url": "/directory/rider-s-paradise",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4460792,-81.3493179"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "south-branch-smokehouse",
       "geometry": {
         "type": "Point",
@@ -183,28 +601,6 @@
         "certified": false,
         "url": "/directory/the-tractor-bar",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2026449,-80.8514876"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "outlaw-bar-grill",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.3652011,
-          37.457514
-        ]
-      },
-      "properties": {
-        "slug": "outlaw-bar-grill",
-        "name": "Outlaw Bar & Grill",
-        "category": "Bar",
-        "type": "food",
-        "region": "Hatfield-McCoy Mountains",
-        "county": "Wyoming",
-        "certified": false,
-        "url": "/directory/outlaw-bar-grill",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.457514,-81.3652011"
       }
     },
     {
@@ -389,8 +785,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.9148538,
-          38.3972047
+          -79.91614978740662,
+          38.3968690675698
         ]
       },
       "properties": {
@@ -402,7 +798,7 @@
         "county": "Pocahontas",
         "certified": false,
         "url": "/directory/cass-scenic-railroad-state-park",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3972047,-79.9148538"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3968690675698,-79.91614978740662"
       }
     },
     {
@@ -433,8 +829,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.1258067,
-          38.0477943
+          -81.1274308610222,
+          38.048196740791504
         ]
       },
       "properties": {
@@ -446,7 +842,7 @@
         "county": "Fayette",
         "certified": false,
         "url": "/directory/rifrafters-campground",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.0477943,-81.1258067"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.048196740791504,-81.1274308610222"
       }
     },
     {
@@ -477,8 +873,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.12003399999999,
-          38.050171
+          -81.11999069902846,
+          38.05011863844972
         ]
       },
       "properties": {
@@ -490,7 +886,7 @@
         "county": "Fayette",
         "certified": false,
         "url": "/directory/bear-mountain-cabins-campground",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.050171,-81.12003399999999"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.05011863844972,-81.11999069902846"
       }
     },
     {
@@ -653,8 +1049,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.01417359999999,
-          39.6581795
+          -80.01393577444946,
+          39.659287522148944
         ]
       },
       "properties": {
@@ -666,7 +1062,7 @@
         "county": "Monongalia",
         "certified": false,
         "url": "/directory/triple-s-harley-davidson",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6581795,-80.01417359999999"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
       }
     },
     {
@@ -711,28 +1107,6 @@
         "certified": false,
         "url": "/directory/babcock-state-park",
         "maps": "https://www.google.com/maps/dir/?api=1&destination=38.007329,-80.948414"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "coal-heritage-trail",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.14864,
-          37.95986
-        ]
-      },
-      "properties": {
-        "slug": "coal-heritage-trail",
-        "name": "Coal Heritage Trail",
-        "category": "Attraction",
-        "type": "scenic-road",
-        "region": "New River-Greenbrier Valley",
-        "county": "Fayette",
-        "certified": false,
-        "url": "/directory/coal-heritage-trail",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.95986,-81.14864"
       }
     },
     {
@@ -1577,8 +1951,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.0020672,
-          39.4107572
+          -79.00209938650774,
+          39.41091055101128
         ]
       },
       "properties": {
@@ -1590,7 +1964,7 @@
         "county": "Mineral",
         "certified": false,
         "url": "/directory/keyser-inn",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4107572,-79.0020672"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.41091055101128,-79.00209938650774"
       }
     },
     {
@@ -1599,8 +1973,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -78.5231614,
-          39.3736064
+          -78.52312921349225,
+          39.37376812633502
         ]
       },
       "properties": {
@@ -1612,7 +1986,7 @@
         "county": "Hampshire",
         "certified": false,
         "url": "/directory/slanesville-general-store",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3736064,-78.5231614"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.37376812633502,-78.52312921349225"
       }
     },
     {
@@ -1651,7 +2025,7 @@
         "slug": "hamilton-round-barn",
         "name": "Hamilton Round Barn",
         "category": "Attraction",
-        "type": "historic",
+        "type": "attraction",
         "region": "Mountaineer Country",
         "county": "Marion",
         "certified": false,
@@ -1695,7 +2069,7 @@
         "slug": "international-mothers-day-shrine",
         "name": "International Mother's Day Shrine",
         "category": "Attraction",
-        "type": "historic",
+        "type": "attraction",
         "region": "Mountaineer Country",
         "county": "Taylor",
         "certified": false,
@@ -1753,8 +2127,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -78.1758881,
-          39.6298459
+          -78.1758237269845,
+          39.62999050491401
         ]
       },
       "properties": {
@@ -1766,7 +2140,7 @@
         "county": "Morgan",
         "certified": false,
         "url": "/directory/hillbilly-heaven-bar-and-grill",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6298459,-78.1758881"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.62999050491401,-78.1758237269845"
       }
     },
     {
@@ -1797,8 +2171,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.6910459,
-          37.3019705
+          -81.6910517738418,
+          37.30199080674365
         ]
       },
       "properties": {
@@ -1810,7 +2184,7 @@
         "county": "McDowell",
         "certified": false,
         "url": "/directory/taco-todds-savage-tacos",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.3019705,-81.6910459"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.30199080674365,-81.6910517738418"
       }
     },
     {
@@ -1841,8 +2215,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.5719915,
-          37.4410034
+          -81.5720773306873,
+          37.44120358397532
         ]
       },
       "properties": {
@@ -1854,7 +2228,7 @@
         "county": "McDowell",
         "certified": false,
         "url": "/directory/sterling-drive-in",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4410034,-81.5719915"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.44120358397532,-81.5720773306873"
       }
     },
     {
@@ -1863,8 +2237,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -81.5565115,
-          37.4288957
+          -81.55646858465634,
+          37.42906183701886
         ]
       },
       "properties": {
@@ -1876,7 +2250,7 @@
         "county": "McDowell",
         "certified": false,
         "url": "/directory/coaltown-tavern",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.4288957,-81.5565115"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.42906183701886,-81.55646858465634"
       }
     },
     {
@@ -1893,7 +2267,7 @@
         "slug": "page-coal-and-coke-company-store",
         "name": "Page Coal and Coke Company Store",
         "category": "Attraction",
-        "type": "historic",
+        "type": "attraction",
         "region": "New River-Greenbrier Valley",
         "county": "McDowell",
         "certified": false,
@@ -1951,8 +2325,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -80.09575934525392,
-          38.22413489974406
+          -80.09556142328172,
+          38.22443541183142
         ]
       },
       "properties": {
@@ -1964,7 +2338,7 @@
         "county": "Pocahontas",
         "certified": false,
         "url": "/directory/greenbrier-grille-and-lodge",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22413489974406,-80.09575934525392"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22443541183142,-80.09556142328172"
       }
     }
   ]
