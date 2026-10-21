@@ -1,0 +1,120 @@
+<!-- WEST VIRGINIA BIKERS — Region Map · v1 · 2026-10-21
+     Lives on the Travel Regions TEMPLATE and serves every region page:
+     /travel-regions/<slug> highlights the region whose slug matches in
+     regions.geojson. No CMS field and no per-region setting.
+
+     SAME GEOGRAPHY AS THE ALL-ROUTES MAP (routes-index v1.2)
+     ---------------------------------------------------------
+     Same two feeds (wv-state.geojson, regions.geojson), same mist mask over
+     everything outside West Virginia, same dashed slate region lines, same
+     uppercase region labels, same solid state outline. A rider who has seen
+     the routes map reads this one without learning anything new.
+
+     WHAT IS DIFFERENT, ON PURPOSE
+     -----------------------------
+       * THIS region is shaded in its own card-art colour — the `mid` tone of
+         its colourway in WVB_DirectoryCardArt_Spec — so the region a rider
+         is reading about looks like the region on every directory card in it.
+       * Its edge is Route Gold. Gold means "this one" on the routes map; it
+         means the same here.
+       * The map frames the region, with the rest of the state still visible
+         around it so a rider can see where it sits.
+
+     Regions with no outline (Statewide, Out of State) draw no map: the block
+     hides itself. That is a choice, not a fault — see the build notes. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
+<style>
+  .wvb-regmap{ width:100%; height:440px; border-radius:10px; overflow:hidden; background:#F2F0EB; margin:0 0 28px; }
+  .wvb-regmap[hidden]{ display:none !important; }
+  @media (max-width:820px){ .wvb-regmap{ height:320px; } }
+</style>
+
+<div id="wvb-regmap" class="wvb-regmap" hidden></div>
+
+<script>
+(function () {
+  const SLUG = (function () {
+    var parts = location.pathname.split('?')[0].replace(/\/+$/, '').split('/');
+    return parts[parts.length - 1] || '';
+  })();
+  const el = document.getElementById('wvb-regmap');
+  if (!el || !SLUG) return;
+
+  const BASE_CDN = 'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/';
+  const BASE_RAW = 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/';
+  const STYLE = 'https://tiles.openfreemap.org/styles/liberty';
+  const BRAND = { slate:'#3D5A6B', gold:'#C8922A', mist:'#F2F0EB' };
+
+  // The `mid` tone of each region's card-art colourway (WVB_DirectoryCardArt_Spec).
+  const REGION_TONE = {
+    'new-river-greenbrier-valley':'#4d6540', 'potomac-highlands':'#547381',
+    'mountaineer-country':'#9a7c40', 'hatfield-mccoy-mountains':'#45544d',
+    'mountain-lakes':'#587362', 'metro-valley':'#60635b', 'mid-ohio-valley':'#6d765c',
+    'eastern-panhandle':'#70646a', 'northern-panhandle':'#626b70'
+  };
+
+  const TIMEOUT = 4000;
+  async function fetchJSON(url) {
+    const ctl = new AbortController();
+    const t = setTimeout(() => ctl.abort(), TIMEOUT);
+    try { const r = await fetch(url, { cache:'no-store', signal: ctl.signal }); return r.ok ? await r.json() : null; }
+    catch (e) { return null; }
+    finally { clearTimeout(t); }
+  }
+  async function feed(path) {
+    const d = await fetchJSON(BASE_CDN + path);
+    return (d && d.features) ? d : fetchJSON(BASE_RAW + path);
+  }
+
+  (async function () {
+    const [state, regions] = await Promise.all([feed('wv-state.geojson'), feed('regions.geojson')]);
+    if (!regions || !regions.features) return;
+    const mine = regions.features.find(f => f.properties && f.properties.slug === SLUG);
+    if (!mine) return;   // Statewide, Out of State, or a region with no outline
+
+    el.hidden = false;
+    const map = new maplibregl.Map({ container: el, style: STYLE, center: [-80.6, 38.75], zoom: 6.4, cooperativeGestures: true });
+    map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
+
+    map.on('load', () => {
+      const tone = REGION_TONE[SLUG] || BRAND.slate;
+
+      if (state && state.features) {
+        map.addSource('wv-mask', { type:'geojson', data:{ type:'FeatureCollection', features: state.features.filter(f => f.properties.kind === 'mask') } });
+        map.addSource('wv-outline', { type:'geojson', data:{ type:'FeatureCollection', features: state.features.filter(f => f.properties.kind === 'outline') } });
+        map.addLayer({ id:'wv-mask', type:'fill', source:'wv-mask', paint:{ 'fill-color':BRAND.mist, 'fill-opacity':0.55 } });
+      }
+
+      map.addSource('wv-regions', { type:'geojson', data: regions });
+      map.addSource('this-region', { type:'geojson', data:{ type:'FeatureCollection', features:[mine] } });
+      map.addSource('wv-region-labels', { type:'geojson', data:{ type:'FeatureCollection', features: regions.features.map(f => ({
+        type:'Feature', properties:{ name: f.properties.name, me: f.properties.slug === SLUG },
+        geometry:{ type:'Point', coordinates:[f.properties.labelLng, f.properties.labelLat] } })) } });
+
+      map.addLayer({ id:'this-region-fill', type:'fill', source:'this-region', paint:{ 'fill-color':tone, 'fill-opacity':0.32 } });
+      map.addLayer({ id:'wv-region-line', type:'line', source:'wv-regions',
+        paint:{ 'line-color':BRAND.slate, 'line-width':1, 'line-opacity':0.5, 'line-dasharray':[2, 2] } });
+      if (state && state.features) {
+        map.addLayer({ id:'wv-outline', type:'line', source:'wv-outline', paint:{ 'line-color':BRAND.slate, 'line-width':2.2, 'line-opacity':0.85 } });
+      }
+      map.addLayer({ id:'this-region-line', type:'line', source:'this-region',
+        layout:{ 'line-join':'round' }, paint:{ 'line-color':BRAND.gold, 'line-width':3 } });
+      map.addLayer({ id:'wv-region-label', type:'symbol', source:'wv-region-labels',
+        layout:{ 'text-field':['get','name'], 'text-font':['Noto Sans Bold','Open Sans Bold','Arial Unicode MS Bold'],
+          'text-size':['case', ['get','me'], 12, 10], 'text-transform':'uppercase', 'text-letter-spacing':0.08,
+          'text-max-width':8, 'text-allow-overlap':false },
+        paint:{ 'text-color':BRAND.slate, 'text-opacity':['case', ['get','me'], 1, 0.55],
+          'text-halo-color':BRAND.mist, 'text-halo-width':1.4 } });
+
+      // Frame the region, padded so its neighbours show around it.
+      const b = new maplibregl.LngLatBounds();
+      const walk = a => a.forEach(c => Array.isArray(c[0]) ? walk(c) : b.extend(c));
+      walk(mine.geometry.coordinates);
+      map.fitBounds(b, { padding:{ top:60, bottom:60, left:60, right:60 }, maxZoom:9, duration:0 });
+    });
+  })();
+})();
+</script>
