@@ -709,7 +709,7 @@
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "",
     "short": "A 161-mile one-way ride on the Coal Heritage Trail National Scenic Byway, from Bluefield through the McDowell County coal towns and Beckley down to Fayette Station, under the New River Gorge Bridge.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b14a21720a28e1488b3_default.jpeg",
     "stops": 6,
     "nearby": 8,
     "url": "/routes/coal-heritage-trail"
@@ -1227,7 +1227,7 @@
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "Out of State",
     "short": "A 163-mile Greenbrier Valley loop that crosses into Virginia at Sweet Springs, runs the Catawba Valley to the Hanging Rock Tavern, and comes home through Narrows, Union, and Monroe County's covered bridges. A full day for riders who want distance.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80984df0534f16821e3da_default.jpeg",
     "stops": 0,
     "nearby": 3,
     "url": "/routes/hanging-rock-tavern-run"
@@ -1585,7 +1585,7 @@
     "region": "Potomac Highlands",
     "secondaryRegion": "",
     "short": "A 92-mile, two-day loop through Hampshire and Mineral County back roads, with an overnight in Keyser. An easy-paced ride built around small-town stops.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b367a6f4302d5a0d460_default.jpeg",
     "stops": 2,
     "nearby": 2,
     "url": "/routes/the-mountain-store-loop"
@@ -2191,7 +2191,7 @@
     "region": "Mountaineer Country",
     "secondaryRegion": "",
     "short": "A 143-mile Mountaineer Country loop through Rowlesburg, Grafton, Mannington, and Core, passing the birthplace of Mother's Day, a working dam, and a century-old round barn. A full day for riders who want distance.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b11a21720a28e1487a4_default.jpeg",
     "stops": 5,
     "nearby": 8,
     "url": "/routes/the-cheat-river-loop"
@@ -2517,7 +2517,7 @@
     "region": "Eastern Panhandle",
     "secondaryRegion": "",
     "short": "A 96-mile Eastern Panhandle loop along the Washington Heritage Trail, crossing Mills Gap and closing out at a Berkeley Springs roadhouse. A full day of mountain views and gap-road curves.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b12a21720a28e1487d8_default.jpeg",
     "stops": 2,
     "nearby": 2,
     "url": "/routes/mills-gap-mountain-loop"
@@ -3381,7 +3381,7 @@
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "",
     "short": "A 93-mile loop through McDowell County's coal camp towns, from the Kimball War Memorial to the historic company store ruins at Pageton and Elkhorn. Built for one full day of curves, coal country history, and small-town stops along Route 52.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b11a21720a28e14879c_default.jpeg",
     "stops": 6,
     "nearby": 1,
     "url": "/routes/head-of-the-dragon"
