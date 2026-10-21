@@ -35,6 +35,14 @@
        frame:        true (default) — zoom to the selected regions
      }) -> { refresh: function () }   call refresh() after the page filter changes
 
+   NAVIGATION MODE (added 2026-10-21, for the Home and Travel Regions maps)
+     Pass open instead of toggle/setOnly and the map links rather than filters:
+       open:     function (regionName, regionSlug) — e.g. go to /travel-regions/<slug>
+       shade:    false — no wash on unselected regions (outlines only, like
+                 /routes); hover and the selected region still shade
+       activeNames, countFor, noun are optional in this mode.
+     Filter maps pass neither, and draw exactly as before.
+
    Degrades safely: if either geography file fails, the map and the page
    filter are left exactly as they were. */
 (function () {
@@ -126,7 +134,7 @@
         ['boolean', ['feature-state', 'selected'], false], 0.22,
         ['boolean', ['feature-state', 'hover'], false], 0.2,
         ['boolean', ['feature-state', 'dim'], false], 0.02,
-        0.08]
+        o.shade === false ? 0 : 0.08]
     } }, before);
     map.addLayer({ id: 'wvb-region-line', type: 'line', source: 'wvb-regions', paint: {
       'line-color': ['case', ['boolean', ['feature-state', 'selected'], false], GOLD, SLATE],
@@ -148,6 +156,8 @@
 
   function start(o, fc, state) {
     var map = o.map, feats = (fc && fc.features) || [];
+    if (!o.activeNames) o.activeNames = function () { return []; };
+    if (!o.countFor) o.countFor = function () { return undefined; };
     var one = o.noun ? o.noun[0] : 'item', many = o.noun ? o.noun[1] : 'items';
     if (!feats.length) { console.warn('[WVB regions] regions.geojson is empty; skipped.'); return null; }
 
@@ -228,9 +238,11 @@
       map.setFeatureState({ source: 'wvb-regions', id: id }, { hover: true });
       map.getCanvas().style.cursor = 'pointer';
       var c = o.countFor(n), on = o.activeNames().indexOf(n) !== -1;
-      tip.setLngLat(e.lngLat).setHTML('<strong>' + esc(n) + '</strong><small>'
-        + (c === null || c === 0 ? 'No ' + esc(many) + ' yet' : c + ' ' + esc(c === 1 ? one : many)) + ' · '
-        + (on ? 'click to remove' : 'click to filter') + '</small>').addTo(map);
+      var what = c === undefined ? '' :
+        (c === null || c === 0 ? 'No ' + esc(many) + ' yet' : c + ' ' + esc(c === 1 ? one : many)) + ' · ';
+      var act = o.open ? (on ? 'you are here' : 'open region') : (on ? 'click to remove' : 'click to filter');
+      tip.setLngLat(e.lngLat).setHTML('<strong>' + esc(n) + '</strong><small>' + what + act + '</small>').addTo(map);
+      map.getCanvas().style.cursor = o.open && on ? '' : 'pointer';
     });
     map.on('mouseleave', 'wvb-region-fill', function () {
       if (hoverId !== null) map.setFeatureState({ source: 'wvb-regions', id: hoverId }, { hover: false });
@@ -238,7 +250,9 @@
     });
     map.on('click', 'wvb-region-fill', function (e) {
       if (onPin(e)) return;
-      o.toggle(e.features[0].properties.name);
+      var p = e.features[0].properties;
+      if (o.open) { if (o.activeNames().indexOf(p.name) === -1) o.open(p.name, p.slug); return; }
+      o.toggle(p.name);
     });
 
     lastKey = o.activeNames().slice().sort().join('|');
