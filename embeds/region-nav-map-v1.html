@@ -1,0 +1,92 @@
+<!-- WEST VIRGINIA BIKERS — Region Navigation Map · v1 · 2026-10-21
+     ONE embed, two places:
+       Home page            all nine regions outlined; click one -> its region page
+       Travel Regions tmpl  this region shaded with the gold edge; click another -> its page
+
+     Built on the shared region layer (embeds/region-layer-v1.js, navigation mode),
+     so outlines, labels, state outline, mask, gold "selected" and hover tooltip are
+     the same as the /events, /directory and /riding-clubs maps. Container matches
+     those index maps: 520px (380px on phones), 4px corners, 1px slate border.
+
+     Unlike the filter maps, unselected regions carry NO wash — outlines only, as on
+     /routes. The map navigates; it filters nothing.
+
+     LOOP-BREAKER: on a region page the line under the map always offers the
+     statewide pages (events, routes, places, clubs), so a rider who has clicked
+     region to region is one tap from the whole state.
+
+     Statewide / Out of State region pages: no region is selected; the map still
+     works as navigation. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@bffd9681e324bae94963f5f76b309b4e3f68cb62/embeds/region-layer-v1.js"></script>
+
+<div id="wvb-regnav-wrap">
+  <div id="wvb-regnav"></div>
+  <div id="wvb-regnav-note"></div>
+</div>
+
+<style>
+  #wvb-regnav-wrap { margin: 0 0 2.5rem; }
+  #wvb-regnav {
+    width: 100%; height: 520px; border-radius: 4px;
+    background: #F2F0EB; border: 1px solid rgba(61,90,107,.25);
+  }
+  #wvb-regnav-note {
+    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline;
+    font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
+    color: #3D5A6B; padding-top: .6rem;
+  }
+  #wvb-regnav-note a { color: #C8922A; font-weight: 700; text-decoration: underline; }
+  @media (max-width: 767px) { #wvb-regnav { height: 380px; } }
+</style>
+
+<script>
+(function () {
+  var BASE = '/travel-regions/';
+  var WV = [[-82.65, 37.2], [-77.72, 40.64]];
+  var STYLE = 'https://tiles.openfreemap.org/styles/liberty';
+
+  var path = location.pathname.replace(/\/+$/, '');
+  var onRegionPage = path.indexOf(BASE) === 0;
+  var here = onRegionPage ? path.slice(BASE.length) : '';
+
+  var el = document.getElementById('wvb-regnav');
+  var note = document.getElementById('wvb-regnav-note');
+  if (!el || typeof maplibregl === 'undefined' || !window.WVBRegionLayer) {
+    var w = document.getElementById('wvb-regnav-wrap'); if (w) w.style.display = 'none';
+    return;
+  }
+
+  var map = new maplibregl.Map({
+    container: el, style: STYLE, center: [-80.55, 38.85], zoom: 6.3,
+    cooperativeGestures: true, attributionControl: { compact: true }
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  map.once('load', function () { map.fitBounds(WV, { padding: 24, duration: 0 }); });
+
+  var hereName = null;
+  var h = WVBRegionLayer.attach({
+    map: map, before: null, shade: false, frame: false,
+    activeNames: function () { return hereName ? [hereName] : []; },
+    open: function (name, slug) { location.href = BASE + slug; }
+  });
+
+  h.ready.then(function (r) {
+    if (!r) return;
+    // Match this page to a region by slug (regions.geojson slugs = Travel Regions item slugs).
+    var src = map.getSource('wvb-regions');
+    var feats = (src && src.serialize().data.features) || [];
+    feats.forEach(function (f) { if (f.properties.slug === here) hereName = f.properties.name; });
+    h.refresh();
+
+    var stateLinks = 'All of West Virginia: '
+      + '<a href="/events">Events</a> <a href="/routes">Routes</a> '
+      + '<a href="/directory">Places</a> <a href="/riding-clubs">Clubs</a>';
+    note.innerHTML = onRegionPage
+      ? '<span>Tap another region to open it</span><span>' + stateLinks + '</span>'
+      : '<span>Tap a region to see where to ride, stop and stay</span>';
+  });
+})();
+</script>
