@@ -1,0 +1,196 @@
+<!-- WVB — Events Region Map layer · v1.1 · 2026-09-16
+     Adds the nine WV Tourism travel regions to the /events map and makes them the region filter.
+     DOES NOT OWN FILTERING. The page footer pill script owns filter state. This file drives it by
+     clicking that script's own (visually hidden) region pills, and redraws from the pills' is-active
+     state after every re-render. One state, no second implementation.
+     v1.1: when regions are selected the map frames the selected regions, not just their pins.
+     Degrades safely: if the regions file or the events map fails to load, nothing is hidden and the
+     region pills stay visible exactly as before.
+     Data: regions.geojson in Sara-Rider/wvb-maps (dissolved from the Webflow Travel Regions
+     Counties field over Census county shapes). Region names must equal the card region text. -->
+<style>
+  .wvb-regions-on .wvb-pill-group:has([data-wvb-filter="region"]){display:none}
+  .wvb-region-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:12px 0 0;font-family:var(--raleway),Raleway,sans-serif}
+  .wvb-region-hint{font-size:.85rem;color:#3D5A6B}
+  .wvb-region-hint b{color:#1A1A1A;font-weight:700}
+  .wvb-region-bar label{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3D5A6B}
+  .wvb-region-select{appearance:none;-webkit-appearance:none;min-height:40px;padding:8px 36px 8px 12px;border:1px solid #3D5A6B;border-radius:6px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23C8922A' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 12px center;font:inherit;font-size:.9rem;font-weight:600;color:#1A1A1A;cursor:pointer}
+  .wvb-region-select:focus-visible{outline:2px solid #C8922A;outline-offset:2px}
+  .wvb-region-clear{border:0;background:none;padding:4px 0;font:inherit;font-size:.85rem;font-weight:700;color:#C8922A;cursor:pointer;text-decoration:underline}
+  .wvb-region-tip .maplibregl-popup-content{padding:8px 11px;border-radius:4px;font-family:var(--raleway),Raleway,sans-serif;font-size:.82rem;line-height:1.3;color:#1A1A1A;box-shadow:0 4px 14px rgba(26,26,26,.18)}
+  .wvb-region-tip .maplibregl-popup-tip{display:none}
+  .wvb-region-tip small{display:block;color:#3D5A6B;font-weight:600}
+</style>
+<script>
+(function () {
+  var FEEDS = ['https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/regions.geojson',
+               'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/regions.geojson'];
+  var SLATE = '#3D5A6B', GOLD = '#C8922A', MIST = '#F2F0EB';
+
+  function getFeed() {
+    return fetch(FEEDS[0], { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(function () { return fetch(FEEDS[1], { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); });
+  }
+
+  function regionRow() { return document.querySelector('[data-wvb-filter="region"]'); }
+  function pills() { var r = regionRow(); return r ? [].slice.call(r.querySelectorAll('.filter-pill')) : []; }
+  function pillLabel(p) { var l = p.querySelector('.filter-pill-label') || p; return l.textContent.trim(); }
+  function pillFor(name) { return pills().filter(function (p) { return pillLabel(p) === name; })[0] || null; }
+  function activeNames() { return pills().filter(function (p) { return p.classList.contains('is-active'); }).map(pillLabel); }
+  function countFor(name) { var p = pillFor(name), c = p && p.querySelector('.filter-pill-count'); return c ? parseInt(c.textContent, 10) || 0 : null; }
+
+  function waitForMap(cb, tries) {
+    tries = tries || 0;
+    var M = window.WVBEventsMap;
+    if (M && M.map && M.map.getLayer && M.map.getLayer('ev-pins')) return cb(M.map);
+    if (tries > 150) { console.warn('[WVB regions] Events map not ready; region layer skipped.'); return; }
+    setTimeout(function () { waitForMap(cb, tries + 1); }, 100);
+  }
+
+  function start(fc, map) {
+    var feats = (fc && fc.features) || [];
+    if (!feats.length || !regionRow()) { console.warn('[WVB regions] No regions or no region pill row; skipped.'); return; }
+
+    var labels = { type: 'FeatureCollection', features: feats.map(function (f) {
+      return { type: 'Feature', properties: { name: f.properties.name },
+               geometry: { type: 'Point', coordinates: [f.properties.labelLng, f.properties.labelLat] } };
+    }) };
+
+    map.addSource('wvb-regions', { type: 'geojson', data: fc, promoteId: 'slug' });
+    map.addSource('wvb-region-labels', { type: 'geojson', data: labels });
+
+    map.addLayer({ id: 'wvb-region-fill', type: 'fill', source: 'wvb-regions', paint: {
+      'fill-color': ['case', ['boolean', ['feature-state', 'selected'], false], GOLD, SLATE],
+      'fill-opacity': ['case',
+        ['boolean', ['feature-state', 'selected'], false], 0.22,
+        ['boolean', ['feature-state', 'hover'], false], 0.2,
+        ['boolean', ['feature-state', 'dim'], false], 0.02,
+        0.08]
+    } }, 'ev-pins');
+    map.addLayer({ id: 'wvb-region-line', type: 'line', source: 'wvb-regions', paint: {
+      'line-color': ['case', ['boolean', ['feature-state', 'selected'], false], GOLD, SLATE],
+      'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 2.5, 1],
+      'line-opacity': ['case', ['boolean', ['feature-state', 'dim'], false], 0.35, 0.7]
+    } }, 'ev-pins');
+    map.addLayer({ id: 'wvb-region-label', type: 'symbol', source: 'wvb-region-labels', layout: {
+      'text-field': ['get', 'name'], 'text-font': ['Noto Sans Bold'], 'text-size': 11,
+      'text-transform': 'uppercase', 'text-letter-spacing': 0.06, 'text-max-width': 8,
+      'text-allow-overlap': false
+    }, paint: { 'text-color': SLATE, 'text-halo-color': MIST, 'text-halo-width': 1.6 } }, 'ev-pins');
+
+    var slugByName = {}, names = [];
+    feats.forEach(function (f) { slugByName[f.properties.name] = f.properties.slug; names.push(f.properties.name); });
+
+    var mapEl = document.getElementById('wvb-events-map');
+    var bar = document.createElement('div');
+    bar.className = 'wvb-region-bar';
+    bar.innerHTML = '<span class="wvb-region-hint">Tap a <b>region</b> on the map to filter events.</span>'
+      + '<label for="wvb-region-select">Region</label>'
+      + '<select id="wvb-region-select" class="wvb-region-select"></select>'
+      + '<button type="button" class="wvb-region-clear" hidden>Show all regions</button>';
+    mapEl.parentNode.insertBefore(bar, mapEl.nextSibling);
+    var sel = bar.querySelector('select'), clr = bar.querySelector('.wvb-region-clear');
+
+    function pillNames() { return pills().map(pillLabel); }
+
+    function buildSelect(active) {
+      var all = names.slice(), extra = pillNames().filter(function (n) { return all.indexOf(n) === -1; });
+      var html = '<option value="">All regions</option>';
+      if (active.length > 1) html += '<option value="__multi" selected>' + active.length + ' regions selected</option>';
+      all.concat(extra).forEach(function (n) {
+        var c = countFor(n), has = !!pillFor(n);
+        html += '<option value="' + n.replace(/"/g, '&quot;') + '"' + (has ? '' : ' disabled')
+          + (active.length === 1 && active[0] === n ? ' selected' : '') + '>'
+          + n + (c !== null ? ' (' + c + ')' : ' (no events)') + '</option>';
+      });
+      sel.innerHTML = html;
+      if (!active.length) sel.value = '';
+    }
+
+    function sync() {
+      var active = activeNames();
+      names.forEach(function (n) {
+        var id = slugByName[n], on = active.indexOf(n) !== -1;
+        map.setFeatureState({ source: 'wvb-regions', id: id }, { selected: on, dim: active.length > 0 && !on });
+      });
+      buildSelect(active);
+      clr.hidden = !active.length;
+      var key = active.slice().sort().join('|');
+      if (key !== lastKey || active.length) { lastKey = key; setTimeout(function () { frame(active); }, 120); }
+    }
+
+    // Frame the selected regions (not the pins): the events map zooms to the pins it shows,
+    // which is very tight when a region has one event. Runs just after that map's own fit.
+    var lastKey = null, WV = [[-82.65, 37.2], [-77.72, 40.64]];
+    function bbox(g, b) {
+      (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).forEach(function (poly) {
+        poly[0].forEach(function (c) { b.extend(c); });
+      });
+    }
+    function frame(active) {
+      if (active.some(function (n) { return names.indexOf(n) === -1; })) return; // e.g. Out of State: keep the pin fit
+      var b = new maplibregl.LngLatBounds(), n = 0;
+      feats.forEach(function (f) { if (active.indexOf(f.properties.name) !== -1) { bbox(f.geometry, b); n++; } });
+      map.fitBounds(n ? b : WV, { padding: 36, duration: 650 });
+    }
+
+    function setOnly(targets) {
+      var guard = 0;
+      activeNames().forEach(function (n) { if (targets.indexOf(n) === -1 && guard++ < 20) { var p = pillFor(n); if (p) p.click(); } });
+      targets.forEach(function (n) { if (activeNames().indexOf(n) === -1 && guard++ < 20) { var p = pillFor(n); if (p) p.click(); } });
+    }
+
+    sel.addEventListener('change', function () {
+      if (sel.value === '__multi') return;
+      setOnly(sel.value ? [sel.value] : []);
+    });
+    clr.addEventListener('click', function () { setOnly([]); });
+
+    var hoverId = null;
+    var tip = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, className: 'wvb-region-tip' });
+    function onPin(e) { return map.queryRenderedFeatures(e.point, { layers: ['ev-pins', 'ev-pin-icons'] }).length > 0; }
+
+    map.on('mousemove', 'wvb-region-fill', function (e) {
+      if (onPin(e)) { tip.remove(); return; }
+      var f = e.features[0], id = f.properties.slug, n = f.properties.name;
+      if (hoverId !== null && hoverId !== id) map.setFeatureState({ source: 'wvb-regions', id: hoverId }, { hover: false });
+      hoverId = id;
+      map.setFeatureState({ source: 'wvb-regions', id: id }, { hover: true });
+      map.getCanvas().style.cursor = 'pointer';
+      var c = countFor(n), on = activeNames().indexOf(n) !== -1;
+      tip.setLngLat(e.lngLat).setHTML('<strong>' + n + '</strong><small>'
+        + (c === null ? 'No events listed yet' : c + (c === 1 ? ' event' : ' events')) + ' · '
+        + (on ? 'click to remove' : 'click to filter') + '</small>').addTo(map);
+    });
+    map.on('mouseleave', 'wvb-region-fill', function () {
+      if (hoverId !== null) map.setFeatureState({ source: 'wvb-regions', id: hoverId }, { hover: false });
+      hoverId = null; tip.remove(); map.getCanvas().style.cursor = '';
+    });
+    map.on('click', 'wvb-region-fill', function (e) {
+      if (onPin(e)) return;
+      var p = pillFor(e.features[0].properties.name);
+      if (p) p.click();
+    });
+
+    var q = false;
+    new MutationObserver(function () {
+      if (q) return; q = true;
+      requestAnimationFrame(function () { q = false; sync(); });
+    }).observe(regionRow(), { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+
+    document.body.classList.add('wvb-regions-on');
+    lastKey = activeNames().slice().sort().join('|');
+    sync();
+  }
+
+  function boot() {
+    getFeed().then(function (fc) {
+      waitForMap(function (map) {
+        if (map.isStyleLoaded()) start(fc, map); else map.once('idle', function () { start(fc, map); });
+      });
+    }).catch(function (e) { console.warn('[WVB regions] regions.geojson failed to load; region pills left in place.', e); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>

@@ -1,0 +1,89 @@
+<!-- ============================================================
+     WVB — Directory Index Map · v5 · 2026-10-20
+     Paste into an Embed placed directly ABOVE the Collection List
+     Wrapper on /directory.
+
+     Stack:  MapLibre GL JS v5 + OpenFreeMap (Decision 29)
+     Feed:   directory.geojson, pin data contract v2 — keyed on slug
+     Glyphs: the 15 canonical renderer tokens (Decision 61/66)
+     Filter: ONE controller, one state, TWO renderers (cards + pins),
+             so they cannot desync. The site-wide footer script stands
+             down whenever #wvb-dir-map is present.
+
+     New in v5: link-in filters, so the homepage theme cards can land
+     on a filtered Directory.
+       /directory?category=restaurant      sets the Category select
+       /directory?type=bridge              Attraction Type filter
+       /directory?type=waterfall,overlook  several types at once
+     Type tokens are the glyph tokens (bridge, swing, waterfall,
+     overlook, park, historic, monument, scenic-road). A type filter
+     shows a "Showing … · Show all" chip above the map. Changing the
+     Category select clears it; changing Region keeps it.
+     Cards carry the type as data-type (Attraction Type option name);
+     pins carry it as the feed's `type` token.
+
+     Progressive enhancement — deliberate: card filtering is wired up
+     FIRST and needs no feed. The map is added only if the feed loads.
+     A feed outage therefore degrades to "no map", never to
+     "no filtering".
+     ============================================================ -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
+<div id="wvb-dir-map-wrap">
+  <div id="wvb-dir-chip" hidden>
+    <span id="wvb-dir-chip-text"></span>
+    <button type="button" id="wvb-dir-chip-clear">Show all</button>
+  </div>
+  <div id="wvb-dir-map"></div>
+  <div id="wvb-dir-map-note"></div>
+</div>
+
+<style>
+  #wvb-dir-map-wrap { margin: 0 0 2.5rem; }
+  #wvb-dir-map {
+    width: 100%; height: 520px; border-radius: 4px;
+    background: #F2F0EB; border: 1px solid rgba(61,90,107,.25);
+  }
+  #wvb-dir-map-note {
+    font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
+    color: #3D5A6B; padding-top: .6rem;
+  }
+  #wvb-dir-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin: 0 0 .9rem; padding: 7px 8px 7px 14px; border-radius: 999px;
+    background: #3D5A6B; color: #F2F0EB; font-size: .9rem; font-weight: 600;
+  }
+  #wvb-dir-chip[hidden] { display: none; }
+  #wvb-dir-chip-clear {
+    font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;
+    border: 0; border-radius: 999px; padding: 4px 12px;
+    background: #C8922A; color: #1A1A1A;
+  }
+  #wvb-dir-map-wrap .maplibregl-popup-content {
+    font-family: inherit; padding: 12px 14px; border-radius: 3px;
+    box-shadow: 0 4px 18px rgba(26,26,26,.18);
+  }
+  .wvb-pop-name { font-weight: 700; color: #1A1A1A; margin-bottom: 2px; }
+  .wvb-pop-cat  { font-size: .78rem; text-transform: uppercase;
+                  letter-spacing: .05em; color: #3D5A6B; margin-bottom: 8px; }
+  .wvb-pop-links a { font-size: .85rem; font-weight: 600; color: #C8922A;
+                     text-decoration: none; }
+  .wvb-pop-links a:hover { text-decoration: underline; }
+  .wvb-pop-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: .04em; text-transform: uppercase; color: #fff;
+    background: #C8922A; border-radius: 999px; padding: 2px 8px;
+    margin-left: 6px; vertical-align: 2px;
+  }
+
+  /* Media queries LAST — single-class selectors mean source order is the
+     only thing holding this cascade together. This is what hid the route
+     map for eleven days. Do not move them. */
+  @media (max-width: 767px) {
+    #wvb-dir-map { height: 380px; }
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@09d6b93b16113a53f08a658b162bf775c166ab9e/embeds/directory-index-map-v5.js"></script>

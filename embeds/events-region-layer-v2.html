@@ -1,0 +1,70 @@
+<!-- WVB — Events Region Map layer · v2 · 2026-10-19
+     Replaces v1.1 (2026-09-16). The drawing and the hover/click behaviour now live in the
+     shared layer, embeds/region-layer-v1.js, which the Directory and Riding Clubs maps use too.
+     This file is only the /events adapter: it tells the shared layer how to read and change
+     the /events filter.
+
+     DOES NOT OWN FILTERING. The page footer pill script owns filter state. This adapter drives
+     it by clicking that script's own (visually hidden) region pills, and redraws from the pills'
+     is-active state after every re-render. One state, no second implementation — as in v1.1.
+
+     New in v2: the state outline and the soft wash over neighbouring states (as on /routes).
+
+     Degrades safely: if the shared layer, the regions file or the events map fails to load,
+     nothing is hidden and the region pills stay visible exactly as before. -->
+<style>
+  .wvb-regions-on .wvb-pill-group:has([data-wvb-filter="region"]){display:none}
+</style>
+<script src="https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@46a032668dac2f7f9dd156f2ae67aa6660e138ca/embeds/region-layer-v1.js"></script>
+<script>
+(function () {
+  function regionRow() { return document.querySelector('[data-wvb-filter="region"]'); }
+  function pills() { var r = regionRow(); return r ? [].slice.call(r.querySelectorAll('.filter-pill')) : []; }
+  function pillLabel(p) { var l = p.querySelector('.filter-pill-label') || p; return l.textContent.trim(); }
+  function pillFor(name) { return pills().filter(function (p) { return pillLabel(p) === name; })[0] || null; }
+  function activeNames() { return pills().filter(function (p) { return p.classList.contains('is-active'); }).map(pillLabel); }
+  function countFor(name) { var p = pillFor(name), c = p && p.querySelector('.filter-pill-count'); return c ? parseInt(c.textContent, 10) || 0 : null; }
+
+  function setOnly(targets) {
+    var guard = 0;
+    activeNames().forEach(function (n) { if (targets.indexOf(n) === -1 && guard++ < 20) { var p = pillFor(n); if (p) p.click(); } });
+    targets.forEach(function (n) { if (activeNames().indexOf(n) === -1 && guard++ < 20) { var p = pillFor(n); if (p) p.click(); } });
+  }
+
+  function waitForMap(cb, tries) {
+    tries = tries || 0;
+    var M = window.WVBEventsMap;
+    if (window.WVBRegionLayer && M && M.map && M.map.getLayer && M.map.getLayer('ev-pins')) return cb(M.map);
+    if (tries > 150) { console.warn('[WVB regions] Events map or shared region layer not ready; region layer skipped.'); return; }
+    setTimeout(function () { waitForMap(cb, tries + 1); }, 100);
+  }
+
+  function boot() {
+    if (!regionRow()) { console.warn('[WVB regions] No region pill row; skipped.'); return; }
+    waitForMap(function (map) {
+      var layer = WVBRegionLayer.attach({
+        map: map,
+        before: 'ev-pins',
+        avoidLayers: ['ev-pins', 'ev-pin-icons'],
+        noun: ['event', 'events'],
+        countFor: countFor,
+        activeNames: activeNames,
+        extraNames: function () { return pills().map(pillLabel); },   // e.g. Out of State
+        toggle: function (name) { var p = pillFor(name); if (p) p.click(); },
+        setOnly: setOnly,
+        bar: { after: document.getElementById('wvb-events-map') }
+      });
+      layer.ready.then(function (h) {
+        if (!h) return;
+        var q = false;
+        new MutationObserver(function () {
+          if (q) return; q = true;
+          requestAnimationFrame(function () { q = false; layer.refresh(); });
+        }).observe(regionRow(), { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+        document.body.classList.add('wvb-regions-on');
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>

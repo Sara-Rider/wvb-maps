@@ -1,0 +1,100 @@
+<!-- WVB — Directory Region Map layer · v1 · 2026-10-19
+     Lives in the /directory PAGE footer custom code (Page settings › Custom code › Before </body>).
+     Adds the shared region layer (embeds/region-layer-v1.js) to the Directory map: state outline,
+     faded neighbours, shaded regions with a listing count on hover, click a region to filter.
+
+     DOES NOT OWN FILTERING. The Directory map embed owns the filter through the Region and
+     Category selects. Clicking a region sets the Region select and fires its change event, so the
+     cards and pins filter exactly as if the rider had used the dropdown.
+
+     Counts: listings in that region that also match the current Category choice
+     (and, with map embed v5+, any link-in Attraction Type filter). The category
+     names are folded the same way the Directory map embed folds them (its CANON table), because
+     the CMS card labels and the select options still differ for three categories.
+
+     Degrades safely: if the shared layer, the regions file or the Directory map fails to load,
+     the map and the dropdowns work exactly as before. -->
+<script src="https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@46a032668dac2f7f9dd156f2ae67aa6660e138ca/embeds/region-layer-v1.js"></script>
+<script>
+(function () {
+  var CANON = {
+    'attraction \\ sight to see': 'attraction', 'attraction / sight to see': 'attraction',
+    'sight to see': 'attraction', 'other stuff': 'other', 'motorcycle dealers': 'motorcycle dealer',
+    'repair shops': 'repair shop', 'tire shops': 'tire shop', 'paint shops': 'paint shop',
+    'outfitters': 'outfitter', 'tour guides': 'tour guide', 'campgrounds': 'campground',
+    'restaurants': 'restaurant', 'bars': 'bar'
+  };
+  function norm(v) { return String(v == null ? '' : v).trim().toLowerCase(); }
+  function canon(v) { var r = norm(v); return CANON[r] || r; }
+
+  function regionSel() { return document.querySelector('select[name="Regions"]'); }
+  function categorySel() { return document.querySelector('select[name="Category"]'); }
+  function cards() { return [].slice.call(document.querySelectorAll('.collection-item')); }
+  function isAll(v) { v = norm(v); return !v || v.indexOf('all') === 0; }
+  function optFor(name) {
+    var s = regionSel();
+    return s ? [].slice.call(s.options).filter(function (o) {
+      return norm(o.value) === norm(name) || norm(o.textContent) === norm(name);
+    })[0] || null : null;
+  }
+
+  function activeNames() {
+    var s = regionSel();
+    if (!s || isAll(s.value)) return [];
+    var o = optFor(s.value);
+    return [o ? o.textContent.trim() : s.value.trim()];
+  }
+
+  function countFor(name) {
+    var c = categorySel(), cat = c && !isAll(c.value) ? canon(c.value) : '';
+    var F = window.WVBDirFilter;   // map embed v5+: honour a link-in type filter
+    return cards().filter(function (card) {
+      return norm(card.getAttribute('data-region')) === norm(name)
+        && (!cat || canon(card.getAttribute('data-category')) === cat)
+        && (!F || F.typeOk(card));
+    }).length;
+  }
+
+  function choose(name) {
+    var s = regionSel();
+    if (!s) return;
+    var o = name ? optFor(name) : null;
+    s.value = o ? o.value : s.options[0].value;
+    s.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  function waitForMap(cb, tries) {
+    tries = tries || 0;
+    var M = window.WVBDirMap;
+    if (window.WVBRegionLayer && M && M.map && M.map.getLayer && M.map.getLayer('pins')) return cb(M.map);
+    if (tries > 150) { console.warn('[WVB regions] Directory map or shared region layer not ready; region layer skipped.'); return; }
+    setTimeout(function () { waitForMap(cb, tries + 1); }, 100);
+  }
+
+  function boot() {
+    if (!regionSel()) { console.warn('[WVB regions] No Region select on this page; skipped.'); return; }
+    waitForMap(function (map) {
+      var layer = WVBRegionLayer.attach({
+        map: map,
+        before: 'pins',
+        avoidLayers: ['pins', 'pin-icons'],
+        noun: ['listing', 'listings'],
+        countFor: countFor,
+        activeNames: activeNames,
+        toggle: function (name) {
+          var on = activeNames().map(norm).indexOf(norm(name)) !== -1;
+          choose(on ? null : name);
+        },
+        setOnly: function (names) { choose(names.length ? names[0] : null); }
+      });
+      layer.ready.then(function (h) {
+        if (!h) return;
+        [regionSel(), categorySel(), document.querySelector('select[name="Type"]')].forEach(function (s) {
+          if (s) s.addEventListener('change', function () { layer.refresh(); });
+        });
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
