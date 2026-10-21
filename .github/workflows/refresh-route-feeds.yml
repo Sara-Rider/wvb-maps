@@ -1,7 +1,7 @@
 #Repo path: .github/workflows/refresh-route-feeds.yml
 #
 # Generates routes/<slug>.geojson for EVERY published route, from:
-#   tracks/<slug>.geojson   authored road geometry (Furkot export, hand-committed)
+#   gpx/<Furkot file>.gpx   authored road geometry (detailed-track export; tracks/<slug>.geojson is the legacy fallback)
 #   The Stops               the route's ordered reference to Directory listings
 #
 # This is not an optimisation — it IS the build step. Running it is how the
@@ -70,11 +70,18 @@ jobs:
           curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes/"
           curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/routes-index.geojson"
           echo "Requested jsDelivr purge for routes/ and routes-index.geojson."
+      # GPX files are uploaded by hand, outside this workflow, so a replaced
+      # file never shows up as a feed change. Purge gpx/ on every run: a purge
+      # is free, and it keeps the GPX Download Link from serving the old file.
+      - name: Purge jsDelivr cache for gpx/ (every run)
+        run: |
+          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/gpx/"
+          echo "Requested jsDelivr purge for gpx/."
       - name: Fail the run if the builder reported a hard finding
         if: always()
         run: |
           if [ -f build.log ] && grep -q "FAIL" build.log; then
-            echo "::error::build_route_feeds.py reported a hard finding — a stop"
+            echo "::error::build_route_feed.py reported a hard finding — a stop"
             echo "::error::with no coordinate, an unpublished stop, or a bad token."
             grep "FAIL" build.log
             exit 1
