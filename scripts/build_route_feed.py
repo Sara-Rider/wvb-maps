@@ -59,8 +59,16 @@ a native Collection List can render the rail as real, indexed, crawlable links
 instead of pins that only exist inside a canvas element. That is the whole
 reason the field exists.
 
+It also writes each route's GPX Download Link (gpx-download-link-2), pointing
+at the gpx/ file this run matched to the route, served from jsDelivr. One file
+then feeds both the map line and the rider's download, so the two cannot
+disagree, and nobody has to paste the link by hand (decided 2026-10-20). A
+route built from a legacy tracks/ file, or with no geometry, has its link left
+alone and gets a NOTE. Same staged/live comparison and same narrow write rules
+as the rail below — see push_gpx_link().
+
 The write is narrow on purpose:
-  * one field, on one collection, never anything else
+  * two fields, on one collection, never anything else
   * skipped entirely when the computed set matches what is already there, so a
     no-op run does not republish six items and churn lastPublished. The stored
     value for that comparison is read from the STAGED items endpoint, because
@@ -79,6 +87,7 @@ import json
 import os
 import re
 import sys
+from urllib.parse import quote
 
 import requests
 
@@ -100,6 +109,11 @@ TRAVEL_REGIONS_COLLECTION_ID = "6a559020e2cb0cdf4ac5d4ca"
 
 NEARBY_FIELD = "nearby-businesses"
 STOPS_FIELD = "related-businesses"
+GPX_LINK_FIELD = "gpx-download-link-2"
+
+# Where riders download a route's GPX. jsDelivr serves the repo file; the
+# workflow purges gpx/ on every run so a replaced file is not served stale.
+GPX_URL_BASE = "https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/gpx/"
 
 TOKEN = os.environ.get("WEBFLOW_API_TOKEN") or os.environ.get("WEBFLOW_TOKEN")
 HDRS = {"Authorization": f"Bearer {TOKEN}", "accept": "application/json"}
@@ -381,6 +395,69 @@ def stored_nearby():
     return out
 
 
+def gpx_file_for(slug, gpx_index):
+    """The gpx/ file name load_track() reads for this route, or None.
+
+    Mirrors load_track()'s order exactly — gpx/<slug>.gpx first, then the
+    normalised match — so the download link always names the same file the
+    line was drawn from."""
+    if os.path.exists(os.path.join(GPX_DIR, f"{slug}.gpx")):
+        return f"{slug}.gpx"
+    return (gpx_index or {}).get(_dethe(slug))
+
+
+def gpx_url(filename):
+    return GPX_URL_BASE + quote(filename)
+
+
+def stored_gpx_links():
+    """{routeItemId: GPX Download Link} read from the STAGED items endpoint.
+
+    The live value is read from the live route items the main loop already
+    has. A write is needed when EITHER disagrees: comparing staged only would
+    call an item correct while the live site still served an old link."""
+    out = {}
+    for it in all_items(ROUTES_COLLECTION_ID, live=False):
+        out[it["id"]] = ((it.get("fieldData") or {}).get(GPX_LINK_FIELD)
+                         or "").strip()
+    return out
+
+
+def push_gpx_link(route_id, is_draft, url, staged, live):
+    """Write the route's GPX Download Link. Returns (status, detail).
+
+    Never raises, for the same reason as push_nearby(). A draft route has no
+    live record, so only its staged value is compared and written."""
+    if SKIP_CMS:
+        return "skipped", "WVB_SKIP_CMS=1"
+    staged = (staged or "").strip()
+    live = (live or "").strip()
+    if staged == url and (is_draft or live == url):
+        return "unchanged", ""
+
+    why = (f"staged {'matches' if staged == url else (staged or 'empty')}"
+           + ("" if is_draft else
+              f", live {'matches' if live == url else (live or 'empty')}"))
+
+    suffix = "" if is_draft else "/live"
+    endpoint = f"{API}/collections/{ROUTES_COLLECTION_ID}/items/{route_id}{suffix}"
+    try:
+        r = requests.patch(
+            endpoint,
+            headers={**HDRS, "content-type": "application/json"},
+            json={"fieldData": {GPX_LINK_FIELD: url}},
+            timeout=30,
+        )
+    except requests.RequestException as exc:
+        return "error", str(exc)
+    if r.status_code in (401, 403):
+        return "no-permission", (
+            f"HTTP {r.status_code} — WEBFLOW_API_TOKEN cannot write CMS items.")
+    if not r.ok:
+        return "error", f"HTTP {r.status_code} {r.text[:200]}"
+    return (("set-staged" if is_draft else "set"), f"{url} ({why})")
+
+
 def push_nearby(route_id, is_draft, item_ids, current):
     """Write the computed rail to the route's Nearby Businesses field.
 
@@ -461,8 +538,9 @@ def build():
 
     pool, no_coord = directory_candidates(directory, dir_categories, regions)
     stored_rails = {} if SKIP_CMS else stored_nearby()
+    stored_links = {} if SKIP_CMS else stored_gpx_links()
 
-    written, findings, notes, cms_log = [], [], [], []
+    written, findings, notes, cms_log, gpx_log = [], [], [], [], []
     index_features, index_skipped, renamed = [], [], []
     seen_slugs = set()
     gpx_index, gpx_collisions = index_gpx()
@@ -494,6 +572,12 @@ def build():
                 renamed.append(f"{fn} -> {slug}")
         if track_note:
             findings.append(track_note)
+
+        # The link is set only when the line itself came from a GPX. A GPX
+        # that exists but would not parse leaves segments empty, so a broken
+        # file never becomes a download link.
+        gpx_fn = gpx_file_for(slug, gpx_index)
+        link = gpx_url(gpx_fn) if (gpx_fn and segments) else None
 
         road = C.Corridor(segments) if segments else None
         if not segments:
@@ -528,7 +612,7 @@ def build():
                 "difficulty": difficulty.get(fd.get("difficulty"), ""),
                 "surface": surface.get(fd.get("surface-type"), ""),
                 "region": regions.get(fd.get("travel-region"), ""),
-                "gpx": fd.get("gpx-download-link-2"),
+                "gpx": link or fd.get(GPX_LINK_FIELD),
             }))
 
         # ---- the stops, in authored order ----------------------------
@@ -699,6 +783,19 @@ def build():
             [c["id"] for c in chosen], stored_rails.get(route["id"], []))
         cms_log.append(f"{slug}: {status}" + (f" — {detail}" if detail else ""))
 
+        # ---- write the GPX Download Link -------------------------------
+        if link:
+            status, detail = push_gpx_link(
+                route["id"], bool(route.get("isDraft")), link,
+                stored_links.get(route["id"], ""), fd.get(GPX_LINK_FIELD))
+            gpx_log.append(f"{slug}: {status}"
+                           + (f" — {detail}" if detail else ""))
+        else:
+            gpx_log.append(f"{slug}: left alone")
+            notes.append(f"{slug}: no usable gpx/ file, so the GPX Download "
+                         "Link was left as it is. Add the Furkot export to gpx/ "
+                         "and the next run sets it.")
+
     # ---- a GPX that belongs to no route -------------------------------
     # Only a FAIL when a route is ALSO missing geometry, which is the signature
     # of a naming mistake. A spare GPX alongside six healthy routes is just a
@@ -755,6 +852,9 @@ def build():
     print("Nearby Businesses (CMS):")
     for c in cms_log:
         print("  " + c)
+    print("GPX Download Link (CMS):")
+    for g in gpx_log:
+        print("  " + g)
     for n in notes:
         print("  NOTE " + n)
     for f in findings:
