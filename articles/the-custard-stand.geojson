@@ -1,0 +1,140 @@
+{
+ "type": "FeatureCollection",
+ "properties": {
+  "story": "the-custard-stand",
+  "mode": "single",
+  "routes": []
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4128400614557,
+     38.47948416505829
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "the-custard-stand",
+    "name": "The Custard Stand",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Hot dogs, chili and ice cream at Webster Springs - the chili is the one that got famous.",
+    "region": "Mountain Lakes",
+    "county": "Webster",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/the-custard-stand",
+    "website": "https://custardstand.com",
+    "tel": "tel:+13048472942",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.47948416505829,-80.4128400614557"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.5318611,
+     38.2257691
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "whistle-punk-grill-taphouse",
+    "name": "Whistle Punk Grill & Taphouse",
+    "category": "Bar",
+    "type": "food",
+    "short": "Grill and taphouse on East Main Street in Richwood, off the Highland Scenic Highway.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/whistle-punk-grill-taphouse",
+    "website": null,
+    "tel": "tel:+13044724104",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2257691,-80.5318611"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.2011881,
+     38.7059394
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-hutte",
+    "name": "The Hutte",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Third-generation Swiss-American restaurant in the tiny mountain village of Helvetia - worth the twisty ride in.",
+    "region": "Potomac Highlands",
+    "county": "Randolph",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/the-hutte",
+    "website": "https://thehutte.com",
+    "tel": "tel:+13049246435",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.7059394,-80.2011881"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.050517,
+     38.5017403
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mingo-saloon-lodge",
+    "name": "Mingo Saloon & Lodge",
+    "category": "Lodging",
+    "type": "lodging",
+    "short": "Biker-friendly Irish inn, restaurant, and pub on US-219 near Snowshoe — a longtime motorcycle-tour overnight stop.",
+    "region": "Potomac Highlands",
+    "county": "Randolph",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/mingo-saloon-lodge",
+    "website": "https://themingosaloonandlodge.com",
+    "tel": "tel:+13043396917",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5017403,-80.050517"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0928951,
+     38.2662799
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "marlinton-motor-inn",
+    "name": "Marlinton Motor Inn",
+    "category": "Lodging",
+    "type": "lodging",
+    "short": "Rider-favorite motor inn on Rt 219 near Marlinton, 25 miles south of Snowshoe - pool, lounge, and mountain views.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/marlinton-motor-inn",
+    "website": "http://marlintonmotorinn.com",
+    "tel": "tel:+13047994711",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2662799,-80.0928951"
+   }
+  }
+ ]
+}
