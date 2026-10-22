@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Region Navigation Map · v2 · 2026-10-22
+<!-- WEST VIRGINIA BIKERS — Region Navigation Map · v2.1 · 2026-10-22
      Home "Explore by region" band (and usable on the Travel Regions template).
 
      v2 vs v1
@@ -16,6 +16,14 @@
          State) are hidden. No list on the page: the map works alone.
        * Home: no caption (the heading and list explain it). Region page: the
          statewide links line stays under the map — the loop-breaker.
+
+     v2.1 (2026-10-22) — Travel Regions template
+       * On a region page the list hides the region you are on ("Other regions").
+       * Hero locator: if the page has an empty div with ID wvb-region-locator,
+         a small display-only "you are here" map is drawn in it — the state on
+         a plain mist card, this region gold, no street map, no labels, no
+         controls. Hidden on Statewide / Out of State and on phones.
+         Same code, one script load: the home band is unaffected.
 
      Built on the shared region layer (navigation mode), pinned below. -->
 
@@ -43,6 +51,13 @@
   #wvb-regnav-note a { color: #C8922A; font-weight: 700; text-decoration: underline; }
   /* list <-> map highlight; mirrors the Webflow combo class region-link.is-on */
   .region-link.is-on { border-left-color: #C8922A; background-color: rgba(200,146,42,.08); }
+  #wvb-region-locator {
+    width: 240px; height: 176px; border-radius: 4px; overflow: hidden;
+    background: #F2F0EB; border: 1px solid rgba(242,240,235,.6);
+    box-shadow: 0 6px 20px rgba(0,0,0,.28);
+  }
+  #wvb-region-locator.is-empty { display: none; }
+  @media (max-width: 767px) { #wvb-region-locator { display: none; } }
   @media (max-width: 991px) {
     #wvb-regnav { height: 360px; }
     .region-explore-grid > .w-dyn-list { order: -1; }   /* list first on tablets and phones */
@@ -82,6 +97,31 @@
   map.once('load', refit);
   window.addEventListener('resize', refit);
 
+  // Hero "you are here" card: the state alone, this region gold. Display-only.
+  function drawLocator(feats) {
+    var box = document.getElementById('wvb-region-locator');
+    if (!box) return;
+    var mine = feats.filter(function (f) { return f.properties.slug === here; });
+    if (!onRegionPage || !mine.length) { box.classList.add('is-empty'); return; }
+    box.setAttribute('role', 'img');
+    box.setAttribute('aria-label', mine[0].properties.name + ' within West Virginia');
+    var loc = new maplibregl.Map({
+      container: box, interactive: false, attributionControl: false,
+      bounds: WV, fitBoundsOptions: { padding: 10 },
+      style: { version: 8, sources: {}, layers: [
+        { id: 'bg', type: 'background', paint: { 'background-color': '#F2F0EB' } }] }
+    });
+    loc.on('load', function () {
+      loc.addSource('r', { type: 'geojson', data: { type: 'FeatureCollection', features: feats } });
+      loc.addSource('me', { type: 'geojson', data: { type: 'FeatureCollection', features: mine } });
+      loc.addLayer({ id: 'r-fill', type: 'fill', source: 'r', paint: { 'fill-color': SLATE, 'fill-opacity': 0.1 } });
+      loc.addLayer({ id: 'r-line', type: 'line', source: 'r', paint: { 'line-color': SLATE, 'line-width': 0.8, 'line-opacity': 0.55 } });
+      loc.addLayer({ id: 'me-fill', type: 'fill', source: 'me', paint: { 'fill-color': GOLD, 'fill-opacity': 0.55 } });
+      loc.addLayer({ id: 'me-line', type: 'line', source: 'me', paint: { 'line-color': GOLD, 'line-width': 2 } });
+      loc.fitBounds(WV, { padding: 10, duration: 0 });
+    });
+  }
+
   var hereName = null;
   var h = WVBRegionLayer.attach({
     map: map, before: null, shade: false, frame: false,
@@ -111,7 +151,8 @@
     // Pair with the region list on the page, if there is one.
     var links = [].slice.call(document.querySelectorAll('a[data-region-slug]'));
     links.forEach(function (a) {
-      if (!known[a.getAttribute('data-region-slug')]) {
+      var sl = a.getAttribute('data-region-slug');
+      if (!known[sl] || (onRegionPage && sl === here)) {
         var item = a.closest('.w-dyn-item') || a; item.style.display = 'none';
       }
     });
@@ -134,6 +175,8 @@
     map.on('mouseleave', 'wvb-region-fill', function () { if (lit) light(lit, false); lit = null; });
 
     refit();   // the list has its final height now (Statewide / Out of State hidden)
+
+    drawLocator(feats);
 
     if (onRegionPage) {
       note.innerHTML = '<span>Tap another region to open it</span><span>All of West Virginia: '
