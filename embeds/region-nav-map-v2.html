@@ -145,8 +145,9 @@
       ['case', ['boolean', ['feature-state', 'selected'], false], GOLD,
                ['boolean', ['feature-state', 'hover'], false], GOLD, SLATE]);
     map.setPaintProperty('wvb-region-fill', 'fill-opacity',
-      ['case', ['boolean', ['feature-state', 'selected'], false], 0.22,
-               ['boolean', ['feature-state', 'hover'], false], 0.18, 0.06]);
+      ['case', ['boolean', ['feature-state', 'selected'], false], 0.34,
+               ['boolean', ['feature-state', 'hover'], false], 0.16, 0.06]);
+    map.setPaintProperty('wvb-region-line', 'line-opacity', 0.7);   // no dimming: every region stays a link
 
     // Pair with the region list on the page, if there is one.
     var links = [].slice.call(document.querySelectorAll('a[data-region-slug]'));
