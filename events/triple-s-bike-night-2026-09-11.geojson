@@ -31,6 +31,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -79.79830729999999,
+     39.5337533
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "longneck-pub",
+    "name": "Longneck Pub",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Neighborhood bar in Masontown that hosts bike nights for Preston County riders.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.05,
+    "url": "/directory/longneck-pub",
+    "website": null,
+    "tel": "tel:+13048381830",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5337533,-79.79830729999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -79.688648,
      39.4725304
     ]
