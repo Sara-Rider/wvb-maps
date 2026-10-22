@@ -71,6 +71,16 @@
   var STYLE = 'https://tiles.openfreemap.org/styles/liberty';
   var SLATE = '#3D5A6B', GOLD = '#C8922A';
 
+  // Every region list item links to its region page, whatever the Designer link
+  // setting holds, and even if the map itself fails to load.
+  function fixLinks() {
+    [].forEach.call(document.querySelectorAll('a[data-region-slug]'), function (a) {
+      var sl = a.getAttribute('data-region-slug');
+      if (sl) a.setAttribute('href', BASE + sl);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fixLinks); else fixLinks();
+
   var path = location.pathname.replace(/\/+$/, '');
   var onRegionPage = path.indexOf(BASE) === 0;
   var here = onRegionPage ? path.slice(BASE.length) : '';
@@ -151,11 +161,6 @@
 
     // Pair with the region list on the page, if there is one.
     var links = [].slice.call(document.querySelectorAll('a[data-region-slug]'));
-    // Every list item links to its region page, whatever the Designer link setting holds.
-    links.forEach(function (a) {
-      var sl = a.getAttribute('data-region-slug');
-      if (sl) a.setAttribute('href', BASE + sl);
-    });
     links.forEach(function (a) {
       var sl = a.getAttribute('data-region-slug');
       if (!known[sl] || (onRegionPage && sl === here)) {
