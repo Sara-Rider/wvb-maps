@@ -151,6 +151,11 @@
 
     // Pair with the region list on the page, if there is one.
     var links = [].slice.call(document.querySelectorAll('a[data-region-slug]'));
+    // Every list item links to its region page, whatever the Designer link setting holds.
+    links.forEach(function (a) {
+      var sl = a.getAttribute('data-region-slug');
+      if (sl) a.setAttribute('href', BASE + sl);
+    });
     links.forEach(function (a) {
       var sl = a.getAttribute('data-region-slug');
       if (!known[sl] || (onRegionPage && sl === here)) {
