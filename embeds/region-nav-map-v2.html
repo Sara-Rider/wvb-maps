@@ -1,0 +1,145 @@
+<!-- WEST VIRGINIA BIKERS — Region Navigation Map · v2 · 2026-10-22
+     Home "Explore by region" band (and usable on the Travel Regions template).
+
+     v2 vs v1
+       * Sits in a column, not across the page: fills its parent, 500px tall
+         by default, or the height of the region list beside it (360px on
+         phones), 4px corners, 1px slate border — the index-map frame.
+       * Frames West Virginia tightly; everything outside the state is washed
+         out harder, so the state is the subject.
+       * Regions carry a faint tint so they read as clickable; the hovered region
+         turns gold-tinted, the current region (on a region page) gold-edged.
+       * Pairs with a Webflow Collection List of Travel Regions on the same page:
+         any link carrying data-region-slug="<slug>" is linked to the map —
+         hover a name, its region lights; hover a region, its name lights
+         (class is-on). Items whose slug has no outline (Statewide, Out of
+         State) are hidden. No list on the page: the map works alone.
+       * Home: no caption (the heading and list explain it). Region page: the
+         statewide links line stays under the map — the loop-breaker.
+
+     Built on the shared region layer (navigation mode), pinned below. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@bffd9681e324bae94963f5f76b309b4e3f68cb62/embeds/region-layer-v1.js"></script>
+
+<div id="wvb-regnav-wrap">
+  <div id="wvb-regnav" role="img" aria-label="Map of West Virginia's nine travel regions"></div>
+  <div id="wvb-regnav-note"></div>
+</div>
+
+<style>
+  #wvb-regnav-wrap { width: 100%; }
+  #wvb-regnav {
+    width: 100%; height: 500px; border-radius: 4px;
+    background: #F2F0EB; border: 1px solid rgba(61,90,107,.25);
+  }
+  #wvb-regnav-note:empty { display: none; }
+  #wvb-regnav-note {
+    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline;
+    font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
+    color: #3D5A6B; padding-top: .6rem;
+  }
+  #wvb-regnav-note a { color: #C8922A; font-weight: 700; text-decoration: underline; }
+  /* list <-> map highlight; mirrors the Webflow combo class region-link.is-on */
+  .region-link.is-on { border-left-color: #C8922A; background-color: rgba(200,146,42,.08); }
+  @media (max-width: 991px) {
+    #wvb-regnav { height: 360px; }
+    .region-explore-grid > .w-dyn-list { order: -1; }   /* list first on tablets and phones */
+  }
+</style>
+
+<script>
+(function () {
+  var BASE = '/travel-regions/';
+  var WV = [[-82.65, 37.2], [-77.72, 40.64]];
+  var STYLE = 'https://tiles.openfreemap.org/styles/liberty';
+  var SLATE = '#3D5A6B', GOLD = '#C8922A';
+
+  var path = location.pathname.replace(/\/+$/, '');
+  var onRegionPage = path.indexOf(BASE) === 0;
+  var here = onRegionPage ? path.slice(BASE.length) : '';
+
+  var el = document.getElementById('wvb-regnav');
+  var note = document.getElementById('wvb-regnav-note');
+  if (!el || typeof maplibregl === 'undefined' || !window.WVBRegionLayer) {
+    var w = document.getElementById('wvb-regnav-wrap'); if (w) w.style.display = 'none';
+    return;
+  }
+
+  var map = new maplibregl.Map({
+    container: el, style: STYLE, bounds: WV, fitBoundsOptions: { padding: 16 },
+    cooperativeGestures: true, attributionControl: { compact: true }
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  // Beside a region list (desktop), match the list's height so the two columns line up.
+  function matchList() {
+    var list = el.closest('.region-explore-grid') && el.closest('.region-explore-grid').querySelector('.w-dyn-list');
+    var side = list && window.matchMedia('(min-width: 992px)').matches;
+    el.style.height = side ? Math.max(460, Math.min(680, list.offsetHeight)) + 'px' : '';
+  }
+  var refit = function () { matchList(); map.resize(); map.fitBounds(WV, { padding: 16, duration: 0 }); };
+  map.once('load', refit);
+  window.addEventListener('resize', refit);
+
+  var hereName = null;
+  var h = WVBRegionLayer.attach({
+    map: map, before: null, shade: false, frame: false,
+    activeNames: function () { return hereName ? [hereName] : []; },
+    open: function (name, slug) { location.href = BASE + slug; }
+  });
+
+  h.ready.then(function (r) {
+    if (!r) return;
+    var feats = map.getSource('wvb-regions').serialize().data.features;
+    var known = {};
+    feats.forEach(function (f) {
+      known[f.properties.slug] = true;
+      if (f.properties.slug === here) hereName = f.properties.name;
+    });
+    h.refresh();
+
+    // The state is the subject: stronger wash outside, faint tint on every region.
+    if (map.getLayer('wvb-wv-mask')) map.setPaintProperty('wvb-wv-mask', 'fill-opacity', 0.78);
+    map.setPaintProperty('wvb-region-fill', 'fill-color',
+      ['case', ['boolean', ['feature-state', 'selected'], false], GOLD,
+               ['boolean', ['feature-state', 'hover'], false], GOLD, SLATE]);
+    map.setPaintProperty('wvb-region-fill', 'fill-opacity',
+      ['case', ['boolean', ['feature-state', 'selected'], false], 0.22,
+               ['boolean', ['feature-state', 'hover'], false], 0.18, 0.06]);
+
+    // Pair with the region list on the page, if there is one.
+    var links = [].slice.call(document.querySelectorAll('a[data-region-slug]'));
+    links.forEach(function (a) {
+      if (!known[a.getAttribute('data-region-slug')]) {
+        var item = a.closest('.w-dyn-item') || a; item.style.display = 'none';
+      }
+    });
+    function light(slug, on) {
+      if (slug && known[slug]) map.setFeatureState({ source: 'wvb-regions', id: slug }, { hover: on });
+      links.forEach(function (a) { if (a.getAttribute('data-region-slug') === slug) a.classList.toggle('is-on', on); });
+    }
+    links.forEach(function (a) {
+      var s = a.getAttribute('data-region-slug');
+      a.addEventListener('mouseenter', function () { light(s, true); });
+      a.addEventListener('mouseleave', function () { light(s, false); });
+      a.addEventListener('focus', function () { light(s, true); });
+      a.addEventListener('blur', function () { light(s, false); });
+    });
+    var lit = null;
+    map.on('mousemove', 'wvb-region-fill', function (e) {
+      var s = e.features[0].properties.slug;
+      if (s !== lit) { if (lit) light(lit, false); lit = s; light(s, true); }
+    });
+    map.on('mouseleave', 'wvb-region-fill', function () { if (lit) light(lit, false); lit = null; });
+
+    refit();   // the list has its final height now (Statewide / Out of State hidden)
+
+    if (onRegionPage) {
+      note.innerHTML = '<span>Tap another region to open it</span><span>All of West Virginia: '
+        + '<a href="/events">Events</a> <a href="/routes">Routes</a> '
+        + '<a href="/directory">Places</a> <a href="/riding-clubs">Clubs</a></span>';
+    }
+  });
+})();
+</script>
