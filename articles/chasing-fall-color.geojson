@@ -1,0 +1,66 @@
+{
+ "type": "FeatureCollection",
+ "properties": {
+  "story": "chasing-fall-color",
+  "mode": "route",
+  "routes": [
+   "the-summersville-loop",
+   "mills-gap-mountain-loop",
+   "hanging-rock-tavern-run"
+  ]
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.077134,
+     38.064899
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "fayette-station-road-tunney-hunsaker-bridge",
+    "name": "Fayette Station Road & Tunney Hunsaker Bridge",
+    "category": "Attraction",
+    "type": "scenic-road",
+    "short": "A steep, switchbacked road descending into the New River Gorge to a river-level bridge beneath the New River Gorge Bridge.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/fayette-station-road-tunney-hunsaker-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.064899,-81.077134"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.57278,
+     37.54722
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "indian-creek-covered-bridge",
+    "name": "Indian Creek Covered Bridge",
+    "category": "Attraction",
+    "type": "bridge",
+    "short": "ca. 1898 Howe-truss covered bridge over Indian Creek near Salt Sulphur Springs.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Monroe",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/indian-creek-covered-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.54722,-80.57278"
+   }
+  }
+ ]
+}
