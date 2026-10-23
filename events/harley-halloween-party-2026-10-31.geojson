@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.2190507,
+     37.2580386
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "harley-halloween-party-2026-10-31",
+    "name": "Harley Halloween Party",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "New River-Greenbrier Valley",
+    "date": "2026-10-31T16:00:00.000Z",
+    "endDate": "2026-10-31T12:00:00.000Z",
+    "locationName": "Cole Harley-Davidson",
+    "status": "Free",
+    "url": "/events/harley-halloween-party-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.2580386,-81.2190507"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.2190507,
+     37.2580386
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "cole-harley-davidson",
+    "name": "Cole Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Family-owned Harley-Davidson dealer in downtown Bluefield - the southern-WV service and gear stop.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Mercer",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/cole-harley-davidson",
+    "website": "https://colehd.com",
+    "tel": "tel:+13043248116",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.2580386,-81.2190507"
+   }
+  }
+ ]
+}

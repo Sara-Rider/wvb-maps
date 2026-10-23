@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "trick-or-treat-at-mothman-harley-davidson-2026-10-31",
+    "name": "Trick or Treat at Mothman Harley-Davidson",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-10-31T15:00:00.000Z",
+    "endDate": "2026-10-31T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/trick-or-treat-at-mothman-harley-davidson-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mothman-harley-davidson",
+    "name": "Mothman Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "The Mid-Ohio Valley's authorized Harley-Davidson dealer in Williamstown — service, parts, and gear right off I-77 at the Ohio line.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/mothman-harley-davidson",
+    "website": "https://www.mothmanhd.com",
+    "tel": "tel:+13043752530",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  }
+ ]
+}

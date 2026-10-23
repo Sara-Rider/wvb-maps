@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.5920605,
+     40.0640359
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "kick-stands-kandy-2026-10-31",
+    "name": "Kick Stands & Kandy",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Northern Panhandle",
+    "date": "2026-10-31T15:00:00.000Z",
+    "endDate": null,
+    "locationName": "Valley Harley-Davidson",
+    "status": "Free",
+    "url": "/events/kick-stands-kandy-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=40.0640359,-80.5920605"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.5920605,
+     40.0640359
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "valley-harley-davidson",
+    "name": "Valley Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Harley-Davidson dealer at the Highlands near Wheeling - bikes, service, parts, and gear in the Northern Panhandle.",
+    "region": "Northern Panhandle",
+    "county": "Ohio",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/valley-harley-davidson",
+    "website": "https://valleyharley.com",
+    "tel": "tel:+13042439300",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=40.0640359,-80.5920605"
+   }
+  }
+ ]
+}

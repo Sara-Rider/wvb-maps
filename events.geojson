@@ -6,6 +6,342 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "slug": "3rd-annual-end-of-summer-bash-2026-10-03-d10b4",
+    "name": "3rd Annual End of Summer Bash",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-10-03T14:00:00.000Z",
+    "endDate": "2026-10-04T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/3rd-annual-end-of-summer-bash-2026-10-03-d10b4",
+    "link": "www.mothmanhd.com",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.5920605,
+     40.0640359
+    ]
+   },
+   "properties": {
+    "slug": "kick-stands-kandy-2026-10-31",
+    "name": "Kick Stands & Kandy",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Northern Panhandle",
+    "date": "2026-10-31T15:00:00.000Z",
+    "endDate": null,
+    "locationName": "Valley Harley-Davidson",
+    "status": "Free",
+    "url": "/events/kick-stands-kandy-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=40.0640359,-80.5920605"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "slug": "casino-night-2026-11-13",
+    "name": "Casino Night",
+    "type": "other",
+    "typeLabel": "Other",
+    "region": "Mountaineer Country",
+    "date": "2026-11-13T23:00:00.000Z",
+    "endDate": "2026-11-14T12:00:00.000Z",
+    "locationName": "Triple S Harley-Davidson",
+    "status": "Free",
+    "url": "/events/casino-night-2026-11-13",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.86175700953504,
+     39.28815976023299
+    ]
+   },
+   "properties": {
+    "slug": "charles-town-car-show-2026-09-05",
+    "name": "Charles Town Car Show",
+    "type": "show",
+    "typeLabel": "Show",
+    "region": "Eastern Panhandle",
+    "date": "2026-09-05T04:00:00.000Z",
+    "endDate": null,
+    "locationName": "",
+    "status": "Free",
+    "url": "/events/charles-town-car-show-2026-09-05",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28815976023299,-77.86175700953504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4514955,
+     38.4188813
+    ]
+   },
+   "properties": {
+    "slug": "benefit-event-for-harmony-house-2026-09-26",
+    "name": "Benefit Event for Harmony House",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-09-26T15:00:00.000Z",
+    "endDate": "2026-09-26T12:00:00.000Z",
+    "locationName": "Black Sheep Harley-Davidson",
+    "status": "Free",
+    "url": "/events/benefit-event-for-harmony-house-2026-09-26",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4188813,-82.4514955"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "slug": "triple-s-harley-davidson-paint-n-sip-2026-11-04",
+    "name": "Triple S Harley-Davidson Paint N Sip",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-11-04T23:00:00.000Z",
+    "endDate": "2026-11-05T12:00:00.000Z",
+    "locationName": "Triple S H-D",
+    "status": "Free",
+    "url": "/events/triple-s-harley-davidson-paint-n-sip-2026-11-04",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.2190507,
+     37.2580386
+    ]
+   },
+   "properties": {
+    "slug": "harley-halloween-party-2026-10-31",
+    "name": "Harley Halloween Party",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "New River-Greenbrier Valley",
+    "date": "2026-10-31T16:00:00.000Z",
+    "endDate": "2026-10-31T12:00:00.000Z",
+    "locationName": "Cole Harley-Davidson",
+    "status": "Free",
+    "url": "/events/harley-halloween-party-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.2580386,-81.2190507"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.79830729999999,
+     39.5337533
+    ]
+   },
+   "properties": {
+    "slug": "halloween-bike-night-2026-10-24",
+    "name": "Halloween Bike Night",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-10-24T22:00:00.000Z",
+    "endDate": "2026-10-25T12:00:00.000Z",
+    "locationName": "Longneck Pub",
+    "status": "Free",
+    "url": "/events/halloween-bike-night-2026-10-24",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5337533,-79.79830729999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "slug": "breasiest-bra-challenge-final-party-2026-10-31",
+    "name": "Breasiest Bra Challenge Final Party",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mountaineer Country",
+    "date": "2026-10-31T17:00:00.000Z",
+    "endDate": "2026-10-31T12:00:00.000Z",
+    "locationName": "Triple S Harley-Davidson",
+    "status": "Free",
+    "url": "/events/breasiest-bra-challenge-final-party-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "slug": "bike-night-at-triple-s-harley-davidson-2026-09-25",
+    "name": "Bike Night at Triple S Harley-Davidson",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-09-25T22:00:00.000Z",
+    "endDate": null,
+    "locationName": "Triple S Harley-Davidson",
+    "status": "Free",
+    "url": "/events/bike-night-at-triple-s-harley-davidson-2026-09-25",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.28078839999999,
+     39.3065257
+    ]
+   },
+   "properties": {
+    "slug": "trunk-or-treat-2026-10-24",
+    "name": "Trunk or Treat",
+    "type": "festival",
+    "typeLabel": "Festival",
+    "region": "Mountaineer Country",
+    "date": "2026-10-24T16:00:00.000Z",
+    "endDate": "2026-10-24T12:00:00.000Z",
+    "locationName": "RG's Almost Heaven Harley-Davidson",
+    "status": "Free",
+    "url": "/events/trunk-or-treat-2026-10-24",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3065257,-80.28078839999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.28078839999999,
+     39.3065257
+    ]
+   },
+   "properties": {
+    "slug": "aidan-s-ride-in-dice-roll-2026-10-31",
+    "name": "Aidan's Ride In Dice Roll",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Mountaineer Country",
+    "date": "2026-10-31T15:30:00.000Z",
+    "endDate": "2026-10-31T12:00:00.000Z",
+    "locationName": "RG's Almost Heaven Harley-Davidson",
+    "status": "Free",
+    "url": "/events/aidan-s-ride-in-dice-roll-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3065257,-80.28078839999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "slug": "trick-or-treat-at-mothman-harley-davidson-2026-10-31",
+    "name": "Trick or Treat at Mothman Harley-Davidson",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-10-31T15:00:00.000Z",
+    "endDate": "2026-10-31T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/trick-or-treat-at-mothman-harley-davidson-2026-10-31",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.050517,
+     38.5017403
+    ]
+   },
+   "properties": {
+    "slug": "mobbin-the-mountains-2027-07-09",
+    "name": "Mobbin the Mountains",
+    "type": "group-ride",
+    "typeLabel": "Group Ride",
+    "region": "Potomac Highlands",
+    "date": "2027-07-09T13:00:00.000Z",
+    "endDate": "2027-07-10T12:00:00.000Z",
+    "locationName": "The Mingo Saloon & Lodging",
+    "status": "Free",
+    "url": "/events/mobbin-the-mountains-2027-07-09",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5017403,-80.050517"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.34236159999999,
      39.2814213
     ]

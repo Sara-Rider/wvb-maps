@@ -1,0 +1,120 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.79830729999999,
+     39.5337533
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "halloween-bike-night-2026-10-24",
+    "name": "Halloween Bike Night",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Mountaineer Country",
+    "date": "2026-10-24T22:00:00.000Z",
+    "endDate": "2026-10-25T12:00:00.000Z",
+    "locationName": "Longneck Pub",
+    "status": "Free",
+    "url": "/events/halloween-bike-night-2026-10-24",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5337533,-79.79830729999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.79830729999999,
+     39.5337533
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "longneck-pub",
+    "name": "Longneck Pub",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Neighborhood bar in Masontown that hosts bike nights for Preston County riders.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/longneck-pub",
+    "website": null,
+    "tel": "tel:+13048381830",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5337533,-79.79830729999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.688648,
+     39.4725304
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "preston-county-inn",
+    "name": "Preston County Inn",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Historic 1857 inn on Kingwood's Main Street, with its own restaurant and bar - a characterful Preston County overnight.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 7.27,
+    "url": "/directory/preston-county-inn",
+    "website": "https://www.prestoncountyinn.com",
+    "tel": "tel:+13043292220",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4725304,-79.688648"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "triple-s-harley-davidson",
+    "name": "Triple S Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Full Harley-Davidson dealer in Morgantown, right off I-79 Exit 155 - bikes, parts, service, and gear.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 14.51,
+    "url": "/directory/triple-s-harley-davidson",
+    "website": "https://www.tripleshd.com",
+    "tel": "tel:+13042848244",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  }
+ ]
+}

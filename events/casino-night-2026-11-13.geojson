@@ -1,0 +1,120 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "casino-night-2026-11-13",
+    "name": "Casino Night",
+    "type": "other",
+    "typeLabel": "Other",
+    "region": "Mountaineer Country",
+    "date": "2026-11-13T23:00:00.000Z",
+    "endDate": "2026-11-14T12:00:00.000Z",
+    "locationName": "Triple S Harley-Davidson",
+    "status": "Free",
+    "url": "/events/casino-night-2026-11-13",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.01393577444946,
+     39.659287522148944
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "triple-s-harley-davidson",
+    "name": "Triple S Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Full Harley-Davidson dealer in Morgantown, right off I-79 Exit 155 - bikes, parts, service, and gear.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/triple-s-harley-davidson",
+    "website": "https://www.tripleshd.com",
+    "tel": "tel:+13042848244",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.9714631,
+     39.6540244
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "black-bear-burritos",
+    "name": "Black Bear Burritos",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Long-running Morgantown burrito spot on University Avenue at Evansdale.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.32,
+    "url": "/directory/black-bear-burritos",
+    "website": "https://www.blackbearburritos.com",
+    "tel": "tel:+13047774867",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.04,
+     39.62389
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "dents-run-covered-bridge",
+    "name": "Dents Run Covered Bridge",
+    "category": "Attraction",
+    "type": "bridge",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "1889 King-post covered bridge over Dents Run, just north of Morgantown.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.82,
+    "url": "/directory/dents-run-covered-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.62389,-80.04"
+   }
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4514955,
+     38.4188813
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "benefit-event-for-harmony-house-2026-09-26",
+    "name": "Benefit Event for Harmony House",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Metro Valley",
+    "date": "2026-09-26T15:00:00.000Z",
+    "endDate": "2026-09-26T12:00:00.000Z",
+    "locationName": "Black Sheep Harley-Davidson",
+    "status": "Free",
+    "url": "/events/benefit-event-for-harmony-house-2026-09-26",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4188813,-82.4514955"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4514955,
+     38.4188813
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "black-sheep-harley-davidson",
+    "name": "Black Sheep Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Award-winning Harley-Davidson dealer in downtown Huntington - and yes, there's an in-store diner.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/black-sheep-harley-davidson",
+    "website": "https://blacksheephd.com",
+    "tel": "tel:+13045231340",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4188813,-82.4514955"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.43272255767182,
+     38.4238613990011
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "buddy-s-all-american-bar-b-que",
+    "name": "Buddy's All American Bar-B-Que",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Huntington barbecue joint with a screened-in porch and a summer Thursday bike night that takes over the parking lot.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 1.07,
+    "url": "/directory/buddy-s-all-american-bar-b-que",
+    "website": "https://www.wvbbq.com/",
+    "tel": "tel:+13045229869",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4238613990011,-82.43272255767182"
+   }
+  }
+ ]
+}
