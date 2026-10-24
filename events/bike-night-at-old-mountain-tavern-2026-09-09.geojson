@@ -31,6 +31,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.09360989999999,
+     38.223141
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "old-mountain-tavern",
+    "name": "Old Mountain Tavern",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Marlinton tavern with a deep beer list and deli sandwiches, a block off the Greenbrier River Trail.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/old-mountain-tavern",
+    "website": "https://oldmountaintavern.godaddysites.com/",
+    "tel": "tel:+13047994788",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223141,-80.09360989999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.09556142328172,
      38.22443541183142
     ]

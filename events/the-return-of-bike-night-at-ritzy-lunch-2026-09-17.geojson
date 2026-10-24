@@ -31,6 +31,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.3423616,
+     39.2814213
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "ritzy-lunch",
+    "name": "Ritzy Lunch",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Long-running downtown Clarksburg hot dog counter on West Pike Street.",
+    "region": "Mountaineer Country",
+    "county": "Harrison",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/ritzy-lunch",
+    "website": null,
+    "tel": "tel:+13046223600",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2814213,-80.3423616"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.2779955,
      39.2820332
     ]

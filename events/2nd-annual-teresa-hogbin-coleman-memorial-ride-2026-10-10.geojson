@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.7548364,
+     39.341184
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-91",
+    "name": "American Legion Post 91",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "American Legion post on Romney's main street, and the home of the Patriots Poker Run to Flight 93.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.83,
+    "url": "/directory/american-legion-post-91",
+    "website": "https://romneypost91.org/",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.341184,-78.7548364"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -78.75717860000002,
      39.35489
     ]

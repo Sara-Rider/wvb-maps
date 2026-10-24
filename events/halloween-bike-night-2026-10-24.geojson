@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -79.75239599999999,
+     39.508032
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "smokin-jacks-bar-grill",
+    "name": "Smokin Jack's Bar & Grill",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Ribs, wings and barbecue on the Veterans Memorial Highway run through Preston County.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.05,
+    "url": "/directory/smokin-jacks-bar-grill",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.508032,-79.75239599999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -79.688648,
      39.4725304
     ]

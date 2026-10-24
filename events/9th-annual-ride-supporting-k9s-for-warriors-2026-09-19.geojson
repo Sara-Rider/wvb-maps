@@ -31,6 +31,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.4325015,
+     39.3052389
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-american-legion-post-137",
+    "name": "The American Legion Post 137",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "American Legion post in Capon Bridge, host of the annual ride supporting K9s For Warriors.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/the-american-legion-post-137",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3052389,-78.4325015"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -78.4317056,
      39.2973107
     ]

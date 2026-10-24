@@ -25,6 +25,36 @@
     "link": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.934396199999995,-80.8381789"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8381789,
+     38.934396199999995
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "shades-bar-grill",
+    "name": "Shades Bar & Grill",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Small bar on Glenville's Main Street with live bands, darts and cornhole - drinks and appetizers, not a meal stop.",
+    "region": "Mountain Lakes",
+    "county": "Gilmer",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/shades-bar-grill",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.934396199999995,-80.8381789"
+   }
   }
  ]
 }
