@@ -25,6 +25,36 @@
     "link": "www.headforthehillswv.com",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801669,-80.9862241"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.0534285,
+     39.2630888
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "bourbon-hills-bbq",
+    "name": "Bourbon Hills BBQ",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Family-run barbecue trailer in Ellenboro, near US 50, open Thursdays and Fridays until it sells out.",
+    "region": "Mid-Ohio Valley",
+    "county": "Ritchie",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 3.82,
+    "url": "/directory/bourbon-hills-bbq",
+    "website": "https://www.bourbonhillsbbq.com/",
+    "tel": "tel:+13048694003",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2630888,-81.0534285"
+   }
   }
  ]
 }

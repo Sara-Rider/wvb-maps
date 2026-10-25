@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.746842,
+     39.3355417
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "lost-mountain-bbq",
+    "name": "Lost Mountain BBQ Company",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Roadside barbecue on US 50 at Romney with house-made sauces, open daily for lunch and dinner.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.27,
+    "url": "/directory/lost-mountain-bbq",
+    "website": "http://lost-mountain-bbq-company.square.site/",
+    "tel": "tel:+13043592570",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3355417,-78.746842"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -78.7548364,
      39.341184
     ]
