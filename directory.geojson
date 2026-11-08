@@ -6,9 +6,405 @@
     "contract": "pin data contract v2 — keyed on slug; `type` is the canonical renderer glyph token",
     "join_key": "slug",
     "coordinate_order": "[longitude, latitude]",
-    "count": 107
+    "count": 125
   },
   "features": [
+    {
+      "type": "Feature",
+      "id": "bourbon-hills-bbq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0534285,
+          39.2630888
+        ]
+      },
+      "properties": {
+        "slug": "bourbon-hills-bbq",
+        "name": "Bourbon Hills BBQ",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mid-Ohio Valley",
+        "county": "Ritchie",
+        "certified": false,
+        "url": "/directory/bourbon-hills-bbq",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2630888,-81.0534285"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-hungry-moose",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.3499132,
+          38.8017616
+        ]
+      },
+      "properties": {
+        "slug": "the-hungry-moose",
+        "name": "The Hungry Moose",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mid-Ohio Valley",
+        "county": "Roane",
+        "certified": false,
+        "url": "/directory/the-hungry-moose",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.8017616,-81.3499132"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "millers-bbq-and-grill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9683901,
+          39.071427
+        ]
+      },
+      "properties": {
+        "slug": "millers-bbq-and-grill",
+        "name": "Miller's BBQ & Grill",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Hardy",
+        "certified": false,
+        "url": "/directory/millers-bbq-and-grill",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.071427,-78.9683901"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cast-iron-smokers",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2232504,
+          37.7461743
+        ]
+      },
+      "properties": {
+        "slug": "cast-iron-smokers",
+        "name": "Cast Iron Smokers",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh",
+        "certified": false,
+        "url": "/directory/cast-iron-smokers",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7461743,-81.2232504"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-broken-axle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.93448939999999,
+          37.7754565
+        ]
+      },
+      "properties": {
+        "slug": "the-broken-axle",
+        "name": "The Broken Axle",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Logan",
+        "certified": false,
+        "url": "/directory/the-broken-axle",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7754565,-81.93448939999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mason-dixon-bbq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.7520124,
+          39.9295524
+        ]
+      },
+      "properties": {
+        "slug": "mason-dixon-bbq",
+        "name": "Mason Dixon BBQ Co.",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Northern Panhandle",
+        "county": "Marshall",
+        "certified": false,
+        "url": "/directory/mason-dixon-bbq",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.9295524,-80.7520124"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lost-mountain-bbq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.746842,
+          39.3355417
+        ]
+      },
+      "properties": {
+        "slug": "lost-mountain-bbq",
+        "name": "Lost Mountain BBQ Company",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/lost-mountain-bbq",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3355417,-78.746842"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ridgeview-bbq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7643878,
+          38.383696
+        ]
+      },
+      "properties": {
+        "slug": "ridgeview-bbq",
+        "name": "Ridge View BBQ",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Kanawha",
+        "certified": false,
+        "url": "/directory/ridgeview-bbq",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.383696,-81.7643878"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shades-bar-grill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.8381789,
+          38.934396199999995
+        ]
+      },
+      "properties": {
+        "slug": "shades-bar-grill",
+        "name": "Shades Bar & Grill",
+        "category": "Bar",
+        "type": "food",
+        "region": "Mountain Lakes",
+        "county": "Gilmer",
+        "certified": false,
+        "url": "/directory/shades-bar-grill",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.934396199999995,-80.8381789"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "secret-sandwich-society",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.10457300000002,
+          38.055485
+        ]
+      },
+      "properties": {
+        "slug": "secret-sandwich-society",
+        "name": "Secret Sandwich Society",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/secret-sandwich-society",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.055485,-81.10457300000002"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "little-traverse-inn-bar-grille",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.36564182883562,
+          40.516359213218486
+        ]
+      },
+      "properties": {
+        "slug": "little-traverse-inn-bar-grille",
+        "name": "Little Traverse Inn - Bar & Grille",
+        "category": "Bar",
+        "type": "food",
+        "region": "Out of State",
+        "county": "Allegheny",
+        "certified": false,
+        "url": "/directory/little-traverse-inn-bar-grille",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=40.516359213218486,-80.36564182883562"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "avalon-resort",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.4637711,
+          39.456635
+        ]
+      },
+      "properties": {
+        "slug": "avalon-resort",
+        "name": "Avalon Resort (Clothing Optional)",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/avalon-resort",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.456635,-78.4637711"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-american-legion-post-137",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.4325015,
+          39.3052389
+        ]
+      },
+      "properties": {
+        "slug": "the-american-legion-post-137",
+        "name": "The American Legion Post 137",
+        "category": "Club / Post",
+        "type": "other",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/the-american-legion-post-137",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3052389,-78.4325015"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "old-mountain-tavern",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.09360989999999,
+          38.223141
+        ]
+      },
+      "properties": {
+        "slug": "old-mountain-tavern",
+        "name": "Old Mountain Tavern",
+        "category": "Bar",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/old-mountain-tavern",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.223141,-80.09360989999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pies-and-pints",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1056866,
+          38.0508101
+        ]
+      },
+      "properties": {
+        "slug": "pies-and-pints",
+        "name": "Pies & Pints",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/pies-and-pints",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.0508101,-81.1056866"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "american-legion-post-91",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.7548364,
+          39.341184
+        ]
+      },
+      "properties": {
+        "slug": "american-legion-post-91",
+        "name": "American Legion Post 91",
+        "category": "Club / Post",
+        "type": "other",
+        "region": "Potomac Highlands",
+        "county": "Hampshire",
+        "certified": false,
+        "url": "/directory/american-legion-post-91",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.341184,-78.7548364"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "smokin-jacks-bar-grill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.75239599999999,
+          39.508032
+        ]
+      },
+      "properties": {
+        "slug": "smokin-jacks-bar-grill",
+        "name": "Smokin Jack's Bar & Grill",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Preston",
+        "certified": false,
+        "url": "/directory/smokin-jacks-bar-grill",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.508032,-79.75239599999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ritzy-lunch",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.3423616,
+          39.2814213
+        ]
+      },
+      "properties": {
+        "slug": "ritzy-lunch",
+        "name": "Ritzy Lunch",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Harrison",
+        "certified": false,
+        "url": "/directory/ritzy-lunch",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2814213,-80.3423616"
+      }
+    },
     {
       "type": "Feature",
       "id": "longneck-pub",
