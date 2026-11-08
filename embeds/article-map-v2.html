@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2.1 · 2026-11-08 (event-map look, slate band)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.2 · 2026-11-08 (event-map look, slate band, place listed)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
      data-wvb-slot="article-map", in the same section as the place cards (the
      map only draws places whose cards are in its section). Serves EVERY story.
@@ -170,6 +170,7 @@
     <div class="wvb-map__section" id="wvb-nearby-section">
       <p class="wvb-map__list-title">Nearby</p>
       <p class="wvb-map__sub" id="wvb-story-nearby-sub">See where riders eat, fuel and stop around this place.</p>
+      <div id="wvb-story-place"></div>
       <button type="button" id="wvb-story-toggle" class="wvb-story__toggle">Find out what else is in this area</button>
       <div id="wvb-story-results" hidden>
         <div class="wvb-map__chips" id="wvb-story-chips"></div>
@@ -484,10 +485,10 @@
         if (fly) map.flyTo({ center:c, zoom: Math.max(map.getZoom(), 12) });
       }
 
-      function makeRow(f) {
+      function makeRow(f, isPlace) {
         const p = f.properties;
         const row = document.createElement('div');
-        row.className = 'wvb-map__row is-nearby' + (p.certified ? ' is-certified' : '');
+        row.className = 'wvb-map__row' + (isPlace ? '' : ' is-nearby') + (p.certified ? ' is-certified' : '');
         row.setAttribute('data-lane', p.lane || 'other');
         const badges = [];
         if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
@@ -496,7 +497,9 @@
           '<div class="wvb-map__row-head"><span class="wvb-map__row-name">'+esc(p.name)+'</span>'+badges.join(' ')+'</div>'
           + (p.category ? '<div class="wvb-map__row-cat">'+esc(p.category)+'</div>' : '')
           + (p.short ? '<div class="wvb-map__row-desc">'+esc(p.short)+'</div>' : '')
-          + '<div class="wvb-map__row-meta">'+miles(p.miles)+'</div>';
+          + '<div class="wvb-map__row-meta">'+(isPlace
+              ? esc([p.county ? (/county$/i.test(p.county) ? p.county : p.county + ' County') : '', p.region].filter(Boolean).join(' \u00b7 '))
+              : miles(p.miles))+'</div>';
         row.addEventListener('mouseenter', () => setHover(p.slug, true));
         row.addEventListener('mouseleave', () => setHover(p.slug, false));
         row.addEventListener('click', () => openFor(f, true));
@@ -542,6 +545,11 @@
         paint();
       }
 
+      // The story's own place is listed in the panel, not only pinned.
+      if (mode === 'single' && nearby.length) {
+        places.forEach(f => document.getElementById('wvb-story-place').appendChild(makeRow(f, true)));
+      }
+
       if (mode === 'single' && nearby.length) {
         const introSub = nearbySubEl.textContent;
         buildNearby();
@@ -571,7 +579,7 @@
         const f = byId[e.features[0].id] || e.features[0];
         openFor(f, false);
         const row = rowById[f.properties.slug];
-        if (row && showNearby) {
+        if (row) {
           Object.values(rowById).forEach(r => r.classList.remove('is-active'));
           row.classList.add('is-active');
         }
