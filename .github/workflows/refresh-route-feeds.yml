@@ -17,6 +17,8 @@ on:
   workflow_dispatch: {}
   repository_dispatch:
     types: [routes-changed]
+  schedule:
+    - cron: '30 8 * * 1'
 permissions:
   contents: write
 concurrency:
