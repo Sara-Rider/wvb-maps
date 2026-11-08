@@ -3,10 +3,25 @@
 
 Sibling of build_events_feed.py and build_route_feed.py, and it computes
 nothing they do not already compute. A story has no location of its own. Its
-places come from the Directory listings it links (`related-listings`), its line
-comes from the route it links (`related-routes`), and its nearby places come
-from the listing's own `nearby-stops` — the same field the directory page
-reads. The same way an event takes its pin from the place it is held at.
+places come from the Directory listings it links (`related-listings`) and its
+line comes from the route it links (`related-routes`) — the same way an event
+takes its pin from the place it is held at.
+
+NEARBY IS THE EVENT NEARBY RULE (Sara, 2026-11-08)
+---------------------------------------------------
+A one-place story's nearby places are chosen exactly as an event's are, by the
+same code: build_event_nearby.gather_from_point (straight-line miles, the lane
+radii in corridor.LANE_RADIUS_MILES) and corridor.select (3 per lane, the
+Certified reserve). Imported, not copied, so "nearby" means the same thing on a
+story and an event page. The story's own place is never its own nearby.
+
+When nothing falls inside any lane radius (a remote place), the feed carries
+the NEAREST_FALLBACK closest published listings instead, with their miles, and
+`properties.nearbyFallback = true` so the embed can say so honestly. Decided
+2026-11-08: a remote place still gets an answer to "what else is out here".
+
+The embed shows none of this until the rider asks (the "Find out what else is
+in this area" button); the map opens on the whole state.
 
 THE STORY'S DATA DECIDES THE MAP (brief, 2026-10-20) — no per-story setting
 --------------------------------------------------------------------------
@@ -15,7 +30,7 @@ THE STORY'S DATA DECIDES THE MAP (brief, 2026-10-20) — no per-story setting
              (routes/<slug>.geojson, unchanged); story places that are not
              stops on it are drawn as unnumbered chosen pins
   single  exactly one related listing, no route
-          -> that place, plus its nearby-stops as softened pins
+          -> that place, plus its nearby places (event Nearby rule, above)
   set     two or more related listings, no route
           -> a pin per place, no line, no numbering, no nearby
   none    nothing to draw -> the embed leaves the slot empty
@@ -42,7 +57,14 @@ import sys
 import requests
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import corridor as C  # noqa: E402  (is_featured — one definition of "featured")
+import corridor as C  # noqa: E402  (is_featured, select — one definition each)
+from build_route_feed import directory_candidates  # noqa: E402
+from build_event_nearby import (  # noqa: E402
+    gather_from_point, miles_between, nearby_feature)
+
+# A remote place with nothing inside any lane radius shows this many of the
+# closest published listings instead (Sara, 2026-11-08: "the nearest few").
+NEAREST_FALLBACK = 5
 
 API = "https://api.webflow.com/v2"
 ARTICLES_COLLECTION_ID = "6aa288a1560dd5bd324ada75"
@@ -160,6 +182,8 @@ def build():
                for it in all_items(TRAVEL_REGIONS_COLLECTION_ID, live=False)}
     directory = {it["id"]: it.get("fieldData", {})
                  for it in all_items(DIRECTORY_COLLECTION_ID, live=True)}
+    # The same candidate pool the event and route nearby passes measure.
+    pool, _ = directory_candidates(directory, categories, regions)
     routes = {it["id"]: (it.get("fieldData", {}).get("slug") or "").strip()
               for it in all_items(ROUTES_COLLECTION_ID, live=True)}
     articles = [it for it in all_items(ARTICLES_COLLECTION_ID, live=False)
@@ -210,23 +234,31 @@ def build():
             mode = "none"
 
         features = list(places)
+        fallback = False
 
-        # ---- nearby: one place only, from the listing's own nearby-stops ----
+        # ---- nearby: one place only, the event Nearby rule ----
         if mode == "single":
-            chosen_slug = places[0]["properties"]["slug"]
-            src = next((directory[i] for i in ref_ids(fd.get("related-listings"))
-                        if i in directory), {})
-            for nid in ref_ids(src.get("nearby-stops")):
-                d = directory.get(nid)
-                if d is None or (d.get("slug") or "").strip() == chosen_slug:
-                    continue
-                f = place_feature(d, "nearby", categories, regions, findings, story)
-                if f:
-                    features.append(f)
+            lon, lat = places[0]["geometry"]["coordinates"]
+            own = places[0]["properties"]["slug"]
+            candidates = [c for c in pool if c["slug"] != own]
+            chosen, _, _ = C.select(gather_from_point(lon, lat, candidates))
+            if not chosen:
+                # Remote place: the closest few, whatever their lane.
+                fallback = True
+                ranked = sorted(candidates, key=lambda c: (
+                    miles_between(lon, lat, c["lon"], c["lat"]), c["name"].lower()))
+                chosen = []
+                for c in ranked[:NEAREST_FALLBACK]:
+                    c = dict(c)
+                    c["off_miles"] = round(miles_between(lon, lat, c["lon"], c["lat"]), 2)
+                    chosen.append(c)
+            chosen.sort(key=lambda c: (c["off_miles"], c["name"].lower()))
+            features.extend(nearby_feature(c) for c in chosen)
 
         fc = {
             "type": "FeatureCollection",
-            "properties": {"story": story, "mode": mode, "routes": route_slugs},
+            "properties": {"story": story, "mode": mode, "routes": route_slugs,
+                           "nearbyFallback": fallback},
             "features": features,
         }
         with open(os.path.join(OUT_DIR, f"{story}.geojson"), "w") as fh:
@@ -234,7 +266,8 @@ def build():
             fh.write("\n")
         near = sum(1 for f in features if f["properties"]["kind"] == "nearby")
         written.append(f"articles/{story}.geojson  mode={mode}  places={len(places)}"
-                       f"  nearby={near}  routes={','.join(route_slugs) or '-'}")
+                       f"  nearby={near}{' (nearest-few fallback)' if fallback else ''}"
+                       f"  routes={','.join(route_slugs) or '-'}")
 
     # A feed whose story was deleted or archived is removed, so a dead URL
     # never draws an old map.

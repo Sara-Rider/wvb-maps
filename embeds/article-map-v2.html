@@ -1,0 +1,509 @@
+<!-- WEST VIRGINIA BIKERS — Story Map · v2 · 2026-11-08
+     Lives on the Articles TEMPLATE (site label: Stories) inside the block
+     data-wvb-slot="article-map", in the same section as the place cards (the
+     map only draws places whose cards are in its section). Serves EVERY story.
+     Feed is derived from the story slug: /articles/<slug> fetches
+     articles/<slug>.geojson (scripts/build_article_feeds.py, "Refresh story
+     map feeds"). Replaces v1, which stays in the repo for rollback.
+
+     WHAT CHANGED FROM v1 (Sara, 2026-11-08)
+     ----------------------------------------
+     The story map's job is to show WHERE THE STORY'S PLACE IS IN THE STATE.
+       * It opens on the whole of West Virginia, drawn the way the routes and
+         Travel Region maps draw it: mist wash outside the state, solid slate
+         state line, dashed region lines, region names. Every mode — one place,
+         several places, a route — opens this way.
+       * Nearby places are hidden until the rider asks. A one-place story gets
+         the button "Find out what else is in this area": it zooms to the
+         place, adds the nearby pins (softened) and a list under the map —
+         closest first, with miles, filter chips by lane — built like the event
+         Nearby list so "nearby" reads the same on every page. Pressing it
+         again returns to the state.
+       * The nearby set itself now comes from the event Nearby rule (see the
+         feed builder). A remote place with nothing in range gets the nearest
+         few listings with their miles, and the list says so.
+       * Several-place and route stories have no button in this version
+         (decided 2026-11-08: one-place stories first).
+
+     THE STORY'S DATA DECIDES THE MAP (feed `properties.mode`) — unchanged
+       route   the linked route's own feed: its line and numbered stops. Story
+               places that are not stops on it are unnumbered chosen pins.
+       single  one place; nearby on request
+       set     a pin per place — no line, no numbers, no nearby
+       none    nothing — the slot is hidden
+
+     THREE VISUAL CHANNELS, NEVER CROSSED — unchanged from route-map-v5
+       icon            what the place IS (the 15 canonical glyphs)
+       gold ring+size  Certified, and nothing else
+       opacity         chosen (solid) vs computed nearby (softened)
+     Featured (paid) gets NO pin treatment; it gets the same outlined badge in
+     the list and popup that the event Nearby list gives it.
+
+     TAKEDOWN: a story pin is drawn only for a place whose card is on this page.
+     Nearby pins are listings, not story places, so they follow the feed. -->
+
+<link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+
+<style>
+  .wvb-story{
+    --slate:#3D5A6B; --gold:#C8922A; --gold-hover:#A8791F; --asphalt:#1A1A1A; --mist:#F2F0EB;
+    margin:0 0 24px; font-family:'Raleway',system-ui,sans-serif; color:var(--asphalt);
+  }
+  .wvb-story[hidden]{ display:none !important; }
+  .wvb-story__map{ width:100%; height:460px; border-radius:10px; overflow:hidden; background:#F2F0EB; }
+  @media (max-width:820px){ .wvb-story__map{ height:340px; } }
+
+  .wvb-story__toggle{
+    display:inline-block; margin:14px 0 0; padding:10px 18px; border:0; border-radius:999px;
+    background:var(--gold); color:#fff; cursor:pointer;
+    font-family:'Raleway',system-ui,sans-serif; font-size:14px; font-weight:700; letter-spacing:.02em;
+    transition:background .12s ease;
+  }
+  .wvb-story__toggle:hover{ background:var(--gold-hover); }
+  .wvb-story__toggle[hidden]{ display:none !important; }
+
+  .wvb-story__nearby{ margin-top:18px; }
+  .wvb-story__nearby[hidden]{ display:none !important; }
+  .wvb-map__list-title{
+    font-family:'Cinzel',serif; font-size:15px; letter-spacing:.02em;
+    color:var(--slate); text-transform:uppercase; margin:0 0 10px; font-weight:600;
+  }
+  .wvb-map__list-title + .wvb-map__sub{ margin-top:-6px; }
+  .wvb-map__sub{ font-size:12px; color:#7a746a; margin:0 0 10px; line-height:1.4; }
+
+  .wvb-map__chips{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; }
+  .wvb-map__chip{
+    font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    border:1px solid #d8d2c6; background:#fff; color:#6b665d;
+    border-radius:999px; padding:5px 11px; cursor:pointer; line-height:1;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .wvb-map__chip:hover{ border-color:var(--slate); color:var(--slate); }
+  .wvb-map__chip.is-on{ background:var(--slate); border-color:var(--slate); color:var(--mist); }
+
+  .wvb-map__rows{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:8px; }
+  .wvb-map__row{
+    border:1px solid #e2ddd2; border-left:4px solid transparent;
+    border-radius:8px; padding:10px 12px; cursor:pointer;
+    transition:border-color .12s ease, background .12s ease, transform .06s ease;
+    background:#fbfaf7;
+  }
+  .wvb-map__row:hover,
+  .wvb-map__row.is-active{
+    border-color:#e2ddd2; border-left-color:var(--gold);
+    background:var(--mist); transform:translateX(1px);
+  }
+  .wvb-map__row.is-certified{ border-left-color:var(--gold); }
+  .wvb-map__row-head{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .wvb-map__row-name{ font-weight:700; font-size:15px; color:var(--slate); }
+  .wvb-map__row-cat{ font-size:12px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin-top:2px; }
+  .wvb-map__row-desc{ font-size:13px; line-height:1.4; margin-top:6px; color:#3a3a3a; }
+  .wvb-map__row-meta{ font-size:12px; color:#6b665d; margin-top:6px; font-weight:600; }
+  .wvb-map__badge{
+    display:inline-block; font-size:10px; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase; color:#fff; background:#C8922A;
+    border-radius:999px; padding:2px 8px; white-space:nowrap; vertical-align:2px;
+  }
+  .wvb-map__badge--featured{ background:transparent; color:#3D5A6B; border:1px solid #3D5A6B; }
+
+  .wvb-pop{ font-family:'Raleway',system-ui,sans-serif; max-width:230px; }
+  .wvb-pop__name{ font-family:'Cinzel',serif; font-weight:600; font-size:15px; color:#3D5A6B; }
+  .wvb-pop__cat{ font-size:11px; text-transform:uppercase; letter-spacing:.03em; color:#7a746a; margin:2px 0 6px; }
+  .wvb-pop__meta{ font-size:12px; color:#6b665d; font-weight:600; margin-bottom:8px; }
+  .wvb-pop__desc{ font-size:13px; line-height:1.4; margin-bottom:8px; }
+  .wvb-pop__links a{ color:#A8791F; font-weight:600; font-size:13px; text-decoration:none; }
+  .wvb-pop__links a:hover{ text-decoration:underline; }
+  .wvb-story .maplibregl-popup-content{ border-radius:10px; padding:12px 14px; }
+</style>
+
+<div id="wvb-story" class="wvb-story" hidden>
+  <div id="wvb-story-map" class="wvb-story__map"></div>
+  <button type="button" id="wvb-story-toggle" class="wvb-story__toggle" hidden>Find out what else is in this area</button>
+  <div id="wvb-story-nearby" class="wvb-story__nearby" hidden>
+    <p class="wvb-map__list-title">Nearby</p>
+    <p class="wvb-map__sub" id="wvb-story-nearby-sub"></p>
+    <div class="wvb-map__chips" id="wvb-story-chips"></div>
+    <div class="wvb-map__rows" id="wvb-story-rows"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const SLUG = (function () {
+    var parts = location.pathname.split('?')[0].replace(/\/+$/, '').split('/');
+    return parts[parts.length - 1] || '';
+  })();
+
+  const BASE_CDN = 'https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/';
+  const BASE_RAW = 'https://raw.githubusercontent.com/Sara-Rider/wvb-maps/main/';
+  const CFG = {
+    CENTER: [-80.6, 38.75], ZOOM: 6.4,
+    STYLE: 'https://tiles.openfreemap.org/styles/liberty'
+  };
+  const BRAND = { slate:'#3D5A6B', gold:'#C8922A', asphalt:'#1A1A1A', mist:'#F2F0EB' };
+
+  // Mirrors LANE_ORDER / LANE_LABEL in scripts/corridor.py, exactly as
+  // event-map-v1.html does — a browser cannot import Python.
+  const LANE_ORDER = ['fuel','food','attraction','moto','lodging','camping','guides','other'];
+  const LANE_LABEL = {
+    fuel:'Fuel', food:'Food & Drink', attraction:'See & Do', moto:'Moto Service',
+    lodging:'Lodging', camping:'Camping', guides:'Guides & Outfitters', other:'Other'
+  };
+
+  const wrap = document.getElementById('wvb-story');
+  const el = document.getElementById('wvb-story-map');
+  const toggleEl = document.getElementById('wvb-story-toggle');
+  const nearbySecEl = document.getElementById('wvb-story-nearby');
+  const nearbySubEl = document.getElementById('wvb-story-nearby-sub');
+  const chipsEl = document.getElementById('wvb-story-chips');
+  const rowsEl = document.getElementById('wvb-story-rows');
+  if (!wrap || !el || !SLUG) return;
+
+  // ---- Directory glyphs — the canonical 15 + attraction fallback ----------
+  // Verbatim from route-map-v5.html, which is now the one home for this set.
+  const GLYPH = {
+    'overlook':     '<circle cx="7.5" cy="15" r="4"/><circle cx="16.5" cy="15" r="4"/><path d="M7.5 11V7"/><path d="M16.5 11V7"/><path d="M7.5 7h9"/>',
+    'waterfall':    '<path d="M12 3c2.5 3.5 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 2.5-5.5 5-9z"/>',
+    'bridge':       '<path d="M3 17v-3a9 9 0 0 1 18 0v3"/><path d="M3 14h18"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/>',
+    'monument':     '<path d="M5 9h14l-7-6z"/><path d="M9 9v10"/><path d="M15 9v10"/><path d="M6 21h12"/>',
+    'park':         '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
+    'scenic-road':  '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
+    'swing':        '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
+    'lodging':      '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
+    'food':         '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
+    'camping':      '<path d="M12 4l8 15H4z"/><path d="M12 4v15"/>',
+    'moto':         '<path d="M15 6.5a3.5 3.5 0 0 0-4.7 4.6L4 17.5 6.5 20l6.4-6.3A3.5 3.5 0 0 0 17.5 9l-2 2-1.5-1.5z"/>',
+    'fuel':         '<path d="M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 20h11"/><path d="M7 8h5"/><path d="M14 10l3 3v4a2 2 0 0 0 4 0V8l-3-3"/>',
+    'guides':       '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
+    'other':        '<circle cx="12" cy="12" r="3.2"/>',
+    'attraction':   '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>'
+  };
+  const markSVG = (t) =>
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="'
+    + BRAND.mist + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + GLYPH[t] + '</svg>';
+  function iconImageExpression() {
+    const expr = ['match', ['get', 'type']];
+    Object.keys(GLYPH).forEach(t => expr.push(t, 'wvb-' + t));
+    expr.push('wvb-other');
+    return expr;
+  }
+  const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  // Same wording as event-map-v1.html.
+  const miles = n => (n == null ? '' : (n < 0.15 ? 'at the location'
+    : (Math.round(n * 10) / 10) + ' mi away'));
+
+  // ---- Which places have a card on this page ---------------------------------
+  function cardSlugs() {
+    const scope = wrap.closest('section') || document;
+    const set = new Set();
+    scope.querySelectorAll('a[href*="/directory/"]').forEach(a => {
+      const m = (a.getAttribute('href') || '').match(/\/directory\/([^/?#]+)/);
+      if (m) set.add(m[1]);
+    });
+    return set;
+  }
+
+  const FETCH_TIMEOUT_MS = 4000;
+  async function fetchJSON(url) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), FETCH_TIMEOUT_MS);
+    try { const r = await fetch(url, { cache:'no-store', signal: ctl.signal }); return r.ok ? await r.json() : null; }
+    catch (e) { return null; }
+    finally { clearTimeout(timer); }
+  }
+  async function feed(path) {
+    const d = await fetchJSON(BASE_CDN + path);
+    if (d && d.features) return d;
+    return fetchJSON(BASE_RAW + path);   // jsDelivr 404s or stalls on a cold cache
+  }
+
+  function popupHTML(p) {
+    const badges = [];
+    if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
+    if (p.kind === 'nearby' && p.featured && !p.certified) badges.push('<span class="wvb-map__badge wvb-map__badge--featured">Featured</span>');
+    const links = [];
+    if (p.url)     links.push('<a href="'+esc(p.url)+'">View listing &rarr;</a>');
+    if (p.maps)    links.push('<a href="'+esc(p.maps)+'" target="_blank" rel="noopener">Directions</a>');
+    if (p.website) links.push('<a href="'+esc(p.website)+'" target="_blank" rel="noopener">Visit site</a>');
+    if (p.tel)     links.push('<a href="'+esc(p.tel)+'">Call</a>');
+    const meta = p.kind === 'nearby' ? miles(p.miles) : '';
+    return '<div class="wvb-pop"><div class="wvb-pop__name">'+esc(p.name)+' '+badges.join(' ')+'</div>'
+      + (p.category ? '<div class="wvb-pop__cat">'+esc(p.category)+'</div>' : '')
+      + (meta ? '<div class="wvb-pop__meta">'+meta+'</div>' : '')
+      + (p.short ? '<div class="wvb-pop__desc">'+esc(p.short)+'</div>' : '')
+      + (links.length ? '<div class="wvb-pop__links">'+links.join(' &middot; ')+'</div>' : '')
+      + '</div>';
+  }
+
+  (async function () {
+    const [story, state, regions] = await Promise.all([
+      feed('articles/' + SLUG + '.geojson'), feed('wv-state.geojson'), feed('regions.geojson')
+    ]);
+    const mode = story && story.properties && story.properties.mode;
+    if (!story || !mode || mode === 'none') return;   // slot stays empty
+
+    const onPage = cardSlugs();
+    const keep = f => f && f.geometry && f.properties && f.properties.slug;
+    // A chosen place is drawn only while its card is on the page. If no card
+    // links were found at all, the grid is not what this code expects, so draw
+    // from the feed rather than draw nothing.
+    const hasCard = s => !onPage.size || onPage.has(s);
+
+    let places = story.features.filter(f => keep(f) && f.properties.kind === 'place' && hasCard(f.properties.slug));
+    let nearby = mode === 'single' ? story.features.filter(f => keep(f) && f.properties.kind === 'nearby') : [];
+    nearby.sort((a, b) => (a.properties.miles || 0) - (b.properties.miles || 0));
+    let tracks = [], stops = [];
+
+    if (mode === 'route') {
+      const routeFeeds = await Promise.all((story.properties.routes || []).map(r => feed('routes/' + r + '.geojson')));
+      routeFeeds.forEach(rf => {
+        if (!rf || !rf.features) return;
+        rf.features.forEach(f => {
+          if (!f || !f.geometry) return;
+          const t = f.geometry.type;
+          if (t === 'LineString' || t === 'MultiLineString') tracks.push(f);
+          else if (t === 'Point' && f.properties && f.properties.slug && (f.properties.kind || 'stop') === 'stop') {
+            stops.push(Object.assign({}, f, { properties: Object.assign({}, f.properties, { kind:'stop' }) }));
+          }
+        });
+      });
+      const stopSlugs = new Set(stops.map(f => f.properties.slug));
+      places = places.filter(f => !stopSlugs.has(f.properties.slug));   // a stop is already on the map, numbered
+    } else if (mode === 'single' && !places.length) {
+      return;   // its one place is off the page, so is its map
+    }
+
+    // Two stops sharing a slug (two routes through one place) draw once. A
+    // story place always wins over the same listing as a nearby.
+    const seen = new Set();
+    const points = stops.concat(places, nearby).filter(f => {
+      const s = f.properties.slug;
+      if (seen.has(s)) return false;
+      seen.add(s); return true;
+    });
+    nearby = nearby.filter(f => points.indexOf(f) !== -1);
+    if (!points.length && !tracks.length) return;
+
+    wrap.hidden = false;
+    const map = new maplibregl.Map({ container: el, style: CFG.STYLE, center: CFG.CENTER, zoom: CFG.ZOOM, cooperativeGestures: true });
+    map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
+    const popup = new maplibregl.Popup({ closeButton:true, closeOnClick:true, offset:14 });
+
+    function loadIcons() {
+      return Promise.all(Object.keys(GLYPH).map(t => new Promise(resolve => {
+        const img = new Image(48, 48);
+        img.onload = () => { try { if (!map.hasImage('wvb-' + t)) map.addImage('wvb-' + t, img, { pixelRatio: 2 }); } catch (e) {} resolve(); };
+        img.onerror = () => resolve();
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markSVG(t));
+      })));
+    }
+
+    map.on('load', async () => {
+      await loadIcons();
+      const walkInto = (b, arr) => arr.forEach(c => Array.isArray(c[0]) ? walkInto(b, c) : b.extend(c));
+
+      // ---- The state, drawn as the routes and Travel Region maps draw it ----
+      const stateBounds = new maplibregl.LngLatBounds();
+      if (state && state.features) {
+        const outline = state.features.filter(f => f.properties && f.properties.kind === 'outline');
+        map.addSource('wv-mask', { type:'geojson', data:{ type:'FeatureCollection', features: state.features.filter(f => f.properties && f.properties.kind === 'mask') } });
+        map.addSource('wv-outline', { type:'geojson', data:{ type:'FeatureCollection', features: outline } });
+        map.addLayer({ id:'wv-mask', type:'fill', source:'wv-mask', paint:{ 'fill-color':BRAND.mist, 'fill-opacity':0.55 } });
+        outline.forEach(f => walkInto(stateBounds, f.geometry.coordinates));
+      }
+      if (regions && regions.features) {
+        map.addSource('wv-regions', { type:'geojson', data: regions });
+        map.addLayer({ id:'wv-region-line', type:'line', source:'wv-regions',
+          paint:{ 'line-color':BRAND.slate, 'line-width':1, 'line-opacity':0.5, 'line-dasharray':[2, 2] } });
+      }
+      if (state && state.features) {
+        map.addLayer({ id:'wv-outline', type:'line', source:'wv-outline', paint:{ 'line-color':BRAND.slate, 'line-width':2.2, 'line-opacity':0.85 } });
+      }
+      if (regions && regions.features) {
+        map.addSource('wv-region-labels', { type:'geojson', data:{ type:'FeatureCollection', features: regions.features.map(f => ({
+          type:'Feature', properties:{ name: f.properties.name },
+          geometry:{ type:'Point', coordinates:[f.properties.labelLng, f.properties.labelLat] } })) } });
+        map.addLayer({ id:'wv-region-label', type:'symbol', source:'wv-region-labels',
+          layout:{ 'text-field':['get','name'], 'text-font':['Noto Sans Bold','Open Sans Bold','Arial Unicode MS Bold'],
+            'text-size':10, 'text-transform':'uppercase', 'text-letter-spacing':0.08,
+            'text-max-width':8, 'text-allow-overlap':false },
+          paint:{ 'text-color':BRAND.slate, 'text-opacity':0.55,
+            'text-halo-color':BRAND.mist, 'text-halo-width':1.4 } });
+      }
+
+      if (tracks.length) {
+        map.addSource('track', { type:'geojson', data:{ type:'FeatureCollection', features: tracks } });
+        map.addLayer({ id:'track-casing', type:'line', source:'track', layout:{ 'line-join':'round','line-cap':'round' },
+          paint:{ 'line-color':BRAND.asphalt, 'line-width':7, 'line-opacity':0.35 } });
+        map.addLayer({ id:'track-line', type:'line', source:'track', layout:{ 'line-join':'round','line-cap':'round' },
+          paint:{ 'line-color':BRAND.gold, 'line-width':4 } });
+      }
+
+      const unknown = [...new Set(points.map(f => f.properties.type).filter(t => t && !GLYPH[t]))];
+      if (unknown.length) console.warn('WVB story map: unmapped type token(s), drawing `other`:', unknown);
+
+      const byId = {};
+      points.forEach(f => { byId[f.properties.slug] = f; });
+      map.addSource('pins', { type:'geojson', data:{ type:'FeatureCollection', features: points }, promoteId:'slug' });
+
+      // Same paint as route-map-v5: slate pin, gold ring + size for Certified,
+      // nearby softened by opacity only.
+      const isNearby = ['==', ['get','kind'], 'nearby'];
+      const hover = ['boolean', ['feature-state','hover'], false];
+      map.addLayer({ id:'pins', type:'circle', source:'pins', paint:{
+        'circle-radius':['case', hover, 12, ['get','certified'], 10, 8],
+        'circle-color':BRAND.slate,
+        'circle-opacity':['case', hover, 1, isNearby, 0.72, 1],
+        'circle-stroke-width':['case', ['get','certified'], 3, 1.5],
+        'circle-stroke-color':['case', ['get','certified'], BRAND.gold, BRAND.mist],
+        'circle-stroke-opacity':['case', hover, 1, isNearby, 0.72, 1]
+      }});
+      map.addLayer({ id:'pin-icons', type:'symbol', source:'pins',
+        layout:{ 'icon-image': iconImageExpression(), 'icon-size':0.5, 'icon-allow-overlap':true, 'icon-ignore-placement':true },
+        paint:{ 'icon-opacity':['case', hover, 1, isNearby, 0.8, 1] } });
+      map.addLayer({ id:'pin-order', type:'symbol', source:'pins',
+        filter:['all', ['==', ['get','kind'], 'stop'], ['has', 'order']],
+        layout:{ 'text-field':['to-string', ['get','order']], 'text-size':11,
+          'text-font':['Noto Sans Bold'], 'text-offset':[1.1, -1.1],
+          'text-allow-overlap':true, 'text-ignore-placement':true },
+        paint:{ 'text-color':BRAND.mist, 'text-halo-color':BRAND.slate, 'text-halo-width':3 } });
+
+      // ---- Frames ----
+      // The state, always the opening view. If the state feed failed, fall
+      // back to the story's own geometry so the map still shows something.
+      function frameState(animate) {
+        let b = stateBounds;
+        if (b.isEmpty()) {
+          b = new maplibregl.LngLatBounds();
+          tracks.forEach(f => walkInto(b, f.geometry.coordinates));
+          stops.concat(places).forEach(f => b.extend(f.geometry.coordinates));
+        }
+        if (!b.isEmpty()) map.fitBounds(b, { padding:24, maxZoom:13, duration: animate ? 600 : 0 });
+      }
+      // The area: the place and what was found near it.
+      function frameArea() {
+        const b = new maplibregl.LngLatBounds();
+        places.concat(nearby).forEach(f => b.extend(f.geometry.coordinates));
+        map.fitBounds(b, { padding:56, maxZoom:12, duration:800 });
+      }
+
+      // ---- Nearby: hidden until asked ----
+      let showNearby = false;
+      let activeLanes = null;   // null = every lane
+      const rowById = {};
+      function pinFilter() {
+        if (!showNearby) return ['!=', ['get','kind'], 'nearby'];
+        if (activeLanes === null) return null;
+        return ['any', ['!=', ['get','kind'], 'nearby'],
+          ['in', ['get','lane'], ['literal', Array.from(activeLanes)]]];
+      }
+      function applyFilter() { ['pins','pin-icons'].forEach(id => map.setFilter(id, pinFilter())); }
+      applyFilter();
+
+      const setHover = (id, on) => {
+        if (id == null) return;
+        map.setFeatureState({ source:'pins', id }, { hover:on });
+        const row = rowById[id];
+        if (row) row.classList.toggle('is-active', on);
+      };
+      function openFor(f, fly) {
+        const c = f.geometry.coordinates.slice();
+        popup.setLngLat(c).setHTML(popupHTML(f.properties)).addTo(map);
+        if (fly) map.flyTo({ center:c, zoom: Math.max(map.getZoom(), 12) });
+      }
+
+      function makeRow(f) {
+        const p = f.properties;
+        const row = document.createElement('div');
+        row.className = 'wvb-map__row' + (p.certified ? ' is-certified' : '');
+        row.setAttribute('data-lane', p.lane || 'other');
+        const badges = [];
+        if (p.certified) badges.push('<span class="wvb-map__badge">Certified</span>');
+        if (p.featured && !p.certified) badges.push('<span class="wvb-map__badge wvb-map__badge--featured">Featured</span>');
+        row.innerHTML =
+          '<div class="wvb-map__row-head"><span class="wvb-map__row-name">'+esc(p.name)+'</span>'+badges.join(' ')+'</div>'
+          + (p.category ? '<div class="wvb-map__row-cat">'+esc(p.category)+'</div>' : '')
+          + (p.short ? '<div class="wvb-map__row-desc">'+esc(p.short)+'</div>' : '')
+          + '<div class="wvb-map__row-meta">'+miles(p.miles)+'</div>';
+        row.addEventListener('mouseenter', () => setHover(p.slug, true));
+        row.addEventListener('mouseleave', () => setHover(p.slug, false));
+        row.addEventListener('click', () => { openFor(f, true); el.scrollIntoView({ behavior:'smooth', block:'nearest' }); });
+        rowById[p.slug] = row;
+        return row;
+      }
+
+      // Chips only for lanes this place actually has — same rule as the event
+      // Nearby list: a chip that filters to nothing is a promise we can't keep.
+      function buildNearby() {
+        const n = nearby.length;
+        nearbySubEl.textContent = story.properties.nearbyFallback
+          ? 'Nothing in the directory is close by. These are the nearest listings, closest first.'
+          : n + ' directory listing' + (n === 1 ? '' : 's') + ' near this place, closest first.';
+        const present = LANE_ORDER.filter(l => nearby.some(f => (f.properties.lane || 'other') === l));
+        const chips = [];
+        function paint() {
+          chips.forEach(c => c.el.classList.toggle('is-on',
+            activeLanes === null ? c.lane === null : (c.lane !== null && activeLanes.has(c.lane))));
+          rowsEl.querySelectorAll('.wvb-map__row').forEach(r => {
+            r.style.display = (activeLanes === null || activeLanes.has(r.getAttribute('data-lane'))) ? '' : 'none';
+          });
+          applyFilter();
+        }
+        function chip(label, lane) {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'wvb-map__chip'; b.textContent = label;
+          b.addEventListener('click', () => {
+            if (lane === null) activeLanes = null;
+            else {
+              if (activeLanes === null) activeLanes = new Set();
+              if (activeLanes.has(lane)) activeLanes.delete(lane); else activeLanes.add(lane);
+              if (!activeLanes.size) activeLanes = null;   // nothing on = everything on
+            }
+            paint();
+          });
+          chipsEl.appendChild(b);
+          chips.push({ el:b, lane });
+        }
+        chip('All', null);
+        present.forEach(l => chip(LANE_LABEL[l] || l, l));
+        nearby.forEach(f => rowsEl.appendChild(makeRow(f)));
+        paint();
+      }
+
+      if (mode === 'single' && nearby.length) {
+        buildNearby();
+        toggleEl.hidden = false;
+        toggleEl.addEventListener('click', () => {
+          showNearby = !showNearby;
+          popup.remove();
+          applyFilter();
+          nearbySecEl.hidden = !showNearby;
+          toggleEl.textContent = showNearby ? 'Back to the state map' : 'Find out what else is in this area';
+          if (showNearby) frameArea(); else frameState(true);
+        });
+      }
+
+      frameState(false);
+
+      let hovered = null;
+      map.on('mousemove', 'pins', e => {
+        map.getCanvas().style.cursor = 'pointer';
+        const id = e.features[0].id;
+        if (hovered !== id) { setHover(hovered, false); hovered = id; setHover(id, true); }
+      });
+      map.on('mouseleave', 'pins', () => { map.getCanvas().style.cursor = ''; setHover(hovered, false); hovered = null; });
+      map.on('click', 'pins', e => {
+        const f = byId[e.features[0].id] || e.features[0];
+        openFor(f, false);
+        const row = rowById[f.properties.slug];
+        if (row && showNearby) {
+          Object.values(rowById).forEach(r => r.classList.remove('is-active'));
+          row.classList.add('is-active');
+        }
+      });
+    });
+  })();
+})();
+</script>

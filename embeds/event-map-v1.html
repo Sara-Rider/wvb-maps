@@ -227,7 +227,7 @@
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 
-  const miles = n => (n == null ? '' : (n < 0.15 ? 'at the venue'
+  const miles = n => (n == null ? '' : (n < 0.15 ? 'at the location'
     : (Math.round(n * 10) / 10) + ' mi away'));
 
   const map = new maplibregl.Map({

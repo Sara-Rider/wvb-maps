@@ -1,8 +1,9 @@
 # Rebuild the story (Articles) map feeds — articles/<slug>.geojson
 #
-# One feed per story, built from what the story links: its Directory listings,
-# its route, and (for a one-place story) that listing's nearby-stops. Nothing is
-# computed here that the directory and route builders do not already own.
+# One feed per story, built from what the story links: its Directory listings
+# and its route. A one-place story's nearby places use the event Nearby rule
+# (the same code as "Build event nearby feeds"), or the nearest few listings
+# when nothing is in range.
 #
 # Runs daily and by hand. Run it by hand after you link places or a route to a
 # story, or after taking a listing down. Between runs the embed already drops a
