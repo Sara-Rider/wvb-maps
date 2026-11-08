@@ -10,8 +10,8 @@ name: Refresh directory proximity feed
 on:
   workflow_dispatch: {}          # manual run — test now, and run on demand anytime
   # ---- LAUNCH: uncomment and pick ONE cron to turn on the schedule ----
-  # schedule:
-  #   - cron: '0 8 * * 1'        # weekly     — Mondays 08:00 UTC
+  schedule:
+      - cron: '0 8 * * 1'        # weekly     — Mondays 08:00 UTC
   #   - cron: '0 8 1,15 * *'     # bi-weekly  — 1st & 15th, 08:00 UTC
   #   - cron: '0 8 1 * *'        # monthly    — 1st of month, 08:00 UTC
 permissions:
