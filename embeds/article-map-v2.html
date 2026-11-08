@@ -1,7 +1,8 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2.3 · 2026-11-08 (event-map look, slate band, place listed, spacing)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.4 · 2026-11-08 (event-map look, slate band, place listed, spacing, cards anywhere)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
-     data-wvb-slot="article-map", in the same section as the place cards (the
-     map only draws places whose cards are in its section). Serves EVERY story.
+     data-wvb-slot="article-map". The place cards can be anywhere on the page:
+     the map only draws story places whose card is on the page. Serves EVERY
+     story.
      Feed is derived from the story slug: /articles/<slug> fetches
      articles/<slug>.geojson (scripts/build_article_feeds.py, "Refresh story
      map feeds"). Replaces v1, which stays in the repo for rollback.
@@ -265,10 +266,13 @@
     : (Math.round(n * 10) / 10) + ' mi away'));
 
   // ---- Which places have a card on this page ---------------------------------
+  // Reads every CMS card on the page (links inside a Collection List item),
+  // wherever the template places them — the cards may sit in the story box,
+  // not in this embed's section. Links in the story text are not cards and
+  // are not counted.
   function cardSlugs() {
-    const scope = wrap.closest('section') || document;
     const set = new Set();
-    scope.querySelectorAll('a[href*="/directory/"]').forEach(a => {
+    document.querySelectorAll('.w-dyn-item a[href*="/directory/"]').forEach(a => {
       const m = (a.getAttribute('href') || '').match(/\/directory\/([^/?#]+)/);
       if (m) set.add(m[1]);
     });
