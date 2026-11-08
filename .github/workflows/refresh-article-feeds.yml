@@ -44,13 +44,19 @@ jobs:
           if git diff --staged --quiet; then
             echo "No change — story feeds already current."
           else
+            git diff --staged --name-only -- articles/ > /tmp/changed.txt
             git commit -m "Rebuild story map feeds"
             git pull --rebase origin "${GITHUB_REF_NAME}"
             git push
             echo "PURGE=1" >> "$GITHUB_ENV"
           fi
-      - name: Purge jsDelivr cache (only if something changed)
+      # jsDelivr purges FILES, not folders: purging articles/ left a changed
+      # feed stale (found 8 Nov on the-custard-stand). Purge each changed file.
+      - name: Purge jsDelivr cache for each changed feed
         if: env.PURGE == '1'
         run: |
-          curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/articles/"
-          echo "Requested jsDelivr purge for articles/."
+          while read -r f; do
+            [ -z "$f" ] && continue
+            echo "Purging $f"
+            curl -sS "https://purge.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/$f" | head -c 300; echo
+          done < /tmp/changed.txt

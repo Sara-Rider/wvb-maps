@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2.2 · 2026-11-08 (event-map look, slate band, place listed)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.3 · 2026-11-08 (event-map look, slate band, place listed, spacing)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
      data-wvb-slot="article-map", in the same section as the place cards (the
      map only draws places whose cards are in its section). Serves EVERY story.
@@ -153,6 +153,14 @@
   /* Same caption colours the Events template gives the slate band, so the
      story map reads correctly if it is placed on one too. */
   .wvb-story-band[hidden], #wvb-story-band[hidden]{ display:none !important; }
+  /* Room around the band so it doesn't touch the heading above or the place
+     cards below, and a slightly shorter map than the event page's (story
+     pages only — these rules ship in this embed, not the event one). */
+  #wvb-story-band{ margin-top:32px; margin-bottom:56px; }
+  @media (min-width:821px){
+    #wvb-story.wvb-map-shell{ height:500px; }
+    #wvb-story .wvb-map__list{ max-height:500px; }
+  }
   .band-slate .wvb-map__sub{ color:#DCE3E8; }
   .band-slate .wvb-map__list{ scrollbar-color:#C8922A transparent; }
 </style>
