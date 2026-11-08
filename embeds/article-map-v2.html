@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2 · 2026-11-08 (event-map look)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.1 · 2026-11-08 (event-map look, slate band)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
      data-wvb-slot="article-map", in the same section as the place cards (the
      map only draws places whose cards are in its section). Serves EVERY story.
@@ -152,13 +152,21 @@
   #wvb-story-results[hidden]{ display:none !important; }
   /* Same caption colours the Events template gives the slate band, so the
      story map reads correctly if it is placed on one too. */
+  .wvb-story-band[hidden], #wvb-story-band[hidden]{ display:none !important; }
   .band-slate .wvb-map__sub{ color:#DCE3E8; }
   .band-slate .wvb-map__list{ scrollbar-color:#C8922A transparent; }
 </style>
 
+<div class="band-slate" id="wvb-story-band" hidden>
+  <div class="sec-head">
+    <p class="sec-head-kick" id="wvb-story-kick"></p>
+    <h2 class="sec-head-title on-dark" id="wvb-story-title"></h2>
+    <p class="sec-head-sub on-dark" id="wvb-story-intro"></p>
+  </div>
 <div class="wvb-map-shell" id="wvb-story" hidden>
   <div id="wvb-story-map" class="wvb-map__map"></div>
   <div class="wvb-map__list" id="wvb-list">
+    <div hidden></div><!-- keeps the Nearby section second, as on the event map, so it gets the same top rule -->
     <div class="wvb-map__section" id="wvb-nearby-section">
       <p class="wvb-map__list-title">Nearby</p>
       <p class="wvb-map__sub" id="wvb-story-nearby-sub">See where riders eat, fuel and stop around this place.</p>
@@ -169,6 +177,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -185,6 +194,15 @@
     STYLE: 'https://tiles.openfreemap.org/styles/liberty'
   };
   const BRAND = { slate:'#3D5A6B', gold:'#C8922A', asphalt:'#1A1A1A', mist:'#F2F0EB' };
+
+  // Band heading copy — the same three lines the Events template shows above
+  // its Nearby map. Edit the words here; nothing else needs to change.
+  const COPY = {
+    single: { kick:'Make a weekend of it', title:'Nearby',
+              intro:'Where it is in West Virginia, and where riders eat, fuel, and stop near it \u2014 closest first.' },
+    other:  { kick:'Make a weekend of it', title:'On the map',
+              intro:'Every place and route in this story, on the map of West Virginia.' }
+  };
 
   // Mirrors LANE_ORDER / LANE_LABEL in scripts/corridor.py, exactly as
   // event-map-v1.html does — a browser cannot import Python.
@@ -331,7 +349,13 @@
 
     // Only a one-place story with nearby places gets the right-hand panel;
     // every other story is the map alone, full width.
-    if (!(mode === 'single' && nearby.length)) wrap.classList.add('is-solo');
+    const solo = !(mode === 'single' && nearby.length);
+    if (solo) wrap.classList.add('is-solo');
+    const copy = solo ? COPY.other : COPY.single;
+    document.getElementById('wvb-story-kick').textContent = copy.kick;
+    document.getElementById('wvb-story-title').textContent = copy.title;
+    document.getElementById('wvb-story-intro').textContent = copy.intro;
+    document.getElementById('wvb-story-band').hidden = false;
     wrap.hidden = false;
     const map = new maplibregl.Map({ container: el, style: CFG.STYLE, center: CFG.CENTER, zoom: CFG.ZOOM, cooperativeGestures: true });
     map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
