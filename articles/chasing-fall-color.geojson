@@ -7,7 +7,8 @@
    "the-summersville-loop",
    "mills-gap-mountain-loop",
    "hanging-rock-tavern-run"
-  ]
+  ],
+  "nearbyFallback": false
  },
  "features": [
   {

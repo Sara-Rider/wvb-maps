@@ -3,7 +3,8 @@
  "properties": {
   "story": "the-custard-stand",
   "mode": "single",
-  "routes": []
+  "routes": [],
+  "nearbyFallback": true
  },
  "features": [
   {
@@ -47,11 +48,15 @@
     "name": "Whistle Punk Grill & Taphouse",
     "category": "Bar",
     "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
     "short": "Grill and taphouse on East Main Street in Richwood, off the Highland Scenic Highway.",
     "region": "Mountain Lakes",
     "county": "Nicholas",
     "certified": false,
     "featured": false,
+    "reserved": false,
+    "miles": 18.65,
     "url": "/directory/whistle-punk-grill-taphouse",
     "website": null,
     "tel": "tel:+13044724104",
@@ -73,11 +78,15 @@
     "name": "The Hutte",
     "category": "Restaurant",
     "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
     "short": "Third-generation Swiss-American restaurant in the tiny mountain village of Helvetia - worth the twisty ride in.",
     "region": "Potomac Highlands",
     "county": "Randolph",
     "certified": false,
     "featured": false,
+    "reserved": false,
+    "miles": 19.36,
     "url": "/directory/the-hutte",
     "website": "https://thehutte.com",
     "tel": "tel:+13049246435",
@@ -99,11 +108,15 @@
     "name": "Mingo Saloon & Lodge",
     "category": "Lodging",
     "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
     "short": "Biker-friendly Irish inn, restaurant, and pub on US-219 near Snowshoe — a longtime motorcycle-tour overnight stop.",
     "region": "Potomac Highlands",
     "county": "Randolph",
     "certified": false,
     "featured": false,
+    "reserved": false,
+    "miles": 19.63,
     "url": "/directory/mingo-saloon-lodge",
     "website": "https://themingosaloonandlodge.com",
     "tel": "tel:+13043396917",
@@ -125,15 +138,49 @@
     "name": "Marlinton Motor Inn",
     "category": "Lodging",
     "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
     "short": "Rider-favorite motor inn on Rt 219 near Marlinton, 25 miles south of Snowshoe - pool, lounge, and mountain views.",
     "region": "Potomac Highlands",
     "county": "Pocahontas",
     "certified": false,
     "featured": false,
+    "reserved": false,
+    "miles": 22.69,
     "url": "/directory/marlinton-motor-inn",
     "website": "http://marlintonmotorinn.com",
     "tel": "tel:+13047994711",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2662799,-80.0928951"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.09556142328172,
+     38.22443541183142
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "greenbrier-grille-and-lodge",
+    "name": "Greenbrier Grille and Lodge",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Home cooked meals right on the Greenbrier River in Marlinton — dine inside or on the deck with amazing river views and feed the ducks.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 24.56,
+    "url": "/directory/greenbrier-grille-and-lodge",
+    "website": "https://greenbriergrille.com",
+    "tel": "tel:+13047997233",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22443541183142,-80.09556142328172"
    }
   }
  ]
