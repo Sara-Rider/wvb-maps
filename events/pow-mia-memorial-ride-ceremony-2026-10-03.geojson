@@ -55,6 +55,66 @@
     "tel": "tel:+13043396917",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5017403,-80.050517"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.1475138,
+     38.534132299999996
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "elk-springs-resort",
+    "name": "Elk Springs Resort",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Fly-fishing resort on the Elk River at Monterville, with cabins, a restaurant and bar, and a big fly shop.",
+    "region": "Potomac Highlands",
+    "county": "Randolph",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 5.72,
+    "url": "/directory/elk-springs-resort",
+    "website": "http://www.elkspringswv.com/",
+    "tel": "tel:+13043392359",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.534132299999996,-80.1475138"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.9938798,
+     38.402974799999996
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "snowshoe-mountain",
+    "name": "Snowshoe Mountain",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Four-season mountain resort on Cheat Mountain, with summer lodging, dining and events off US-219.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 7.44,
+    "url": "/directory/snowshoe-mountain",
+    "website": "https://www.snowshoemtn.com/",
+    "tel": "tel:+18774414386",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.402974799999996,-79.9938798"
+   }
   }
  ]
 }

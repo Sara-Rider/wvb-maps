@@ -25,6 +25,36 @@
     "link": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.327427199999995,-81.59972800000001"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.6336046,
+     38.3494605
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "hale-house",
+    "name": "Hale House",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Bourbon bistro and steakhouse in downtown Charleston, with a speakeasy hidden in the basement.",
+    "region": "Metro Valley",
+    "county": "Kanawha",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.38,
+    "url": "/directory/hale-house",
+    "website": "http://halehousewv.com/",
+    "tel": "tel:+13043468161",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3494605,-81.6336046"
+   }
   }
  ]
 }

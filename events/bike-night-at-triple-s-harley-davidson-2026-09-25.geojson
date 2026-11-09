@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.014389,
+     39.6573066
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mountaineer-indian-motorcycle",
+    "name": "Mountaineer Indian Motorcycle",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Indian Motorcycle dealer at the Gateway development in Morgantown, next door to Triple S Harley-Davidson.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.14,
+    "url": "/directory/mountaineer-indian-motorcycle",
+    "website": "http://mountaineerindianmotorcycle.com/",
+    "tel": "tel:+13043703101",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6573066,-80.014389"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -79.9714631,
      39.6540244
     ]

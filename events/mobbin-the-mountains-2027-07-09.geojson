@@ -55,6 +55,66 @@
     "tel": "tel:+13043396917",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.5017403,-80.050517"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.1475138,
+     38.534132299999996
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "elk-springs-resort",
+    "name": "Elk Springs Resort",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Fly-fishing resort on the Elk River at Monterville, with cabins, a restaurant and bar, and a big fly shop.",
+    "region": "Potomac Highlands",
+    "county": "Randolph",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 5.69,
+    "url": "/directory/elk-springs-resort",
+    "website": "http://www.elkspringswv.com/",
+    "tel": "tel:+13043392359",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.534132299999996,-80.1475138"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.12264,
+     38.409451
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "elk-river-inn-and-cabins",
+    "name": "Elk River Inn & Cabins",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Inn, cabins and restaurant on the Elk River headwaters off US-219 at Slaty Fork, below Snowshoe.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 7.46,
+    "url": "/directory/elk-river-inn-and-cabins",
+    "website": "http://www.elkriverwv.com/",
+    "tel": "tel:+13045723771",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.409451,-80.12264"
+   }
   }
  ]
 }

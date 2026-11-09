@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.0952338,
+     38.2229988
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "dirtbean-coffee-and-bike-shop",
+    "name": "Dirtbean Coffee and Bike Shop",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Cafe, craft-beer stop and bicycle shop on 2nd Avenue in Marlinton, steps from the Greenbrier River Trail.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.09,
+    "url": "/directory/dirtbean-coffee-and-bike-shop",
+    "website": "http://www.dirtbean.com/",
+    "tel": "tel:+13047994038",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2229988,-80.0952338"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.09556142328172,
      38.22443541183142
     ]

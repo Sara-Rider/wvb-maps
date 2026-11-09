@@ -61,6 +61,66 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -82.4448879,
+     38.4216395
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-peddler",
+    "name": "The Peddler",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Brewpub and burger kitchen on 3rd Avenue in downtown Huntington, with its own house-brewed beer.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.4,
+    "url": "/directory/the-peddler",
+    "website": null,
+    "tel": "tel:+13046910415",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4216395,-82.4448879"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4349447,
+     38.419168299999995
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "la-famiglia",
+    "name": "La Famiglia",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Family-run southern Italian trattoria on 6th Avenue in Huntington - wood-fired pizza and house-made pasta.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.89,
+    "url": "/directory/la-famiglia",
+    "website": "http://www.lafamigliawv.com/",
+    "tel": "tel:+13045231008",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.419168299999995,-82.4349447"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -82.43272255767182,
      38.4238613990011
     ]
@@ -84,6 +144,66 @@
     "website": "https://www.wvbbq.com/",
     "tel": "tel:+13045229869",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4238613990011,-82.43272255767182"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.36171519814414,
+     38.41235985391399
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "cycle-center",
+    "name": "Cycle Center",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Honda, Yamaha and Polaris powersports dealer on US-60 east of Huntington, open since 1970.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 4.87,
+    "url": "/directory/cycle-center",
+    "website": "http://www.cyclecenterwv.com/",
+    "tel": "tel:+13047368911",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.41235985391399,-82.36171519814414"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.2545744,
+     38.4163153
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "all-seasons-powersports",
+    "name": "All Seasons Powersports of Huntington",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Indian, Kawasaki, Polaris and Can-Am dealer on US-60 at Barboursville, east of Huntington.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 10.64,
+    "url": "/directory/all-seasons-powersports",
+    "website": "https://www.allseasonsatvhuntington.com/",
+    "tel": "tel:+13049487110",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4163153,-82.2545744"
    }
   }
  ]
