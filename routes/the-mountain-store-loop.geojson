@@ -11020,6 +11020,68 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.746842,
+     39.3355417
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "lost-mountain-bbq",
+    "name": "Lost Mountain BBQ Company",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Roadside barbecue on US 50 at Romney with house-made sauces, open daily for lunch and dinner.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.02,
+    "routeMile": 23.13,
+    "url": "/directory/lost-mountain-bbq",
+    "website": "http://lost-mountain-bbq-company.square.site/",
+    "tel": "tel:+13043592570",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3355417,-78.746842"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7548364,
+     39.341184
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-91",
+    "name": "American Legion Post 91",
+    "category": "Club / Post",
+    "type": "other",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "American Legion post on Romney's main street, and the home of the Patriots Poker Run to Flight 93.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.02,
+    "routeMile": 23.72,
+    "url": "/directory/american-legion-post-91",
+    "website": "https://romneypost91.org/",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.341184,-78.7548364"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -78.75717860000002,
      39.35489
     ]
@@ -11044,6 +11106,37 @@
     "website": "https://www.romneycycles.com/",
     "tel": "tel:+13048223933",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.4637711,
+     39.456635
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "avalon-resort",
+    "name": "Avalon Resort (Clothing Optional)",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Clothing-optional resort outside Paw Paw, with lodging and events that include rider gatherings.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 6.0,
+    "routeMile": 83.23,
+    "url": "/directory/avalon-resort",
+    "website": "https://www.avalon-resort.com/",
+    "tel": "tel:+13049475600",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.456635,-78.4637711"
    }
   }
  ]

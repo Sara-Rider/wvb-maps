@@ -27977,30 +27977,25 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.62667,
-     37.56111
+     -80.57278,
+     37.54722
     ]
    },
    "properties": {
-    "kind": "nearby",
-    "slug": "laurel-creek-covered-bridge",
-    "name": "Laurel Creek Covered Bridge",
+    "kind": "stop",
+    "order": 1,
+    "slug": "indian-creek-covered-bridge",
+    "name": "Indian Creek Covered Bridge",
     "category": "Attraction",
     "type": "bridge",
-    "lane": "attraction",
-    "laneLabel": "See & Do",
-    "short": "1910 covered bridge over Laurel Creek at Lillydale, among the shortest historic spans in the state.",
+    "short": "ca. 1898 Howe-truss covered bridge over Indian Creek near Salt Sulphur Springs.",
     "region": "New River-Greenbrier Valley",
     "county": "Monroe",
     "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 2.1,
-    "routeMile": 131.78,
-    "url": "/directory/laurel-creek-covered-bridge",
+    "url": "/directory/indian-creek-covered-bridge",
     "website": null,
     "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.56111,-80.62667"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.54722,-80.57278"
    }
   },
   {
@@ -28008,30 +28003,25 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.57278,
-     37.54722
+     -80.62667,
+     37.56111
     ]
    },
    "properties": {
-    "kind": "nearby",
-    "slug": "indian-creek-covered-bridge",
-    "name": "Indian Creek Covered Bridge",
+    "kind": "stop",
+    "order": 2,
+    "slug": "laurel-creek-covered-bridge",
+    "name": "Laurel Creek Covered Bridge",
     "category": "Attraction",
     "type": "bridge",
-    "lane": "attraction",
-    "laneLabel": "See & Do",
-    "short": "ca. 1898 Howe-truss covered bridge over Indian Creek near Salt Sulphur Springs.",
+    "short": "1910 covered bridge over Laurel Creek at Lillydale, among the shortest historic spans in the state.",
     "region": "New River-Greenbrier Valley",
     "county": "Monroe",
     "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 0.1,
-    "routeMile": 133.39,
-    "url": "/directory/indian-creek-covered-bridge",
+    "url": "/directory/laurel-creek-covered-bridge",
     "website": null,
     "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.54722,-80.57278"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.56111,-80.62667"
    }
   },
   {
@@ -28044,25 +28034,51 @@
     ]
    },
    "properties": {
-    "kind": "nearby",
+    "kind": "stop",
+    "order": 3,
     "slug": "hokes-mill-covered-bridge",
     "name": "Hokes Mill Covered Bridge",
     "category": "Attraction",
     "type": "bridge",
-    "lane": "attraction",
-    "laneLabel": "See & Do",
     "short": "ca. 1899 Long-truss covered bridge over Second Creek near Lewisburg.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Greenbrier",
+    "certified": false,
+    "url": "/directory/hokes-mill-covered-bridge",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.69722,-80.525"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.61573899999999,
+     37.7510998
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "wv-glamping-domes",
+    "name": "WV Glamping Domes",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Five glamping domes with hot tubs on a 65-acre creekside farm outside Alderson, in the Greenbrier Valley.",
     "region": "New River-Greenbrier Valley",
     "county": "Greenbrier",
     "certified": false,
     "featured": false,
     "reserved": false,
-    "offRouteMiles": 3.33,
-    "routeMile": 146.06,
-    "url": "/directory/hokes-mill-covered-bridge",
-    "website": null,
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.69722,-80.525"
+    "offRouteMiles": 9.36,
+    "routeMile": 146.08,
+    "url": "/directory/wv-glamping-domes",
+    "website": "http://wvglampingdomes.com/",
+    "tel": "tel:+13049694303",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7510998,-80.61573899999999"
    }
   }
  ]

@@ -19729,37 +19729,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -80.0864936,
-     39.3886464
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "almost-heaven-swing-valley-falls-state-park",
-    "name": "Almost Heaven Swing - Valley Falls State Park",
-    "category": "Attraction",
-    "type": "swing",
-    "lane": "attraction",
-    "laneLabel": "See & Do",
-    "short": "Overlooks the cascades of Valley Falls, a stop on the WV Waterfall Trail; cross the bridge and follow the paved path.",
-    "region": "Mountaineer Country",
-    "county": "Marion",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 2.08,
-    "routeMile": 47.47,
-    "url": "/directory/almost-heaven-swing-valley-falls-state-park",
-    "website": null,
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3886464,-80.0864936"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -80.16806,
      39.50583
     ]
@@ -19822,30 +19791,30 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -79.9714631,
-     39.6540244
+     -80.014389,
+     39.6573066
     ]
    },
    "properties": {
     "kind": "nearby",
-    "slug": "black-bear-burritos",
-    "name": "Black Bear Burritos",
-    "category": "Restaurant",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
-    "short": "Long-running Morgantown burrito spot on University Avenue at Evansdale.",
+    "slug": "mountaineer-indian-motorcycle",
+    "name": "Mountaineer Indian Motorcycle",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Indian Motorcycle dealer at the Gateway development in Morgantown, next door to Triple S Harley-Davidson.",
     "region": "Mountaineer Country",
     "county": "Monongalia",
     "certified": false,
     "featured": false,
     "reserved": false,
-    "offRouteMiles": 1.64,
-    "routeMile": 111.72,
-    "url": "/directory/black-bear-burritos",
-    "website": "https://www.blackbearburritos.com",
-    "tel": "tel:+13047774867",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
+    "offRouteMiles": 0.14,
+    "routeMile": 112.48,
+    "url": "/directory/mountaineer-indian-motorcycle",
+    "website": "http://mountaineerindianmotorcycle.com/",
+    "tel": "tel:+13043703101",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6573066,-80.014389"
    }
   },
   {
@@ -19877,6 +19846,99 @@
     "website": "https://www.tripleshd.com",
     "tel": "tel:+13042848244",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.659287522148944,-80.01393577444946"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.8674338,
+     39.6279146
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "west-virginia-botanic-garden",
+    "name": "West Virginia Botanic Garden",
+    "category": "Attraction",
+    "type": "park",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "Free 85-acre botanic garden with woodland trails on Tyrone Road, outside Morgantown.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.6,
+    "routeMile": 126.23,
+    "url": "/directory/west-virginia-botanic-garden",
+    "website": "http://wvbg.org/",
+    "tel": "tel:+13043222093",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6279146,-79.8674338"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.79830729999999,
+     39.5337533
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "longneck-pub",
+    "name": "Longneck Pub",
+    "category": "Bar",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Neighborhood bar in Masontown that hosts bike nights for Preston County riders.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.02,
+    "routeMile": 134.42,
+    "url": "/directory/longneck-pub",
+    "website": null,
+    "tel": "tel:+13048381830",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5337533,-79.79830729999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.75239599999999,
+     39.508032
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "smokin-jacks-bar-grill",
+    "name": "Smokin Jack's Bar & Grill",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Ribs, wings and barbecue on the Veterans Memorial Highway run through Preston County.",
+    "region": "Mountaineer Country",
+    "county": "Preston",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.01,
+    "routeMile": 138.85,
+    "url": "/directory/smokin-jacks-bar-grill",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.508032,-79.75239599999999"
    }
   },
   {

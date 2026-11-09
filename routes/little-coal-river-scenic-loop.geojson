@@ -9969,6 +9969,68 @@
     "tel": "tel:+13047927125",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=37.894284,-82.018736"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.2545744,
+     38.4163153
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "all-seasons-powersports",
+    "name": "All Seasons Powersports of Huntington",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Indian, Kawasaki, Polaris and Can-Am dealer on US-60 at Barboursville, east of Huntington.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 9.44,
+    "routeMile": 0.23,
+    "url": "/directory/all-seasons-powersports",
+    "website": "https://www.allseasonsatvhuntington.com/",
+    "tel": "tel:+13049487110",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4163153,-82.2545744"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.36171519814414,
+     38.41235985391399
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "cycle-center",
+    "name": "Cycle Center",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Honda, Yamaha and Polaris powersports dealer on US-60 east of Huntington, open since 1970.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 12.39,
+    "routeMile": 0.24,
+    "url": "/directory/cycle-center",
+    "website": "http://www.cyclecenterwv.com/",
+    "tel": "tel:+13047368911",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.41235985391399,-82.36171519814414"
+   }
   }
  ]
 }

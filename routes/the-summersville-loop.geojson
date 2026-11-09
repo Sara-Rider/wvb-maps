@@ -21212,6 +21212,99 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.99066479999999,
+     38.132382899999996
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "country-road-cabins",
+    "name": "Country Road Cabins",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Cabin resort off US-60 at Hico, about ten minutes from the New River Gorge Bridge.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.76,
+    "routeMile": 10.87,
+    "url": "/directory/country-road-cabins",
+    "website": "http://www.wvcabins.com/",
+    "tel": "tel:+18887122246",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.132382899999996,-80.99066479999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.0686039,
+     38.093205
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "opossum-creek-retreat",
+    "name": "Opossum Creek Retreat",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Nine hand-built hot-tub cabins tucked in the woods near the New River Gorge Bridge, aimed at couples.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.23,
+    "routeMile": 58.79,
+    "url": "/directory/opossum-creek-retreat",
+    "website": "http://www.opossumcreek.com/",
+    "tel": "tel:+13045744836",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.093205,-81.0686039"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.10457300000002,
+     38.055485
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "secret-sandwich-society",
+    "name": "Secret Sandwich Society",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Sandwiches named for American history's characters, served in downtown Fayetteville near the gorge.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.03,
+    "routeMile": 64.62,
+    "url": "/directory/secret-sandwich-society",
+    "website": "http://www.secretsandwichsociety.com/",
+    "tel": "tel:+13045744777",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.055485,-81.10457300000002"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -81.11999069902846,
      38.05011863844972
     ]
@@ -21305,6 +21398,99 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -81.0889645,
+     37.9814663
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "new-river-atv",
+    "name": "New River ATV",
+    "category": "Outfitter",
+    "type": "guides",
+    "lane": "guides",
+    "laneLabel": "Guides & Outfitters",
+    "short": "New River Gorge outfitter running guided ATV, side-by-side and full-day motorcycle backroad tours from Minden.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 2.47,
+    "routeMile": 69.79,
+    "url": "/directory/new-river-atv",
+    "website": "https://www.newriveratv.com/",
+    "tel": "tel:+13044616961",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9814663,-81.0889645"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.1853332,
+     37.7998123
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "united-cycle",
+    "name": "United Cycle",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Family-run powersports dealer on Robert C Byrd Drive in Beckley, with a second store in Summersville.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Raleigh",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 4.33,
+    "routeMile": 82.08,
+    "url": "/directory/united-cycle",
+    "website": "http://www.united-cycle.com/",
+    "tel": "tel:+13042529775",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7998123,-81.1853332"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.1299174,
+     37.752545
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "cabins-at-pine-haven",
+    "name": "Cabins at Pine Haven",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Log cabins and two treehouses with hot tubs off I-64 at Beaver, about 15 minutes from Beckley.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Raleigh",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 6.3,
+    "routeMile": 83.25,
+    "url": "/directory/cabins-at-pine-haven",
+    "website": "https://cabinsatpinehaven.com/",
+    "tel": "tel:+13042500235",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.752545,-81.1299174"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.9768304,
      37.9944401
     ]
@@ -21329,37 +21515,6 @@
     "website": null,
     "tel": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -80.8514876,
-     38.2026449
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "the-tractor-bar",
-    "name": "The Tractor Bar",
-    "category": "Bar",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
-    "short": "Live-music bar off Route 19 at Mount Nebo, a short run from Summersville Lake.",
-    "region": "Mountain Lakes",
-    "county": "Nicholas",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 0.69,
-    "routeMile": 124.46,
-    "url": "/directory/the-tractor-bar",
-    "website": "https://tractorbarwv.com",
-    "tel": null,
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2026449,-80.8514876"
    }
   }
  ]

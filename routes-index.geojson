@@ -709,9 +709,9 @@
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "",
     "short": "A 161-mile one-way ride on the Coal Heritage Trail National Scenic Byway, from Bluefield through the McDowell County coal towns and Beckley down to Fayette Station, under the New River Gorge Bridge.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b14a21720a28e1488b3_default.jpeg",
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8a0451e31e4264620b7ac_default.jpeg",
     "stops": 6,
-    "nearby": 8,
+    "nearby": 14,
     "url": "/routes/coal-heritage-trail"
    }
   },
@@ -1227,9 +1227,9 @@
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "Out of State",
     "short": "A 163-mile Greenbrier Valley loop that crosses into Virginia at Sweet Springs, runs the Catawba Valley to the Hanging Rock Tavern, and comes home through Narrows, Union, and Monroe County's covered bridges. A full day for riders who want distance.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80984df0534f16821e3da_default.jpeg",
-    "stops": 0,
-    "nearby": 3,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e778a472b7eb03ff54_default.jpeg",
+    "stops": 3,
+    "nearby": 1,
     "url": "/routes/hanging-rock-tavern-run"
    }
   },
@@ -1585,9 +1585,9 @@
     "region": "Potomac Highlands",
     "secondaryRegion": "",
     "short": "A 92-mile, two-day loop through Hampshire and Mineral County back roads, with an overnight in Keyser. An easy-paced ride built around small-town stops.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b367a6f4302d5a0d460_default.jpeg",
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e978a472b7eb040116_default.jpeg",
     "stops": 2,
-    "nearby": 2,
+    "nearby": 5,
     "url": "/routes/the-mountain-store-loop"
    }
   },
@@ -2191,9 +2191,9 @@
     "region": "Mountaineer Country",
     "secondaryRegion": "",
     "short": "A 143-mile Mountaineer Country loop through Rowlesburg, Grafton, Mannington, and Core, passing the birthplace of Mother's Day, a working dam, and a century-old round barn. A full day for riders who want distance.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b11a21720a28e1487a4_default.jpeg",
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e778a472b7eb03ff90_default.jpeg",
     "stops": 5,
-    "nearby": 8,
+    "nearby": 10,
     "url": "/routes/the-cheat-river-loop"
    }
   },
@@ -2517,9 +2517,9 @@
     "region": "Eastern Panhandle",
     "secondaryRegion": "",
     "short": "A 96-mile Eastern Panhandle loop along the Washington Heritage Trail, crossing Mills Gap and closing out at a Berkeley Springs roadhouse. A full day of mountain views and gap-road curves.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b12a21720a28e1487d8_default.jpeg",
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e678a472b7eb03fea9_default.jpeg",
     "stops": 2,
-    "nearby": 2,
+    "nearby": 3,
     "url": "/routes/mills-gap-mountain-loop"
    }
   },
@@ -2915,9 +2915,9 @@
     "region": "Hatfield-McCoy Mountains",
     "secondaryRegion": "",
     "short": "An 83-mile loop through Lincoln and Logan County coal country, anchored by Chief Logan State Park and the Little Coal River. A flexible half-day or full-day ride depending on how long you linger.",
-    "image": null,
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad89f047b64ac044b308711_1920px-Logan-downtown-wv.jpeg",
     "stops": 1,
-    "nearby": 0,
+    "nearby": 2,
     "url": "/routes/little-coal-river-scenic-loop"
    }
   },
@@ -3381,7 +3381,7 @@
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "",
     "short": "A 93-mile loop through McDowell County's coal camp towns, from the Kimball War Memorial to the historic company store ruins at Pageton and Elkhorn. Built for one full day of curves, coal country history, and small-town stops along Route 52.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad80b11a21720a28e14879c_default.jpeg",
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e778a472b7eb03ff37_default.jpeg",
     "stops": 6,
     "nearby": 1,
     "url": "/routes/head-of-the-dragon"
@@ -3949,15 +3949,15 @@
     "slug": "the-summersville-loop",
     "name": "The Summersville Loop",
     "miles": 127,
-    "rideTime": "1-2 days",
+    "rideTime": "4-5 hours",
     "difficulty": "Intermediate",
     "surface": "Paved",
     "region": "New River-Greenbrier Valley",
     "secondaryRegion": "Mountain Lakes",
-    "short": "Gorge roads, waterfall stops, and coal country history — this New River Gorge loop is West Virginia riding at its absolute best.",
-    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6a432cec646ae66df0d8aff0_Fayatte%20Bridge%20New%20River%20WV.jpg",
+    "short": "Gorge roads, waterfall stops, and coal country history. This New River Gorge loop is West Virginia riding at its absolute best.",
+    "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6adb387854d46b26c597b00f_6a432cec646ae66df0d8aff0_Fayatte%2520Bridge%2520New%2520River%2520WV.jpeg",
     "stops": 5,
-    "nearby": 8,
+    "nearby": 13,
     "url": "/routes/the-summersville-loop"
    }
   },

@@ -13900,6 +13900,37 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.4637711,
+     39.456635
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "avalon-resort",
+    "name": "Avalon Resort (Clothing Optional)",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Clothing-optional resort outside Paw Paw, with lodging and events that include rider gatherings.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 8.19,
+    "routeMile": 13.26,
+    "url": "/directory/avalon-resort",
+    "website": "https://www.avalon-resort.com/",
+    "tel": "tel:+13049475600",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.456635,-78.4637711"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -77.86175700953504,
      39.28815976023299
     ]
