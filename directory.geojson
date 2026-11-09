@@ -6,9 +6,31 @@
     "contract": "pin data contract v2 — keyed on slug; `type` is the canonical renderer glyph token",
     "join_key": "slug",
     "coordinate_order": "[longitude, latitude]",
-    "count": 155
+    "count": 156
   },
   "features": [
+    {
+      "type": "Feature",
+      "id": "l-r-bbq",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.00072636931816,
+          38.4380374926154
+        ]
+      },
+      "properties": {
+        "slug": "l-r-bbq",
+        "name": "L&R BBQ",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Putnam",
+        "certified": false,
+        "url": "/directory/l-r-bbq",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4380374926154,-82.00072636931816"
+      }
+    },
     {
       "type": "Feature",
       "id": "la-famiglia",
