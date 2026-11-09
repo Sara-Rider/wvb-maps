@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2.4 · 2026-11-08 (event-map look, slate band, place listed, spacing, cards anywhere)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.5 · 2026-11-09 (ridges, panel on every story)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
      data-wvb-slot="article-map". The place cards can be anywhere on the page:
      the map only draws story places whose card is on the page. Serves EVERY
@@ -25,8 +25,11 @@
        * The nearby set itself now comes from the event Nearby rule (see the
          feed builder). A remote place with nothing in range gets the nearest
          few listings with their miles, and the list says so.
-       * Several-place and route stories have no button in this version
-         (decided 2026-11-08: one-place stories first).
+       * Every story gets the panel (Sara, 2026-11-09). Several-place and
+         route stories list their routes and places under "In this story",
+         with no nearby button (one-place stories first, 2026-11-08).
+       * The band is framed by the route page's ridge dividers (site classes
+         ridge-slate above, ridge-bottom below).
 
      THE STORY'S DATA DECIDES THE MAP (feed `properties.mode`) — unchanged
        route   the linked route's own feed: its line and numbered stops. Story
@@ -150,6 +153,7 @@
     transition:background .12s ease;
   }
   .wvb-story__toggle:hover{ background:var(--gold-hover); }
+  .wvb-story__toggle[hidden]{ display:none !important; }
   #wvb-story-results[hidden]{ display:none !important; }
   /* Same caption colours the Events template gives the slate band, so the
      story map reads correctly if it is placed on one too. */
@@ -157,7 +161,11 @@
   /* Room around the band so it doesn't touch the heading above or the place
      cards below, and a slightly shorter map than the event page's (story
      pages only — these rules ship in this embed, not the event one). */
-  #wvb-story-band{ margin-top:32px; margin-bottom:56px; }
+  /* The route page's ridge dividers (site classes ridge-slate / ridge-bottom)
+     frame the band, full width like the band itself. */
+  #wvb-story-band{ margin-top:0; margin-bottom:0; }
+  .wvb-story-bleed{ margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }
+  .wvb-story-bleed[hidden]{ display:none !important; }
   @media (min-width:821px){
     #wvb-story.wvb-map-shell{ height:500px; }
     #wvb-story .wvb-map__list{ max-height:500px; }
@@ -166,6 +174,7 @@
   .band-slate .wvb-map__list{ scrollbar-color:#C8922A transparent; }
 </style>
 
+<div class="ridge-slate wvb-story-bleed" id="wvb-story-ridge-top" hidden></div>
 <div class="band-slate" id="wvb-story-band" hidden>
   <div class="sec-head">
     <p class="sec-head-kick" id="wvb-story-kick"></p>
@@ -177,7 +186,7 @@
   <div class="wvb-map__list" id="wvb-list">
     <div hidden></div><!-- keeps the Nearby section second, as on the event map, so it gets the same top rule -->
     <div class="wvb-map__section" id="wvb-nearby-section">
-      <p class="wvb-map__list-title">Nearby</p>
+      <p class="wvb-map__list-title" id="wvb-story-panel-title">Nearby</p>
       <p class="wvb-map__sub" id="wvb-story-nearby-sub">See where riders eat, fuel and stop around this place.</p>
       <div id="wvb-story-place"></div>
       <button type="button" id="wvb-story-toggle" class="wvb-story__toggle">Find out what else is in this area</button>
@@ -189,6 +198,7 @@
   </div>
 </div>
 </div>
+<div class="ridge-bottom wvb-story-bleed" id="wvb-story-ridge-bottom" hidden></div>
 
 <script>
 (function () {
@@ -328,6 +338,7 @@
     let places = story.features.filter(f => keep(f) && f.properties.kind === 'place' && hasCard(f.properties.slug));
     let nearby = mode === 'single' ? story.features.filter(f => keep(f) && f.properties.kind === 'nearby') : [];
     nearby.sort((a, b) => (a.properties.miles || 0) - (b.properties.miles || 0));
+    const storyPlaces = places.slice();   // listed in the panel, stops included
     let tracks = [], stops = [];
 
     if (mode === 'route') {
@@ -362,13 +373,14 @@
 
     // Only a one-place story with nearby places gets the right-hand panel;
     // every other story is the map alone, full width.
-    const solo = !(mode === 'single' && nearby.length);
-    if (solo) wrap.classList.add('is-solo');
-    const copy = solo ? COPY.other : COPY.single;
+    const withNearby = mode === 'single' && nearby.length > 0;
+    const copy = withNearby ? COPY.single : COPY.other;
     document.getElementById('wvb-story-kick').textContent = copy.kick;
     document.getElementById('wvb-story-title').textContent = copy.title;
     document.getElementById('wvb-story-intro').textContent = copy.intro;
     document.getElementById('wvb-story-band').hidden = false;
+    document.getElementById('wvb-story-ridge-top').hidden = false;
+    document.getElementById('wvb-story-ridge-bottom').hidden = false;
     wrap.hidden = false;
     const map = new maplibregl.Map({ container: el, style: CFG.STYLE, center: CFG.CENTER, zoom: CFG.ZOOM, cooperativeGestures: true });
     map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
@@ -557,12 +569,43 @@
         paint();
       }
 
-      // The story's own place is listed in the panel, not only pinned.
-      if (mode === 'single' && nearby.length) {
-        places.forEach(f => document.getElementById('wvb-story-place').appendChild(makeRow(f, true)));
+      // A route as a panel row: name, then miles, difficulty and region.
+      // Clicking it shows the whole route on the map, with a link to its page.
+      function makeRouteRow(t) {
+        const p = t.properties;
+        const row = document.createElement('div');
+        row.className = 'wvb-map__row';
+        const meta = [p.miles ? p.miles + ' mi' : '', p.difficulty, p.region].filter(Boolean).join(' \u00b7 ');
+        row.innerHTML = '<div class="wvb-map__row-head"><span class="wvb-map__row-name">'+esc(p.name)+'</span></div>'
+          + '<div class="wvb-map__row-cat">Route</div>'
+          + (meta ? '<div class="wvb-map__row-meta">'+esc(meta)+'</div>' : '');
+        row.addEventListener('click', () => {
+          const b = new maplibregl.LngLatBounds();
+          walkInto(b, t.geometry.coordinates);
+          if (b.isEmpty()) return;
+          map.fitBounds(b, { padding:48, maxZoom:12, duration:800 });
+          popup.setLngLat(b.getCenter()).setHTML('<div class="wvb-pop"><div class="wvb-pop__name">'+esc(p.name)+'</div>'
+            + '<div class="wvb-pop__cat">Route</div>'
+            + (meta ? '<div class="wvb-pop__meta">'+esc(meta)+'</div>' : '')
+            + '<div class="wvb-pop__links"><a href="/routes/'+esc(p.slug)+'">View route &rarr;</a></div></div>').addTo(map);
+        });
+        return row;
       }
 
-      if (mode === 'single' && nearby.length) {
+      // The story's own places are listed in the panel, not only pinned.
+      const placeBox = document.getElementById('wvb-story-place');
+      if (!withNearby) {
+        document.getElementById('wvb-story-panel-title').textContent = 'In this story';
+        nearbySubEl.textContent = tracks.length
+          ? 'The routes and places in this story.'
+          : 'The places in this story.';
+        toggleEl.hidden = true;
+        tracks.filter(t => t.properties && t.properties.name)
+              .forEach(t => placeBox.appendChild(makeRouteRow(t)));
+      }
+      storyPlaces.forEach(f => placeBox.appendChild(makeRow(byId[f.properties.slug] || f, true)));
+
+      if (withNearby) {
         const introSub = nearbySubEl.textContent;
         buildNearby();
         const resultsSub = nearbySubEl.textContent;
