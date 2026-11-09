@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2.7 · 2026-11-09 (route stories: route lines + story places only)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.8 · 2026-11-09 (one-place panel titled 'In this story', no intro line)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
      data-wvb-slot="article-map". The place cards can be anywhere on the page:
      the map only draws story places whose card is on the page. Serves EVERY
@@ -155,6 +155,7 @@
   .wvb-story__toggle:hover{ background:var(--gold-hover); }
   .wvb-story__toggle[hidden]{ display:none !important; }
   #wvb-story-results[hidden]{ display:none !important; }
+  #wvb-story-nearby-sub:empty{ display:none; }
   /* Same caption colours the Events template gives the slate band, so the
      story map reads correctly if it is placed on one too. */
   .wvb-story-band[hidden], #wvb-story-band[hidden]{ display:none !important; }
@@ -186,8 +187,8 @@
   <div class="wvb-map__list" id="wvb-list">
     <div hidden></div><!-- keeps the Nearby section second, as on the event map, so it gets the same top rule -->
     <div class="wvb-map__section" id="wvb-nearby-section">
-      <p class="wvb-map__list-title" id="wvb-story-panel-title">Nearby</p>
-      <p class="wvb-map__sub" id="wvb-story-nearby-sub">Where this place is in West Virginia.</p>
+      <p class="wvb-map__list-title" id="wvb-story-panel-title">In this story</p>
+      <p class="wvb-map__sub" id="wvb-story-nearby-sub"></p>
       <div id="wvb-story-place"></div>
       <button type="button" id="wvb-story-toggle" class="wvb-story__toggle">Find out what else is in this area</button>
       <div id="wvb-story-results" hidden>
