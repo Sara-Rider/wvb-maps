@@ -6,9 +6,669 @@
     "contract": "pin data contract v2 — keyed on slug; `type` is the canonical renderer glyph token",
     "join_key": "slug",
     "coordinate_order": "[longitude, latitude]",
-    "count": 125
+    "count": 155
   },
   "features": [
+    {
+      "type": "Feature",
+      "id": "la-famiglia",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4349447,
+          38.419168299999995
+        ]
+      },
+      "properties": {
+        "slug": "la-famiglia",
+        "name": "La Famiglia",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Cabell",
+        "certified": false,
+        "url": "/directory/la-famiglia",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.419168299999995,-82.4349447"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "beckley-exhibition-coal-mine",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1961532,
+          37.7843972
+        ]
+      },
+      "properties": {
+        "slug": "beckley-exhibition-coal-mine",
+        "name": "Beckley Exhibition Coal Mine",
+        "category": "Attraction",
+        "type": "attraction",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh",
+        "certified": false,
+        "url": "/directory/beckley-exhibition-coal-mine",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7843972,-81.1961532"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "keefers-powersports",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.1701262,
+          37.7793619
+        ]
+      },
+      "properties": {
+        "slug": "keefers-powersports",
+        "name": "Keefer's Powersports",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Hatfield-McCoy Mountains",
+        "county": "Mingo",
+        "certified": false,
+        "url": "/directory/keefers-powersports",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7793619,-82.1701262"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yokums-vacationland",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.37669,
+          38.83417
+        ]
+      },
+      "properties": {
+        "slug": "yokums-vacationland",
+        "name": "Yokum's Vacationland",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Pendleton",
+        "certified": false,
+        "url": "/directory/yokums-vacationland",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.83417,-79.37669"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "dirtbean-coffee-and-bike-shop",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0952338,
+          38.2229988
+        ]
+      },
+      "properties": {
+        "slug": "dirtbean-coffee-and-bike-shop",
+        "name": "Dirtbean Coffee and Bike Shop",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/dirtbean-coffee-and-bike-shop",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2229988,-80.0952338"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "snowshoe-mountain",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.9938798,
+          38.402974799999996
+        ]
+      },
+      "properties": {
+        "slug": "snowshoe-mountain",
+        "name": "Snowshoe Mountain",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/snowshoe-mountain",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.402974799999996,-79.9938798"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cabins-at-pine-haven",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1299174,
+          37.752545
+        ]
+      },
+      "properties": {
+        "slug": "cabins-at-pine-haven",
+        "name": "Cabins at Pine Haven",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh",
+        "certified": false,
+        "url": "/directory/cabins-at-pine-haven",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.752545,-81.1299174"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "elk-springs-resort",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.1475138,
+          38.534132299999996
+        ]
+      },
+      "properties": {
+        "slug": "elk-springs-resort",
+        "name": "Elk Springs Resort",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Randolph",
+        "certified": false,
+        "url": "/directory/elk-springs-resort",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.534132299999996,-80.1475138"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-hitch-caboose",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9676707,
+          38.665807199999996
+        ]
+      },
+      "properties": {
+        "slug": "the-hitch-caboose",
+        "name": "The Hitch Caboose",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Metro Valley",
+        "county": "Mason",
+        "certified": false,
+        "url": "/directory/the-hitch-caboose",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.665807199999996,-81.9676707"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "country-road-cabins",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.99066479999999,
+          38.132382899999996
+        ]
+      },
+      "properties": {
+        "slug": "country-road-cabins",
+        "name": "Country Road Cabins",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/country-road-cabins",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.132382899999996,-80.99066479999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "wv-glamping-domes",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.61573899999999,
+          37.7510998
+        ]
+      },
+      "properties": {
+        "slug": "wv-glamping-domes",
+        "name": "WV Glamping Domes",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "New River-Greenbrier Valley",
+        "county": "Greenbrier",
+        "certified": false,
+        "url": "/directory/wv-glamping-domes",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7510998,-80.61573899999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "new-river-atv",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0889645,
+          37.9814663
+        ]
+      },
+      "properties": {
+        "slug": "new-river-atv",
+        "name": "New River ATV",
+        "category": "Outfitter",
+        "type": "guides",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/new-river-atv",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9814663,-81.0889645"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "west-virginia-botanic-garden",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.8674338,
+          39.6279146
+        ]
+      },
+      "properties": {
+        "slug": "west-virginia-botanic-garden",
+        "name": "West Virginia Botanic Garden",
+        "category": "Attraction",
+        "type": "park",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
+        "certified": false,
+        "url": "/directory/west-virginia-botanic-garden",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6279146,-79.8674338"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "slabtown-campground",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.92212169999999,
+          38.3928472
+        ]
+      },
+      "properties": {
+        "slug": "slabtown-campground",
+        "name": "Slabtown Campground",
+        "category": "Campground",
+        "type": "camping",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/slabtown-campground",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3928472,-79.92212169999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "opossum-creek-retreat",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0686039,
+          38.093205
+        ]
+      },
+      "properties": {
+        "slug": "opossum-creek-retreat",
+        "name": "Opossum Creek Retreat",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/opossum-creek-retreat",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.093205,-81.0686039"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-burger-carte",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.30381539999999,
+          38.175045700000005
+        ]
+      },
+      "properties": {
+        "slug": "the-burger-carte",
+        "name": "The Burger Carte",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/the-burger-carte",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.175045700000005,-81.30381539999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "harmans-luxury-log-cabins",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.2871431,
+          38.967266599999995
+        ]
+      },
+      "properties": {
+        "slug": "harmans-luxury-log-cabins",
+        "name": "Harman's Luxury Log Cabins",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Grant",
+        "certified": false,
+        "url": "/directory/harmans-luxury-log-cabins",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.967266599999995,-79.2871431"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "elk-river-inn-and-cabins",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.12264,
+          38.409451
+        ]
+      },
+      "properties": {
+        "slug": "elk-river-inn-and-cabins",
+        "name": "Elk River Inn & Cabins",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/elk-river-inn-and-cabins",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.409451,-80.12264"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "all-seasons-powersports",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.2545744,
+          38.4163153
+        ]
+      },
+      "properties": {
+        "slug": "all-seasons-powersports",
+        "name": "All Seasons Powersports of Huntington",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Metro Valley",
+        "county": "Cabell",
+        "certified": false,
+        "url": "/directory/all-seasons-powersports",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4163153,-82.2545744"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "super-smittys",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.28198739999999,
+          39.0070262
+        ]
+      },
+      "properties": {
+        "slug": "super-smittys",
+        "name": "Super Smitty's",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Mountain Lakes",
+        "county": "Upshur",
+        "certified": false,
+        "url": "/directory/super-smittys",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0070262,-80.28198739999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mountaineer-indian-motorcycle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.014389,
+          39.6573066
+        ]
+      },
+      "properties": {
+        "slug": "mountaineer-indian-motorcycle",
+        "name": "Mountaineer Indian Motorcycle",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
+        "certified": false,
+        "url": "/directory/mountaineer-indian-motorcycle",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6573066,-80.014389"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cycle-center",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.36171519814414,
+          38.41235985391399
+        ]
+      },
+      "properties": {
+        "slug": "cycle-center",
+        "name": "Cycle Center",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Metro Valley",
+        "county": "Cabell",
+        "certified": false,
+        "url": "/directory/cycle-center",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.41235985391399,-82.36171519814414"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mimis",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.11150359999999,
+          38.2619895
+        ]
+      },
+      "properties": {
+        "slug": "mimis",
+        "name": "Mim's Kitchen",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Potomac Highlands",
+        "county": "Pocahontas",
+        "certified": false,
+        "url": "/directory/mimis",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2619895,-80.11150359999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "franks-pizza",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.32391489999999,
+          38.1813049
+        ]
+      },
+      "properties": {
+        "slug": "franks-pizza",
+        "name": "Frank's Pizza",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/franks-pizza",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1813049,-81.32391489999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "jimmies-restaurant",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.09430979999999,
+          37.369385099999995
+        ]
+      },
+      "properties": {
+        "slug": "jimmies-restaurant",
+        "name": "Jimmie's Restaurant",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Mercer",
+        "certified": false,
+        "url": "/directory/jimmies-restaurant",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.369385099999995,-81.09430979999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "new-river-tavern-and-bistro",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1651059,
+          37.990885399999996
+        ]
+      },
+      "properties": {
+        "slug": "new-river-tavern-and-bistro",
+        "name": "New River Tavern and Bistro",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/new-river-tavern-and-bistro",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.990885399999996,-81.1651059"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "hale-house",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.6336046,
+          38.3494605
+        ]
+      },
+      "properties": {
+        "slug": "hale-house",
+        "name": "Hale House",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Kanawha",
+        "certified": false,
+        "url": "/directory/hale-house",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.3494605,-81.6336046"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sandstone-falls",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9048227,
+          37.7595057
+        ]
+      },
+      "properties": {
+        "slug": "sandstone-falls",
+        "name": "Sandstone Falls",
+        "category": "Attraction",
+        "type": "waterfall",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh",
+        "certified": false,
+        "url": "/directory/sandstone-falls",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7595057,-80.9048227"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "united-cycle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.1853332,
+          37.7998123
+        ]
+      },
+      "properties": {
+        "slug": "united-cycle",
+        "name": "United Cycle",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "New River-Greenbrier Valley",
+        "county": "Raleigh",
+        "certified": false,
+        "url": "/directory/united-cycle",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7998123,-81.1853332"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-peddler",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4448879,
+          38.4216395
+        ]
+      },
+      "properties": {
+        "slug": "the-peddler",
+        "name": "The Peddler",
+        "category": "Bar",
+        "type": "food",
+        "region": "Metro Valley",
+        "county": "Cabell",
+        "certified": false,
+        "url": "/directory/the-peddler",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4216395,-82.4448879"
+      }
+    },
     {
       "type": "Feature",
       "id": "bourbon-hills-bbq",
