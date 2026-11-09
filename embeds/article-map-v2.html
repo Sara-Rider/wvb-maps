@@ -1,4 +1,4 @@
-<!-- WEST VIRGINIA BIKERS — Story Map · v2.6 · 2026-11-09 (ridges, panel on every story, panel copy)
+<!-- WEST VIRGINIA BIKERS — Story Map · v2.7 · 2026-11-09 (route stories: route lines + story places only)
      Lives on the Articles TEMPLATE (site label: Stories) inside the block
      data-wvb-slot="article-map". The place cards can be anywhere on the page:
      the map only draws story places whose card is on the page. Serves EVERY
@@ -32,8 +32,8 @@
          ridge-slate above, ridge-bottom below).
 
      THE STORY'S DATA DECIDES THE MAP (feed `properties.mode`) — unchanged
-       route   the linked route's own feed: its line and numbered stops. Story
-               places that are not stops on it are unnumbered chosen pins.
+       route   the linked route's line only (no stops, no nearby) plus the
+               story's own places as pins: only what the story names.
        single  one place; nearby on request
        set     a pin per place — no line, no numbers, no nearby
        none    nothing — the slot is hidden
@@ -348,14 +348,11 @@
         rf.features.forEach(f => {
           if (!f || !f.geometry) return;
           const t = f.geometry.type;
+          // Only the route's line. Its stops and nearby places are not drawn:
+          // the story map shows what the story names (Sara, 2026-11-09).
           if (t === 'LineString' || t === 'MultiLineString') tracks.push(f);
-          else if (t === 'Point' && f.properties && f.properties.slug && (f.properties.kind || 'stop') === 'stop') {
-            stops.push(Object.assign({}, f, { properties: Object.assign({}, f.properties, { kind:'stop' }) }));
-          }
         });
       });
-      const stopSlugs = new Set(stops.map(f => f.properties.slug));
-      places = places.filter(f => !stopSlugs.has(f.properties.slug));   // a stop is already on the map, numbered
     } else if (mode === 'single' && !places.length) {
       return;   // its one place is off the page, so is its map
     }
