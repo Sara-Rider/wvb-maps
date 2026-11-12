@@ -2,8 +2,10 @@
    Loaded site-wide (Webflow site script, footer).
 
    SHARE — on every detail page (stop, route, event, story, club, charity, region)
-     * Phones / Safari / Edge: the device's own share sheet (navigator.share).
-     * Elsewhere: a small menu — Copy link, Facebook, Email, Text.
+     * Touch devices (phones, tablets): the device's own share sheet (navigator.share).
+     * Computers: a small menu — Copy link, Facebook, Email, Text, and More… (the
+       system share sheet) where the browser has one. Changed 12 Nov 2026: desktop
+       share sheets have no Facebook, so the menu is used there.
    SAVE — the same pages get a Save toggle. Saved items live in this browser
      (localStorage), no account. A "Saved (n)" pill appears bottom-right once
      anything is saved, linking to /saved.
@@ -138,12 +140,14 @@
     menu.innerHTML = '<button type="button" data-m="copy">Copy link</button>'
       + '<a data-m="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=' + enc(data.url) + '">Facebook</a>'
       + '<a data-m="email" href="mailto:?subject=' + enc(data.title) + '&body=' + enc(data.text + '\n\n' + data.url) + '">Email</a>'
-      + '<a data-m="sms" href="sms:?&body=' + enc(data.title + ' ' + data.url) + '">Text message</a>';
+      + '<a data-m="sms" href="sms:?&body=' + enc(data.title + ' ' + data.url) + '">Text message</a>'
+      + (navigator.share ? '<button type="button" data-m="more">More…</button>' : '');
     anchor.parentNode.appendChild(menu);
     menu.addEventListener('click', function (e) {
       var m = e.target.closest('[data-m]'); if (!m) return;
       track(kind === 'list' ? 'share_list' : 'share', { method: m.getAttribute('data-m'), content_type: data.type, item_id: data.id });
       if (m.getAttribute('data-m') === 'copy') { e.preventDefault(); copy(data.url).then(function () { toast('Link copied'); }); }
+      if (m.getAttribute('data-m') === 'more') { e.preventDefault(); navigator.share({ title: data.title, text: data.text, url: data.url }).catch(function () {}); }
       menu.classList.remove('is-open');
     });
     document.addEventListener('click', function (e) { if (!menu.contains(e.target) && e.target !== anchor && !anchor.contains(e.target)) menu.classList.remove('is-open'); });
@@ -154,7 +158,11 @@
     var menu = null;
     btn.addEventListener('click', function () {
       var data = getData();
-      if (navigator.share) {
+      // Device share sheet only on touch devices (phones, tablets), where it lists the
+      // Facebook and Instagram apps. Desktop share sheets (macOS, Windows, Chrome) have
+      // no Facebook, so computers get the WVB menu, with More… for the system sheet.
+      var touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+      if (navigator.share && touch) {
         navigator.share({ title: data.title, text: data.text, url: data.url })
           .then(function () { track(kind === 'list' ? 'share_list' : 'share', { method: 'native', content_type: data.type, item_id: data.id }); })
           .catch(function () {});
