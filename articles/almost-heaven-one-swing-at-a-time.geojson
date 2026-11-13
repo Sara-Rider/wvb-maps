@@ -1,0 +1,453 @@
+{
+ "type": "FeatureCollection",
+ "properties": {
+  "story": "almost-heaven-one-swing-at-a-time",
+  "mode": "set",
+  "routes": [],
+  "nearbyFallback": false
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.1406891,
+     38.839303
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-tu-endie-wei-state-park",
+    "name": "Almost Heaven Swing - Tu-Endie-Wei State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "At the confluence of the Kanawha and Ohio rivers, with the Silver Memorial Bridge as backdrop.",
+    "region": "Metro Valley",
+    "county": "Mason",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-tu-endie-wei-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.839303,-82.1406891"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0864936,
+     39.3886464
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-valley-falls-state-park",
+    "name": "Almost Heaven Swing - Valley Falls State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Overlooks the cascades of Valley Falls, a stop on the WV Waterfall Trail; cross the bridge and follow the paved path.",
+    "region": "Mountaineer Country",
+    "county": "Marion",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-valley-falls-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3886464,-80.0864936"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.5649343,
+     39.264891
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-blennerhassett-island-historical-state-park",
+    "name": "Almost Heaven Swing - Blennerhassett Island Historical State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Forested spot beside the historic mansion, reached by a 20-minute ferry; open seasonally May-October.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-blennerhassett-island-historical-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.264891,-81.5649343"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.4993407,
+     38.9486714
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-stonewall-resort-state-park",
+    "name": "Almost Heaven Swing - Stonewall Resort State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Tranquil Stonewall Jackson Lake views behind the main lodge via the Bright Star Park Trail.",
+    "region": "Mountain Lakes",
+    "county": "Lewis",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-stonewall-resort-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9486714,-80.4993407"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.0868344,
+     39.2206591
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-north-bend-state-park",
+    "name": "Almost Heaven Swing - North Bend State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "In the 'Jug Handle' area off Main Park Road; also reachable via the Southern Railroad and Castle Rock trails.",
+    "region": "Mid-Ohio Valley",
+    "county": "Ritchie",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-north-bend-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2206591,-81.0868344"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.5941483,
+     40.547029
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-tomlinson-run-state-park",
+    "name": "Almost Heaven Swing - Tomlinson Run State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "At the end of the ADA-accessible Jody Hulka Trail in WV's northernmost park.",
+    "region": "Northern Panhandle",
+    "county": "Hancock",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-tomlinson-run-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=40.547029,-80.5941483"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9956932,
+     37.5340121
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-pipestem-resort-state-park",
+    "name": "Almost Heaven Swing - Pipestem Resort State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Vista of rolling hills near the main parking area and picnic shelter.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Summers",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-pipestem-resort-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.5340121,-80.9956932"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.4608152,
+     39.0286196
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-canaan-valley-resort-state-park",
+    "name": "Almost Heaven Swing - Canaan Valley Resort State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Overlooks the scenic Balsam Swamp; a quiet slice of Tucker County near the parking area.",
+    "region": "Potomac Highlands",
+    "county": "Tucker",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-canaan-valley-resort-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0286196,-79.4608152"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.3102554,
+     39.5085891
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-cacapon-resort-state-park",
+    "name": "Almost Heaven Swing - Cacapon Resort State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Cacapon Mountain Overlook with endless mountain views; swing closed seasonally Nov 1-Mar 31.",
+    "region": "Eastern Panhandle",
+    "county": "Morgan",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-cacapon-resort-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.5085891,-78.3102554"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.4857237,
+     39.1134191
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-blackwater-falls-state-park",
+    "name": "Almost Heaven Swing - Blackwater Falls State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Just off the main overlook trail with Blackwater Falls as the backdrop; near the ADA-accessible falls walkway.",
+    "region": "Potomac Highlands",
+    "county": "Tucker",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-blackwater-falls-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1134191,-79.4857237"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.2717304,
+     38.1122742
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-droop-mountain-battlefield-state-park",
+    "name": "Almost Heaven Swing - Droop Mountain Battlefield State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Set in a Civil War battlefield park near the lookout tower; the site of WV's largest Civil War battle.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-droop-mountain-battlefield-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.1122742,-80.2717304"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9331845,
+     37.6166704
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-bluestone-state-park",
+    "name": "Almost Heaven Swing - Bluestone State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Expansive view over Bluestone Lake; pull off Route 20 near Lilly's Bridge.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Summers",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-bluestone-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.6166704,-80.9331845"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.9768304,
+     37.9944401
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-babcock-state-park",
+    "name": "Almost Heaven Swing - Babcock State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Swing framed on the Glade Creek Grist Mill, one of the most photographed spots in West Virginia; short walk from the main lot.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-babcock-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.85603,
+     38.24576
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-summersville-lake-state-park",
+    "name": "Almost Heaven Swing - Summersville Lake State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Overlooks Summersville Lake, the 'Little Bahamas of the East,' at the state's newest park; short uphill walk.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-summersville-lake-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.24576,-80.85603"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0108002,
+     39.2801834
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-tygart-lake-state-park",
+    "name": "Almost Heaven Swing - Tygart Lake State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "At the Tygart Dam Overlook with a view down the 10-mile lake; parking right at the overlook.",
+    "region": "Mountaineer Country",
+    "county": "Taylor",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-tygart-lake-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2801834,-80.0108002"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.0197368,
+     37.8938238
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-chief-logan-state-park",
+    "name": "Almost Heaven Swing - Chief Logan State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "Mountain views beside the Chief Logan Lodge; short walk from the parking area.",
+    "region": "Hatfield-McCoy Mountains",
+    "county": "Logan",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-chief-logan-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.8938238,-82.0197368"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.9237039,
+     38.8958211
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "almost-heaven-swing-lost-river-state-park",
+    "name": "Almost Heaven Swing - Lost River State Park",
+    "category": "Attraction",
+    "type": "swing",
+    "short": "At the Cranny Crow Overlook via the White Oak Trail - a 4-mile out-and-back to panoramic views.",
+    "region": "Potomac Highlands",
+    "county": "Hardy",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/almost-heaven-swing-lost-river-state-park",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.8958211,-78.9237039"
+   }
+  }
+ ]
+}
