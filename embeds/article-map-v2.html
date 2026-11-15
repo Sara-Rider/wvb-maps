@@ -245,12 +245,12 @@
   // ---- Directory glyphs — the canonical 15 + attraction fallback ----------
   // Verbatim from route-map-v5.html, which is now the one home for this set.
   const GLYPH = {
-    'overlook':     '<circle cx="7.5" cy="15" r="4"/><circle cx="16.5" cy="15" r="4"/><path d="M7.5 11V7"/><path d="M16.5 11V7"/><path d="M7.5 7h9"/>',
+    'overlook':     '<path d="M7 5h8l2 4H9z"/><path d="M12 9v9"/><path d="M8 21h8"/><path d="M9 18h6"/><path d="M5 6l2 1"/>',
     'waterfall':    '<path d="M12 3c2.5 3.5 5 6.7 5 9a5 5 0 0 1-10 0c0-2.3 2.5-5.5 5-9z"/>',
     'bridge':       '<path d="M3 17v-3a9 9 0 0 1 18 0v3"/><path d="M3 14h18"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/>',
     'monument':     '<path d="M5 9h14l-7-6z"/><path d="M9 9v10"/><path d="M15 9v10"/><path d="M6 21h12"/>',
     'park':         '<path d="M12 3l4.5 7H14l3.5 5.5H15L18 20H6l3-4.5H6.5L10 10H7.5z"/><path d="M12 20v2"/>',
-    'scenic-road':  '<path d="M17 4a2.5 2.5 0 1 1 0 5h-4a2.5 2.5 0 1 0 0 5h4a2.5 2.5 0 1 1 0 5H7"/>',
+    'scenic-road':  '<path d="M5 21c1-5 4-7 4-11 0-3-1-5-1-7"/><path d="M15 21c1-5 4-7 4-11 0-3-1-5-1-7"/><path d="M10.5 19.5l.5-2"/><path d="M12.5 13.5l.3-2"/><path d="M12.6 7l-.1-2"/>',
     'swing':        '<path d="M4 4h16"/><path d="M8 4v6"/><path d="M16 4v6"/><path d="M7 10h10v3H7z"/><path d="M9 13v4"/><path d="M15 13v4"/>',
     'lodging':      '<path d="M4 8v10"/><path d="M4 14h16"/><path d="M20 18v-4a2 2 0 0 0-2-2h-8v2"/><circle cx="7.5" cy="11" r="1.5"/>',
     'food':         '<path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 3v18"/><path d="M16 3c-1.5 1.2-2 3.5-2 6 0 1.7 1 2.5 2 2.5V3"/><path d="M16 11.5V21"/>',
@@ -258,6 +258,8 @@
     'moto':         '<path d="M15 6.5a3.5 3.5 0 0 0-4.7 4.6L4 17.5 6.5 20l6.4-6.3A3.5 3.5 0 0 0 17.5 9l-2 2-1.5-1.5z"/>',
     'fuel':         '<path d="M5 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M4 20h11"/><path d="M7 8h5"/><path d="M14 10l3 3v4a2 2 0 0 0 4 0V8l-3-3"/>',
     'guides':       '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-4.5 1.5L9 15l4.5-1.5z"/>',
+    'bar':          '<path d="M5 9h10v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M15 12h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/><path d="M5 9c0-2.2 1.6-3.5 3.2-3.2C9 4.4 11.2 4 12.5 5c1.6-.4 3 .9 2.5 4"/><path d="M9 13v5"/><path d="M12 13v5"/>',
+    'post':         '<path d="M5 21V3"/><path d="M5 4h12l-2.5 4L17 12H5"/>',
     'other':        '<circle cx="12" cy="12" r="3.2"/>',
     'attraction':   '<path d="M12 3l2.5 6H21l-5 4 2 6.5L12 15l-6 4.5 2-6.5-5-4h6.5z"/>'
   };

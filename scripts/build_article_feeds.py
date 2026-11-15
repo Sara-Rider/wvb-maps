@@ -84,7 +84,7 @@ ROUTES_DIR = os.path.join(ROOT, "routes")
 VALID_TOKENS = {
     "overlook", "waterfall", "bridge", "monument", "park", "scenic-road",
     "swing", "lodging", "food", "camping", "moto", "fuel", "guides", "other",
-    "attraction",
+    "attraction", "historic", "bar", "post",
 }
 
 LAT_RANGE = (36.0, 42.0)
