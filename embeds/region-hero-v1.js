@@ -11,7 +11,7 @@
   var st = document.createElement('style');
   st.setAttribute('data-wvb', 'region-hero-v1');
   st.textContent =
-    '.region-hero{position:relative;--wvb-gutter:max(24px,calc((100% - 1160px) / 2));padding-left:var(--wvb-gutter)!important;padding-right:var(--wvb-gutter)!important}' +
+    '.region-hero{position:relative;flex-wrap:nowrap!important;--wvb-gutter:max(24px,calc((100% - 1160px) / 2));padding-left:var(--wvb-gutter)!important;padding-right:var(--wvb-gutter)!important}' +
     '.region-hero.has-wvb-map{padding-right:calc(var(--wvb-gutter) + 340px)!important}' +
     '.region-hero > *:not(.wvb-region-map){align-self:flex-start!important;text-align:left!important;margin-left:0!important;margin-right:0!important;max-width:720px}' +
     '.region-hero > .on-art,.region-hero > .wvb-ss{justify-content:flex-start!important}' +
