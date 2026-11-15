@@ -55,7 +55,7 @@
     wrap.parentNode.insertBefore(intro,wrap);
     var note=intro.querySelector('p'),nav=intro.querySelector('nav');
     var links=GROUPS.map(function(g,i){var a=document.createElement('a');a.href='#stops-'+g[0];a.innerHTML=g[1].replace('&','&amp;')+' <span></span>';
-      a.addEventListener('click',function(e){e.preventDefault();var bar=document.querySelector('.dir-filter-bar'),off=bar&&getComputedStyle(bar).position==='sticky'?bar.getBoundingClientRect().height:0;window.scrollTo({top:heads[i].getBoundingClientRect().top+window.pageYOffset-off-12,behavior:'smooth'})});
+      a.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var bar=document.querySelector('.dir-filter-bar'),off=bar&&getComputedStyle(bar).position==='sticky'?bar.getBoundingClientRect().height:0;window.scrollTo({top:heads[i].getBoundingClientRect().top+window.pageYOffset-off-12,behavior:'smooth'})});
       nav.appendChild(a);return a});
     [].slice.call(wrap.querySelectorAll('.collection-item')).forEach(function(item,n){
       var card=item.querySelector('.directory-card'); if(!card) return;
