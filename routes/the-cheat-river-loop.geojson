@@ -19573,7 +19573,7 @@
     "slug": "international-mothers-day-shrine",
     "name": "International Mother's Day Shrine",
     "category": "Attraction",
-    "type": "attraction",
+    "type": "historic",
     "short": "Birthplace of Mother's Day as a national observance, in downtown Grafton. Seasonal hours, call ahead.",
     "region": "Mountaineer Country",
     "county": "Taylor",
@@ -19625,7 +19625,7 @@
     "slug": "hamilton-round-barn",
     "name": "Hamilton Round Barn",
     "category": "Attraction",
-    "type": "attraction",
+    "type": "historic",
     "short": "1911 dairy barn turned museum in Mannington. Narrow visiting window, plan ahead.",
     "region": "Mountaineer Country",
     "county": "Marion",
@@ -19791,6 +19791,37 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -79.9714631,
+     39.6540244
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "black-bear-burritos",
+    "name": "Black Bear Burritos",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Long-running Morgantown burrito spot on University Avenue at Evansdale.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 1.64,
+    "routeMile": 111.72,
+    "url": "/directory/black-bear-burritos",
+    "website": "https://www.blackbearburritos.com",
+    "tel": "tel:+13047774867",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.014389,
      39.6573066
     ]
@@ -19893,9 +19924,9 @@
     "slug": "longneck-pub",
     "name": "Longneck Pub",
     "category": "Bar",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
+    "type": "bar",
+    "lane": "other",
+    "laneLabel": "Other",
     "short": "Neighborhood bar in Masontown that hosts bike nights for Preston County riders.",
     "region": "Mountaineer Country",
     "county": "Preston",

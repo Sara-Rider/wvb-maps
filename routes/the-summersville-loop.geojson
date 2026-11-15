@@ -21516,6 +21516,37 @@
     "tel": null,
     "maps": "https://www.google.com/maps/dir/?api=1&destination=37.9944401,-80.9768304"
    }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.8514876,
+     38.2026449
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-tractor-bar",
+    "name": "The Tractor Bar",
+    "category": "Bar",
+    "type": "bar",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "Live-music bar off Route 19 at Mount Nebo, a short run from Summersville Lake.",
+    "region": "Mountain Lakes",
+    "county": "Nicholas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.69,
+    "routeMile": 124.46,
+    "url": "/directory/the-tractor-bar",
+    "website": "https://tractorbarwv.com",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2026449,-80.8514876"
+   }
   }
  ]
 }
