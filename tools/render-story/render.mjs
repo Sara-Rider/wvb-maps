@@ -1,5 +1,5 @@
-// WVB story cards. Spec: claude/WVB_StoryCardArt_Spec.md (WVB Business Brain project).
-// Usage: node render.mjs <spec.json> <outdir>          -> <slug>-card.png, 1200 × 630 (Hero Image + link preview)
+// WVB story cards. Spec: WVB_StoryCardArt_Spec.md (Drive → WVB 2027 → 04 Marketing).
+// Usage: node render.mjs <spec.json> <outdir>          -> <slug>-card-v4.png (v4 rows) or <slug>-card.png (multi-colour rows), 1200 × 630 (Hero Image + link preview)
 //        node render.mjs <spec.json> <outdir> --legacy -> the old 800 × 500 <slug>-card-site.png, kept only for the proof check
 // spec rows:
 //   v4 card (from 14 Nov 2026): {slug, type, hook, line}  type = road-food | when-to-ride | worth-the-stop
@@ -15,7 +15,7 @@ mkdirSync(out, { recursive: true });
 const png = (svg, f) => writeFileSync(`${out}/${f}`, new Resvg(svg, { font: fonts }).render().asPng());
 for (const c of JSON.parse(readFileSync(spec, "utf8"))) {
   if (mode === "--legacy") png(statewideCardSvg(c), `${c.slug}-card-site.png`);
-  else if (c.type) png(storyCardV4Svg(c), `${c.slug}-card.png`);
+  else if (c.type) png(storyCardV4Svg(c), `${c.slug}-card-v4.png`);
   else png(storyCardSvg(c), `${c.slug}-card.png`);
   console.log(c.slug);
 }
