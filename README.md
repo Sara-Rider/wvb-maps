@@ -106,6 +106,13 @@ on. Any commit re-arms them.
 | `embeds/` | **Copies of the code pasted into Webflow.** See `embeds/README.md` — that folder has rules of its own |
 | `scripts/` | The builders the workflows run |
 
+**Map colours on the dark site are overridden in Webflow, not here.** Since
+15 Nov 2026 a block in Site settings → Custom code → Head code ("Maps on the
+dark site") sets the colours of the map hint and notes, the Events filter
+pills, the list cards beside the maps, and the "Rate this stop" label. It uses
+`!important`, so it wins over the colours in these embed files. Change those
+colours in that block, not in the embeds.
+
 **Do not hand-edit anything ending in `.geojson`.** They are regenerated from
 the live site, so an edit here is overwritten on the next run and lost without
 a trace. Fix the data in Webflow or Airtable and let the feed rebuild.
