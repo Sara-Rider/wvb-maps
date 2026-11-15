@@ -51,7 +51,7 @@
         var d = rings(f.geometry).map(function (r) { return 'M' + r.map(function (c) {
           return ((c[0] * k - minx) * s).toFixed(1) + ',' + ((maxy - c[1]) * s).toFixed(1); }).join('L') + 'Z'; }).join('');
         var on = norm(f.properties.name) === norm(regionName);
-        return '<path d="' + d + '" fill="' + (on ? '#C8922A' : '#2c2b27') + '" stroke="#141414" stroke-width="1.5" stroke-linejoin="round"/>';
+        return '<path d="' + d + '" fill="' + (on ? '#C8922A' : '#3A3E44') + '" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>';
       }).join('');
       var box = document.createElement('div');
       box.className = 'wvb-place-map';
