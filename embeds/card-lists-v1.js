@@ -12,17 +12,20 @@
 (function(){
   var path=location.pathname.replace(/\/+$/,'')||'/';
   if(path==='/directory') return;
-  var cards=[].slice.call(document.querySelectorAll('.collection-list-2 .directory-card'));
+  // Story cards share these classes; only cards that link to a stop are touched.
+  var cards=[].slice.call(document.querySelectorAll('.collection-list-2 .directory-card')).filter(function(a){
+    return /^\/directory\//.test(a.getAttribute('href')||'');
+  });
   if(!cards.length) return;
   var st=document.createElement('style');st.setAttribute('data-wvb','card-lists-v1');
   if(path==='/'){
     var SHARE={'potomac highlands':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db58fefb9dee62bf1080_wvb-share-potomac-highlands.png','northern panhandle':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db58fefb9dee62bf1074_wvb-share-northern-panhandle.png','new river-greenbrier valley':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db57fefb9dee62bf1066_wvb-share-new-river-greenbrier-valley.png','mountaineer country':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db58fefb9dee62bf106e_wvb-share-mountaineer-country.png','mountain lakes':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db58fefb9dee62bf1071_wvb-share-mountain-lakes.png','mid-ohio valley':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db58fefb9dee62bf1077_wvb-share-mid-ohio-valley.png','metro valley':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9dac1b2985e17b83b5b8e_wvb-share-metro-valley.png','hatfield-mccoy mountains':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db58fefb9dee62bf107a_wvb-share-hatfield-mccoy-mountains.png','eastern panhandle':'https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6af9db57fefb9dee62bf1063_wvb-share-eastern-panhandle.png'};
-    st.textContent='.collection-list-2 .directory-card > img{object-fit:contain!important;background:#141414}';
+    st.textContent='.collection-list-2 .directory-card.wvb-share-card > img{object-fit:contain!important;background:#141414}';
     document.head.appendChild(st);
     cards.forEach(function(card){
       var img=card.querySelector(':scope > img'), r=card.querySelector('.card-region');
       var url=r&&SHARE[r.textContent.trim().toLowerCase()];
-      if(img&&url){img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=url;img.alt='Motorcycle stops in '+r.textContent.trim();}
+      if(img&&url){card.classList.add('wvb-share-card');img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=url;img.alt='Motorcycle stops in '+r.textContent.trim();}
     });
     return;
   }
@@ -55,7 +58,7 @@
     if(cat==='attraction') return ATT[dt]||'attraction';
     return CAT[cat]||'other';
   }
-  [].slice.call(document.querySelectorAll('.collection-list-2')).forEach(function(l){l.classList.add('wvb-cardrows');});
+  cards.forEach(function(card){var l=card.closest('.collection-list-2');if(l)l.classList.add('wvb-cardrows');});
   cards.forEach(function(card){
     if(card.querySelector('.wvb-row-icon')) return;
     var s=document.createElement('span');s.className='wvb-row-icon';s.setAttribute('aria-hidden','true');
