@@ -65,4 +65,17 @@
     s.innerHTML='<svg viewBox="0 0 24 24">'+(G[token(card)]||G.other)+'</svg>';
     card.insertBefore(s,card.firstChild);
   });
+  // These lists don't carry the attraction type, so take the exact icon from the pin file by slug.
+  if(!window.fetch) return;
+  fetch('https://cdn.jsdelivr.net/gh/Sara-Rider/wvb-maps@main/directory.geojson')
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(fc){
+      if(!fc||!fc.features) return;
+      var T={}; fc.features.forEach(function(f){if(f.properties&&f.properties.slug)T[f.properties.slug]=f.properties.type;});
+      cards.forEach(function(card){
+        var slug=(card.getAttribute('href')||'').replace(/\/+$/,'').split('/').pop(), t=T[slug], svg=card.querySelector('.wvb-row-icon svg');
+        if(t&&G[t]&&svg) svg.innerHTML=G[t];
+      });
+    })
+    .catch(function(){});
 })();
