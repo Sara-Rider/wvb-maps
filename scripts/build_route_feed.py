@@ -138,7 +138,7 @@ INDEX_TOLERANCE_MILES = 0.15
 VALID_TOKENS = {
     "overlook", "waterfall", "bridge", "monument", "park", "scenic-road",
     "swing", "lodging", "food", "camping", "moto", "fuel", "guides", "other",
-    "attraction",
+    "attraction", "historic", "bar", "post",
 }
 
 

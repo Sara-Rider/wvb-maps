@@ -45,7 +45,7 @@ LNG_MIN, LNG_MAX = -82.7, -77.6
 CATEGORY_TO_TOKEN = {
     "lodging": "lodging",
     "restaurant": "food",
-    "bar": "food",
+    "bar": "bar",
     "campground": "camping",
     "motorcycle dealer": "moto",
     "repair shop": "moto",
@@ -55,6 +55,7 @@ CATEGORY_TO_TOKEN = {
     "attraction": "attraction",   # may be overridden by Attraction Type
     "tour guide": "guides",
     "outfitter": "guides",
+    "club / post": "post",
     "other": "other",
 }
 
