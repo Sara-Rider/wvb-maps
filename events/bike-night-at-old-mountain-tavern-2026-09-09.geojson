@@ -40,9 +40,9 @@
     "slug": "old-mountain-tavern",
     "name": "Old Mountain Tavern",
     "category": "Bar",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
+    "type": "bar",
+    "lane": "other",
+    "laneLabel": "Other",
     "short": "Marlinton tavern with a deep beer list and deli sandwiches, a block off the Greenbrier River Trail.",
     "region": "Potomac Highlands",
     "county": "Pocahontas",
@@ -114,6 +114,36 @@
     "website": "https://greenbriergrille.com",
     "tel": "tel:+13047997233",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=38.22443541183142,-80.09556142328172"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.11150359999999,
+     38.2619895
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mimis",
+    "name": "Mim's Kitchen",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Home-style cafeteria cooking in a converted country church on Jerico Road outside Marlinton.",
+    "region": "Potomac Highlands",
+    "county": "Pocahontas",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.85,
+    "url": "/directory/mimis",
+    "website": null,
+    "tel": "tel:+13047992240",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.2619895,-80.11150359999999"
    }
   },
   {
