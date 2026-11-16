@@ -13931,6 +13931,68 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.1113316,
+     39.187461899999995
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "timbrook-honda-of-winchester",
+    "name": "Timbrook Honda of Winchester",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Honda powersports dealer on Route 7 in Winchester, about seven miles from the WV line, with sales, parts and service.",
+    "region": "Out of State",
+    "county": "Frederick",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 11.04,
+    "routeMile": 42.23,
+    "url": "/directory/timbrook-honda-of-winchester",
+    "website": "https://timbrookhondaofwinchester.com/",
+    "tel": "tel:+15406784727",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.187461899999995,-78.1113316"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.1259073,
+     39.1407914
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "skyline-harley-davidson",
+    "name": "Skyline Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Harley-Davidson dealer in Winchester, VA, about ten miles from the WV line, with new and used bikes, gear and service.",
+    "region": "Out of State",
+    "county": "Frederick",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 14.06,
+    "routeMile": 42.31,
+    "url": "/directory/skyline-harley-davidson",
+    "website": "http://www.skylineharley.com/",
+    "tel": "tel:+15406624468",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1407914,-78.1259073"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -77.86175700953504,
      39.28815976023299
     ]
@@ -13955,6 +14017,37 @@
     "website": "https://www.legionpost71wv.org/",
     "tel": "tel:+13047257212",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.28815976023299,-77.86175700953504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -77.7581415,
+     39.3178043
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "harpers-ferry-national-historical-park",
+    "name": "Harpers Ferry National Historical Park",
+    "category": "Attraction",
+    "type": "historic",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "Civil War-era town and national park where the Potomac meets the Shenandoah - park at the visitor center and ride the shuttle in.",
+    "region": "Eastern Panhandle",
+    "county": "Jefferson",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 3.28,
+    "routeMile": 51.48,
+    "url": "/directory/harpers-ferry-national-historical-park",
+    "website": "https://www.nps.gov/hafe/index.htm",
+    "tel": "tel:+13045356029",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3178043,-77.7581415"
    }
   }
  ]

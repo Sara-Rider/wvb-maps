@@ -19667,8 +19667,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -79.6534144,
-     39.4586445
+     -79.6534151797596,
+     39.45882142158986
     ]
    },
    "properties": {
@@ -19679,18 +19679,18 @@
     "type": "food",
     "lane": "food",
     "laneLabel": "Food & Drink",
-    "short": "Family-owned authentic Mexican in Kingwood with Cheat River and golf-course views - right by the Preston County Inn.",
+    "short": "Family-owned authentic Mexican in Terra Alta with Cheat River and golf-course views - right by the Preston County Inn.",
     "region": "Mountaineer Country",
     "county": "Preston",
     "certified": false,
     "featured": false,
     "reserved": false,
-    "offRouteMiles": 1.39,
+    "offRouteMiles": 1.38,
     "routeMile": 0.55,
     "url": "/directory/rosemarys-thyme",
     "website": "https://www.prestoncountryclub.com/rosemarys-thyme",
     "tel": "tel:+13043296750",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4586445,-79.6534144"
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.45882142158986,-79.6534151797596"
    }
   },
   {
@@ -19791,37 +19791,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -79.9714631,
-     39.6540244
-    ]
-   },
-   "properties": {
-    "kind": "nearby",
-    "slug": "black-bear-burritos",
-    "name": "Black Bear Burritos",
-    "category": "Restaurant",
-    "type": "food",
-    "lane": "food",
-    "laneLabel": "Food & Drink",
-    "short": "Long-running Morgantown burrito spot on University Avenue at Evansdale.",
-    "region": "Mountaineer Country",
-    "county": "Monongalia",
-    "certified": false,
-    "featured": false,
-    "reserved": false,
-    "offRouteMiles": 1.64,
-    "routeMile": 111.72,
-    "url": "/directory/black-bear-burritos",
-    "website": "https://www.blackbearburritos.com",
-    "tel": "tel:+13047774867",
-    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6540244,-79.9714631"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -80.014389,
      39.6573066
     ]
@@ -19846,6 +19815,37 @@
     "website": "http://mountaineerindianmotorcycle.com/",
     "tel": "tel:+13043703101",
     "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6573066,-80.014389"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.0131833,
+     39.6583366
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-greene-turtle",
+    "name": "The Greene Turtle",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Sports bar and grille just off I-79 in Morgantown, with crab dip, wings and a big outdoor deck.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.16,
+    "routeMile": 112.51,
+    "url": "/directory/the-greene-turtle",
+    "website": "https://thegreeneturtle.com/",
+    "tel": "tel:+13042411405",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6583366,-80.0131833"
    }
   },
   {

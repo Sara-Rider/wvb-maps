@@ -711,7 +711,7 @@
     "short": "A 161-mile one-way ride on the Coal Heritage Trail National Scenic Byway, from Bluefield through the McDowell County coal towns and Beckley down to Fayette Station, under the New River Gorge Bridge.",
     "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8a0451e31e4264620b7ac_default.jpeg",
     "stops": 6,
-    "nearby": 14,
+    "nearby": 15,
     "url": "/routes/coal-heritage-trail"
    }
   },
@@ -1587,7 +1587,7 @@
     "short": "A 92-mile, two-day loop through Hampshire and Mineral County back roads, with an overnight in Keyser. An easy-paced ride built around small-town stops.",
     "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e978a472b7eb040116_default.jpeg",
     "stops": 2,
-    "nearby": 5,
+    "nearby": 6,
     "url": "/routes/the-mountain-store-loop"
    }
   },
@@ -2519,7 +2519,7 @@
     "short": "A 96-mile Eastern Panhandle loop along the Washington Heritage Trail, crossing Mills Gap and closing out at a Berkeley Springs roadhouse. A full day of mountain views and gap-road curves.",
     "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6ad8b1e678a472b7eb03fea9_default.jpeg",
     "stops": 2,
-    "nearby": 3,
+    "nearby": 6,
     "url": "/routes/mills-gap-mountain-loop"
    }
   },
@@ -3957,7 +3957,7 @@
     "short": "Gorge roads, waterfall stops, and coal country history. This New River Gorge loop is West Virginia riding at its absolute best.",
     "image": "https://cdn.prod.website-files.com/6a4024b4f8999364837bcd0b/6adb387854d46b26c597b00f_6a432cec646ae66df0d8aff0_Fayatte%2520Bridge%2520New%2520River%2520WV.jpeg",
     "stops": 5,
-    "nearby": 14,
+    "nearby": 15,
     "url": "/routes/the-summersville-loop"
    }
   },

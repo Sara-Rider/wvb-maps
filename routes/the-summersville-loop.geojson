@@ -21243,6 +21243,37 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -81.0759215,
+     38.069996599999996
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "canyon-rim-visitor-center",
+    "name": "Canyon Rim Visitor Center",
+    "category": "Attraction",
+    "type": "overlook",
+    "lane": "attraction",
+    "laneLabel": "See & Do",
+    "short": "National park visitor center with the classic New River Gorge Bridge view from its boardwalk, right off US 19.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Fayette",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 0.05,
+    "routeMile": 57.96,
+    "url": "/directory/canyon-rim-visitor-center",
+    "website": "https://www.nps.gov/neri/planyourvisit/crvc.htm",
+    "tel": "tel:+13045742115",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.069996599999996,-81.0759215"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -81.0686039,
      38.093205
     ]

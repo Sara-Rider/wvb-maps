@@ -11113,6 +11113,37 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.78621749999999,
+     39.681023599999996
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "timbrook-honda-of-cumberland",
+    "name": "Timbrook Honda of Cumberland",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Honda powersports dealer in Cumberland, MD, under four miles from the WV line, with sales, parts and service.",
+    "region": "Out of State",
+    "county": "Allegany",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "offRouteMiles": 9.04,
+    "routeMile": 61.09,
+    "url": "/directory/timbrook-honda-of-cumberland",
+    "website": "https://www.timbrookhonda.com/",
+    "tel": "tel:+13017831900",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.681023599999996,-78.78621749999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -78.4637711,
      39.456635
     ]
