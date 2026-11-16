@@ -1,0 +1,323 @@
+{
+ "type": "FeatureCollection",
+ "properties": {
+  "story": "bbq-worth-the-ride",
+  "mode": "set",
+  "routes": [],
+  "nearbyFallback": false
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.43272255767182,
+     38.4238613990011
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "buddy-s-all-american-bar-b-que",
+    "name": "Buddy's All American Bar-B-Que",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Huntington barbecue joint with a screened-in porch and a summer Thursday bike night that takes over the parking lot.",
+    "region": "Metro Valley",
+    "county": "Cabell",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/buddy-s-all-american-bar-b-que",
+    "website": "https://www.wvbbq.com/",
+    "tel": "tel:+13045229869",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4238613990011,-82.43272255767182"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.00072636931816,
+     38.4380374926154
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "l-r-bbq",
+    "name": "L&R BBQ",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Family-style barbecue and homemade sides in Teays Valley, a short stop off I-64 at Hurricane.",
+    "region": "Metro Valley",
+    "county": "Putnam",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/l-r-bbq",
+    "website": null,
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.4380374926154,-82.00072636931816"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.7643878,
+     38.383696
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "ridgeview-bbq",
+    "name": "Ridge View BBQ",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Dunbar barbecue joint that WV Living readers voted the state's best, a short hop off I-64.",
+    "region": "Metro Valley",
+    "county": "Kanawha",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/ridgeview-bbq",
+    "website": "http://www.ridgeviewbbq.com/",
+    "tel": "tel:+13044004650",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.383696,-81.7643878"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.7520124,
+     39.9295524
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "mason-dixon-bbq",
+    "name": "Mason Dixon BBQ Co.",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Veteran-run Moundsville smokehouse off Route 2, known for 16-hour brisket and baby backs that sell out.",
+    "region": "Northern Panhandle",
+    "county": "Marshall",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/mason-dixon-bbq",
+    "website": "http://www.masondixonbbqco.com/",
+    "tel": "tel:+13048105943",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.9295524,-80.7520124"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.0534285,
+     39.2630888
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "bourbon-hills-bbq",
+    "name": "Bourbon Hills BBQ",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Family-run barbecue trailer in Ellenboro, near US 50, open Thursdays and Fridays until it sells out.",
+    "region": "Mid-Ohio Valley",
+    "county": "Ritchie",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/bourbon-hills-bbq",
+    "website": "https://www.bourbonhillsbbq.com/",
+    "tel": "tel:+13048694003",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.2630888,-81.0534285"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.3499132,
+     38.8017616
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "the-hungry-moose",
+    "name": "The Hungry Moose",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Barbecue in downtown Spencer with brisket, pulled pork and a spread of sauces to try.",
+    "region": "Mid-Ohio Valley",
+    "county": "Roane",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/the-hungry-moose",
+    "website": "http://hungrymoosebbq.com/",
+    "tel": "tel:+13045192076",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.8017616,-81.3499132"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -80.46626789999999,
+     39.0377576
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "south-texas-barbecue-company",
+    "name": "South Texas Barbecue Company",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Texas-style barbecue on East 2nd Street in Weston, off the I-79 corridor.",
+    "region": "Mountain Lakes",
+    "county": "Lewis",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/south-texas-barbecue-company",
+    "website": null,
+    "tel": "tel:+13049979725",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0377576,-80.46626789999999"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.2232504,
+     37.7461743
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "cast-iron-smokers",
+    "name": "Cast Iron Smokers",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Beckley's \"sports barbecue\" spot: slow-smoked meats in a sports-bar room on Robert C. Byrd Drive.",
+    "region": "New River-Greenbrier Valley",
+    "county": "Raleigh",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/cast-iron-smokers",
+    "website": "http://www.castironsmokers.com/",
+    "tel": "tel:+13048601033",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=37.7461743,-81.2232504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.8215328,
+     38.9124865
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "smoke-on-the-water-bbq",
+    "name": "Smoke on the Water BBQ",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Creekside BBQ joint on Rt 33 east of Elkins - smoked meats, full bar, craft beer, and live music on the deck.",
+    "region": "Potomac Highlands",
+    "county": "Randolph",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/smoke-on-the-water-bbq",
+    "website": "https://smokewaterbbq.com",
+    "tel": "tel:+13046369669",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=38.9124865,-79.8215328"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.9630275,
+     39.0835666
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "south-branch-smokehouse",
+    "name": "South Branch Smokehouse",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Barbecue stop on US 220 north of Moorefield, on the approach to Seneca Rocks.",
+    "region": "Potomac Highlands",
+    "county": "Hardy",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/south-branch-smokehouse",
+    "website": "https://southbranchsmokehouse.com",
+    "tel": "tel:+13045303226",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.0835666,-78.9630275"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.9683901,
+     39.071427
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "millers-bbq-and-grill",
+    "name": "Miller's BBQ & Grill",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Family barbecue and grill on North Main in Moorefield, known for big portions and quick service.",
+    "region": "Potomac Highlands",
+    "county": "Hardy",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/millers-bbq-and-grill",
+    "website": null,
+    "tel": "tel:+13045305440",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.071427,-78.9683901"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.746842,
+     39.3355417
+    ]
+   },
+   "properties": {
+    "kind": "place",
+    "slug": "lost-mountain-bbq",
+    "name": "Lost Mountain BBQ Company",
+    "category": "Restaurant",
+    "type": "food",
+    "short": "Roadside barbecue on US 50 at Romney with house-made sauces, open daily for lunch and dinner.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "url": "/directory/lost-mountain-bbq",
+    "website": "http://lost-mountain-bbq-company.square.site/",
+    "tel": "tel:+13043592570",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3355417,-78.746842"
+   }
+  }
+ ]
+}
