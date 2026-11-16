@@ -121,6 +121,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -81.527559,
+     39.184787
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "all-seasons-powersports-2",
+    "name": "All Seasons Powersports of Parkersburg",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Indian, Kawasaki and Can-Am dealer in Mineral Wells, just south of Parkersburg near I-77.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 7.6,
+    "url": "/directory/all-seasons-powersports-2",
+    "website": "https://allseasonsatv.com/",
+    "tel": "tel:+13044899824",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.184787,-81.527559"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -81.4381504,
      39.380613
     ]

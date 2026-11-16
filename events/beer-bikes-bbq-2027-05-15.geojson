@@ -1,0 +1,60 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.4637711,
+     39.456635
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "beer-bikes-bbq-2027-05-15",
+    "name": "Beer, Bikes, & BBQ",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Potomac Highlands",
+    "date": "2027-05-15T14:00:00.000Z",
+    "endDate": "2027-05-15T12:00:00.000Z",
+    "locationName": "Avalon Resort",
+    "status": "Free",
+    "url": "/events/beer-bikes-bbq-2027-05-15",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.456635,-78.4637711"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.4637711,
+     39.456635
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "avalon-resort",
+    "name": "Avalon Resort (Clothing Optional)",
+    "category": "Lodging",
+    "type": "lodging",
+    "lane": "lodging",
+    "laneLabel": "Lodging",
+    "short": "Clothing-optional resort outside Paw Paw, with lodging and events that include rider gatherings.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/avalon-resort",
+    "website": "https://www.avalon-resort.com/",
+    "tel": "tel:+13049475600",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.456635,-78.4637711"
+   }
+  }
+ ]
+}

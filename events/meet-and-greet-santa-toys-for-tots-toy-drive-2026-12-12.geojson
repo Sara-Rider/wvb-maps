@@ -1,0 +1,90 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "meet-and-greet-santa-toys-for-tots-toy-drive-2026-12-12",
+    "name": "Meet and Greet Santa Toys for Tots Toy Drive",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-12-12T14:00:00.000Z",
+    "endDate": "2026-12-12T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/meet-and-greet-santa-toys-for-tots-toy-drive-2026-12-12",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "mothman-harley-davidson",
+    "name": "Mothman Harley-Davidson",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "The Mid-Ohio Valley's authorized Harley-Davidson dealer in Williamstown — service, parts, and gear right off I-77 at the Ohio line.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.0,
+    "url": "/directory/mothman-harley-davidson",
+    "website": "https://www.mothmanhd.com",
+    "tel": "tel:+13043752530",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.527559,
+     39.184787
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "all-seasons-powersports-2",
+    "name": "All Seasons Powersports of Parkersburg",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Indian, Kawasaki and Can-Am dealer in Mineral Wells, just south of Parkersburg near I-77.",
+    "region": "Mid-Ohio Valley",
+    "county": "Wood",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 14.35,
+    "url": "/directory/all-seasons-powersports-2",
+    "website": "https://allseasonsatv.com/",
+    "tel": "tel:+13044899824",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.184787,-81.527559"
+   }
+  }
+ ]
+}

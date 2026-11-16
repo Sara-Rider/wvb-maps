@@ -6,6 +6,78 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -78.4637711,
+     39.456635
+    ]
+   },
+   "properties": {
+    "slug": "beer-bikes-bbq-2027-05-15",
+    "name": "Beer, Bikes, & BBQ",
+    "type": "bike-night",
+    "typeLabel": "Bike Day/Night",
+    "region": "Potomac Highlands",
+    "date": "2027-05-15T14:00:00.000Z",
+    "endDate": "2027-05-15T12:00:00.000Z",
+    "locationName": "Avalon Resort",
+    "status": "Free",
+    "url": "/events/beer-bikes-bbq-2027-05-15",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.456635,-78.4637711"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7485196,
+     39.3360566
+    ]
+   },
+   "properties": {
+    "slug": "christmas-drive-to-benefit-the-family-crisis-center-2026-11-20",
+    "name": "Christmas Drive to benefit the Family Crisis Center",
+    "type": "other",
+    "typeLabel": "Other",
+    "region": "Potomac Highlands",
+    "date": "2026-11-20T18:30:00.000Z",
+    "endDate": "2026-12-06T12:00:00.000Z",
+    "locationName": "Family Dollar",
+    "status": "Free",
+    "url": "/events/christmas-drive-to-benefit-the-family-crisis-center-2026-11-20",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3360566,-78.7485196"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.4381504,
+     39.380613
+    ]
+   },
+   "properties": {
+    "slug": "meet-and-greet-santa-toys-for-tots-toy-drive-2026-12-12",
+    "name": "Meet and Greet Santa Toys for Tots Toy Drive",
+    "type": "charity-ride",
+    "typeLabel": "Charity Ride",
+    "region": "Mid-Ohio Valley",
+    "date": "2026-12-12T14:00:00.000Z",
+    "endDate": "2026-12-12T12:00:00.000Z",
+    "locationName": "Mothman Harley-Davidson",
+    "status": "Free",
+    "url": "/events/meet-and-greet-santa-toys-for-tots-toy-drive-2026-12-12",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.380613,-81.4381504"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -81.4381504,
      39.380613
     ]

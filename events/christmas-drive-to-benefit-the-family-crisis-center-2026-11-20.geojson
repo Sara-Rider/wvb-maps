@@ -1,0 +1,150 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7485196,
+     39.3360566
+    ]
+   },
+   "properties": {
+    "kind": "event",
+    "slug": "christmas-drive-to-benefit-the-family-crisis-center-2026-11-20",
+    "name": "Christmas Drive to benefit the Family Crisis Center",
+    "type": "other",
+    "typeLabel": "Other",
+    "region": "Potomac Highlands",
+    "date": "2026-11-20T18:30:00.000Z",
+    "endDate": "2026-12-06T12:00:00.000Z",
+    "locationName": "Family Dollar",
+    "status": "Free",
+    "url": "/events/christmas-drive-to-benefit-the-family-crisis-center-2026-11-20",
+    "link": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3360566,-78.7485196"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.746842,
+     39.3355417
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "lost-mountain-bbq",
+    "name": "Lost Mountain BBQ Company",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Roadside barbecue on US 50 at Romney with house-made sauces, open daily for lunch and dinner.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.1,
+    "url": "/directory/lost-mountain-bbq",
+    "website": "http://lost-mountain-bbq-company.square.site/",
+    "tel": "tel:+13043592570",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3355417,-78.746842"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7548364,
+     39.341184
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "american-legion-post-91",
+    "name": "American Legion Post 91",
+    "category": "Club / Post",
+    "type": "post",
+    "lane": "other",
+    "laneLabel": "Other",
+    "short": "American Legion post on Romney's main street, and the home of the Patriots Poker Run to Flight 93.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.49,
+    "url": "/directory/american-legion-post-91",
+    "website": "https://romneypost91.org/",
+    "tel": null,
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.341184,-78.7548364"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.75717860000002,
+     39.35489
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "romney-cycles",
+    "name": "Romney Cycles",
+    "category": "Motorcycle Dealer",
+    "type": "moto",
+    "lane": "moto",
+    "laneLabel": "Moto Service",
+    "short": "Multi-brand powersports dealer and service shop at Romney, just off US 50.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 1.38,
+    "url": "/directory/romney-cycles",
+    "website": "https://www.romneycycles.com/",
+    "tel": "tel:+13048223933",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.35489,-78.75717860000002"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -78.7022996,
+     39.3291121
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "main-street-grill-romney",
+    "name": "Main Street Grill - Romney",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Steakhouse and American kitchen at Romney - the town's sit-down dinner, on the US 50 run.",
+    "region": "Potomac Highlands",
+    "county": "Hampshire",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 2.54,
+    "url": "/directory/main-street-grill-romney",
+    "website": "https://www.main-st-grill.com",
+    "tel": "tel:+13048224745",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3291121,-78.7022996"
+   }
+  }
+ ]
+}

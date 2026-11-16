@@ -61,6 +61,36 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -80.0131833,
+     39.6583366
+    ]
+   },
+   "properties": {
+    "kind": "nearby",
+    "slug": "the-greene-turtle",
+    "name": "The Greene Turtle",
+    "category": "Restaurant",
+    "type": "food",
+    "lane": "food",
+    "laneLabel": "Food & Drink",
+    "short": "Sports bar and grille just off I-79 in Morgantown, with crab dip, wings and a big outdoor deck.",
+    "region": "Mountaineer Country",
+    "county": "Monongalia",
+    "certified": false,
+    "featured": false,
+    "reserved": false,
+    "miles": 0.07,
+    "url": "/directory/the-greene-turtle",
+    "website": "https://thegreeneturtle.com/",
+    "tel": "tel:+13042411405",
+    "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6583366,-80.0131833"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -80.014389,
      39.6573066
     ]
