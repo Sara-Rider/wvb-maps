@@ -6,9 +6,207 @@
     "contract": "pin data contract v2 — keyed on slug; `type` is the canonical renderer glyph token",
     "join_key": "slug",
     "coordinate_order": "[longitude, latitude]",
-    "count": 156
+    "count": 165
   },
   "features": [
+    {
+      "type": "Feature",
+      "id": "coopers-rock-state-forest",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.78062129999999,
+          39.661234199999996
+        ]
+      },
+      "properties": {
+        "slug": "coopers-rock-state-forest",
+        "name": "Coopers Rock State Forest",
+        "category": "Attraction",
+        "type": "overlook",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
+        "certified": false,
+        "url": "/directory/coopers-rock-state-forest",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.661234199999996,-79.78062129999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "harpers-ferry-national-historical-park",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.7581415,
+          39.3178043
+        ]
+      },
+      "properties": {
+        "slug": "harpers-ferry-national-historical-park",
+        "name": "Harpers Ferry National Historical Park",
+        "category": "Attraction",
+        "type": "historic",
+        "region": "Eastern Panhandle",
+        "county": "Jefferson",
+        "certified": false,
+        "url": "/directory/harpers-ferry-national-historical-park",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.3178043,-77.7581415"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "timbrook-honda-of-cumberland",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.78621749999999,
+          39.681023599999996
+        ]
+      },
+      "properties": {
+        "slug": "timbrook-honda-of-cumberland",
+        "name": "Timbrook Honda of Cumberland",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Out of State",
+        "county": "Allegany",
+        "certified": false,
+        "url": "/directory/timbrook-honda-of-cumberland",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.681023599999996,-78.78621749999999"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "canyon-rim-visitor-center",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0759215,
+          38.069996599999996
+        ]
+      },
+      "properties": {
+        "slug": "canyon-rim-visitor-center",
+        "name": "Canyon Rim Visitor Center",
+        "category": "Attraction",
+        "type": "overlook",
+        "region": "New River-Greenbrier Valley",
+        "county": "Fayette",
+        "certified": false,
+        "url": "/directory/canyon-rim-visitor-center",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=38.069996599999996,-81.0759215"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "all-seasons-powersports-2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.527559,
+          39.184787
+        ]
+      },
+      "properties": {
+        "slug": "all-seasons-powersports-2",
+        "name": "All Seasons Powersports of Parkersburg",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Mid-Ohio Valley",
+        "county": "Wood",
+        "certified": false,
+        "url": "/directory/all-seasons-powersports-2",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.184787,-81.527559"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "skyline-harley-davidson",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1259073,
+          39.1407914
+        ]
+      },
+      "properties": {
+        "slug": "skyline-harley-davidson",
+        "name": "Skyline Harley-Davidson",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Out of State",
+        "county": "Frederick",
+        "certified": false,
+        "url": "/directory/skyline-harley-davidson",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1407914,-78.1259073"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-billy-motel",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.4732049,
+          39.1297504
+        ]
+      },
+      "properties": {
+        "slug": "the-billy-motel",
+        "name": "The Billy Motel",
+        "category": "Lodging",
+        "type": "lodging",
+        "region": "Potomac Highlands",
+        "county": "Tucker",
+        "certified": false,
+        "url": "/directory/the-billy-motel",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.1297504,-79.4732049"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "timbrook-honda-of-winchester",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1113316,
+          39.187461899999995
+        ]
+      },
+      "properties": {
+        "slug": "timbrook-honda-of-winchester",
+        "name": "Timbrook Honda of Winchester",
+        "category": "Motorcycle Dealer",
+        "type": "moto",
+        "region": "Out of State",
+        "county": "Frederick",
+        "certified": false,
+        "url": "/directory/timbrook-honda-of-winchester",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.187461899999995,-78.1113316"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "the-greene-turtle",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.0131833,
+          39.6583366
+        ]
+      },
+      "properties": {
+        "slug": "the-greene-turtle",
+        "name": "The Greene Turtle",
+        "category": "Restaurant",
+        "type": "food",
+        "region": "Mountaineer Country",
+        "county": "Monongalia",
+        "certified": false,
+        "url": "/directory/the-greene-turtle",
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.6583366,-80.0131833"
+      }
+    },
     {
       "type": "Feature",
       "id": "l-r-bbq",
@@ -1753,8 +1951,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -79.6534144,
-          39.4586445
+          -79.6534151797596,
+          39.45882142158986
         ]
       },
       "properties": {
@@ -1766,7 +1964,7 @@
         "county": "Preston",
         "certified": false,
         "url": "/directory/rosemarys-thyme",
-        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.4586445,-79.6534144"
+        "maps": "https://www.google.com/maps/dir/?api=1&destination=39.45882142158986,-79.6534151797596"
       }
     },
     {
